@@ -136,22 +136,30 @@ sequence and optional figure formats.
 For `n` system qubits, let $N = 2^n$. Python arrays use zero-based indexing,
 while manuscript parameters use one-based indexing.
 
-- `theta_mag[j - 1]` stores $\theta_j$, for $1 \le j \le N-1$. Thus
-  `theta_mag` represents
-  $\boldsymbol{\theta}_{\mathrm{mag}} = (\theta_1,\ldots,\theta_{N-1})$.
-- `theta_ph[ell]` stores $\theta_{N+\ell}$, for $0 \le \ell < N$. Thus
-  `theta_ph` represents
-  $\boldsymbol{\theta}_{\mathrm{ph}} = (\theta_N,\ldots,\theta_{2N-1})$.
+- The Python entry `theta_mag[j - 1]` stores the manuscript parameter
+  $`\theta_j`$ for $`1 \le j \le N-1`$. Thus `theta_mag` represents
+  $`\boldsymbol{\theta}_{\mathrm{mag}}
+  =(\theta_1,\ldots,\theta_{N-1})`$.
+
+- The Python entry `theta_ph[ell]` stores the manuscript parameter
+  $`\theta_{N+\ell}`$ for $`0 \le \ell < N`$. Thus `theta_ph` represents
+  $`\boldsymbol{\theta}_{\mathrm{ph}}
+  =(\theta_N,\ldots,\theta_{2N-1})`$.
+
 - `join_theta` and `split_theta` convert between these two blocks and the first
   paper's complete complex Hopf coordinate vector.
-- Basis states are written $\lvert q_n \cdots q_1\rangle$. Qibo system index
+
+- Basis states are written $`\lvert q_n\cdots q_1\rangle`$. Qibo system index
   `0` is the most-significant basis bit and corresponds to manuscript wire
-  $q_n$; Qibo index `n - 1` corresponds to $q_1$.
-- The papers use $R_y(\theta) = e^{-i\theta Y}$. Qibo therefore receives
+  $`q_n`$; Qibo index `n - 1` corresponds to $`q_1`$.
+
+- The papers use $`R_y(\theta)=e^{-i\theta Y}`$. Qibo therefore receives
   `RY(2 * theta)`.
-- `HopfReal`, $U_{\mathrm{chk}}$, and $W_{\mathbb{R}}$ prepare the same state
-  from $\lvert 0\rangle$, but they are distinct full-unitary completions.
-- The complex global-magnitude circuit uses the literal asymmetric sequence
+
+- `HopfReal`, $`U_{\mathrm{chk}}`$, and $`W_{\mathbb R}`$ prepare the same state
+  from $`\lvert 0\rangle`$, but they are distinct full-unitary completions.
+
+- The complex global-magnitude circuit uses the literal asymmetric sequence:
 
 $$
 U_{\mathrm{chk}}
@@ -162,7 +170,7 @@ D_{\mathrm{ph}}
 \;\longrightarrow\;
 D_{\mathrm{ph}}^{\dagger}
 \;\longrightarrow\;
-W_{\mathbb{R}}^{\dagger}.
+W_{\mathbb R}^{\dagger}.
 $$
 
 In the resource notation, $C_{\mathrm{chk}} = C(U_{\mathrm{chk}})$ denotes the
