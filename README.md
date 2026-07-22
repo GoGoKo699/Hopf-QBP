@@ -158,7 +158,7 @@ U_{\mathrm{chk}}
 \;\longrightarrow\;
 D_{\mathrm{ph}}
 \;\longrightarrow\;
-\operatorname{ctrl}(O)
+\mathrm{ctrl}(O)
 \;\longrightarrow\;
 D_{\mathrm{ph}}^{\dagger}
 \;\longrightarrow\;
