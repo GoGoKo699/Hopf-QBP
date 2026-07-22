@@ -190,5 +190,4 @@ conditional on the efficient-frame assumptions stated in the manuscript.
 ## Citation
 
 When using this repository, cite the first Hopf-ansatz paper and the
-accompanying Hopf-QBP manuscript. Repository metadata for software citation is
-provided in `CITATION.cff`.
+accompanying Hopf-QBP manuscript.
