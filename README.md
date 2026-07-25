@@ -181,27 +181,38 @@ distribution of the separated implementation.
 
 ## Circuit implementations validated
 
-The repository retains both forms used by the manuscript.
+The repository validates both implementations used in the manuscript.
 
-The designated separated complex global circuit is
+### Designated separated implementation
+
+The complex global circuit is
 
 $$
 U_{\mathrm{chk}}
-\longrightarrow
+\;\longrightarrow\;
 D_{\mathrm{ph}}
-\longrightarrow
-\operatorname{ctrl}(O)
-\longrightarrow
+\;\longrightarrow\;
+\mathrm{ctrl}(O)
+\;\longrightarrow\;
 D_{\mathrm{ph}}^{\dagger}
-\longrightarrow
-W_{\mathbb R}^{\dagger}.
+\;\longrightarrow\;
+W_{\mathbb{R}}^{\dagger}.
 $$
 
-The four-qubit integrated realization instead uses native `HopfComplex` forward
-preparation and the addressed $W_{\mathbb C}^{\dagger}$ decoder. The complex
-depth-$2$ checkpoint likewise compares the separated
-$D_{\mathrm{ph}}^{\dagger}$-then-$B_2^{\dagger}$ decoder with the integrated
-$B_{2,\mathbb C}^{\dagger}$ interface completion.
+### Integrated four-qubit implementation
+
+- **Global magnitude:** native `HopfComplex` forward preparation followed, after
+  the controlled observable, by the addressed $W_{\mathbb{C}}^{\dagger}$
+  decoder.
+- **Depth-2 checkpoint:** native `HopfComplex` forward preparation followed,
+  after the controlled observable, by the integrated
+  $B_{2,\mathbb{C}}^{\dagger}$ decoder. This is compared with the separated
+  reverse sequence $D_{\mathrm{ph}}^{\dagger}$ followed by $B_2^{\dagger}$.
+
+The global implementations produce the same complete output distribution. For
+the depth-2 checkpoint, the separated and integrated implementations preserve
+the same decoded gradient mean, although their complete output distributions
+need not be identical.
 
 ## What counts as circuit-level validation
 
