@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: >-
+  If you use this software, cite Compass in the Mirror: Quantum Backpropagation
+  with the Hopf Ansatz and the first Hopf-ansatz paper.
+title: Hopf-QBP Exact-Logical Validation
+type: software
+authors:
+  - family-names: Lin
+    given-names: Ruge
+repository-code: https://github.com/GoGoKo699/Hopf-QBP
+version: 0.1.0
+date-released: 2026-07-22
+keywords:
+  - quantum backpropagation
+  - Hopf ansatz
+  - variational quantum circuits
+  - gradient estimation
+  - Qibo
