@@ -49,11 +49,11 @@ implementation.
 
 The objective is
 
-$$
-E_O(\boldsymbol\theta)
+```math
+E_O(\boldsymbol{\theta})
 =
-\langle\psi(\boldsymbol\theta)|O|\psi(\boldsymbol\theta)\rangle.
-$$
+\langle\psi(\boldsymbol{\theta})|O|\psi(\boldsymbol{\theta})\rangle.
+```
 
 The implemented gradient protocols assume:
 
@@ -93,11 +93,11 @@ The three output records are deliberately simple:
 
 For internal node `j`, one all-`X` outcome `(b, y)` contributes
 
-$$
+```math
 Z_j
 =
 2\sqrt{g_{j,j}}\,(-1)^{b+\lambda(j)\cdot y}.
-$$
+```
 
 The same outcome contributes to every magnitude coordinate. A signed system
 histogram followed by one fast Walsh-Hadamard transform evaluates all required
@@ -107,11 +107,11 @@ parities together.
 
 One ancilla-`Y` and system-`Z` outcome `(b, ell)` contributes
 
-$$
+```math
 Z^{\mathrm{ph}}
 =
 2(-1)^b e_{\ell}.
-$$
+```
 
 It updates one leaf bin and directly estimates the complete phase-gradient
 block.
@@ -120,11 +120,11 @@ block.
 
 At selected depth `d`, one outcome `(b_c, b_t, r)` contributes
 
-$$
+```math
 Z_d^{\mathrm{chk}}
 =
 -2(-1)^{b_c+b_t}e_r.
-$$
+```
 
 It updates one prefix bin and estimates every magnitude derivative at that
 depth.

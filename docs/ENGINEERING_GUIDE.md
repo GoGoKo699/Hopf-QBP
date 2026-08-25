@@ -73,29 +73,29 @@ than duplicating the indexing logic.
 
 Internal nodes use breadth-first labels:
 
-$$
+```math
 j = 2^d + r,
 \qquad
 0\le d<n,
 \qquad
 0\le r<2^d.
-$$
+```
 
 The computational-basis marker assigned to node `j` is implemented by
 `marker_label(j, n)`:
 
-$$
+```math
 \lambda(j)
 =
 (2r+1)2^{n-d-1}.
-$$
+```
 
 The leftmost basis label of the corresponding subtree is implemented by
 `anchor_label(j, n)`:
 
-$$
+```math
 a(j)=r2^{n-d}.
-$$
+```
 
 Use `frame_gate_specs(n)` and `depth_gate_specs(n, d)` to generate gate
 locations. Do not recreate the tree map from a drawing.
@@ -104,9 +104,9 @@ locations. Do not recreate the tree map from a drawing.
 
 Basis states are written
 
-$$
+```math
 |q_n\cdots q_1\rangle.
-$$
+```
 
 Qibo system index `0` is the most-significant basis bit and corresponds to
 manuscript wire `q_n`. Qibo index `n - 1` corresponds to `q_1`.
@@ -121,9 +121,9 @@ Use:
 
 The Hopf papers use
 
-$$
+```math
 R_y(\theta)=e^{-i\theta Y}.
-$$
+```
 
 Qibo's `RY(phi)` uses the half-angle convention, so the circuit builders send
 
@@ -181,9 +181,9 @@ is preferred.
 
 For depth `d` and prefix `r`, define the internal node
 
-$$
+```math
 j=2^d+r.
-$$
+```
 
 `add_depth_layer` applies `R_y(theta_j)` to Qibo system index `d`, controlled by
 the first `d` system qubits matching the binary prefix `r`. Lower suffix qubits
@@ -192,11 +192,11 @@ depth layer commute on the computational-basis sectors they address.
 
 The complete depth preparation is
 
-$$
+```math
 U_{\mathrm{chk}}
 =
 U_{n-1}\cdots U_1U_0.
-$$
+```
 
 The circuit builder appends layers in increasing `d`, which produces this
 state-update order.
@@ -205,11 +205,11 @@ state-update order.
 
 For node `j = 2**d + r`, the anchor and marker labels are
 
-$$
+```math
 a(j)=r2^{n-d},
 \qquad
 \lambda(j)=(2r+1)2^{n-d-1}.
-$$
+```
 
 They differ only on Qibo system index `d`. `add_real_frame` therefore applies
 one addressed `R_y(theta_j)` on that target, controlled by all other system
@@ -227,18 +227,18 @@ The inverse frame reverses the gate order and negates every angle.
 
 The leaf-phase layer is
 
-$$
+```math
 D_{\mathrm{ph}}
 =
 \operatorname{diag}
 \left(e^{i\theta_N},\ldots,e^{i\theta_{2N-1}}\right).
-$$
+```
 
 The portable complex magnitude frame is
 
-$$
-W_{\mathbb C}=D_{\mathrm{ph}}W_{\mathbb R}.
-$$
+```math
+W_{\mathbb{C}}=D_{\mathrm{ph}}W_{\mathbb{R}}.
+```
 
 `add_phase_layer` represents `D_ph` as one exact logical `Unitary`. This is an
 access-model choice, not a claim that a generic hardware implementation has
@@ -248,9 +248,9 @@ zero cost.
 
 For selected depth `d`, define
 
-$$
+```math
 B_d=U_{n-1}\cdots U_{d+1}.
-$$
+```
 
 `add_inverse_depth_suffix` appends the inverse layers from `n - 1` down to
 `d + 1`. The real checkpoint reverse block is `B_d dagger`. The general
@@ -261,14 +261,14 @@ separated complex checkpoint first applies `D_ph dagger` and then
 
 The native complex schedule and the explicit integrated fixtures use
 
-$$
+```math
 R_C(\theta_a,\theta_b,\theta_c)
 =
 \begin{pmatrix}
  e^{i\theta_b}\cos\theta_a & -e^{-i\theta_c}\sin\theta_a\\
  e^{i\theta_c}\sin\theta_a & e^{-i\theta_b}\cos\theta_a
 \end{pmatrix}.
-$$
+```
 
 The general engineering path does not require reconstructing the explicit
 four-qubit phase compiler: use the separated `D_ph` and `W_R` blocks unless an
@@ -279,21 +279,21 @@ contract.
 
 The repository assumes
 
-$$
+```math
 O=O^\dagger,
 \qquad
 O^2=I,
-$$
+```
 
 and exact access to
 
-$$
+```math
 \operatorname{ctrl}(O)
 =
 |0\rangle\!\langle0|\otimes I
 +
 |1\rangle\!\langle1|\otimes O.
-$$
+```
 
 ### Controlled-branch phase
 
@@ -356,12 +356,12 @@ where `b_m` is the ancilla bit and `y` is the `n`-bit system outcome.
 
 For every internal node `j`:
 
-$$
-Z_j^{\mathbb R}(b_m,y)
+```math
+Z_j^{\mathbb{R}}(b_m,y)
 =
-2\sqrt{g_{j,j}^{\mathbb R}}
+2\sqrt{g_{j,j}^{\mathbb{R}}}
 (-1)^{b_m+\lambda(j)\cdot y}.
-$$
+```
 
 One physical outcome is reused for all `N - 1` magnitude coordinates.
 Coordinate records from one execution are correlated; independent executions
@@ -425,18 +425,18 @@ U_chk
 The complex magnitude record uses the same marker map and metric factors as the
 real chart:
 
-$$
-Z_j^{\mathbb C,\mathrm{mag}}
+```math
+Z_j^{\mathbb{C},\mathrm{mag}}
 =
-2\sqrt{g_{j,j}^{\mathbb C}}
+2\sqrt{g_{j,j}^{\mathbb{C}}}
 (-1)^{b_m+\lambda(j)\cdot y},
-$$
+```
 
 with
 
-$$
-g_{j,j}^{\mathbb C}=g_{j,j}^{\mathbb R}.
-$$
+```math
+g_{j,j}^{\mathbb{C}}=g_{j,j}^{\mathbb{R}}.
+```
 
 Use the same `decode_balanced_magnitude_gradient` function.
 
@@ -465,11 +465,11 @@ complex Hopf forward preparation
 
 One outcome `(b_p, ell)` contributes the signed one-hot vector
 
-$$
-Z^{\mathbb C,\mathrm{ph}}
+```math
+Z^{\mathbb{C},\mathrm{ph}}
 =
 2(-1)^{b_p}e_{\ell}.
-$$
+```
 
 Decoder:
 
@@ -538,12 +538,12 @@ One execution returns:
 
 and contributes
 
-$$
+```math
 Z_d^{\mathrm{chk}}
 =
 -2(-1)^{b_c+b_t}e_r
-\in\mathbb R^{2^d}.
-$$
+\in\mathbb{R}^{2^d}.
+```
 
 Decoder:
 
@@ -581,19 +581,19 @@ This is the most important implementation distinction in the repository.
 
 ### Full-unitary equality
 
-$$
+```math
 U=V.
-$$
+```
 
 Use this when the complete action on every input state matters.
 
 ### Initialized-state-column equality
 
-$$
+```math
 U|0\rangle^{\otimes n}
 =
 V|0\rangle^{\otimes n}.
-$$
+```
 
 This is sufficient for replacing a forward preparation that is always applied
 to the initialized system register. It is not sufficient for replacing a
@@ -601,9 +601,9 @@ reverse block.
 
 ### Active-interface equality
 
-$$
+```math
 UP_d=VP_d.
-$$
+```
 
 This is sufficient when the state entering the block is guaranteed to lie in
 the checkpoint interface selected by `P_d`.
@@ -661,13 +661,13 @@ scale per block.
 
 A sufficient count for one block with failure probability `eta` is
 
-$$
+```math
 S_*(\eta)
 =
 \left\lceil
 \frac{4\left(1+\sqrt{2\log(1/\eta)}\right)^2}{\varepsilon^2}
 \right\rceil.
-$$
+```
 
 For complete-coordinate absolute error:
 

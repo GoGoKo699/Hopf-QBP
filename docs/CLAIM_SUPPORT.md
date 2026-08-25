@@ -78,9 +78,9 @@ its known incoming metric factor `sqrt(g[j,j])`.
 
 The complex magnitude frame is
 
-$$
+```math
 W_C = D_{\mathrm{ph}} W_R.
-$$
+```
 
 ### Evidence
 
@@ -114,12 +114,12 @@ forward real Hopf preparation
 
 One outcome `(b, y)` contributes to every internal node:
 
-$$
-Z_j^{\mathbb R}
+```math
+Z_j^{\mathbb{R}}
 =
-2\sqrt{g^{\mathbb R}_{j,j}}
+2\sqrt{g^{\mathbb{R}}_{j,j}}
 (-1)^{b+\lambda(j)\cdot y}.
-$$
+```
 
 ### Decoder
 
@@ -161,11 +161,11 @@ complex Hopf preparation -> controlled O
 
 One outcome `(b, ell)` contributes
 
-$$
-Z_{N+\ell}^{\mathbb C,\mathrm{ph}}
+```math
+Z_{N+\ell}^{\mathbb{C},\mathrm{ph}}
 =
-2(-1)^b\mathbf 1[\widehat\ell=\ell].
-$$
+2(-1)^b\mathbf{1}[\widehat{\ell}=\ell].
+```
 
 ### Evidence
 
@@ -193,11 +193,11 @@ forward Hopf preparation
 
 The record is
 
-$$
+```math
 Z_d^{\mathrm{chk}}
 =
--2(-1)^{b_c+b_t}e_{\widehat r}.
-$$
+-2(-1)^{b_c+b_t}e_{\widehat{r}}.
+```
 
 ### Evidence
 
@@ -219,19 +219,19 @@ depths.
 
 The repository explicitly distinguishes:
 
-$$
+```math
 U=V,
-$$
+```
 
-$$
+```math
 U|0\rangle^{\otimes n}=V|0\rangle^{\otimes n},
-$$
+```
 
 and
 
-$$
+```math
 UP_d=VP_d.
-$$
+```
 
 `test_operator_contracts.py` includes negative checks showing that the weaker
 contracts do not imply full-unitary equality.
@@ -261,30 +261,30 @@ The repository checks these record properties and their means.
 
 A standard vector concentration bound then yields the sufficient count
 
-$$
+```math
 S_*(\eta)
 =
 \left\lceil
 \frac{4\left(1+\sqrt{2\log(1/\eta)}\right)^2}{\varepsilon^2}
 \right\rceil.
-$$
+```
 
 Allocating failure probability over `n` magnitude depths, plus the complex
 phase family where applicable, gives:
 
-$$
+```math
 S_{\mathrm{global}}
 =
 O\!\left(\frac{1+\log(n/\delta)}{\varepsilon^2}\right),
-$$
+```
 
 and
 
-$$
+```math
 S_{\mathrm{checkpoint}}
 =
 O\!\left(\frac{n\{1+\log(n/\delta)\}}{\varepsilon^2}\right).
-$$
+```
 
 The numerical suite verifies the record identities and unbiased means. It does
 not purport to numerically prove the concentration theorem.
