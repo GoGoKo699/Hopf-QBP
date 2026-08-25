@@ -230,7 +230,7 @@ The leaf-phase layer is
 ```math
 D_{\mathrm{ph}}
 =
-\operatorname{diag}
+\mathrm{diag}
 \left(e^{i\theta_N},\ldots,e^{i\theta_{2N-1}}\right).
 ```
 
@@ -288,7 +288,7 @@ O^2=I,
 and exact access to
 
 ```math
-\operatorname{ctrl}(O)
+\mathrm{ctrl}(O)
 =
 |0\rangle\!\langle0|\otimes I
 +
