@@ -1,73 +1,152 @@
-# Hopf-QBP Exact-Logical Validation
+# Hopf-QBP: implementation reference and exact-logical validation
 
-Deterministic exact-logical validation for the constructions in
+Reference circuits, decoders, resource formulas, and deterministic tests for
 *Compass in the Mirror: Quantum Backpropagation with the Hopf Ansatz*.
 
-This repository checks the Hopf-specific statements used by the manuscript:
+This repository has two public roles:
 
-- the balanced real-Hopf differential frame $W_{\mathbb R}$;
-- the complex magnitude frame $W_{\mathbb C}=D_{\mathrm{ph}}W_{\mathbb R}$;
-- the complete real and complex global-magnitude estimators;
-- the direct complex leaf-phase estimator;
-- checkpointed Hopf adjoints at every depth;
-- full-unitary, state-column, and active-interface contracts;
-- singular-coordinate behavior;
-- the complete four-qubit construction, including the addressed $R_C$ compiler
-  of $W_{\mathbb C}$ and the depth-$2$ suffix $B_{2,\mathbb C}$; and
-- the manuscript's compiler-relative assigned CNOT ledger.
+1. **For reviewers:** show exactly which manuscript claims are supported, where
+   they are implemented, and what the tests do and do not establish.
+2. **For quantum engineers:** provide the conventions, circuit interfaces,
+   decoders, resource model, and extension rules needed to reproduce or adapt
+   the Hopf gradient constructions without reconstructing them from the paper.
 
-The analytic reference formulas and decoders do not import Qibo or call circuit
-builders. Circuit tests build and execute actual `qibo.models.Circuit` objects
-with Qibo's NumPy statevector backend. Complete output distributions are summed
-exactly; no Monte Carlo shots are used.
+This is an executable reference implementation, not a production SDK and not a
+hardware benchmark.
 
-## Papers in the series
+## Choose a route
 
-- **Accompanying manuscript:** *Compass in the Mirror: Quantum Backpropagation with the Hopf Ansatz*
-- **First paper:** [A Compass on the Quantum State Sphere: The Hopf Ansatz for Arbitrary Pure-State Optimization](https://arxiv.org/abs/2607.14231)
-- **First-paper code:** [GoGoKo699/Hopf-ansatz](https://github.com/GoGoKo699/Hopf-ansatz)
-
-The repositories are complementary and have no runtime dependency on one
-another. `Hopf-ansatz` contains the optimization chart, geometry, stress tests,
-and safeguards accompanying the first paper. `Hopf-QBP` contains exact-logical
-validation of the global-frame, direct-phase, and checkpointed reverse
-constructions in the second manuscript.
-
-## Scope
-
-The repository validates finite-dimensional algebraic and exact-logical circuit
-identities. It does **not** benchmark:
-
-- optimizer performance;
-- finite-shot convergence;
-- execution time or memory;
-- device routing;
-- approximate synthesis;
-- hardware noise; or
-- physical-device performance.
-
-Assigned CNOT charges are computed from the compiler model stated in the
-manuscript. They are not Qibo-transpiler counts. The controlled observable,
-readout, workspace, and any separately assigned diagonal phase-layer charge are
-excluded wherever the corresponding manuscript ledger excludes them.
-
-## Repository structure
-
-| File or directory | Role |
+| Goal | Start here |
 |---|---|
-| [`validate_qbp.py`](validate_qbp.py) | Runs the analytic checks, a representative smoke suite, or the complete circuit suite. |
-| [`make_validation_figures.py`](make_validation_figures.py) | Recomputes the two deterministic validation figures from circuit and analytic data. |
-| [`qbp_resource_ledger.py`](qbp_resource_ledger.py) | Prints the general Hopf ledger and the complete four-qubit manuscript detail. |
-| [`qbp_validation/conventions.py`](qbp_validation/conventions.py) | Tree indexing, basis order, marker labels, wire translation, active-interface projectors, and resource formulas. |
-| [`qbp_validation/native_schedule.py`](qbp_validation/native_schedule.py) | Reproduces the first paper's native `HopfReal` and `HopfComplex` schedules and charges without Qibo. |
-| [`qbp_validation/reference.py`](qbp_validation/reference.py) | Independent recursive states, frames, derivatives, gradients, $W_{\mathbb C}$, and four-qubit active-interface matrices. |
-| [`qbp_validation/circuits.py`](qbp_validation/circuits.py) | Qibo builders for native preparations, $U_{\mathrm{chk}}$, $W_{\mathbb R}$, $W_{\mathbb C}$, global estimators, checkpoints, and the two integrated four-qubit blocks. |
-| [`qbp_validation/decoders.py`](qbp_validation/decoders.py) | Walsh, signed-histogram, phase one-hot, and checkpoint decoders. |
-| [`qbp_validation/cases.py`](qbp_validation/cases.py) | Deterministic interior, singular, and observable cases. |
-| [`qbp_validation/tests/`](qbp_validation/tests/) | Convention, circuit, operator-contract, decoder, singular-case, four-qubit, native-schedule, and resource tests. |
-| [`REPRODUCIBILITY.md`](REPRODUCIBILITY.md) | Clean-environment commands, suite descriptions, figure regeneration, and deterministic-output notes. |
+| Check whether the code supports a paper claim | [Claim support and validation map](docs/CLAIM_SUPPORT.md) |
+| Implement or adapt a gradient circuit | [Engineering guide](docs/ENGINEERING_GUIDE.md) |
+| Reproduce the deterministic validation | [Reproducibility checklist](REPRODUCIBILITY.md) |
+| Inspect the code structure | [Repository map](#repository-map) |
+| Read the first paper and its implementation | [Hopf-ansatz repository](https://github.com/GoGoKo699/Hopf-ansatz) |
 
-## Installation
+## What is implemented
+
+For a balanced Hopf chart on `n` system qubits, with `N = 2**n`, the repository
+implements and validates:
+
+- real and complex Hopf forward preparations;
+- the balanced real differential frame `W_R`;
+- the phase-dressed complex magnitude frame `W_C = D_ph W_R`;
+- one global measurement stream for all real magnitude coordinates;
+- one global magnitude stream plus one direct leaf-phase stream for the complex chart;
+- checkpointed reverse gradients at any selected tree depth;
+- signed-histogram, Walsh, phase one-hot, and checkpoint decoders;
+- full-unitary, initialized-state-column, and active-interface contracts;
+- singular-coordinate behavior;
+- compiler-relative assigned Hopf CNOT formulas; and
+- explicit four-qubit compiler fixtures used to test integrated constructions.
+
+The four-qubit helpers are validation fixtures. They are not the organizing
+principle of the repository and are not required to understand the general
+implementation.
+
+## Supported access model
+
+The objective is
+
+$$
+E_O(\boldsymbol\theta)
+=
+\langle\psi(\boldsymbol\theta)|O|\psi(\boldsymbol\theta)\rangle.
+$$
+
+The implemented gradient protocols assume:
+
+- `O` is a known Hermitian unitary, so `O = O†` and `O² = I`;
+- exact controlled access to `O` is available; and
+- the relative phase between the controlled branches is known or calibrated.
+
+An unknown controlled-branch phase rotates the measured interference
+quadrature and invalidates the decoded sign. General nonunitary observables,
+approximate block encodings, routing, synthesis, and hardware noise are outside
+this repository's validated contract.
+
+## Architecture
+
+```mermaid
+flowchart LR
+    A[Hopf coordinates] --> B[Forward preparation]
+    B --> C[Controlled Hermitian-unitary observable]
+    C --> D{Requested gradient block}
+    D -->|All magnitude depths| E[Inverse frame]
+    D -->|One selected depth| F[Inverse suffix]
+    D -->|Complex leaf phases| G[No reverse block]
+    E --> H[All-X measurement]
+    F --> I[Y/Y/Z checkpoint measurement]
+    G --> J[Ancilla-Y and system-Z measurement]
+    H --> K[Signed histogram + FWHT]
+    I --> L[Signed prefix histogram]
+    J --> M[Signed leaf histogram]
+    K --> N[Complete magnitude gradient]
+    L --> O[Selected-depth magnitude block]
+    M --> P[Complex phase gradient]
+```
+
+The three output records are deliberately simple:
+
+### Global magnitude record
+
+For internal node `j`, one all-`X` outcome `(b, y)` contributes
+
+$$
+Z_j
+=
+2\sqrt{g_{j,j}}\,(-1)^{b+\lambda(j)\cdot y}.
+$$
+
+The same outcome contributes to every magnitude coordinate. A signed system
+histogram followed by one fast Walsh-Hadamard transform evaluates all required
+parities together.
+
+### Direct complex phase record
+
+One ancilla-`Y` and system-`Z` outcome `(b, ell)` contributes
+
+$$
+Z^{\mathrm{ph}}
+=
+2(-1)^b e_{\ell}.
+$$
+
+It updates one leaf bin and directly estimates the complete phase-gradient
+block.
+
+### Checkpoint record
+
+At selected depth `d`, one outcome `(b_c, b_t, r)` contributes
+
+$$
+Z_d^{\mathrm{chk}}
+=
+-2(-1)^{b_c+b_t}e_r.
+$$
+
+It updates one prefix bin and estimates every magnitude derivative at that
+depth.
+
+The exact sign, bit-order, and gate-angle conventions are specified in the
+[engineering guide](docs/ENGINEERING_GUIDE.md).
+
+## Which method should an engineer use?
+
+| Need | Recommended method | Reason |
+|---|---|---|
+| All or many magnitude depths | Global frame | One circuit family and one record stream serve every depth. |
+| One depth or a small set of depths | Checkpoint | Reverse only the suffix below each requested depth. |
+| Complex phase derivatives | Direct phase stream | Phase tangents are already leaf-local; no inverse frame is needed. |
+| General, portable implementation | Separated real/phase blocks | This is the designated implementation and resource model. |
+| Four-qubit compiler regression | Integrated four-qubit fixtures | These test complete-frame and active-interface compiler identities. |
+
+At a fixed depth, the global and checkpoint records are both unbiased and have
+Euclidean norm `2`. Their practical difference is cross-depth reuse versus
+reverse-circuit locality.
+
+## Quick start
 
 Use Python 3.10, 3.11, 3.12, or 3.13.
 
@@ -79,28 +158,28 @@ python -m pip install -r requirements.txt
 python -m pip install -r requirements-optional.txt
 ```
 
-The analytic suite requires only `requirements.txt`. The smoke suite, complete
-circuit suite, and validation-figure regeneration also require the pinned Qibo
-dependency in `requirements-optional.txt`.
-
-## Quick start
-
-Run the Qibo-free convention, decoder, native-schedule, and resource checks:
+Run the Qibo-free analytic checks:
 
 ```bash
 python validate_qbp.py --analytic
 ```
 
-Run those checks plus representative Qibo tests of the three operator contracts:
+Run the analytic checks plus representative circuit contracts:
 
 ```bash
 python validate_qbp.py --smoke
 ```
 
-Run the complete validation suite:
+Run the complete deterministic validation suite:
 
 ```bash
 python validate_qbp.py
+```
+
+Print the assigned Hopf CNOT ledger:
+
+```bash
+python qbp_resource_ledger.py --nmin 2 --nmax 10
 ```
 
 Regenerate the committed validation figures:
@@ -109,187 +188,144 @@ Regenerate the committed validation figures:
 python make_validation_figures.py
 ```
 
-Print the assigned logical CNOT ledger:
+See [REPRODUCIBILITY.md](REPRODUCIBILITY.md) for clean-environment commands,
+expected test coverage, output formats, determinism, and tolerance details.
 
-```bash
-python qbp_resource_ledger.py --nmin 2 --nmax 10
-```
+## Validation coverage
 
-Machine-readable output is available through:
+The implementation separates circuit construction from analytic reference
+formulas:
 
-```bash
-python qbp_resource_ledger.py --nmin 2 --nmax 10 --format csv
-python qbp_resource_ledger.py --nmin 2 --nmax 10 --format json
-```
+- `qbp_validation/circuits.py` builds and executes Qibo circuits;
+- `qbp_validation/reference.py` computes independent NumPy states, frames,
+  derivatives, gradients, and interface matrices;
+- `qbp_validation/decoders.py` converts complete output distributions into
+  gradient records; and
+- `qbp_validation/tests/` compares the two sides.
 
-## Notation and operator contracts
-
-For `n` system qubits, let $N=2^n$. Python arrays use zero-based indexing,
-while manuscript parameters use one-based indexing.
-
-- `theta_mag[j - 1]` stores $\theta_j$ for $1\leq j\leq N-1$.
-- `theta_ph[ell]` stores $\theta_{N+\ell}$ for $0\leq\ell<N$.
-- Basis states are written $\lvert q_n\cdots q_1\rangle$.
-- Qibo system index `0` is the most-significant basis bit and corresponds to
-  manuscript wire $q_n$; Qibo index `n - 1` corresponds to $q_1$.
-- The papers use $R_y(\theta)=e^{-i\theta Y}$, so Qibo receives `RY(2 * theta)`.
-
-The current manuscript separates three contracts:
-
-$$
-U=V
-\quad\text{(full-unitary equality)},
-$$
-
-$$
-U\lvert0\rangle^{\otimes n}=V\lvert0\rangle^{\otimes n}
-\quad\text{(state-column equality)},
-$$
-
-$$
-UP_d=VP_d
-\quad\text{(active-interface equality)}.
-$$
-
-The real native, depth, and frame completions share the same state column on the
-initialized input:
-
-$$
-\mathrm{HopfReal}\lvert0\rangle^{\otimes n}
-=U_{\mathrm{chk}}\lvert0\rangle^{\otimes n}
-=W_{\mathbb R}\lvert0\rangle^{\otimes n},
-$$
-
-but they are generally different full unitaries. The complex frame is
-
-$$
-W_{\mathbb C}:=D_{\mathrm{ph}}W_{\mathbb R},
-\qquad
-W_{\mathbb C}^{\dagger}=W_{\mathbb R}^{\dagger}D_{\mathrm{ph}}^{\dagger}.
-$$
-
-The four-qubit addressed $R_C$ compiler implements this complete frame up to one
-common phase. The four-qubit complex checkpoint suffix satisfies
-
-$$
-B_{2,\mathbb C}P_2=D_{\mathrm{ph}}B_2P_2,
-$$
-
-but is generally not equal to $D_{\mathrm{ph}}B_2$ as a full unitary.
-Consequently, an integrated checkpoint implementation preserves the required
-signed one-hot gradient means but need not preserve the complete output
-distribution of the separated implementation.
-
-## Circuit implementations validated
-
-The repository validates both implementations used in the manuscript.
-
-### Designated separated implementation
-
-The complex global circuit is
-
-$$
-U_{\mathrm{chk}}
-\;\longrightarrow\;
-D_{\mathrm{ph}}
-\;\longrightarrow\;
-\mathrm{ctrl}(O)
-\;\longrightarrow\;
-D_{\mathrm{ph}}^{\dagger}
-\;\longrightarrow\;
-W_{\mathbb R}^{\dagger}.
-$$
-
-### Integrated four-qubit implementation
-
-- **Global magnitude:** native `HopfComplex` forward preparation followed, after
-  the controlled observable, by the addressed $W_{\mathbb C}^{\dagger}$
-  decoder.
-- **Depth-2 checkpoint:** native `HopfComplex` forward preparation followed,
-  after the controlled observable, by the integrated
-  $B_{2,\mathbb C}^{\dagger}$ decoder. This is compared with the separated
-  reverse sequence $D_{\mathrm{ph}}^{\dagger}$ followed by $B_2^{\dagger}$.
-
-The global implementations produce the same complete output distribution. For
-the depth-2 checkpoint, the separated and integrated implementations preserve
-the same decoded gradient mean, although their complete output distributions
-need not be identical.
-
-## What counts as circuit-level validation
-
-A circuit check satisfies both conditions:
-
-1. the tested state or complete measurement distribution is produced by an
-   actual `qibo.models.Circuit` executed with the NumPy statevector backend; and
-2. the expected state, frame, derivative, gradient, or active-interface matrix is
-   computed by [`qbp_validation/reference.py`](qbp_validation/reference.py),
-   which imports no Qibo code and calls no circuit builder.
-
-The suite does not inject expected statevectors into Qibo. Controlled
-`RY(2 * theta)` and addressed $R_C$ gates use explicit open controls. Exact
-diagonal phase layers and controlled reflections are represented by logical
-`Unitary` gates, matching the manuscript's exact-logical access model.
-
-## Validation matrix
-
-| Test group | Statement checked |
-|---|---|
-| [`test_conventions.py`](qbp_validation/tests/test_conventions.py) | Big-endian labels, marker bijection, wire translation, parameter splitting, active-interface projectors, and observable assumptions. |
-| [`test_native_schedule.py`](qbp_validation/tests/test_native_schedule.py) | Native real/complex schedules, state columns through $n=5$, and native charges. |
-| [`test_circuit_conventions.py`](qbp_validation/tests/test_circuit_conventions.py) | Qibo bit significance and the manuscript's $S^\dagger$-then-$H$ ancilla-$Y$ sign convention. |
-| [`test_operator_contracts.py`](qbp_validation/tests/test_operator_contracts.py) | State-column equality, full-unitary inequality, the $B_{2,\mathbb C}$ active-interface identity, and gradient-mean versus distribution equivalence. |
-| [`test_real_frame.py`](qbp_validation/tests/test_real_frame.py) | Complete $W_{\mathbb R}$ matrices, inverses, and singular completion columns. |
-| [`test_complex_frame.py`](qbp_validation/tests/test_complex_frame.py) | Separated $W_{\mathbb C}$ and the complete addressed $R_C$ compiler up to its common phase. |
-| [`test_real_global_estimator.py`](qbp_validation/tests/test_real_global_estimator.py) | Complete real gradients, direct/FWHT agreement, and native-forward distribution equality. |
-| [`test_complex_magnitude.py`](qbp_validation/tests/test_complex_magnitude.py) | Separated and integrated complex-magnitude global circuits. |
-| [`test_complex_phase.py`](qbp_validation/tests/test_complex_phase.py) | Signed one-hot phase records, common-phase cancellation, native-forward equality, and zero-amplitude leaves. |
-| [`test_checkpoints.py`](qbp_validation/tests/test_checkpoints.py) | Real and separated complex checkpoints at every depth, native real forwards, and integrated complex depth $2$. |
-| [`test_singular_cases.py`](qbp_validation/tests/test_singular_cases.py) | Zero metric factors and zero-amplitude phase coordinates. |
-| [`test_decoders.py`](qbp_validation/tests/test_decoders.py) | FWHT correctness, signed histograms, suffix marginalization, and fixed-norm records. |
-| [`test_four_qubit_example.py`](qbp_validation/tests/test_four_qubit_example.py) | Appendix marker labels, node $5$, all checkpoint depths, the eight $B_{2,\mathbb C}$ sectors, and addressed $R_C$ phase arguments. |
-| [`test_resource_ledger.py`](qbp_validation/tests/test_resource_ledger.py) | Controlled-gate, native, depth, frame, suffix, and record-circuit assigned charges. |
-
-## Validation figures
-
-<p align="center">
-  <img src="exact_logical_validation_residuals.png" width="760" alt="Maximum exact-logical Qibo-to-reference residuals">
-</p>
-
-Each point is the largest absolute discrepancy in one deterministic validation
-family. The dashed line is the principal unit-test tolerance
-$3\times10^{-12}$. Residuals at floating-point roundoff scale are finite-size
-identity checks, not performance data.
-
-<p align="center">
-  <img src="circuit_decoded_gradient_parity.png" width="560" alt="Circuit-decoded gradients compared with independent analytic derivatives">
-</p>
-
-Each plotted point is a gradient component obtained by exact summation of a
-complete circuit output distribution. A deterministic subset is displayed for
-legibility; the annotated maximum residual is computed over all checked
-components.
-
-## Coverage and interpretation
-
-Balanced Hopf circuit checks use $n=1,2,3,4$ and include:
+General circuit checks cover `n = 1, 2, 3, 4`. Qibo-independent native
+state-column checks extend through `n = 5`. Deterministic cases include:
 
 - generic interior coordinates;
-- real final-layer sign changes;
-- upstream angles equal to $0$ and $\pi/2$;
+- final-layer real sign changes;
+- upstream angles equal to `0` and `pi/2`;
 - zero-amplitude complex leaves;
 - Pauli reflections;
 - diagonal reflections; and
 - fixed-seed Householder reflections.
 
-Qibo-independent native real and complex state-column checks run through $n=5$.
-The integrated $W_{\mathbb C}$ and $B_{2,\mathbb C}$ checks are explicitly
-four-qubit, matching Appendix A of the manuscript. The tests do not numerically
-prove concentration inequalities or asymptotic resource statements. Decoder
-complexity is not timed and workspace is not measured.
+The suite uses exact statevectors and complete output distributions. It does
+not use Monte Carlo shots.
+
+<p align="center">
+  <img src="exact_logical_validation_residuals.png" width="760" alt="Maximum exact-logical Qibo-to-reference residuals">
+</p>
+
+<p align="center">
+  <img src="circuit_decoded_gradient_parity.png" width="560" alt="Circuit-decoded gradients compared with independent analytic derivatives">
+</p>
+
+These plots summarize finite-dimensional identity checks. They are not
+performance, scaling, or hardware data.
+
+## What the validation establishes
+
+The suite directly checks finite-dimensional algebraic and exact-logical
+statements: prepared state columns, frame matrices, gradient means, decoder
+signs, active-interface identities, singular-coordinate behavior, and assigned
+resource formulas.
+
+It does **not** numerically prove concentration inequalities or asymptotic
+complexity statements. The statistical scaling follows from the fixed-norm
+record property, while the resource scaling follows from the declared gate
+ledger. The repository exposes and tests the ingredients so those deductions
+remain inspectable. The exact claim-by-claim boundary is recorded in
+[docs/CLAIM_SUPPORT.md](docs/CLAIM_SUPPORT.md).
+
+## Three circuit contracts
+
+Several circuit substitutions are valid only under a specific contract:
+
+1. **Full-unitary equality:** `U = V`.
+2. **Initialized-state-column equality:** `U|0...0> = V|0...0>`.
+3. **Active-interface equality:** `U P_d = V P_d` on a specified checkpoint
+   subspace.
+
+The native Hopf preparation, depth completion, and addressed frame share the
+required initialized state column but are generally different full unitaries.
+The four-qubit integrated checkpoint compiler is validated on its active
+interface and need not preserve the complete output distribution of the
+separated implementation.
+
+Engineers should not promote a state-column or active-interface identity to a
+full-unitary identity. See [Engineering guide: substitution contracts](docs/ENGINEERING_GUIDE.md#8-substitution-contracts).
+
+## Resource model
+
+The ledger reports **assigned Hopf CNOT charges** under the compiler model used
+by the manuscript. These are not Qibo transpiler counts.
+
+The following are separated from the Hopf ledger unless explicitly stated:
+
+- the controlled observable;
+- measurement and readout;
+- application-specific workspace;
+- device routing;
+- approximate synthesis; and
+- any separately assigned diagonal phase-layer charge.
+
+The ledger is implemented in `qbp_validation/conventions.py` and exposed by
+`qbp_resource_ledger.py`. Its formulas and limitations are summarized in the
+[engineering guide](docs/ENGINEERING_GUIDE.md#12-assigned-resource-ledger).
+
+## Repository map
+
+| Path | Role |
+|---|---|
+| `validate_qbp.py` | Analytic, smoke, and complete validation entry point. |
+| `make_validation_figures.py` | Recomputes validation figures from circuit and analytic data. |
+| `qbp_resource_ledger.py` | Prints text, CSV, or JSON assigned-resource tables. |
+| `qbp_validation/conventions.py` | Tree indices, bit order, marker labels, interface projectors, and resource formulas. |
+| `qbp_validation/native_schedule.py` | Native `HopfReal` and `HopfComplex` schedules inherited from the first paper. |
+| `qbp_validation/reference.py` | Independent states, frames, derivatives, gradients, and compiler matrices. |
+| `qbp_validation/circuits.py` | Qibo builders for forward, global, phase, checkpoint, and compiler-test circuits. |
+| `qbp_validation/decoders.py` | Walsh and signed-histogram decoders. |
+| `qbp_validation/cases.py` | Deterministic parameter and observable cases. |
+| `qbp_validation/tests/` | Claim-level exact-logical tests. |
+| `docs/CLAIM_SUPPORT.md` | Reviewer-oriented claim-to-code and claim-to-test map. |
+| `docs/ENGINEERING_GUIDE.md` | Self-contained implementation and adaptation guide. |
+| `REPRODUCIBILITY.md` | Environment, commands, deterministic outputs, and tolerances. |
+
+## Scope boundaries
+
+This repository does not claim to provide:
+
+- optimizer benchmarks;
+- finite-shot convergence experiments;
+- execution-time or memory benchmarks;
+- a generic controlled-observable compiler;
+- hardware routing or noise studies;
+- approximate synthesis;
+- physical-device performance; or
+- a general-purpose automatic-differentiation framework.
+
+Those are separate engineering or application layers. The validated object here
+is the Hopf state-coordinate gradient interface under the stated access model.
+
+## Papers in the series
+
+- **Second paper:** *Compass in the Mirror: Quantum Backpropagation with the Hopf Ansatz*.
+- **First paper:** [A Compass on the Quantum State Sphere: The Hopf Ansatz for Arbitrary Pure-State Optimization](https://arxiv.org/abs/2607.14231).
+- **First-paper code:** [GoGoKo699/Hopf-ansatz](https://github.com/GoGoKo699/Hopf-ansatz).
+
+The repositories are complementary and have no runtime dependency on one
+another. The first repository provides the coordinate chart, inverse map,
+optimizer geometry, stress tests, and native preparation schedules. This
+repository provides the reverse gradient constructions and their exact-logical
+validation.
 
 ## Citation
 
-When using this repository, cite both:
-
-1. *Compass in the Mirror: Quantum Backpropagation with the Hopf Ansatz*; and
-2. the first Hopf-ansatz paper, [arXiv:2607.14231](https://arxiv.org/abs/2607.14231).
+When using this repository, cite both the Hopf-QBP manuscript and the first
+Hopf-ansatz paper. Machine-readable software metadata is provided in
+`CITATION.cff`.
