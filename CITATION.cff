@@ -8,8 +8,9 @@ authors:
   - family-names: Lin
     given-names: Ruge
 repository-code: https://github.com/GoGoKo699/Hopf-QBP
-version: 0.1.0
-date-released: 2026-07-22
+license: MIT
+version: 1.0.0
+date-released: 2026-08-25
 keywords:
   - quantum backpropagation
   - Hopf ansatz

@@ -329,3 +329,7 @@ validation.
 When using this repository, cite both the Hopf-QBP manuscript and the first
 Hopf-ansatz paper. Machine-readable software metadata is provided in
 `CITATION.cff`.
+
+## License
+
+This software is released under the [MIT License](LICENSE).
