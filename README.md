@@ -1,14 +1,15 @@
 # Hopf-QBP: implementation reference and exact-logical validation
 
-Reference circuits, decoders, resource formulas, and deterministic tests for
-*Compass in the Mirror: Quantum Backpropagation with the Hopf Ansatz*.
+Reference circuits, decoders, compiler analyses, statistical extensions, and
+deterministic tests for *Compass in the Mirror: Quantum Backpropagation with
+the Hopf Ansatz*.
 
 This repository has two public roles:
 
 1. **For reviewers:** show exactly which manuscript claims are supported, where
    they are implemented, and what the tests do and do not establish.
 2. **For quantum engineers:** provide the conventions, circuit interfaces,
-   decoders, resource model, and extension rules needed to reproduce or adapt
+   decoders, resource models, and extension rules needed to reproduce or adapt
    the Hopf gradient constructions without reconstructing them from the paper.
 
 This is an executable reference implementation, not a production SDK and not a
@@ -18,11 +19,32 @@ hardware benchmark.
 
 | Goal | Start here |
 |---|---|
-| Check whether the code supports a paper claim | [Claim support and validation map](docs/CLAIM_SUPPORT.md) |
+| Audit a paper-level claim | [Claim support and validation map](docs/CLAIM_SUPPORT.md) |
 | Implement or adapt a gradient circuit | [Engineering guide](docs/ENGINEERING_GUIDE.md) |
+| Compare conservative and optimized compilers | [Optimized compilation companion](docs/OPTIMIZED_COMPILATION.md) |
+| Interpret `l_infinity`, `l_2`, directional, or gauge accuracy | [Statistical accuracy](docs/STATISTICAL_ACCURACY.md) |
+| Extend to reflection sums or inspect readout sensitivity | [Observables and readout](docs/OBSERVABLES_AND_READOUT.md) |
 | Reproduce the deterministic validation | [Reproducibility checklist](REPRODUCIBILITY.md) |
-| Inspect the code structure | [Repository map](#repository-map) |
 | Read the first paper and its implementation | [Hopf-ansatz repository](https://github.com/GoGoKo699/Hopf-ansatz) |
+
+## Scope relative to the first Hopf paper
+
+The two repositories are complementary. The first paper provides the chart and
+its geometric gradient interface; this repository addresses the statistical
+output bottleneck of a complete gradient.
+
+| Inherited from the first paper | Introduced and validated here |
+|---|---|
+| Universal balanced real and complex Hopf charts | Computationally addressed orthogonal differential frame |
+| Explicit inverse map and diagonal pullback metric | One all-`X` record shared by every magnitude coordinate and depth |
+| Normalized coordinate tangents and exact tangent-state preparation | Signed histogram and Walsh decoding of the complete magnitude block |
+| Indexed signed-branch estimator for a selected derivative | Direct one-hot record for all complex leaf-phase derivatives |
+| Layer- and phase-indexed compiled access families | Complete-gradient finite-shot concentration analysis |
+| Native real and complex preparation schedules | Reverse-local checkpoint adjoints and active-interface contracts |
+
+“Quantum backpropagation” is used in this state-coordinate and matched-resource
+sense. The repository does not claim a generic reverse-mode differentiator for
+an arbitrary layered parameterized circuit.
 
 ## What is implemented
 
@@ -38,8 +60,11 @@ implements and validates:
 - signed-histogram, Walsh, phase one-hot, and checkpoint decoders;
 - full-unitary, initialized-state-column, and active-interface contracts;
 - singular-coordinate behavior;
-- compiler-relative assigned Hopf CNOT formulas; and
-- explicit four-qubit compiler fixtures used to test integrated constructions.
+- the manuscript's conservative assigned Hopf CNOT ledger;
+- an exact clean-flag factorization supporting an optimized `O(N)` compiler;
+- complete-vector `l_2`, conditional direction, and common-phase analyses;
+- reflection-sum term sampling; and
+- exact independent-readout-error transfer functions.
 
 The four-qubit helpers are validation fixtures. They are not the organizing
 principle of the repository and are not required to understand the general
@@ -47,7 +72,7 @@ implementation.
 
 ## Supported access model
 
-The objective is
+The core objective is
 
 ```math
 E_O(\boldsymbol{\theta})
@@ -55,16 +80,18 @@ E_O(\boldsymbol{\theta})
 \langle\psi(\boldsymbol{\theta})|O|\psi(\boldsymbol{\theta})\rangle.
 ```
 
-The implemented gradient protocols assume:
+The validated gradient protocols assume:
 
 - `O` is a known Hermitian unitary, so `O = O†` and `O² = I`;
 - exact controlled access to `O` is available; and
 - the relative phase between the controlled branches is known or calibrated.
 
 An unknown controlled-branch phase rotates the measured interference
-quadrature and invalidates the decoded sign. General nonunitary observables,
-approximate block encodings, routing, synthesis, and hardware noise are outside
-this repository's validated contract.
+quadrature and invalidates the decoded sign. A reflection-sum extension is
+provided in [Observables and readout](docs/OBSERVABLES_AND_READOUT.md), but
+generic nonunitary observables, approximate block encodings, routing,
+approximate synthesis, and hardware noise remain outside the validated core
+contract.
 
 ## Architecture
 
@@ -87,7 +114,7 @@ flowchart LR
     M --> P[Complex phase gradient]
 ```
 
-The three output records are deliberately simple:
+## Three output records
 
 ### Global magnitude record
 
@@ -99,9 +126,9 @@ Z_j
 2\sqrt{g_{j,j}}\,(-1)^{b+\lambda(j)\cdot y}.
 ```
 
-The same outcome contributes to every magnitude coordinate. A signed system
-histogram followed by one fast Walsh-Hadamard transform evaluates all required
-parities together.
+The same physical outcome contributes to every magnitude coordinate. A signed
+system histogram followed by one fast Walsh-Hadamard transform evaluates all
+required parities together.
 
 ### Direct complex phase record
 
@@ -139,8 +166,10 @@ The exact sign, bit-order, and gate-angle conventions are specified in the
 | All or many magnitude depths | Global frame | One circuit family and one record stream serve every depth. |
 | One depth or a small set of depths | Checkpoint | Reverse only the suffix below each requested depth. |
 | Complex phase derivatives | Direct phase stream | Phase tangents are already leaf-local; no inverse frame is needed. |
-| General, portable implementation | Separated real/phase blocks | This is the designated implementation and resource model. |
-| Four-qubit compiler regression | Integrated four-qubit fixtures | These test complete-frame and active-interface compiler identities. |
+| General, portable complex implementation | Separated real/phase blocks | This is the designated general construction. |
+| Concrete finite no-clean-ancilla ledger | Assigned compiler | Reproduces the manuscript's explicit finite counts. |
+| Asymptotic comparison with optimized state preparation | Multiplexed compiler | Both forward and addressed inverse frame are `O(N)`. |
+| Four-qubit compiler regression | Integrated four-qubit fixtures | Tests complete-frame and active-interface identities. |
 
 At a fixed depth, the global and checkpoint records are both unbiased and have
 Euclidean norm `2`. Their practical difference is cross-depth reuse versus
@@ -176,10 +205,11 @@ Run the complete deterministic validation suite:
 python validate_qbp.py
 ```
 
-Print the assigned Hopf CNOT ledger:
+Print the conservative assigned ledger and the optimized companion:
 
 ```bash
 python qbp_resource_ledger.py --nmin 2 --nmax 10
+python qbp_optimized_resource_ledger.py --nmin 2 --nmax 10
 ```
 
 Regenerate the committed validation figures:
@@ -189,7 +219,7 @@ python make_validation_figures.py
 ```
 
 See [REPRODUCIBILITY.md](REPRODUCIBILITY.md) for clean-environment commands,
-expected test coverage, output formats, determinism, and tolerance details.
+expected coverage, output formats, determinism, and tolerance details.
 
 ## Validation coverage
 
@@ -200,11 +230,17 @@ formulas:
 - `qbp_validation/reference.py` computes independent NumPy states, frames,
   derivatives, gradients, and interface matrices;
 - `qbp_validation/decoders.py` converts complete output distributions into
-  gradient records; and
-- `qbp_validation/tests/` compares the two sides.
+  gradient records;
+- `qbp_validation/optimized_compiler.py` checks the clean-flag frame
+  factorization and optimized core ledger;
+- `qbp_validation/supporting_analysis.py` implements statistical, reflection,
+  gauge, and readout consequences; and
+- `qbp_validation/tests/` compares all supported contracts.
 
 General circuit checks cover `n = 1, 2, 3, 4`. Qibo-independent native
-state-column checks extend through `n = 5`. Deterministic cases include:
+state-column checks extend through `n = 5`. The optimized clean-flag depth
+factorization is checked through `n = 5`, and the complete flagged frame through
+`n = 4`. Deterministic cases include:
 
 - generic interior coordinates;
 - final-layer real sign changes;
@@ -214,8 +250,8 @@ state-column checks extend through `n = 5`. Deterministic cases include:
 - diagonal reflections; and
 - fixed-seed Householder reflections.
 
-The suite uses exact statevectors and complete output distributions. It does
-not use Monte Carlo shots.
+The central circuit suite uses exact statevectors and complete output
+distributions. It does not use Monte Carlo shots.
 
 <p align="center">
   <img src="exact_logical_validation_residuals.png" width="760" alt="Maximum exact-logical Qibo-to-reference residuals">
@@ -232,14 +268,15 @@ performance, scaling, or hardware data.
 
 The suite directly checks finite-dimensional algebraic and exact-logical
 statements: prepared state columns, frame matrices, gradient means, decoder
-signs, active-interface identities, singular-coordinate behavior, and assigned
-resource formulas.
+signs, active-interface identities, singular-coordinate behavior, assigned
+resource formulas, the clean-flag optimized factorization, and supporting
+statistical/readout identities.
 
 It does **not** numerically prove concentration inequalities or asymptotic
-complexity statements. The statistical scaling follows from the fixed-norm
-record property, while the resource scaling follows from the declared gate
-ledger. The repository exposes and tests the ingredients so those deductions
-remain inspectable. The exact claim-by-claim boundary is recorded in
+complexity statements. The statistical scaling follows from fixed-norm record
+properties. The optimized compiler conclusion combines an exact checked
+factorization with established uniformly controlled-rotation and
+multi-controlled-X synthesis bounds. The claim-by-claim boundary is recorded in
 [docs/CLAIM_SUPPORT.md](docs/CLAIM_SUPPORT.md).
 
 ## Three circuit contracts
@@ -251,32 +288,57 @@ Several circuit substitutions are valid only under a specific contract:
 3. **Active-interface equality:** `U P_d = V P_d` on a specified checkpoint
    subspace.
 
+The optimized addressed-frame compiler introduces a fourth explicit register
+condition:
+
+4. **Clean-flag equality:** the system action equals `W_R` when the reusable
+   flag enters and leaves in `|0>`.
+
 The native Hopf preparation, depth completion, and addressed frame share the
 required initialized state column but are generally different full unitaries.
 The four-qubit integrated checkpoint compiler is validated on its active
 interface and need not preserve the complete output distribution of the
 separated implementation.
 
-Engineers should not promote a state-column or active-interface identity to a
-full-unitary identity. See [Engineering guide: substitution contracts](docs/ENGINEERING_GUIDE.md#8-substitution-contracts).
+Engineers should not promote a state-column, active-interface, or clean-flag
+identity to a stronger full-unitary claim.
 
-## Resource model
+## Resource models
 
-The ledger reports **assigned Hopf CNOT charges** under the compiler model used
-by the manuscript. These are not Qibo transpiler counts.
+### Conservative assigned ledger
 
-The following are separated from the Hopf ledger unless explicitly stated:
+`qbp_resource_ledger.py` reproduces the manuscript's finite assigned Hopf CNOT
+charges. It independently decomposes addressed controlled rotations according
+to the declared no-clean-ancilla formulas. It is a concrete implementation
+ledger, not an optimality claim.
+
+### Optimized asymptotic companion
+
+`qbp_optimized_resource_ledger.py` groups each depth into a uniformly controlled
+rotation. The forward preparation has a CNOT upper bound `N - 2` for its
+multiplexor cores. The addressed real frame uses one reusable clean suffix flag
+and has a multiplexor-core bound `3*N/2 - 2` for `n >= 2`, plus a separately
+reported polynomial suffix-predicate overhead. Thus
+
+```math
+C(U_{\mathrm{chk}})=O(N),
+\qquad
+C(W_{\mathbb R})=O(N).
+```
+
+The diagonal phase layer is also exactly synthesizable in `O(N)`, so the same
+scaling holds for the separated complex construction. See
+[Optimized compilation](docs/OPTIMIZED_COMPILATION.md) for the derivation,
+clean-flag contract, references, and test map.
+
+Both ledgers separate:
 
 - the controlled observable;
 - measurement and readout;
 - application-specific workspace;
 - device routing;
 - approximate synthesis; and
-- any separately assigned diagonal phase-layer charge.
-
-The ledger is implemented in `qbp_validation/conventions.py` and exposed by
-`qbp_resource_ledger.py`. Its formulas and limitations are summarized in the
-[engineering guide](docs/ENGINEERING_GUIDE.md#12-assigned-resource-ledger).
+- any separately assigned phase-layer charge where stated.
 
 ## Repository map
 
@@ -284,16 +346,22 @@ The ledger is implemented in `qbp_validation/conventions.py` and exposed by
 |---|---|
 | `validate_qbp.py` | Analytic, smoke, and complete validation entry point. |
 | `make_validation_figures.py` | Recomputes validation figures from circuit and analytic data. |
-| `qbp_resource_ledger.py` | Prints text, CSV, or JSON assigned-resource tables. |
-| `qbp_validation/conventions.py` | Tree indices, bit order, marker labels, interface projectors, and resource formulas. |
+| `qbp_resource_ledger.py` | Conservative assigned CNOT ledger used by the manuscript. |
+| `qbp_optimized_resource_ledger.py` | Optimized uniformly controlled-rotation companion ledger. |
+| `qbp_validation/conventions.py` | Tree indices, bit order, marker labels, interface projectors, and assigned formulas. |
 | `qbp_validation/native_schedule.py` | Native `HopfReal` and `HopfComplex` schedules inherited from the first paper. |
 | `qbp_validation/reference.py` | Independent states, frames, derivatives, gradients, and compiler matrices. |
 | `qbp_validation/circuits.py` | Qibo builders for forward, global, phase, checkpoint, and compiler-test circuits. |
 | `qbp_validation/decoders.py` | Walsh and signed-histogram decoders. |
+| `qbp_validation/optimized_compiler.py` | Clean-flag factorization and optimized core counts. |
+| `qbp_validation/supporting_analysis.py` | `l_2`, direction, gauge, reflection-sum, and readout formulas. |
 | `qbp_validation/cases.py` | Deterministic parameter and observable cases. |
-| `qbp_validation/tests/` | Claim-level exact-logical tests. |
+| `qbp_validation/tests/` | Claim-level exact-logical and analytic tests. |
 | `docs/CLAIM_SUPPORT.md` | Reviewer-oriented claim-to-code and claim-to-test map. |
 | `docs/ENGINEERING_GUIDE.md` | Self-contained implementation and adaptation guide. |
+| `docs/OPTIMIZED_COMPILATION.md` | Optimized synthesis derivation and resource boundary. |
+| `docs/STATISTICAL_ACCURACY.md` | Complete-vector, direction, metric, and gauge consequences. |
+| `docs/OBSERVABLES_AND_READOUT.md` | Reflection-sum and analytic readout extensions. |
 | `REPRODUCIBILITY.md` | Environment, commands, deterministic outputs, and tolerances. |
 
 ## Scope boundaries
@@ -301,16 +369,16 @@ The ledger is implemented in `qbp_validation/conventions.py` and exposed by
 This repository does not claim to provide:
 
 - optimizer benchmarks;
-- finite-shot convergence experiments;
 - execution-time or memory benchmarks;
 - a generic controlled-observable compiler;
-- hardware routing or noise studies;
+- hardware routing or a full noise study;
 - approximate synthesis;
 - physical-device performance; or
 - a general-purpose automatic-differentiation framework.
 
-Those are separate engineering or application layers. The validated object here
-is the Hopf state-coordinate gradient interface under the stated access model.
+The finite-shot formulas are analytic consequences of the record structure;
+they are not presented as hardware data. The validated central object is the
+Hopf state-coordinate gradient interface under the stated access model.
 
 ## Papers in the series
 
@@ -318,11 +386,7 @@ is the Hopf state-coordinate gradient interface under the stated access model.
 - **First paper:** [A Compass on the Quantum State Sphere: The Hopf Ansatz for Arbitrary Pure-State Optimization](https://arxiv.org/abs/2607.14231).
 - **First-paper code:** [GoGoKo699/Hopf-ansatz](https://github.com/GoGoKo699/Hopf-ansatz).
 
-The repositories are complementary and have no runtime dependency on one
-another. The first repository provides the coordinate chart, inverse map,
-optimizer geometry, stress tests, and native preparation schedules. This
-repository provides the reverse gradient constructions and their exact-logical
-validation.
+The repositories have no runtime dependency on one another.
 
 ## Citation
 
