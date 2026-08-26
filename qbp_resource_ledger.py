@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
-"""Print the compiler-relative assigned CNOT ledger used by the manuscript."""
+"""Print the manuscript's conservative compiler-relative assigned CNOT ledger.
+
+This is the concrete no-clean-ancilla ledger used for the manuscript's finite
+examples. It is not an optimal-synthesis claim. See
+``qbp_optimized_resource_ledger.py`` for the uniformly controlled-rotation
+companion.
+"""
 from __future__ import annotations
 
 import argparse
@@ -44,7 +50,7 @@ def ledger_row(n: int) -> LedgerRow:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Print the Hopf-QBP assigned CNOT ledger."
+        description="Print the conservative assigned Hopf-QBP CNOT ledger."
     )
     parser.add_argument("--nmin", type=int, default=2)
     parser.add_argument("--nmax", type=int, default=10)
@@ -98,7 +104,9 @@ def four_qubit_details() -> dict[str, object]:
 
 
 def _print_text(rows: list[LedgerRow]) -> None:
-    print("Assigned CNOT charges; controlled observable and phase-layer charge excluded")
+    print("Conservative assigned CNOT charges; controlled observable and phase-layer charge excluded")
+    print("These finite counts are not an optimal-synthesis claim.")
+    print("Optimized companion: python qbp_optimized_resource_ledger.py")
     print(
         f"{'n':>2} {'HopfReal':>12} {'HopfComplex':>14} "
         f"{'U_chk':>12} {'W_R':>12}"
@@ -157,6 +165,8 @@ def main() -> int:
         _print_csv(rows)
     else:
         payload = {
+            "interpretation": "conservative assigned finite ledger, not optimal synthesis",
+            "optimized_companion": "qbp_optimized_resource_ledger.py",
             "rows": [asdict(row) for row in rows],
             "four_qubit": four_qubit_details() if args.nmin <= 4 <= args.nmax else None,
         }
