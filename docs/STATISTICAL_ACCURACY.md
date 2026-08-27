@@ -1,9 +1,11 @@
 # Statistical accuracy beyond coordinatewise error
 
 The manuscript's primary finite-shot target is simultaneous absolute
-coordinatewise accuracy. This page records the corresponding complete-vector,
-directional, gauge, and metric-conditioning consequences without changing the
-core estimator.
+coordinatewise accuracy. Appendix B now gives the complete-vector Euclidean
+bound, the conditional relative and directional consequences, and the
+magnitude-block natural-gradient conditioning statement. This page retains the
+full derivation, gauge interpretation, optimizer boundary, and executable test
+map without changing the core estimator.
 
 ## 1. Coordinatewise target
 
@@ -122,12 +124,25 @@ error obeys
 \frac{2\eta}{G}.
 ```
 
-No uniform relative or directional guarantee can hold at a stationary point.
-For example, when the observable is the identity, the exact gradient is zero
-and a relative direction is undefined. Any directional theorem must therefore
-state a nonzero-gradient margin explicitly.
+Choosing `eta = rho*G` gives relative `l_2` error at most `rho`, normalized
+direction error at most `2*rho`, and the sufficient global magnitude count
 
-## 4. Small metric factors
+```math
+S_{\mathrm{rel}}
+=
+O\left(
+\frac{n\{1+\log(1/\delta)\}}
+{\rho^2G^2}
+\right).
+```
+
+A fixed allocation between magnitude and phase streams gives the same `n`
+dependence for the complete complex gradient. No uniform relative or
+directional guarantee can hold at a stationary point. For example, when the
+observable is the identity, the exact gradient is zero and a relative direction
+is undefined.
+
+## 4. Small metric factors and natural-gradient conditioning
 
 For a magnitude coordinate `j`, the ordinary coordinate-gradient record has
 the form
@@ -153,22 +168,30 @@ coordinate estimator; they reduce its absolute record scale. At
 `g[j,j] = 0`, the coordinate differential, exact derivative, and record all
 vanish.
 
-A natural-gradient component divides by the metric. Its rescaled record has
-second moment proportional to
+An unregularized natural-gradient component divides by the metric, so its
+rescaled record has second moment
 
 ```math
+\mathbb E\left[\left(\frac{Z_j}{g_{j,j}}\right)^2\right]
+=
 \frac{4}{g_{j,j}},
 ```
 
-which can be ill-conditioned near a chart boundary. Thresholding, coordinate
-freezing, or a regularized inverse such as
+which is ill-conditioned near a chart boundary. A regularized inverse gives
 
 ```math
-(g_{j,j}+\lambda)^{-1}
+\mathbb E\left[
+\left(\frac{Z_j}{g_{j,j}+\lambda}\right)^2
+\right]
+=
+\frac{4g_{j,j}}{(g_{j,j}+\lambda)^2}
+\leq
+\frac{1}{\lambda}.
 ```
 
-belongs to the optimizer layer. It is not required for the correctness of the
-ordinary gradient record.
+Thresholding or freezing small-weight coordinates provides an alternative.
+These choices belong to the optimizer layer; they are not required for the
+correctness of the ordinary gradient record.
 
 ## 5. Common-phase gauge projection
 
@@ -205,7 +228,8 @@ qbp_validation/tests/test_supporting_analysis.py
 ```
 
 The tests check the exact complete-record norm, sufficient shot-count formula,
-conditional direction bound, and nonexpansive common-phase projection.
+conditional direction bound, readout formulas, reflection-sum unbiasedness, and
+nonexpansive common-phase projection.
 
 Run:
 
