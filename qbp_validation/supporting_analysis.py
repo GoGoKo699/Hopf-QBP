@@ -1,10 +1,10 @@
 """Qibo-free supporting analysis for Hopf-QBP.
 
 This module collects consequences that are useful for scientific review and
-engineering adaptation but are not separate claims of the core manuscript:
-complete-vector accuracy, conditional directional guarantees, common-phase
-gauge projection, reflection-sum term sampling, and analytic readout-error
-transfer functions.
+engineering adaptation: complete-vector accuracy, conditional relative and
+directional guarantees, magnitude-block natural-gradient conditioning,
+common-phase gauge projection, reflection-sum term sampling, and analytic
+readout-error transfer functions.
 """
 from __future__ import annotations
 
@@ -63,6 +63,32 @@ def complete_magnitude_l2_shot_bound(
     )
 
 
+def complete_magnitude_relative_l2_shot_bound(
+    n: int,
+    relative_error: float,
+    gradient_norm: float,
+    failure_probability: float,
+) -> int:
+    """Sufficient executions for relative ``l2`` error away from stationarity.
+
+    The target absolute error is ``relative_error * gradient_norm``.  Requiring
+    ``relative_error < 1`` also guarantees that the estimated negative gradient
+    is a descent direction under the same event.
+    """
+
+    rho = float(relative_error)
+    gradient = float(gradient_norm)
+    if not 0.0 < rho < 1.0:
+        raise ValueError("relative_error must lie strictly between 0 and 1.")
+    if gradient <= 0.0:
+        raise ValueError("gradient_norm must be positive.")
+    return complete_magnitude_l2_shot_bound(
+        n,
+        rho * gradient,
+        failure_probability,
+    )
+
+
 def direction_error_upper_bound(gradient_norm: float, error_norm: float) -> float:
     """Bound normalized-direction error when ``error_norm < gradient_norm``.
 
@@ -90,6 +116,48 @@ def descent_direction_is_guaranteed(gradient_norm: float, error_norm: float) -> 
     if gradient < 0.0 or error < 0.0:
         raise ValueError("norms must be nonnegative.")
     return gradient > 0.0 and error < gradient
+
+
+def ordinary_magnitude_record_second_moment(metric_factor: float) -> float:
+    """Return ``E[Z_j^2] = 4*g_jj`` for an ordinary magnitude record."""
+
+    metric = float(metric_factor)
+    if metric < 0.0:
+        raise ValueError("metric_factor must be nonnegative.")
+    return 4.0 * metric
+
+
+def natural_gradient_record_second_moment(metric_factor: float) -> float:
+    """Return ``4/g_jj`` for the unregularized inverse-metric record."""
+
+    metric = float(metric_factor)
+    if metric <= 0.0:
+        raise ValueError("metric_factor must be positive for an inverse metric.")
+    return 4.0 / metric
+
+
+def regularized_natural_gradient_record_second_moment(
+    metric_factor: float,
+    regularization: float,
+) -> float:
+    """Return ``4*g_jj/(g_jj+lambda)^2`` for a regularized inverse metric."""
+
+    metric = float(metric_factor)
+    lam = float(regularization)
+    if metric < 0.0:
+        raise ValueError("metric_factor must be nonnegative.")
+    if lam <= 0.0:
+        raise ValueError("regularization must be positive.")
+    return 4.0 * metric / (metric + lam) ** 2
+
+
+def regularized_natural_gradient_second_moment_bound(regularization: float) -> float:
+    """Return the uniform bound ``1/lambda`` for the regularized second moment."""
+
+    lam = float(regularization)
+    if lam <= 0.0:
+        raise ValueError("regularization must be positive.")
+    return 1.0 / lam
 
 
 def project_common_phase_gradient(gradient: object) -> np.ndarray:
