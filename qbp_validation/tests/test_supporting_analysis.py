@@ -9,16 +9,21 @@ from qbp_validation.supporting_analysis import (
     checkpoint_sign_readout_attenuation,
     complete_magnitude_l2_shot_bound,
     complete_magnitude_record_norm,
+    complete_magnitude_relative_l2_shot_bound,
     descent_direction_is_guaranteed,
     direction_error_upper_bound,
     fixed_norm_vector_shot_bound,
     global_marker_readout_attenuation,
     independent_bitflip_channel,
+    natural_gradient_record_second_moment,
+    ordinary_magnitude_record_second_moment,
     phase_sign_readout_attenuation,
     project_common_phase_gradient,
     reflection_sampling_probabilities,
     reflection_sum_expected_record,
     reflection_sum_record_norm_bound,
+    regularized_natural_gradient_record_second_moment,
+    regularized_natural_gradient_second_moment_bound,
 )
 
 
@@ -41,15 +46,59 @@ class SupportingAnalysisTests(unittest.TestCase):
             ),
         )
 
-    def test_directional_guarantees_require_nonzero_gradient(self) -> None:
+    def test_relative_shot_bound_and_directional_guarantees(self) -> None:
+        n = 5
+        eta = 0.05
+        rho = 0.1
+        gradient_norm = 2.5
+        self.assertEqual(
+            complete_magnitude_relative_l2_shot_bound(
+                n,
+                rho,
+                gradient_norm,
+                eta,
+            ),
+            complete_magnitude_l2_shot_bound(
+                n,
+                rho * gradient_norm,
+                eta,
+            ),
+        )
         self.assertTrue(descent_direction_is_guaranteed(2.0, 0.5))
         self.assertFalse(descent_direction_is_guaranteed(2.0, 2.0))
         self.assertFalse(descent_direction_is_guaranteed(0.0, 0.0))
         self.assertAlmostEqual(direction_error_upper_bound(2.0, 0.5), 0.5)
         with self.assertRaises(ValueError):
+            complete_magnitude_relative_l2_shot_bound(n, 1.0, gradient_norm, eta)
+        with self.assertRaises(ValueError):
+            complete_magnitude_relative_l2_shot_bound(n, rho, 0.0, eta)
+        with self.assertRaises(ValueError):
             direction_error_upper_bound(0.0, 0.0)
         with self.assertRaises(ValueError):
             direction_error_upper_bound(1.0, 1.0)
+
+    def test_metric_conditioning_and_regularization(self) -> None:
+        self.assertEqual(ordinary_magnitude_record_second_moment(0.0), 0.0)
+        self.assertAlmostEqual(ordinary_magnitude_record_second_moment(0.25), 1.0)
+        self.assertAlmostEqual(natural_gradient_record_second_moment(0.25), 16.0)
+
+        lam = 0.2
+        bound = regularized_natural_gradient_second_moment_bound(lam)
+        self.assertEqual(bound, 5.0)
+        for metric in np.linspace(0.0, 1.0, 101):
+            moment = regularized_natural_gradient_record_second_moment(metric, lam)
+            self.assertLessEqual(moment, bound + 1e-14)
+        self.assertAlmostEqual(
+            regularized_natural_gradient_record_second_moment(lam, lam),
+            bound,
+        )
+
+        with self.assertRaises(ValueError):
+            ordinary_magnitude_record_second_moment(-1.0)
+        with self.assertRaises(ValueError):
+            natural_gradient_record_second_moment(0.0)
+        with self.assertRaises(ValueError):
+            regularized_natural_gradient_record_second_moment(0.5, 0.0)
 
     def test_common_phase_projection_is_unbiased_and_nonexpansive(self) -> None:
         true_gradient = np.asarray([0.7, -0.4, 0.2, -0.5])
