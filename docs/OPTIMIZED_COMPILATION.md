@@ -5,6 +5,11 @@ the two Hopf papers but is scientifically valuable: does the Hopf-QBP estimator
 and its asymptotic resource conclusion survive after the direct-angle circuit is
 recompiled more aggressively?
 
+Appendix B of the manuscript now gives a self-contained summary of the exact
+clean-flag factorization and the resulting `O(N)` matched comparison. This page
+retains the full compiler derivation, finite count structure, primary synthesis
+references, and executable test map.
+
 The primary Hopf setting is coordinate-preserving. It keeps
 
 ```math
@@ -45,7 +50,7 @@ The two command-line ledgers therefore have different roles:
 | Tool | Role | What is counted |
 |---|---|---|
 | `qbp_resource_ledger.py` | Direct-angle assigned ledger used by the manuscript | Independently decomposed coordinate-preserving controlled gates under the declared formulas |
-| `qbp_optimized_resource_ledger.py` | Repository-only robustness companion | Uniformly controlled-rotation cores, with suffix-predicate work exposed separately |
+| `qbp_optimized_resource_ledger.py` | Detailed robustness companion | Uniformly controlled-rotation cores, with suffix-predicate work exposed separately |
 
 Neither table is a routed hardware estimate. Both exclude the controlled
 observable, readout, device connectivity, and approximate synthesis unless a
@@ -179,7 +184,7 @@ O(N),
 because `N = 2**n`. The same flag is reused at every depth and is returned to
 `|0>` before the next layer.
 
-The repository reports the multiplexor CNOT count and the predicate widths
+The detailed ledger reports the multiplexor CNOT count and the predicate widths
 separately rather than hiding a compiler-dependent finite constant inside one
 number.
 
