@@ -92,8 +92,8 @@ implements and validates:
 - full-unitary, initialized-state-column, and active-interface contracts;
 - singular-coordinate behavior;
 - the manuscript's direct-angle assigned Hopf CNOT ledger;
-- a repository-only clean-flag robustness factorization for an `O(N)` multiplexed recompilation;
-- complete-vector `l_2`, conditional direction, and common-phase analyses;
+- an Appendix-B clean-flag robustness factorization with detailed executable support for an `O(N)` multiplexed recompilation;
+- complete-vector `l_2`, relative/directional, natural-gradient-conditioning, and common-phase analyses;
 - reflection-sum term sampling; and
 - exact independent-readout-error transfer functions.
 
@@ -265,8 +265,9 @@ formulas:
   gradient records;
 - `qbp_validation/optimized_compiler.py` checks the clean-flag robustness
   factorization and multiplexor-core ledger;
-- `qbp_validation/supporting_analysis.py` implements statistical, reflection,
-  gauge, and readout consequences; and
+- `qbp_validation/supporting_analysis.py` implements complete-vector,
+  relative/directional, natural-gradient-conditioning, gauge, reflection-sum,
+  and readout consequences; and
 - `qbp_validation/tests/` compares all supported contracts.
 
 General circuit checks cover `n = 1, 2, 3, 4`. Qibo-independent native
@@ -346,7 +347,7 @@ phase angle. It decomposes the resulting controlled gates independently under
 the declared no-clean-ancilla formulas. It is a concrete coordinate-preserving
 ledger, not a claim of global CNOT optimality.
 
-### Multiplexed robustness companion: repository-only analysis
+### Multiplexed robustness companion: Appendix-B analysis with detailed validation
 
 `qbp_optimized_resource_ledger.py` groups each depth into a uniformly controlled
 rotation. The forward preparation has a CNOT upper bound `N - 2` for its
@@ -390,7 +391,7 @@ Both analyses separate:
 | `qbp_validation/circuits.py` | Qibo builders for forward, global, phase, checkpoint, and compiler-test circuits. |
 | `qbp_validation/decoders.py` | Walsh and signed-histogram decoders. |
 | `qbp_validation/optimized_compiler.py` | Clean-flag robustness factorization and multiplexor-core counts. |
-| `qbp_validation/supporting_analysis.py` | `l_2`, direction, gauge, reflection-sum, and readout formulas. |
+| `qbp_validation/supporting_analysis.py` | `l_2`, relative/directional, natural-gradient, gauge, reflection-sum, and readout formulas. |
 | `qbp_validation/cases.py` | Deterministic parameter and observable cases. |
 | `qbp_validation/tests/` | Claim-level exact-logical and analytic tests. |
 | `docs/CLAIM_SUPPORT.md` | Reviewer-oriented claim-to-code and claim-to-test map. |
