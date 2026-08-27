@@ -145,17 +145,20 @@ with `X` gates. An alternative backend must preserve the same control pattern.
 The defining compiler setting of the Hopf papers preserves
 
 ```math
-\theta_j
+\text{one Hopf coordinate}
 \longleftrightarrow
-\text{tree node }j
+\text{one designated tree-split or leaf-phase location}
 \longleftrightarrow
-\text{one programmable physical rotation angle}.
+\text{one directly programmed physical angle}.
 ```
 
-This is stronger than state-column equality. It keeps the circuit controls in
-direct correspondence with the inverse coordinates, metric entries, and
-coordinate tangents. The following general constructions remain inside this
-contract:
+For magnitude coordinates, the angle belongs to the internal tree split. For
+the complex chart, each leaf-phase coordinate is likewise retained as a
+directly programmed phase angle. This is stronger than state-column equality:
+it keeps the physical controls in direct correspondence with the inverse
+coordinates, metric entries, and coordinate tangents.
+
+The following general constructions remain inside this contract:
 
 - native `HopfReal` and `HopfComplex` preparations;
 - the depth-ordered completion `U_chk`;
@@ -164,11 +167,11 @@ contract:
 - the checkpoint suffixes `B_d`.
 
 They are different unitary completions and circuit organizations, but each
-magnitude coordinate is still used directly as the angle of its designated
-tree rotation. A generic multiplexed decomposition can preserve the same
-logical unitary while replacing elementary physical angles by combinations of
-several Hopf coordinates. Such a replacement is a state- or frame-equivalent
-compiler, not automatically a direct-angle Hopf compiler.
+coordinate is still used directly as a physical angle at its designated Hopf
+location. A generic multiplexed decomposition can preserve the same logical
+unitary while replacing elementary physical angles by combinations of several
+Hopf coordinates. Such a replacement is a state- or frame-equivalent compiler,
+not automatically a direct-angle Hopf compiler.
 
 ## 3. Core data structures
 
@@ -658,8 +661,8 @@ the checkpoint interface selected by `P_d`.
 ### Direct-angle compiler preservation
 
 A compiler preserves the defining Hopf circuit setting only when the original
-coordinates remain directly programmable physical gate parameters at their
-designated tree locations. This condition is not implied by unitary,
+coordinates remain directly programmed physical angles at their designated
+tree-split or leaf-phase locations. This condition is not implied by unitary,
 state-column, or active-interface equality.
 
 A replacement may therefore be valid for decoded-gradient correctness while
@@ -773,10 +776,11 @@ the same at a fixed depth; the difference is circuit organization.
 ## 12. Direct-angle assigned resource ledger
 
 The manuscript uses a declared coordinate-preserving Hopf CNOT model. It keeps
-each Hopf coordinate as the angle of its designated physical tree rotation and
-decomposes those controlled rotations independently. This is the defining
-compiler setting of the two papers, not an optimization over all exact circuits
-that implement the same state or unitary.
+each magnitude coordinate as the rotation angle of its designated internal tree
+split and each complex leaf phase as a directly programmed phase angle. It then
+decomposes those controlled gates independently. This is the defining compiler
+setting of the two papers, not an optimization over all exact circuits that
+implement the same state or unitary.
 
 ### Controlled `R_y`
 

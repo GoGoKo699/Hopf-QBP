@@ -7,8 +7,8 @@ It also identifies which supporting results live only in the repository.
 The compiler hierarchy is load-bearing:
 
 1. **Paper setting:** the direct-angle Hopf realization, in which each
-   coordinate remains the physical rotation angle associated with its tree
-   node.
+   coordinate remains a directly programmed physical angle at its designated
+   tree-split or leaf-phase location.
 2. **Repository robustness question:** whether state- or frame-equivalent
    optimized recompilation preserves the estimator identities and asymptotic
    resource conclusion after leaving that direct-angle setting.
@@ -83,19 +83,21 @@ physical outcome contributes to every magnitude coordinate.
 The primary circuits preserve
 
 ```math
-\theta_j
+\text{one Hopf coordinate}
 \longleftrightarrow
-\text{tree node }j
+\text{one designated tree-split or leaf-phase location}
 \longleftrightarrow
-\text{one programmable physical rotation angle}.
+\text{one directly programmed physical angle}.
 ```
 
-The native preparations, `U_chk`, `W_R`, and `B_d` are different unitary
+For magnitude coordinates the angle belongs to an internal tree split. In the
+complex chart, each leaf-phase coordinate is likewise a direct phase angle. The
+native preparations, `U_chk`, `W_R`, and `B_d` are different unitary
 completions or circuit organizations, but they retain this coordinate-faithful
-tree structure. A state-equivalent multiplexed compiler can preserve the
-logical output while changing the elementary physical parameters. The
-repository therefore separates estimator correctness from inheritance of the
-paper's resource model.
+structure. A state-equivalent multiplexed compiler can preserve the logical
+output while changing the elementary physical parameters. The repository
+therefore separates estimator correctness from inheritance of the paper's
+resource model.
 
 ## Claim 1: inherited conventions and forward states
 
@@ -155,11 +157,11 @@ W_{\mathbb C}=D_{\mathrm{ph}}W_{\mathbb R}.
 
 ### Direct-angle interpretation
 
-For node `j`, the addressed gate uses the same physical angle `theta_j` as the
-forward split at that tree node. The forward circuit prepares the split state;
-the addressed frame places that state and its local complement in paired
-computational columns. This shared angle is part of the geometric compiler
-contract.
+For internal node `j`, the addressed gate uses the same physical angle
+`theta_j` as the forward split at that tree node. The forward circuit prepares
+the split state; the addressed frame places that state and its local complement
+in paired computational columns. This shared angle is part of the geometric
+compiler contract.
 
 ### Boundary
 
@@ -302,9 +304,9 @@ The optimized frame adds a clean-flag contract:
 `test_optimized_compiler.py` checks the system block and zero flag leakage.
 
 These are correctness contracts. None alone implies that the replacement keeps
-one Hopf coordinate as one elementary physical gate angle. Direct-angle
-compiler preservation is therefore reported separately from state, unitary,
-active-interface, or clean-flag equivalence.
+one Hopf coordinate as one directly programmed elementary physical angle.
+Direct-angle compiler preservation is therefore reported separately from state,
+unitary, active-interface, or clean-flag equivalence.
 
 ## Claim 7: singular coordinates and gauge
 
@@ -383,10 +385,11 @@ The manuscript ledger is implemented by:
 `test_resource_ledger.py` checks controlled-gate values, depth layers,
 forward/frame/suffix totals, and the finite four-qubit record totals.
 
-This ledger retains each Hopf coordinate as the physical angle of its designated
-tree rotation. It is the compiler model used to state the manuscript's finite
-resource comparison. It is not a claim of optimal synthesis over all exact
-circuits implementing the same state or unitary.
+This ledger retains every magnitude coordinate as the physical angle of its
+designated internal tree split and every complex leaf phase as a directly
+programmed phase angle. It is the compiler model used to state the manuscript's
+finite resource comparison. It is not a claim of optimal synthesis over all
+exact circuits implementing the same state or unitary.
 
 ### Multiplexed robustness companion: repository-only result
 

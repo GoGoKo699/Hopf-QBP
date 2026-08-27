@@ -23,8 +23,8 @@ module selects that backend explicitly.
 The validation distinguishes two roles:
 
 1. **Direct-angle Hopf compiler:** the defining paper setting, in which each
-   coordinate remains the physical rotation angle associated with its tree
-   node.
+   coordinate remains a directly programmed physical angle at its designated
+   tree-split or leaf-phase location.
 2. **Multiplexed robustness companion:** a repository-only state-equivalent
    recompilation used to test whether the estimator identities and `O(N)`
    asymptotic comparison survive after leaving the direct-angle setting.
@@ -128,10 +128,11 @@ python qbp_resource_ledger.py --nmin 2 --nmax 10 --format json
 ```
 
 The table reproduces the manuscript's concrete coordinate-preserving
-no-clean-ancilla assigned charges. Each Hopf coordinate remains the physical
-angle of its designated tree rotation. The table excludes the controlled
-observable, readout, and any separately assigned diagonal phase-layer or
-workspace cost. It is not a global optimality or Qibo-transpiler claim.
+no-clean-ancilla assigned charges. Magnitude coordinates remain the physical
+angles of their designated tree splits, and complex leaf phases remain directly
+programmed phase angles. The table excludes the controlled observable, readout,
+and any separately assigned diagonal phase-layer or workspace cost. It is not a
+global optimality or Qibo-transpiler claim.
 
 ## Multiplexed robustness companion
 

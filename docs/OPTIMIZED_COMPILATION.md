@@ -5,24 +5,25 @@ the two Hopf papers but is scientifically valuable: does the Hopf-QBP estimator
 and its asymptotic resource conclusion survive after the direct-angle circuit is
 recompiled more aggressively?
 
-The primary Hopf setting is coordinate-preserving. Each coordinate remains the
-programmable physical angle of the rotation associated with its tree node:
+The primary Hopf setting is coordinate-preserving. It keeps
 
 ```math
-\theta_j
+\text{one Hopf coordinate}
 \longleftrightarrow
-\text{tree node }j
+\text{one designated tree-split or leaf-phase location}
 \longleftrightarrow
-\text{one physical rotation angle}.
+\text{one directly programmed physical angle}.
 ```
 
+For magnitude coordinates this is the rotation angle attached to an internal
+tree node; for complex leaf phases it is a directly programmed phase angle.
 This direct-angle correspondence is what keeps the inverse coordinates,
 diagonal metric, normalized tangents, forward preparation, and reverse records
 transparent in one circuit language. The manuscript's assigned ledger counts
 that realization.
 
 A uniformly controlled resynthesis can preserve the same logical state or frame
-while replacing the elementary rotation angles by compiler-generated linear
+while replacing the elementary physical angles by compiler-generated linear
 combinations of several Hopf coordinates. The analysis below therefore gives a
 **robustness result**, not a redefinition of the ansatz and not a replacement for
 the manuscript's coordinate-preserving resource model.
@@ -34,7 +35,7 @@ the manuscript's coordinate-preserving resource model.
 | Same prepared state | Yes | Yes |
 | Same frame action or clean-flag system action | Yes | Yes |
 | Same decoded Hopf-QBP estimator | Yes | Yes |
-| One coordinate is one elementary physical rotation angle | **Yes** | Generally no |
+| One coordinate is one directly programmed physical angle | **Yes** | Generally no |
 | Geometry remains explicit in the gate parameters | **Yes** | Generally no |
 | Defines the manuscript's resource setting | **Yes** | No |
 | Tests robustness outside that setting | Not applicable | **Yes** |
@@ -43,7 +44,7 @@ The two command-line ledgers therefore have different roles:
 
 | Tool | Role | What is counted |
 |---|---|---|
-| `qbp_resource_ledger.py` | Direct-angle assigned ledger used by the manuscript | Independently decomposed coordinate-preserving controlled rotations under the declared formulas |
+| `qbp_resource_ledger.py` | Direct-angle assigned ledger used by the manuscript | Independently decomposed coordinate-preserving controlled gates under the declared formulas |
 | `qbp_optimized_resource_ledger.py` | Repository-only robustness companion | Uniformly controlled-rotation cores, with suffix-predicate work exposed separately |
 
 Neither table is a routed hardware estimate. Both exclude the controlled
@@ -204,8 +205,9 @@ finite regression tests, but they are not required for this asymptotic
 robustness conclusion.
 
 As with the real multiplexor, a generic diagonal synthesis need not retain one
-leaf phase as one elementary physical phase gate. The logical state and frame
-are preserved; the direct coordinate-to-control interpretation is not claimed.
+leaf-phase coordinate as one elementary physical phase angle. The logical state
+and frame are preserved; the direct coordinate-to-control interpretation is not
+claimed.
 
 ## 5. Matched scalar robustness comparison
 

@@ -2,10 +2,11 @@
 """Print the multiplexed robustness companion to the Hopf-QBP ledger.
 
 The direct-angle Hopf compiler used by the papers keeps one coordinate as one
-physical tree-rotation angle.  This command instead reports one exact
-state-equivalent uniformly-controlled-rotation recompilation.  It tests whether
-the estimator identities and asymptotic resource comparison survive after
-leaving that defining compiler setting; it does not redefine the ansatz.
+directly programmed physical angle at its designated tree-split or leaf-phase
+location.  This command instead reports one exact state-equivalent uniformly
+controlled-rotation recompilation.  It tests whether the estimator identities
+and asymptotic resource comparison survive after leaving that defining compiler
+setting; it does not redefine the ansatz.
 """
 from __future__ import annotations
 
@@ -98,7 +99,7 @@ def main() -> int:
     else:
         payload = {
             "scope": "repository-only robustness beyond the direct-angle Hopf compiler",
-            "direct_angle_setting": "one Hopf coordinate is one designated physical tree-rotation angle",
+            "direct_angle_setting": "one Hopf coordinate is one directly programmed physical angle at its designated tree-split or leaf-phase location",
             "rows": rows,
             "predicate_details": {
                 str(row["n"]): {

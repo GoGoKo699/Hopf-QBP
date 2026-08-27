@@ -49,19 +49,21 @@ states followed by an arbitrary state-preparation compiler. Its defining
 circuit realization preserves the correspondence
 
 ```math
-\theta_j
+\text{one Hopf coordinate}
 \longleftrightarrow
-\text{tree node }j
+\text{one designated tree-split or leaf-phase location}
 \longleftrightarrow
-\text{one programmable physical rotation angle}.
+\text{one directly programmed physical angle}.
 ```
 
-The native preparations, the depth-ordered completion `U_chk`, the addressed
-frame `W_R`, and the checkpoint suffixes all retain this direct-angle tree
-structure. That correspondence keeps the inverse coordinates, diagonal metric,
-tangent directions, and physical controls transparent in the same notation.
-The manuscript's finite resource ledger belongs to this coordinate-preserving
-setting.
+For magnitude coordinates this is the `R_y` angle attached to an internal tree
+node. In the complex chart, each leaf-phase coordinate is likewise retained as
+a directly programmed phase angle. The native preparations, the depth-ordered
+completion `U_chk`, the addressed frame `W_R`, and the checkpoint suffixes all
+retain this direct-angle structure. That correspondence keeps the inverse
+coordinates, diagonal metric, tangent directions, and physical controls
+transparent in the same notation. The manuscript's finite resource ledger
+belongs to this coordinate-preserving setting.
 
 A state-equivalent compiler may multiplex several Hopf rotations and replace
 the elementary physical angles by compiler-generated combinations. Such a
@@ -196,7 +198,7 @@ The exact sign, bit-order, and gate-angle conventions are specified in the
 | One depth or a small set of depths | Checkpoint | Reverse only the suffix below each requested depth. |
 | Complex phase derivatives | Direct phase stream | Phase tangents are already leaf-local; no inverse frame is needed. |
 | General, portable complex implementation | Separated real/phase blocks | This is the designated general construction. |
-| Preserve one coordinate as one physical rotation angle | Direct-angle Hopf compiler | This is the defining geometric circuit setting of the two papers. |
+| Preserve direct coordinate-to-angle control | Direct-angle Hopf compiler | This is the defining geometric circuit setting of the two papers. |
 | Reproduce the manuscript's finite CNOT table | Direct-angle assigned ledger | It decomposes the coordinate-preserving controlled rotations under the declared formulas. |
 | Test asymptotic robustness after state-equivalent resynthesis | Multiplexed robustness companion | It preserves the logical action while generally recombining elementary physical angles. |
 | Four-qubit compiler regression | Integrated four-qubit fixtures | Tests complete-frame and active-interface identities. |
@@ -338,9 +340,10 @@ inheritance of the manuscript's coordinate-preserving resource model.
 ### Direct-angle assigned ledger: manuscript setting
 
 `qbp_resource_ledger.py` reproduces the manuscript's finite assigned Hopf CNOT
-charges. It retains each Hopf coordinate as the physical angle of its designated
-tree rotation and decomposes those controlled rotations independently under the
-declared no-clean-ancilla formulas. It is a concrete coordinate-preserving
+charges. It retains every magnitude coordinate as the rotation angle of its
+designated tree split and every complex leaf phase as a directly programmed
+phase angle. It decomposes the resulting controlled gates independently under
+the declared no-clean-ancilla formulas. It is a concrete coordinate-preserving
 ledger, not a claim of global CNOT optimality.
 
 ### Multiplexed robustness companion: repository-only analysis
@@ -360,8 +363,8 @@ C(W_{\mathbb R})=O(N).
 The diagonal phase layer is also exactly synthesizable in `O(N)`, so the same
 scaling holds for the separated complex construction. This establishes
 asymptotic robustness outside the direct-angle compiler; it does not preserve
-one coordinate as one elementary physical rotation angle and does not redefine
-the ansatz. See [Optimized compilation](docs/OPTIMIZED_COMPILATION.md) for the
+one coordinate as one elementary physical angle and does not redefine the
+ansatz. See [Optimized compilation](docs/OPTIMIZED_COMPILATION.md) for the
 derivation, clean-flag contract, references, and test map.
 
 Both analyses separate:

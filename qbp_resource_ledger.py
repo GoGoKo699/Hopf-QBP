@@ -2,10 +2,11 @@
 """Print the manuscript's direct-angle assigned Hopf-QBP CNOT ledger.
 
 This is the concrete coordinate-preserving, no-clean-ancilla ledger used for
-the manuscript's finite examples.  Each Hopf coordinate remains the physical
-angle of its designated tree rotation.  The ledger is not a global
-optimal-synthesis claim.  See ``qbp_optimized_resource_ledger.py`` for the
-repository-only multiplexed robustness companion.
+the manuscript's finite examples.  Each Hopf coordinate remains a directly
+programmed physical angle at its designated tree-split or leaf-phase location.
+The ledger is not a global optimal-synthesis claim.  See
+``qbp_optimized_resource_ledger.py`` for the repository-only multiplexed
+robustness companion.
 """
 from __future__ import annotations
 
@@ -106,7 +107,7 @@ def four_qubit_details() -> dict[str, object]:
 
 def _print_text(rows: list[LedgerRow]) -> None:
     print("Direct-angle assigned CNOT charges; controlled observable and phase-layer charge excluded")
-    print("Each Hopf coordinate remains the physical angle of its designated tree rotation.")
+    print("Each Hopf coordinate remains a directly programmed physical angle at its designated Hopf location.")
     print("These finite counts are not a global optimal-synthesis claim.")
     print("Robustness companion: python qbp_optimized_resource_ledger.py")
     print(
@@ -168,7 +169,7 @@ def main() -> int:
     else:
         payload = {
             "scope": "direct-angle coordinate-preserving Hopf compiler used by the manuscript",
-            "coordinate_contract": "one Hopf coordinate is one designated physical tree-rotation angle",
+            "coordinate_contract": "one Hopf coordinate is one directly programmed physical angle at its designated tree-split or leaf-phase location",
             "interpretation": "assigned finite ledger, not global optimal synthesis",
             "robustness_companion": "qbp_optimized_resource_ledger.py",
             "rows": [asdict(row) for row in rows],
