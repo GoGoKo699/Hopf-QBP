@@ -25,9 +25,10 @@ The validation distinguishes two roles:
 1. **Direct-angle Hopf compiler:** the defining paper setting, in which each
    coordinate remains a directly programmed physical angle at its designated
    tree-split or leaf-phase location.
-2. **Multiplexed robustness companion:** a repository-only state-equivalent
-   recompilation used to test whether the estimator identities and `O(N)`
-   asymptotic comparison survive after leaving the direct-angle setting.
+2. **Multiplexed robustness companion:** an Appendix-B state-equivalent
+   robustness construction with detailed executable validation, used to test
+   whether the estimator identities and `O(N)` asymptotic comparison survive
+   after leaving the direct-angle setting.
 
 Passing the second set of checks does not redefine the ansatz or imply that its
 elementary multiplexor angles remain the original Hopf coordinates.
@@ -42,7 +43,7 @@ This path has no Qibo dependency. It checks:
 - interface projectors;
 - the direct-angle assigned resource formulas;
 - the clean-flag multiplexed robustness factorization and core counts;
-- complete-vector and directional formulas;
+- complete-vector, relative/directional, and natural-gradient-conditioning formulas;
 - common-phase projection;
 - reflection-sum term sampling; and
 - analytic readout transfer functions.
@@ -198,8 +199,8 @@ failure.
 1. the Qibo-free analytic suite; and
 2. the complete Qibo exact-logical suite on the pinned optional dependency.
 
-A green workflow therefore checks both the repository-only robustness analysis
-and the pre-existing direct-angle circuit contracts.
+A green workflow therefore checks both the Appendix-B robustness analysis and
+the pre-existing direct-angle circuit contracts.
 
 ## Clean generated outputs
 
