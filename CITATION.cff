@@ -9,11 +9,12 @@ authors:
     given-names: Ruge
 repository-code: https://github.com/GoGoKo699/Hopf-QBP
 license: MIT
-version: 1.0.0
-date-released: 2026-08-25
+version: 1.1.0
+date-released: 2026-08-27
 keywords:
   - quantum backpropagation
   - Hopf ansatz
   - variational quantum circuits
   - gradient estimation
+  - uniformly controlled rotations
   - Qibo

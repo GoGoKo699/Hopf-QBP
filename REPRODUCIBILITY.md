@@ -20,9 +20,18 @@ module selects that backend explicitly.
 
 ## Minimal analytic check
 
-This path has no Qibo dependency. It checks tree indexing, wire translation,
-decoders, native real/complex schedules and state columns, interface projectors,
-and assigned resource formulas.
+This path has no Qibo dependency. It checks:
+
+- tree indexing and wire translation;
+- decoders and fixed-norm records;
+- native real/complex schedules and state columns;
+- interface projectors;
+- the conservative assigned resource formulas;
+- the clean-flag optimized compiler factorization and core counts;
+- complete-vector and directional formulas;
+- common-phase projection;
+- reflection-sum term sampling; and
+- analytic readout transfer functions.
 
 ```bash
 python validate_qbp.py --analytic
@@ -32,15 +41,14 @@ python validate_qbp.py --analytic
 
 This adds representative Qibo checks for:
 
-- Qibo basis order and the ancilla-$Y$ sign convention;
+- Qibo basis order and the ancilla-`Y` sign convention;
 - prepared-state-column equality without full-unitary equality;
-- the complete addressed $R_C$ implementation of $W_{\mathbb C}$;
-- the $B_{2,\mathbb C}$ checkpoint-interface identity;
-- equality of checkpoint gradient means without an assertion of complete
-  distribution equality;
+- the complete addressed `R_C` implementation of `W_C`;
+- the `B_{2,C}` checkpoint-interface identity;
+- equality of checkpoint gradient means without complete-distribution equality;
 - real global decoding;
 - direct complex phase decoding; and
-- the integrated complex depth-$2$ checkpoint.
+- the integrated complex depth-`2` checkpoint.
 
 ```bash
 python validate_qbp.py --smoke
@@ -92,7 +100,7 @@ circuit_decoded_gradient_parity
 The script reruns circuit/reference comparisons. It is not a plotting-only
 wrapper around stored numerical data.
 
-## Assigned resource ledger
+## Conservative assigned resource ledger
 
 ```bash
 python qbp_resource_ledger.py --nmin 2 --nmax 10
@@ -105,39 +113,69 @@ python qbp_resource_ledger.py --nmin 2 --nmax 10 --format csv
 python qbp_resource_ledger.py --nmin 2 --nmax 10 --format json
 ```
 
-The general table reports native real/complex preparation, $U_{\mathrm{chk}}$,
-and $W_{\mathbb R}$. When $n=4$ lies in the requested range, the text and JSON
-outputs also report the Appendix-A objects
-$W_{\mathbb C}$ and $B_{2,\mathbb C}$ and the $310/100/212$ record-circuit
-totals. These are compiler-relative assigned CNOT charges. They exclude the
-controlled observable, readout, and any separately assigned diagonal phase-layer
-or workspace cost, and they are not Qibo-transpiler counts.
+The table reproduces the manuscript's concrete no-clean-ancilla assigned
+charges. It excludes the controlled observable, readout, and any separately
+assigned diagonal phase-layer or workspace cost. It is not an optimality or
+Qibo-transpiler claim.
+
+## Optimized compiler companion
+
+```bash
+python qbp_optimized_resource_ledger.py --nmin 2 --nmax 10
+```
+
+Machine-readable output:
+
+```bash
+python qbp_optimized_resource_ledger.py --nmin 2 --nmax 10 --format csv
+python qbp_optimized_resource_ledger.py --nmin 2 --nmax 10 --format json
+```
+
+The numeric CNOT columns are exact upper bounds for the uniformly controlled
+`R_y` cores. The all-zero suffix predicates are reported separately through
+their number and control widths because their finite elementary-gate count
+depends on the chosen multi-controlled-X decomposition. The exact clean-flag
+factorization is covered by `test_optimized_compiler.py`.
 
 ## Determinism and tolerances
 
 - Parameter arrays and observables use fixed seeds in `qbp_validation/cases.py`.
 - Circuit tests use exact statevectors and complete probability distributions.
 - The principal circuit/reference tolerance is `3e-12`.
-- No Monte Carlo sampling occurs in the validation suite or figure generation.
+- No Monte Carlo sampling occurs in the central validation suite or figure generation.
 - Qibo-independent native state-column checks run through `n = 5`.
-- General circuit checks use `n <= 4`.
-- The integrated $W_{\mathbb C}$ and $B_{2,\mathbb C}$ compilers are checked only
-  at the manuscript's explicit four-qubit instance.
+- General Qibo circuit checks use `n <= 4`.
+- Optimized clean-flag depth checks run through `n = 5`.
+- The complete optimized flagged frame is checked through `n = 4`.
+- The integrated `W_C` and `B_{2,C}` compilers are checked only at the
+  manuscript's explicit four-qubit instance.
 
 Small residual differences across supported BLAS or NumPy builds may occur at
 floating-point roundoff scale. Values exceeding the test tolerances cause a
 failure.
 
-## Interpretation of the three contracts
+## Interpretation of the contracts
 
 - Replacing one forward preparation by another with the same initialized state
   column leaves the complete later output distribution unchanged.
-- Replacing the separated complex frame by the addressed $R_C$ compiler changes
-  only a common phase and therefore leaves the global record distribution
-  unchanged.
-- Replacing the separated depth-$2$ complex checkpoint suffix by
-  $B_{2,\mathbb C}$ preserves the checkpoint correlators and decoded gradient
-  means. It need not preserve the complete output distribution.
+- Replacing the separated complex frame by the addressed `R_C` compiler changes
+  only a common phase and leaves the global record distribution unchanged.
+- Replacing the separated depth-`2` complex checkpoint suffix by `B_{2,C}`
+  preserves checkpoint correlators and decoded gradient means. It need not
+  preserve the complete output distribution.
+- Replacing the direct addressed frame by the optimized flagged factorization
+  is valid when the reusable flag enters and leaves in `|0>`. No equality is
+  claimed on an arbitrary initial flag state.
+
+## Continuous integration
+
+`.github/workflows/validation.yml` runs:
+
+1. the Qibo-free analytic suite; and
+2. the complete Qibo exact-logical suite on the pinned optional dependency.
+
+A green workflow therefore checks both the newly added reviewer-support
+analysis and the pre-existing circuit contracts.
 
 ## Clean generated outputs
 
