@@ -20,8 +20,8 @@ hardware benchmark.
 | Goal | Start here |
 |---|---|
 | Audit a paper-level claim | [Claim support and validation map](docs/CLAIM_SUPPORT.md) |
-| Implement or adapt a gradient circuit | [Engineering guide](docs/ENGINEERING_GUIDE.md) |
-| Compare conservative and optimized compilers | [Optimized compilation companion](docs/OPTIMIZED_COMPILATION.md) |
+| Understand or implement the defining direct-angle Hopf compiler | [Engineering guide](docs/ENGINEERING_GUIDE.md) |
+| Study robustness under optimized state-equivalent recompilation | [Optimized compilation companion](docs/OPTIMIZED_COMPILATION.md) |
 | Interpret `l_infinity`, `l_2`, directional, or gauge accuracy | [Statistical accuracy](docs/STATISTICAL_ACCURACY.md) |
 | Extend to reflection sums or inspect readout sensitivity | [Observables and readout](docs/OBSERVABLES_AND_READOUT.md) |
 | Reproduce the deterministic validation | [Reproducibility checklist](REPRODUCIBILITY.md) |
@@ -42,6 +42,37 @@ output bottleneck of a complete gradient.
 | Layer- and phase-indexed compiled access families | Complete-gradient finite-shot concentration analysis |
 | Native real and complex preparation schedules | Reverse-local checkpoint adjoints and active-interface contracts |
 
+## Direct-angle Hopf compiler contract
+
+The Hopf ansatz is not treated here as only an abstract map from coordinates to
+states followed by an arbitrary state-preparation compiler. Its defining
+circuit realization preserves the correspondence
+
+```math
+\text{one Hopf coordinate}
+\longleftrightarrow
+\text{one designated tree-split or leaf-phase location}
+\longleftrightarrow
+\text{one directly programmed physical angle}.
+```
+
+For magnitude coordinates this is the `R_y` angle attached to an internal tree
+node. In the complex chart, each leaf-phase coordinate is likewise retained as
+a directly programmed phase angle. The native preparations, the depth-ordered
+completion `U_chk`, the addressed frame `W_R`, and the checkpoint suffixes all
+retain this direct-angle structure. That correspondence keeps the inverse
+coordinates, diagonal metric, tangent directions, and physical controls
+transparent in the same notation. The manuscript's finite resource ledger
+belongs to this coordinate-preserving setting.
+
+A state-equivalent compiler may multiplex several Hopf rotations and replace
+the elementary physical angles by compiler-generated combinations. Such a
+compiler can preserve the prepared state, the frame action, and the decoded QBP
+estimator without preserving the one-coordinate-one-angle interpretation. The
+optimized compiler material in this repository is therefore a **robustness
+analysis beyond the defining direct-angle setting**, not a redefinition of the
+Hopf ansatz.
+
 “Quantum backpropagation” is used in this state-coordinate and matched-resource
 sense. The repository does not claim a generic reverse-mode differentiator for
 an arbitrary layered parameterized circuit.
@@ -60,8 +91,8 @@ implements and validates:
 - signed-histogram, Walsh, phase one-hot, and checkpoint decoders;
 - full-unitary, initialized-state-column, and active-interface contracts;
 - singular-coordinate behavior;
-- the manuscript's conservative assigned Hopf CNOT ledger;
-- an exact clean-flag factorization supporting an optimized `O(N)` compiler;
+- the manuscript's direct-angle assigned Hopf CNOT ledger;
+- a repository-only clean-flag robustness factorization for an `O(N)` multiplexed recompilation;
 - complete-vector `l_2`, conditional direction, and common-phase analyses;
 - reflection-sum term sampling; and
 - exact independent-readout-error transfer functions.
@@ -167,8 +198,9 @@ The exact sign, bit-order, and gate-angle conventions are specified in the
 | One depth or a small set of depths | Checkpoint | Reverse only the suffix below each requested depth. |
 | Complex phase derivatives | Direct phase stream | Phase tangents are already leaf-local; no inverse frame is needed. |
 | General, portable complex implementation | Separated real/phase blocks | This is the designated general construction. |
-| Concrete finite no-clean-ancilla ledger | Assigned compiler | Reproduces the manuscript's explicit finite counts. |
-| Asymptotic comparison with optimized state preparation | Multiplexed compiler | Both forward and addressed inverse frame are `O(N)`. |
+| Preserve direct coordinate-to-angle control | Direct-angle Hopf compiler | This is the defining geometric circuit setting of the two papers. |
+| Reproduce the manuscript's finite CNOT table | Direct-angle assigned ledger | It decomposes the coordinate-preserving controlled rotations under the declared formulas. |
+| Test asymptotic robustness after state-equivalent resynthesis | Multiplexed robustness companion | It preserves the logical action while generally recombining elementary physical angles. |
 | Four-qubit compiler regression | Integrated four-qubit fixtures | Tests complete-frame and active-interface identities. |
 
 At a fixed depth, the global and checkpoint records are both unbiased and have
@@ -205,7 +237,7 @@ Run the complete deterministic validation suite:
 python validate_qbp.py
 ```
 
-Print the conservative assigned ledger and the optimized companion:
+Print the direct-angle assigned ledger and the optimized robustness companion:
 
 ```bash
 python qbp_resource_ledger.py --nmin 2 --nmax 10
@@ -231,8 +263,8 @@ formulas:
   derivatives, gradients, and interface matrices;
 - `qbp_validation/decoders.py` converts complete output distributions into
   gradient records;
-- `qbp_validation/optimized_compiler.py` checks the clean-flag frame
-  factorization and optimized core ledger;
+- `qbp_validation/optimized_compiler.py` checks the clean-flag robustness
+  factorization and multiplexor-core ledger;
 - `qbp_validation/supporting_analysis.py` implements statistical, reflection,
   gauge, and readout consequences; and
 - `qbp_validation/tests/` compares all supported contracts.
@@ -269,28 +301,25 @@ performance, scaling, or hardware data.
 The suite directly checks finite-dimensional algebraic and exact-logical
 statements: prepared state columns, frame matrices, gradient means, decoder
 signs, active-interface identities, singular-coordinate behavior, assigned
-resource formulas, the clean-flag optimized factorization, and supporting
+resource formulas, the clean-flag robustness factorization, and supporting
 statistical/readout identities.
 
 It does **not** numerically prove concentration inequalities or asymptotic
 complexity statements. The statistical scaling follows from fixed-norm record
-properties. The optimized compiler conclusion combines an exact checked
+properties. The optimized robustness conclusion combines an exact checked
 factorization with established uniformly controlled-rotation and
 multi-controlled-X synthesis bounds. The claim-by-claim boundary is recorded in
 [docs/CLAIM_SUPPORT.md](docs/CLAIM_SUPPORT.md).
 
-## Three circuit contracts
+## Logical substitution contracts and compiler scope
 
-Several circuit substitutions are valid only under a specific contract:
+Several circuit substitutions are valid only under a specific logical
+contract:
 
 1. **Full-unitary equality:** `U = V`.
 2. **Initialized-state-column equality:** `U|0...0> = V|0...0>`.
 3. **Active-interface equality:** `U P_d = V P_d` on a specified checkpoint
    subspace.
-
-The optimized addressed-frame compiler introduces a fourth explicit register
-condition:
-
 4. **Clean-flag equality:** the system action equals `W_R` when the reusable
    flag enters and leaves in `|0>`.
 
@@ -300,19 +329,24 @@ The four-qubit integrated checkpoint compiler is validated on its active
 interface and need not preserve the complete output distribution of the
 separated implementation.
 
-Engineers should not promote a state-column, active-interface, or clean-flag
-identity to a stronger full-unitary claim.
+These logical equalities do not by themselves preserve the direct-angle Hopf
+compiler contract. A state- or frame-equivalent resynthesis may change the
+relationship between coordinates and elementary physical gate angles. Engineers
+should therefore distinguish correctness of the decoded estimator from
+inheritance of the manuscript's coordinate-preserving resource model.
 
-## Resource models
+## Resource hierarchy
 
-### Conservative assigned ledger
+### Direct-angle assigned ledger: manuscript setting
 
 `qbp_resource_ledger.py` reproduces the manuscript's finite assigned Hopf CNOT
-charges. It independently decomposes addressed controlled rotations according
-to the declared no-clean-ancilla formulas. It is a concrete implementation
-ledger, not an optimality claim.
+charges. It retains every magnitude coordinate as the rotation angle of its
+designated tree split and every complex leaf phase as a directly programmed
+phase angle. It decomposes the resulting controlled gates independently under
+the declared no-clean-ancilla formulas. It is a concrete coordinate-preserving
+ledger, not a claim of global CNOT optimality.
 
-### Optimized asymptotic companion
+### Multiplexed robustness companion: repository-only analysis
 
 `qbp_optimized_resource_ledger.py` groups each depth into a uniformly controlled
 rotation. The forward preparation has a CNOT upper bound `N - 2` for its
@@ -327,11 +361,13 @@ C(W_{\mathbb R})=O(N).
 ```
 
 The diagonal phase layer is also exactly synthesizable in `O(N)`, so the same
-scaling holds for the separated complex construction. See
-[Optimized compilation](docs/OPTIMIZED_COMPILATION.md) for the derivation,
-clean-flag contract, references, and test map.
+scaling holds for the separated complex construction. This establishes
+asymptotic robustness outside the direct-angle compiler; it does not preserve
+one coordinate as one elementary physical angle and does not redefine the
+ansatz. See [Optimized compilation](docs/OPTIMIZED_COMPILATION.md) for the
+derivation, clean-flag contract, references, and test map.
 
-Both ledgers separate:
+Both analyses separate:
 
 - the controlled observable;
 - measurement and readout;
@@ -346,20 +382,20 @@ Both ledgers separate:
 |---|---|
 | `validate_qbp.py` | Analytic, smoke, and complete validation entry point. |
 | `make_validation_figures.py` | Recomputes validation figures from circuit and analytic data. |
-| `qbp_resource_ledger.py` | Conservative assigned CNOT ledger used by the manuscript. |
-| `qbp_optimized_resource_ledger.py` | Optimized uniformly controlled-rotation companion ledger. |
+| `qbp_resource_ledger.py` | Direct-angle assigned CNOT ledger used by the manuscript. |
+| `qbp_optimized_resource_ledger.py` | Multiplexed robustness companion outside the defining compiler setting. |
 | `qbp_validation/conventions.py` | Tree indices, bit order, marker labels, interface projectors, and assigned formulas. |
 | `qbp_validation/native_schedule.py` | Native `HopfReal` and `HopfComplex` schedules inherited from the first paper. |
 | `qbp_validation/reference.py` | Independent states, frames, derivatives, gradients, and compiler matrices. |
 | `qbp_validation/circuits.py` | Qibo builders for forward, global, phase, checkpoint, and compiler-test circuits. |
 | `qbp_validation/decoders.py` | Walsh and signed-histogram decoders. |
-| `qbp_validation/optimized_compiler.py` | Clean-flag factorization and optimized core counts. |
+| `qbp_validation/optimized_compiler.py` | Clean-flag robustness factorization and multiplexor-core counts. |
 | `qbp_validation/supporting_analysis.py` | `l_2`, direction, gauge, reflection-sum, and readout formulas. |
 | `qbp_validation/cases.py` | Deterministic parameter and observable cases. |
 | `qbp_validation/tests/` | Claim-level exact-logical and analytic tests. |
 | `docs/CLAIM_SUPPORT.md` | Reviewer-oriented claim-to-code and claim-to-test map. |
-| `docs/ENGINEERING_GUIDE.md` | Self-contained implementation and adaptation guide. |
-| `docs/OPTIMIZED_COMPILATION.md` | Optimized synthesis derivation and resource boundary. |
+| `docs/ENGINEERING_GUIDE.md` | Direct-angle compiler contract and self-contained implementation guide. |
+| `docs/OPTIMIZED_COMPILATION.md` | Robustness analysis under optimized state-equivalent recompilation. |
 | `docs/STATISTICAL_ACCURACY.md` | Complete-vector, direction, metric, and gauge consequences. |
 | `docs/OBSERVABLES_AND_READOUT.md` | Reflection-sum and analytic readout extensions. |
 | `REPRODUCIBILITY.md` | Environment, commands, deterministic outputs, and tolerances. |
@@ -378,7 +414,10 @@ This repository does not claim to provide:
 
 The finite-shot formulas are analytic consequences of the record structure;
 they are not presented as hardware data. The validated central object is the
-Hopf state-coordinate gradient interface under the stated access model.
+Hopf state-coordinate gradient interface under the stated access model. The
+multiplexed analysis asks whether that object remains asymptotically viable
+after leaving its defining direct-angle compiler; it does not change the scope
+of the two papers.
 
 ## Papers in the series
 

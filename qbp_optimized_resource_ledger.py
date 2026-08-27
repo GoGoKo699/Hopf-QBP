@@ -1,5 +1,13 @@
 #!/usr/bin/env python3
-"""Print the optimized asymptotic companion to the assigned Hopf-QBP ledger."""
+"""Print the multiplexed robustness companion to the Hopf-QBP ledger.
+
+The direct-angle Hopf compiler used by the papers keeps one coordinate as one
+directly programmed physical angle at its designated tree-split or leaf-phase
+location.  This command instead reports one exact state-equivalent uniformly
+controlled-rotation recompilation.  It tests whether the estimator identities
+and asymptotic resource comparison survive after leaving that defining compiler
+setting; it does not redefine the ansatz.
+"""
 from __future__ import annotations
 
 import argparse
@@ -18,8 +26,9 @@ from qbp_validation.optimized_compiler import (
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description=(
-            "Print uniformly-controlled-rotation core counts and the separately "
-            "exposed suffix-predicate structure."
+            "Print the repository-only multiplexed robustness ledger: "
+            "uniformly-controlled-rotation core counts and separately exposed "
+            "suffix-predicate structure."
         )
     )
     parser.add_argument("--nmin", type=int, default=2)
@@ -38,7 +47,8 @@ def _validate_range(nmin: int, nmax: int) -> None:
 
 
 def _print_text(rows: list[dict[str, int]]) -> None:
-    print("Optimized Hopf-QBP compiler companion")
+    print("Multiplexed Hopf-QBP robustness companion")
+    print("This is repository-only analysis outside the direct-angle compiler setting.")
     print("Numeric CNOT columns count uniformly controlled R_y cores only.")
     print("Suffix predicates are exact compute/uncompute operations with compiler-dependent finite counts.")
     print(
@@ -63,6 +73,7 @@ def _print_text(rows: list[dict[str, int]]) -> None:
         )
     print("\nBoth U_chk and W_R are O(N); the predicate proxy is O(n^3)=O(log^3 N).")
     print("One clean flag is reused and returned to |0> after every addressed depth.")
+    print("Elementary multiplexor angles generally need not equal the Hopf coordinates one by one.")
 
 
 def _print_csv(rows: list[dict[str, int]]) -> None:
@@ -87,6 +98,8 @@ def main() -> int:
         _print_csv(rows)
     else:
         payload = {
+            "scope": "repository-only robustness beyond the direct-angle Hopf compiler",
+            "direct_angle_setting": "one Hopf coordinate is one directly programmed physical angle at its designated tree-split or leaf-phase location",
             "rows": rows,
             "predicate_details": {
                 str(row["n"]): {
@@ -99,6 +112,8 @@ def main() -> int:
                 "numeric_cnot_columns": "uniformly controlled R_y cores only",
                 "predicate_cost": "compiler-dependent polynomial overhead, exposed separately",
                 "clean_flag": "one reusable flag for n > 1",
+                "coordinate_transparency": "not preserved in general by elementary multiplexor angles",
+                "ansatz_status": "robustness analysis, not a redefinition of the Hopf ansatz",
             },
         }
         print(json.dumps(payload, indent=2))

@@ -4,7 +4,19 @@ This page is for readers auditing whether the repository supports the claims
 made by *Compass in the Mirror: Quantum Backpropagation with the Hopf Ansatz*.
 It also identifies which supporting results live only in the repository.
 
-The repository supports statements at four levels. They should not be
+The compiler hierarchy is load-bearing:
+
+1. **Paper setting:** the direct-angle Hopf realization, in which each
+   coordinate remains a directly programmed physical angle at its designated
+   tree-split or leaf-phase location.
+2. **Repository robustness question:** whether state- or frame-equivalent
+   optimized recompilation preserves the estimator identities and asymptotic
+   resource conclusion after leaving that direct-angle setting.
+
+The second item supports community scrutiny but does not redefine the ansatz or
+the resource theorem studied in the papers.
+
+The repository supports statements at four evidence levels. They should not be
 conflated.
 
 | Support type | Meaning |
@@ -20,24 +32,24 @@ the separate analytic deduction.
 
 ## Audit summary
 
-| Paper-level or supporting claim | Repository support | Main implementation | Main tests | Boundary |
+| Paper-level or supporting claim | Status and support | Main implementation | Main tests | Boundary |
 |---|---|---|---|---|
-| Native real and complex preparations reproduce the Hopf state | Exact state-column checks | `native_schedule.py`, `reference.py`, `circuits.py` | `test_native_schedule.py`, `test_operator_contracts.py` | State-column equality, not full-unitary equality. |
-| The balanced real frame contains the state and normalized magnitude directions | Complete matrix and column checks | `reference.py`, `circuits.py` | `test_real_frame.py`, `test_four_qubit_example.py` | Finite dimensions through the tested range. |
-| The global real circuit decodes the complete real coordinate gradient | Exact complete-distribution check | `circuits.py`, `decoders.py`, `reference.py` | `test_real_global_estimator.py` | Exact phase-calibrated controlled `O`. |
-| The global complex magnitude circuit decodes all magnitude derivatives | Exact complete-distribution check | `circuits.py`, `decoders.py`, `reference.py` | `test_complex_magnitude.py` | General implementation is the separated phase/frame construction. |
-| The direct complex phase circuit decodes all leaf-phase derivatives | Exact signed one-hot check | `circuits.py`, `decoders.py`, `reference.py` | `test_complex_phase.py` | One uniform phase direction is physically null. |
-| A checkpoint circuit returns every derivative at a selected depth | Exact depth-block check at every tested depth | `circuits.py`, `decoders.py`, `reference.py` | `test_checkpoints.py` | Each selected depth uses its own circuit stream. |
-| Integrated complex checkpoint substitution is valid on the active interface | Projected matrix and decoded-mean checks | `reference.py`, `circuits.py`, `conventions.py` | `test_operator_contracts.py`, `test_four_qubit_example.py` | It need not preserve the full unitary or full output distribution. |
-| Singular magnitude and zero-amplitude phase coordinates are handled without division | Exact singular-case checks | `reference.py`, `circuits.py`, `decoders.py` | `test_singular_cases.py`, `test_complex_phase.py` | The coordinate derivative vanishes when the differential vanishes. |
-| Every single-depth global, checkpoint, and direct-phase record has norm `2` | Algebraic record checks | `decoders.py`, `reference.py` | `test_decoders.py`, `test_checkpoints.py`, `test_complex_phase.py` | Finite premise of the concentration argument. |
-| Global coordinatewise execution scaling is `O((1 + log(n/delta))/epsilon^2)` | Analytic deduction from fixed-norm block records | Record definitions and norm tests | Norm and decoder tests above | The concentration inequality is mathematical, not numerically proved. |
-| The complete concatenated magnitude record has norm `2*sqrt(n)` | Algebraic formula and direct tests | `supporting_analysis.py` | `test_supporting_analysis.py` | Repository supporting result; no optimizer claim. |
-| Fixed complete-magnitude `l_2` accuracy costs `O(n/epsilon_2^2)` up to confidence | Analytic deduction from the concatenated norm | `supporting_analysis.py`, `docs/STATISTICAL_ACCURACY.md` | `test_supporting_analysis.py` checks formula inputs | Relative and directional accuracy remain conditional on nonzero gradient. |
-| The assigned Hopf CNOT ledger matches the manuscript's declared compiler model | Formula and finite-ledger checks | `conventions.py`, `native_schedule.py`, `qbp_resource_ledger.py` | `test_resource_ledger.py` | Conservative compiler-relative counts, not optimal or routed counts. |
-| Forward and addressed-frame objects admit `O(N)` optimized synthesis | Exact clean-flag factorization plus standard multiplexor/MCX synthesis bounds | `optimized_compiler.py`, `qbp_optimized_resource_ledger.py` | `test_optimized_compiler.py` | One reusable clean flag; numeric core counts exclude compiler-dependent predicate constants. |
-| A reflection sum can be estimated by coefficient-one-norm term sampling | Algebraic unbiasedness and norm check | `supporting_analysis.py` | `test_supporting_analysis.py` | Portable upper bound, not an optimal Hamiltonian measurement strategy. |
-| Independent symmetric readout errors transform the records by explicit attenuation/bin-mixing channels | Exact classical transfer formulas | `supporting_analysis.py` | `test_supporting_analysis.py` | Readout-only model; no gate noise, routing, or mitigation claim. |
+| Native real and complex preparations reproduce the Hopf state | Paper-level exact state-column checks | `native_schedule.py`, `reference.py`, `circuits.py` | `test_native_schedule.py`, `test_operator_contracts.py` | State-column equality, not full-unitary equality. |
+| The balanced real frame contains the state and normalized magnitude directions | Paper-level complete matrix and column checks | `reference.py`, `circuits.py` | `test_real_frame.py`, `test_four_qubit_example.py` | Finite dimensions through the tested range. |
+| The global real circuit decodes the complete real coordinate gradient | Paper-level exact complete-distribution check | `circuits.py`, `decoders.py`, `reference.py` | `test_real_global_estimator.py` | Exact phase-calibrated controlled `O`. |
+| The global complex magnitude circuit decodes all magnitude derivatives | Paper-level exact complete-distribution check | `circuits.py`, `decoders.py`, `reference.py` | `test_complex_magnitude.py` | General implementation is the separated phase/frame construction. |
+| The direct complex phase circuit decodes all leaf-phase derivatives | Paper-level exact signed one-hot check | `circuits.py`, `decoders.py`, `reference.py` | `test_complex_phase.py` | One uniform phase direction is physically null. |
+| A checkpoint circuit returns every derivative at a selected depth | Paper-level exact depth-block check at every tested depth | `circuits.py`, `decoders.py`, `reference.py` | `test_checkpoints.py` | Each selected depth uses its own circuit stream. |
+| Integrated complex checkpoint substitution is valid on the active interface | Paper-level projected matrix and decoded-mean checks | `reference.py`, `circuits.py`, `conventions.py` | `test_operator_contracts.py`, `test_four_qubit_example.py` | It need not preserve the full unitary or full output distribution. |
+| Singular magnitude and zero-amplitude phase coordinates are handled without division | Paper-level exact singular-case checks | `reference.py`, `circuits.py`, `decoders.py` | `test_singular_cases.py`, `test_complex_phase.py` | The coordinate derivative vanishes when the differential vanishes. |
+| Every single-depth global, checkpoint, and direct-phase record has norm `2` | Paper-level algebraic record checks | `decoders.py`, `reference.py` | `test_decoders.py`, `test_checkpoints.py`, `test_complex_phase.py` | Finite premise of the concentration argument. |
+| Global coordinatewise execution scaling is `O((1 + log(n/delta))/epsilon^2)` | Paper-level analytic deduction from fixed-norm block records | Record definitions and norm tests | Norm and decoder tests above | The concentration inequality is mathematical, not numerically proved. |
+| The complete concatenated magnitude record has norm `2*sqrt(n)` | Repository supporting result | `supporting_analysis.py` | `test_supporting_analysis.py` | No optimizer claim. |
+| Fixed complete-magnitude `l_2` accuracy costs `O(n/epsilon_2^2)` up to confidence | Repository analytic deduction | `supporting_analysis.py`, `docs/STATISTICAL_ACCURACY.md` | `test_supporting_analysis.py` checks formula inputs | Relative and directional accuracy remain conditional on nonzero gradient. |
+| The direct-angle assigned Hopf CNOT ledger matches the manuscript's coordinate-preserving compiler model | **Paper-level resource claim** | `conventions.py`, `native_schedule.py`, `qbp_resource_ledger.py` | `test_resource_ledger.py` | Direct-angle finite counts, not globally optimal or routed counts. |
+| The same logical forward and frame objects admit one `O(N)` multiplexed realization | **Repository-only robustness result outside the defining compiler** | `optimized_compiler.py`, `qbp_optimized_resource_ledger.py` | `test_optimized_compiler.py` | One reusable clean flag; elementary multiplexor angles generally recombine Hopf coordinates. |
+| A reflection sum can be estimated by coefficient-one-norm term sampling | Repository algebraic extension | `supporting_analysis.py` | `test_supporting_analysis.py` | Portable upper bound, not an optimal Hamiltonian measurement strategy. |
+| Independent symmetric readout errors transform the records by explicit attenuation/bin-mixing channels | Repository analytic readout model | `supporting_analysis.py` | `test_supporting_analysis.py` | Readout-only model; no gate noise, routing, or mitigation claim. |
 
 ## Scope relative to the first paper
 
@@ -48,8 +60,9 @@ The first Hopf paper supplies:
 - the diagonal pullback metric;
 - normalized coordinate directions;
 - exact preparation of an indexed tangent state;
-- indexed signed-branch gradient estimation; and
-- the native preparation schedules.
+- indexed signed-branch gradient estimation;
+- the native preparation schedules; and
+- the direct-angle coordinate-to-control interpretation.
 
 The present repository supplies:
 
@@ -64,6 +77,27 @@ The present repository supplies:
 The distinctive step is not Hadamard interference or the Walsh transform in
 isolation. It is their integration with the addressed Hopf frame so that one
 physical outcome contributes to every magnitude coordinate.
+
+## Direct-angle compiler scope
+
+The primary circuits preserve
+
+```math
+\text{one Hopf coordinate}
+\longleftrightarrow
+\text{one designated tree-split or leaf-phase location}
+\longleftrightarrow
+\text{one directly programmed physical angle}.
+```
+
+For magnitude coordinates the angle belongs to an internal tree split. In the
+complex chart, each leaf-phase coordinate is likewise a direct phase angle. The
+native preparations, `U_chk`, `W_R`, and `B_d` are different unitary
+completions or circuit organizations, but they retain this coordinate-faithful
+structure. A state-equivalent multiplexed compiler can preserve the logical
+output while changing the elementary physical parameters. The repository
+therefore separates estimator correctness from inheritance of the paper's
+resource model.
 
 ## Claim 1: inherited conventions and forward states
 
@@ -92,6 +126,8 @@ For `N = 2**n`:
 
 The forward completions are not interchangeable in arbitrary unitary contexts.
 Only the initialized-state-column contract is used for forward preparation.
+State-column equality also does not imply preservation of the direct-angle
+coordinate-to-control map or its assigned ledger.
 
 ## Claim 2: balanced differential frame
 
@@ -118,6 +154,14 @@ W_{\mathbb C}=D_{\mathrm{ph}}W_{\mathbb R}.
   circuit versions.
 - `test_real_frame.py` and `test_complex_frame.py` compare matrices, inverses,
   state columns, and singular completions.
+
+### Direct-angle interpretation
+
+For internal node `j`, the addressed gate uses the same physical angle
+`theta_j` as the forward split at that tree node. The forward circuit prepares
+the split state; the addressed frame places that state and its local complement
+in paired computational columns. This shared angle is part of the geometric
+compiler contract.
 
 ### Boundary
 
@@ -225,7 +269,7 @@ Z_d^{\mathrm{chk}}
 Changing `d` changes the reverse suffix, readout target, and circuit template.
 One checkpoint stream is not reused across different depths.
 
-## Claim 6: substitution contracts
+## Claim 6: logical substitution contracts versus compiler preservation
 
 The repository distinguishes:
 
@@ -258,6 +302,11 @@ The optimized frame adds a clean-flag contract:
 ```
 
 `test_optimized_compiler.py` checks the system block and zero flag leakage.
+
+These are correctness contracts. None alone implies that the replacement keeps
+one Hopf coordinate as one directly programmed elementary physical angle.
+Direct-angle compiler preservation is therefore reported separately from state,
+unitary, active-interface, or clean-flag equivalence.
 
 ## Claim 7: singular coordinates and gauge
 
@@ -320,9 +369,9 @@ O\left(
 See `docs/STATISTICAL_ACCURACY.md` for the directional, metric, and gauge
 interpretation.
 
-## Claim 9: two compiler ledgers
+## Claim 9: direct-angle paper ledger and repository-only compiler robustness
 
-### Conservative assigned ledger
+### Direct-angle assigned ledger: paper-level resource claim
 
 The manuscript ledger is implemented by:
 
@@ -336,10 +385,16 @@ The manuscript ledger is implemented by:
 `test_resource_ledger.py` checks controlled-gate values, depth layers,
 forward/frame/suffix totals, and the finite four-qubit record totals.
 
-### Optimized companion
+This ledger retains every magnitude coordinate as the physical angle of its
+designated internal tree split and every complex leaf phase as a directly
+programmed phase angle. It is the compiler model used to state the manuscript's
+finite resource comparison. It is not a claim of optimal synthesis over all
+exact circuits implementing the same state or unitary.
 
-Each forward depth is a uniformly controlled `R_y`, so its core count sums to
-`N-2`. Each addressed-frame depth is factored into:
+### Multiplexed robustness companion: repository-only result
+
+Each forward depth is logically a uniformly controlled `R_y`, so its core count
+sums to `N-2`. Each addressed-frame depth is factored into:
 
 1. compute the all-zero lower-suffix predicate into one clean flag;
 2. apply a prefix-and-flag uniformly controlled `R_y`; and
@@ -348,7 +403,7 @@ Each forward depth is a uniformly controlled `R_y`, so its core count sums to
 The frame multiplexor-core count is `3*N/2 - 2` for `n >= 2`. The predicate
 control widths are exposed separately and give polynomial work in `n` under
 standard exact multi-controlled-X synthesis. Thus the complete forward and
-addressed frame are both `O(N)`.
+addressed frame are both `O(N)` under this state-equivalent recompilation.
 
 Evidence:
 
@@ -357,8 +412,11 @@ Evidence:
 - command-line table: `qbp_optimized_resource_ledger.py`;
 - derivation and primary references: `docs/OPTIMIZED_COMPILATION.md`.
 
-The optimized conclusion uses one reusable clean flag. It is not a routed,
-noise-aware, or approximate-synthesis count.
+The optimized conclusion uses one reusable clean flag. Its elementary physical
+angles generally need not equal the Hopf coordinates individually. It therefore
+tests asymptotic robustness outside the defining compiler rather than replacing
+the paper's resource model. It is not a routed, noise-aware, or
+approximate-synthesis count.
 
 ## Claim 10: reflection sums and readout transfer
 
@@ -405,8 +463,8 @@ measurement comparison or hardware-noise benchmark.
 | `test_singular_cases.py` | Exact singular-coordinate behavior. |
 | `test_decoders.py` | Walsh, signed histograms, marginalization, and fixed-norm records. |
 | `test_four_qubit_example.py` | Explicit compiler fixture labels and interfaces. |
-| `test_resource_ledger.py` | Conservative assigned gate and record-circuit charges. |
-| `test_optimized_compiler.py` | Clean-flag optimized frame factorization and multiplexor ledger. |
+| `test_resource_ledger.py` | Direct-angle assigned gate and record-circuit charges. |
+| `test_optimized_compiler.py` | Clean-flag robustness factorization and multiplexor ledger. |
 | `test_supporting_analysis.py` | `l_2`, direction, gauge, reflection-sum, and readout identities. |
 
 ## Deliberate nonclaims
@@ -416,5 +474,8 @@ advantage, coherent-noise resilience, routing efficiency, approximate
 synthesis, or arbitrary observables outside the stated reflection-access
 models.
 
-The absence of a multi-model hardware benchmark is a scope decision, not
-missing support for the exact-logical claims above.
+The optimized robustness analysis does not redefine the Hopf ansatz, prove that
+every state-equivalent compiler has the same cost, or preserve one coordinate
+as one elementary physical angle. The absence of a multi-model hardware
+benchmark is a scope decision, not missing support for the exact-logical claims
+above.

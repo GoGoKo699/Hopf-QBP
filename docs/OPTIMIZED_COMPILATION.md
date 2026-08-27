@@ -1,38 +1,68 @@
-# Optimized compilation companion
+# Robustness under optimized recompilation
 
-This page complements the manuscript's explicit assigned CNOT ledger. The
-assigned ledger decomposes each addressed multi-controlled rotation separately;
-it is useful because it gives concrete finite counts under one declared
-no-clean-ancilla model. It is not an optimal-synthesis claim.
+This page studies a question that lies outside the defining compiler setting of
+the two Hopf papers but is scientifically valuable: does the Hopf-QBP estimator
+and its asymptotic resource conclusion survive after the direct-angle circuit is
+recompiled more aggressively?
 
-The same Hopf-QBP circuit objects also admit an exact `O(N)` compiler, where
-`N = 2**n`, by grouping each depth into a uniformly controlled rotation. This
-page states the factorization, its clean-ancilla contract, the resource bound,
-and the checks implemented in this repository.
+The primary Hopf setting is coordinate-preserving. It keeps
 
-## 1. Two resource views
+```math
+\text{one Hopf coordinate}
+\longleftrightarrow
+\text{one designated tree-split or leaf-phase location}
+\longleftrightarrow
+\text{one directly programmed physical angle}.
+```
 
-| View | Purpose | What is counted |
+For magnitude coordinates this is the rotation angle attached to an internal
+tree node; for complex leaf phases it is a directly programmed phase angle.
+This direct-angle correspondence is what keeps the inverse coordinates,
+diagonal metric, normalized tangents, forward preparation, and reverse records
+transparent in one circuit language. The manuscript's assigned ledger counts
+that realization.
+
+A uniformly controlled resynthesis can preserve the same logical state or frame
+while replacing the elementary physical angles by compiler-generated linear
+combinations of several Hopf coordinates. The analysis below therefore gives a
+**robustness result**, not a redefinition of the ansatz and not a replacement for
+the manuscript's coordinate-preserving resource model.
+
+## 1. Primary setting and robustness question
+
+| Property | Direct-angle Hopf realization | Multiplexed robustness compiler |
+|---|---:|---:|
+| Same prepared state | Yes | Yes |
+| Same frame action or clean-flag system action | Yes | Yes |
+| Same decoded Hopf-QBP estimator | Yes | Yes |
+| One coordinate is one directly programmed physical angle | **Yes** | Generally no |
+| Geometry remains explicit in the gate parameters | **Yes** | Generally no |
+| Defines the manuscript's resource setting | **Yes** | No |
+| Tests robustness outside that setting | Not applicable | **Yes** |
+
+The two command-line ledgers therefore have different roles:
+
+| Tool | Role | What is counted |
 |---|---|---|
-| Assigned ledger | Reproduce the finite counts printed in the manuscript | Independently decomposed multi-controlled rotations under the declared formulas |
-| Optimized companion | Compare against standard `O(N)` state-preparation synthesis | Uniformly controlled-rotation cores, with suffix-predicate work exposed separately |
+| `qbp_resource_ledger.py` | Direct-angle assigned ledger used by the manuscript | Independently decomposed coordinate-preserving controlled gates under the declared formulas |
+| `qbp_optimized_resource_ledger.py` | Repository-only robustness companion | Uniformly controlled-rotation cores, with suffix-predicate work exposed separately |
 
 Neither table is a routed hardware estimate. Both exclude the controlled
 observable, readout, device connectivity, and approximate synthesis unless a
 quantity is explicitly added.
 
-Run the two ledgers with:
+Run them with:
 
 ```bash
 python qbp_resource_ledger.py --nmin 2 --nmax 10
 python qbp_optimized_resource_ledger.py --nmin 2 --nmax 10
 ```
 
-## 2. Forward preparation is depthwise multiplexed
+## 2. Forward preparation after multiplexed recompilation
 
 For depth `d`, let the first `d` system qubits be the prefix register, let the
-next qubit be the target, and leave the lower suffix untouched. The checkpoint
-preparation layer is
+next qubit be the target, and leave the lower suffix untouched. The direct-angle
+checkpoint layer is
 
 ```math
 U_d
@@ -43,10 +73,11 @@ U_d
 \otimes I_{2^{n-d-1}}.
 ```
 
-This is a uniformly controlled `R_y` with `d` controls. In the standard
-Gray-code construction, a nontrivial `k`-control uniformly controlled rotation
-uses `2**k` CNOTs and `2**k` local rotations. The uncontrolled layer uses no
-CNOT.
+At the logical level this is a uniformly controlled `R_y` with `d` controls. In
+the standard Gray-code construction, a nontrivial `k`-control uniformly
+controlled rotation uses `2**k` CNOTs and `2**k` local rotations. Those local
+angles are synthesis parameters and need not equal the original Hopf
+coordinates individually. The uncontrolled layer uses no CNOT.
 
 Therefore
 
@@ -72,9 +103,9 @@ These are upper bounds for the multiplexor cores. Adjacent-layer cancellations
 may reduce particular compiled circuits further; no such cancellation is used
 here.
 
-## 3. Addressed-frame layer with one clean flag
+## 3. Addressed-frame robustness factorization with one clean flag
 
-At depth `d`, the addressed real frame applies angle
+At depth `d`, the direct addressed frame applies angle
 `theta[2**d + r]` only when:
 
 1. the upper prefix equals `r`; and
@@ -84,14 +115,14 @@ Introduce one clean flag `f` and compute
 
 ```math
 f
-\mathrel{\oplus}= 
+\mathrel{\oplus}=
 [\text{lower suffix}=0].
 ```
 
 Then apply one uniformly controlled `R_y` to the depth-`d` target:
 
-- prefix `r`, flag `1`: angle `theta[2**d + r]`;
-- prefix `r`, flag `0`: angle `0`.
+- prefix `r`, flag `1`: logical angle `theta[2**d + r]`;
+- prefix `r`, flag `0`: logical angle `0`.
 
 Finally uncompute the flag. The exact contract is
 
@@ -105,6 +136,10 @@ Finally uncompute the flag. The exact contract is
 
 for every system input `|varphi>`. Equality on an arbitrary initial flag state
 is neither needed nor claimed.
+
+This identity preserves the frame action and therefore the decoded QBP
+estimator. It does not assert that the elementary rotations appearing after
+multiplexor synthesis remain the original Hopf coordinates one by one.
 
 For `d < n-1`, the multiplexor has `d+1` controls: the `d` prefix bits plus the
 flag. At the final depth there is no lower suffix and no flag is required. For
@@ -148,7 +183,7 @@ The repository reports the multiplexor CNOT count and the predicate widths
 separately rather than hiding a compiler-dependent finite constant inside one
 number.
 
-## 4. Complex frame
+## 4. Complex frame after recompilation
 
 The portable complex magnitude frame is
 
@@ -166,10 +201,15 @@ C(W_{\mathbb C})=O(N).
 
 The same conclusion applies to the separated complex forward preparation
 `D_ph U_chk`. The explicit four-qubit integrated `R_C` fixtures remain useful
-finite regression tests, but they are not required for the general asymptotic
-compiler.
+finite regression tests, but they are not required for this asymptotic
+robustness conclusion.
 
-## 5. Matched scalar comparison
+As with the real multiplexor, a generic diagonal synthesis need not retain one
+leaf-phase coordinate as one elementary physical phase angle. The logical state
+and frame are preserved; the direct coordinate-to-control interpretation is not
+claimed.
+
+## 5. Matched scalar robustness comparison
 
 A scalar Hopf objective execution and a global-gradient-record execution share:
 
@@ -178,7 +218,7 @@ A scalar Hopf objective execution and a global-gradient-record execution share:
 - the same controlled observable; and
 - the same observable-access phase convention.
 
-Using the optimized constructions above,
+Using the optimized state-equivalent constructions above,
 
 ```math
 C_{\mathrm{scalar}}=O(N),
@@ -186,11 +226,15 @@ C_{\mathrm{scalar}}=O(N),
 C_{\mathrm{global\ record}}=O(N).
 ```
 
-Thus the circuit-work ratio per independent execution is `O(1)`. The global
-method's complete-gradient execution overhead remains its statistical factor,
-not an extra logarithmic compiler factor.
+Thus the circuit-work ratio per independent execution remains `O(1)` after this
+particular recompilation. The global method's complete-gradient execution
+overhead remains its statistical factor, not an extra logarithmic compiler
+factor.
 
-This comparison is output-sensitive. The complete chart has
+This answers a robustness question raised outside the direct-angle theorem. It
+does not change which compiler defines the Hopf ansatz in the papers.
+
+The comparison is output-sensitive. The complete chart has
 `M = N - 1` real coordinates or `M = 2N - 1` complex coordinates, so
 `M = Theta(2**n)`. The result is not an exponential compression of an
 exponentially long classical output vector.
@@ -225,7 +269,20 @@ The matrix checks validate the exact flag factorization. The asymptotic CNOT
 claim additionally uses the established Gray-code synthesis of uniformly
 controlled rotations and standard multi-controlled-X constructions.
 
-## 7. Primary references
+## 7. Interpretation boundary
+
+This companion establishes that one exact multiplexed recompilation preserves:
+
+- the prepared state or frame action;
+- the QBP estimator identities;
+- and the `O(N)` asymptotic comparison with an optimized scalar preparation.
+
+It does **not** establish that every state-equivalent compiler preserves the
+same finite cost, that the direct-angle physical controls survive resynthesis,
+or that a routed device implementation has the same constants. Those are
+separate synthesis and hardware questions.
+
+## 8. Primary references
 
 - M. Möttönen, J. J. Vartiainen, V. Bergholm, and M. M. Salomaa,
   [Transformation of quantum states using uniformly controlled rotations](https://arxiv.org/abs/quant-ph/0407010),

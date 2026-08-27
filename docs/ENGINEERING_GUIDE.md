@@ -10,8 +10,9 @@ It is organized around the questions an engineer needs to answer:
 3. What exactly is measured?
 4. How is the classical record decoded?
 5. Which circuit substitutions are valid?
-6. Which resource costs are included?
-7. How can the reference implementation be adapted safely?
+6. Which compiler contract is being preserved?
+7. Which resource costs are included?
+8. How can the reference implementation be adapted safely?
 
 ## 1. Input and output contract
 
@@ -139,6 +140,39 @@ Addressed two-level operations use both positive and negative controls.
 `circuits.py` implements negative controls by conjugating the controlled gate
 with `X` gates. An alternative backend must preserve the same control pattern.
 
+### Direct-angle Hopf compiler contract
+
+The defining compiler setting of the Hopf papers preserves
+
+```math
+\text{one Hopf coordinate}
+\longleftrightarrow
+\text{one designated tree-split or leaf-phase location}
+\longleftrightarrow
+\text{one directly programmed physical angle}.
+```
+
+For magnitude coordinates, the angle belongs to the internal tree split. For
+the complex chart, each leaf-phase coordinate is likewise retained as a
+directly programmed phase angle. This is stronger than state-column equality:
+it keeps the physical controls in direct correspondence with the inverse
+coordinates, metric entries, and coordinate tangents.
+
+The following general constructions remain inside this contract:
+
+- native `HopfReal` and `HopfComplex` preparations;
+- the depth-ordered completion `U_chk`;
+- the addressed real frame `W_R`;
+- the separated complex frame `D_ph W_R`; and
+- the checkpoint suffixes `B_d`.
+
+They are different unitary completions and circuit organizations, but each
+coordinate is still used directly as a physical angle at its designated Hopf
+location. A generic multiplexed decomposition can preserve the same logical
+unitary while replacing elementary physical angles by combinations of several
+Hopf coordinates. Such a replacement is a state- or frame-equivalent compiler,
+not automatically a direct-angle Hopf compiler.
+
 ## 3. Core data structures
 
 ### Recursive reference data
@@ -164,18 +198,23 @@ The repository exposes three forward completions:
 3. addressed frame preparation.
 
 They can share the initialized state column without being equal as full
-unitaries. Forward substitution is valid when only the prepared state column
-enters the later circuit.
+unitaries. State-column equality is sufficient for replacing a forward block
+when only the prepared input state enters the later circuit. It is a
+correctness contract, not automatically a compiler-scope contract: a
+state-equivalent replacement may change the relationship between Hopf
+coordinates and elementary physical angles and therefore need not inherit the
+direct-angle resource ledger.
 
-The designated resource accounting uses:
+The designated direct-angle resource accounting uses:
 
 ```text
 real forward:    U_chk
 complex forward: D_ph U_chk
 ```
 
-Native forward circuits are also validated and may be used when their compiler
-is preferred.
+Native forward circuits are also validated and remain coordinate-faithful. Use
+a state-equivalent optimized compiler only after distinguishing its logical
+correctness from preservation of the direct-angle interpretation.
 
 ### Depth-layer compiler
 
@@ -199,7 +238,10 @@ U_{n-1}\cdots U_1U_0.
 ```
 
 The circuit builder appends layers in increasing `d`, which produces this
-state-update order.
+state-update order. Crucially, each gate in the generated layer still receives
+the original Hopf coordinate `theta_j` as its physical angle. The depth order
+changes the completion and exposes checkpoint interfaces without changing the
+coordinate-to-control map.
 
 ### Addressed real frame
 
@@ -215,6 +257,11 @@ They differ only on Qibo system index `d`. `add_real_frame` therefore applies
 one addressed `R_y(theta_j)` on that target, controlled by all other system
 qubits matching the anchor label. The gates are appended in increasing depth
 and node order.
+
+The addressed gate uses the same physical angle `theta_j` as the forward split
+at node `j`: the forward tree prepares the split state, while the frame places
+the split state and its local complement in paired computational columns. This
+shared angle is the direct circuit expression of the Hopf geometry.
 
 This completion satisfies:
 
@@ -575,7 +622,7 @@ Each requested depth needs a distinct circuit template because its inverse
 suffix and target wire differ. For depths `d_1, ..., d_q`, execute `q` streams
 and place each decoded block in its breadth-first slice.
 
-## 8. Substitution contracts
+## 8. Substitution contracts and compiler preservation
 
 This is the most important implementation distinction in the repository.
 
@@ -597,7 +644,8 @@ V|0\rangle^{\otimes n}.
 
 This is sufficient for replacing a forward preparation that is always applied
 to the initialized system register. It is not sufficient for replacing a
-reverse block.
+reverse block, and it does not imply that the replacement preserves the
+direct-angle Hopf compiler contract.
 
 ### Active-interface equality
 
@@ -609,6 +657,33 @@ This is sufficient when the state entering the block is guaranteed to lie in
 the checkpoint interface selected by `P_d`.
 
 `checkpoint_interface_projector(n, depth)` constructs the reference projector.
+
+### Direct-angle compiler preservation
+
+A compiler preserves the defining Hopf circuit setting only when the original
+coordinates remain directly programmed physical angles at their designated
+tree-split or leaf-phase locations. This condition is not implied by unitary,
+state-column, or active-interface equality.
+
+A replacement may therefore be valid for decoded-gradient correctness while
+requiring a separate resource analysis and losing the transparent
+coordinate-to-control interpretation.
+
+### Clean-flag robustness contract
+
+The repository-only multiplexed frame satisfies
+
+```math
+\widetilde W_{\mathbb R}
+(|\varphi\rangle|0\rangle_f)
+=
+(W_{\mathbb R}|\varphi\rangle)|0\rangle_f.
+```
+
+This proves the required system action when the reusable flag enters and leaves
+in `|0>`. It is a logical robustness contract outside the direct-angle setting;
+it does not claim equality on an arbitrary initial flag state or preservation
+of one Hopf coordinate as one elementary multiplexor angle.
 
 ### Integrated four-qubit fixtures
 
@@ -698,9 +773,14 @@ For requested depths `d_1, ..., d_q`, compare the compiled repeated cost of the
 `q` suffix circuits with one complete frame circuit. The statistical scale is
 the same at a fixed depth; the difference is circuit organization.
 
-## 12. Assigned resource ledger
+## 12. Direct-angle assigned resource ledger
 
-The repository uses a declared compiler-relative Hopf CNOT model.
+The manuscript uses a declared coordinate-preserving Hopf CNOT model. It keeps
+each magnitude coordinate as the rotation angle of its designated internal tree
+split and each complex leaf phase as a directly programmed phase angle. It then
+decomposes those controlled gates independently. This is the defining compiler
+setting of the two papers, not an optimization over all exact circuits that
+implement the same state or unitary.
 
 ### Controlled `R_y`
 
@@ -750,8 +830,8 @@ analysis.
 
 Included:
 
-- generated Hopf controlled-gate charges for the selected forward and reverse
-  blocks.
+- generated direct-angle Hopf controlled-gate charges for the selected forward
+  and reverse blocks.
 
 Excluded unless separately supplied:
 
@@ -763,7 +843,10 @@ Excluded unless separately supplied:
 - generic diagonal phase-layer synthesis; and
 - backend transpilation effects.
 
-The output is an assigned logical ledger, not a physical gate estimate.
+The output is an assigned logical ledger, not a physical gate estimate and not
+a global CNOT-optimality claim. The separate multiplexed analysis in
+`docs/OPTIMIZED_COMPILATION.md` asks whether the asymptotic conclusion survives
+after leaving this compiler setting.
 
 ## 13. Minimal exact-logical usage
 
@@ -907,7 +990,7 @@ print(depth_gradient)  # corresponds to full_gradient[start:stop]
 - tree and marker maps;
 - basis and wire translation;
 - active-interface projectors;
-- compiler-relative charge formulas.
+- direct-angle assigned charge formulas.
 
 ## 15. Adapting the reference safely
 
@@ -927,19 +1010,26 @@ Add a backend conformance test before running the gradient suite. The existing
 
 ### Replace the forward compiler
 
-A forward replacement is valid if it prepares exactly the same state from the
-initialized input. Test state-column equality, not merely state fidelity on a
-small collection of parameter points.
+A forward replacement is correct for the later estimator if it prepares exactly
+the same state from the initialized input. Test state-column equality, not
+merely state fidelity on a small collection of parameter points.
+
+Then state separately whether the replacement preserves the direct-angle Hopf
+compiler contract. If it recombines the elementary physical angles, it may
+preserve all later distributions while requiring a new resource ledger and a
+different interpretation of physical coordinate controls.
 
 ### Replace a reverse compiler
 
 State-column equality is not enough. Establish either:
 
-- complete frame/unitary equality; or
-- the exact active-interface identity used by the checkpoint circuit.
+- complete frame/unitary equality;
+- the exact active-interface identity used by the checkpoint circuit; or
+- an explicit clean-flag system-action identity.
 
 Then compare decoded gradient means. Complete distribution equality is not
-required unless the substitution claims it.
+required unless the substitution claims it. Also state whether the replacement
+preserves the direct-angle coordinate-to-control map.
 
 ### Add shot sampling
 
@@ -971,6 +1061,7 @@ The observable layer must document:
 | Unknown controlled-branch phase | `X`/`Y` quadratures are rotated; signs are invalid. |
 | Treating state-column equality as full-unitary equality | Invalid reverse substitution. |
 | Treating active-interface equality as full-unitary equality | Incorrect claims about complete output distributions. |
+| Treating state-equivalent multiplexing as direct-angle preservation | Correct logical action may be paired with the wrong geometric and resource interpretation. |
 | Dividing by zero metric factors | Artificial singularity not present in the coordinate derivative. |
 | Mixing magnitude and phase streams | Incompatible reverse blocks and measurement bases. |
 | Calling ledger values transpiler counts | Misstates the resource model. |
@@ -985,10 +1076,12 @@ A modification should pass the following sequence:
 3. `python validate_qbp.py`
 4. `python make_validation_figures.py`
 5. `python qbp_resource_ledger.py --nmin 2 --nmax 10`
+6. `python qbp_optimized_resource_ledger.py --nmin 2 --nmax 10` when changing the robustness compiler
 
-For a new backend or compiler, add tests at the contract level it claims:
-full-unitary, state-column, or active-interface. Also add at least one decoded
-mean comparison against `reference.py` and one singular-coordinate case.
+For a new backend or compiler, add tests at every contract level it claims:
+full-unitary, state-column, active-interface, clean-flag, or direct-angle
+compiler preservation. Also add at least one decoded mean comparison against
+`reference.py` and one singular-coordinate case.
 
 The repository's purpose is to keep these contracts inspectable. New features
 should not weaken that separation by deriving both the circuit and its expected

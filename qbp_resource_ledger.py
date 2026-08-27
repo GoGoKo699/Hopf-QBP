@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
-"""Print the manuscript's conservative compiler-relative assigned CNOT ledger.
+"""Print the manuscript's direct-angle assigned Hopf-QBP CNOT ledger.
 
-This is the concrete no-clean-ancilla ledger used for the manuscript's finite
-examples. It is not an optimal-synthesis claim. See
-``qbp_optimized_resource_ledger.py`` for the uniformly controlled-rotation
-companion.
+This is the concrete coordinate-preserving, no-clean-ancilla ledger used for
+the manuscript's finite examples.  Each Hopf coordinate remains a directly
+programmed physical angle at its designated tree-split or leaf-phase location.
+The ledger is not a global optimal-synthesis claim.  See
+``qbp_optimized_resource_ledger.py`` for the repository-only multiplexed
+robustness companion.
 """
 from __future__ import annotations
 
@@ -50,7 +52,7 @@ def ledger_row(n: int) -> LedgerRow:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Print the conservative assigned Hopf-QBP CNOT ledger."
+        description="Print the direct-angle assigned Hopf-QBP CNOT ledger."
     )
     parser.add_argument("--nmin", type=int, default=2)
     parser.add_argument("--nmax", type=int, default=10)
@@ -104,9 +106,10 @@ def four_qubit_details() -> dict[str, object]:
 
 
 def _print_text(rows: list[LedgerRow]) -> None:
-    print("Conservative assigned CNOT charges; controlled observable and phase-layer charge excluded")
-    print("These finite counts are not an optimal-synthesis claim.")
-    print("Optimized companion: python qbp_optimized_resource_ledger.py")
+    print("Direct-angle assigned CNOT charges; controlled observable and phase-layer charge excluded")
+    print("Each Hopf coordinate remains a directly programmed physical angle at its designated Hopf location.")
+    print("These finite counts are not a global optimal-synthesis claim.")
+    print("Robustness companion: python qbp_optimized_resource_ledger.py")
     print(
         f"{'n':>2} {'HopfReal':>12} {'HopfComplex':>14} "
         f"{'U_chk':>12} {'W_R':>12}"
@@ -165,8 +168,10 @@ def main() -> int:
         _print_csv(rows)
     else:
         payload = {
-            "interpretation": "conservative assigned finite ledger, not optimal synthesis",
-            "optimized_companion": "qbp_optimized_resource_ledger.py",
+            "scope": "direct-angle coordinate-preserving Hopf compiler used by the manuscript",
+            "coordinate_contract": "one Hopf coordinate is one directly programmed physical angle at its designated tree-split or leaf-phase location",
+            "interpretation": "assigned finite ledger, not global optimal synthesis",
+            "robustness_companion": "qbp_optimized_resource_ledger.py",
             "rows": [asdict(row) for row in rows],
             "four_qubit": four_qubit_details() if args.nmin <= 4 <= args.nmax else None,
         }
