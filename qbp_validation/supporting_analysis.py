@@ -1,10 +1,11 @@
 """Qibo-free supporting analysis for Hopf-QBP.
 
-This module collects consequences that are useful for scientific review and
-engineering adaptation: complete-vector accuracy, conditional relative and
-directional guarantees, magnitude-block natural-gradient conditioning,
-common-phase gauge projection, reflection-sum term sampling, and analytic
-readout-error transfer functions.
+This module collects consequences useful for scientific review and engineering
+adaptation: complete-vector accuracy, conditional relative and directional
+guarantees, coordinate-versus-frame separation, magnitude-block metric
+conditioning, ambient/projective phase metrics, common-phase objective
+invariance, reflection-sum term sampling, and analytic readout-error transfer
+functions.
 """
 from __future__ import annotations
 
@@ -19,6 +20,18 @@ def _validate_probability(value: float, name: str) -> float:
     if not 0.0 <= probability <= 1.0:
         raise ValueError(f"{name} must lie in [0, 1].")
     return probability
+
+
+def _normalized_probability_vector(probabilities: object) -> np.ndarray:
+    values = np.asarray(probabilities, dtype=float).reshape(-1)
+    if values.size == 0:
+        raise ValueError("probabilities must be nonempty.")
+    if np.any(values < 0.0):
+        raise ValueError("probabilities must be nonnegative.")
+    total = float(np.sum(values))
+    if not np.isfinite(total) or not np.isclose(total, 1.0, atol=1e-12, rtol=0.0):
+        raise ValueError("probabilities must sum to one.")
+    return values
 
 
 def fixed_norm_vector_shot_bound(
@@ -71,7 +84,7 @@ def complete_magnitude_relative_l2_shot_bound(
 ) -> int:
     """Sufficient executions for relative ``l2`` error away from stationarity.
 
-    The target absolute error is ``relative_error * gradient_norm``.  Requiring
+    The target absolute error is ``relative_error * gradient_norm``. Requiring
     ``relative_error < 1`` also guarantees that the estimated negative gradient
     is a descent direction under the same event.
     """
@@ -90,12 +103,7 @@ def complete_magnitude_relative_l2_shot_bound(
 
 
 def direction_error_upper_bound(gradient_norm: float, error_norm: float) -> float:
-    """Bound normalized-direction error when ``error_norm < gradient_norm``.
-
-    Returns ``2*error_norm/gradient_norm``.  A finite directional guarantee is
-    intentionally rejected at stationary points or when the error can reach the
-    true gradient norm.
-    """
+    """Bound normalized-direction error when ``error_norm < gradient_norm``."""
 
     gradient = float(gradient_norm)
     error = float(error_norm)
@@ -116,6 +124,61 @@ def descent_direction_is_guaranteed(gradient_norm: float, error_norm: float) -> 
     if gradient < 0.0 or error < 0.0:
         raise ValueError("norms must be nonnegative.")
     return gradient > 0.0 and error < gradient
+
+
+def swap_reflection(
+    state: object,
+    direction: object,
+    *,
+    atol: float = 1e-12,
+) -> np.ndarray:
+    """Return the Hermitian unitary swapping two orthonormal vectors.
+
+    For orthonormal ``state`` and ``direction``, the returned Householder
+    reflection satisfies ``O @ state = direction`` and ``O @ direction = state``.
+    """
+
+    psi = np.asarray(state, dtype=complex).reshape(-1)
+    tangent = np.asarray(direction, dtype=complex).reshape(-1)
+    if psi.size == 0 or tangent.size != psi.size:
+        raise ValueError("state and direction must be nonempty vectors of equal size.")
+    if not np.isclose(np.vdot(psi, psi), 1.0, atol=atol, rtol=0.0):
+        raise ValueError("state must be normalized.")
+    if not np.isclose(np.vdot(tangent, tangent), 1.0, atol=atol, rtol=0.0):
+        raise ValueError("direction must be normalized.")
+    if not np.isclose(np.vdot(psi, tangent), 0.0, atol=atol, rtol=0.0):
+        raise ValueError("state and direction must be orthogonal.")
+    difference = psi - tangent
+    return np.eye(psi.size, dtype=complex) - np.outer(difference, difference.conj())
+
+
+def complete_frame_record_norm(active_coordinates: int) -> float:
+    """Norm of the complete active normalized-frame record."""
+
+    active = int(active_coordinates)
+    if active < 0:
+        raise ValueError("active_coordinates must be nonnegative.")
+    return 2.0 * math.sqrt(float(active))
+
+
+def natural_gradient_coordinate_record_bound(minimum_metric: float) -> float:
+    """Uniform active-coordinate bound ``2/sqrt(g_min)``."""
+
+    metric = float(minimum_metric)
+    if metric <= 0.0:
+        raise ValueError("minimum_metric must be positive.")
+    return 2.0 / math.sqrt(metric)
+
+
+def regularized_natural_gradient_coordinate_record_bound(
+    regularization: float,
+) -> float:
+    """Uniform damped-coordinate bound ``1/sqrt(tau)``."""
+
+    tau = float(regularization)
+    if tau <= 0.0:
+        raise ValueError("regularization must be positive.")
+    return 1.0 / math.sqrt(tau)
 
 
 def ordinary_magnitude_record_second_moment(metric_factor: float) -> float:
@@ -140,28 +203,42 @@ def regularized_natural_gradient_record_second_moment(
     metric_factor: float,
     regularization: float,
 ) -> float:
-    """Return ``4*g_jj/(g_jj+lambda)^2`` for a regularized inverse metric."""
+    """Return ``4*g_jj/(g_jj+tau)^2`` for a damped inverse metric."""
 
     metric = float(metric_factor)
-    lam = float(regularization)
+    tau = float(regularization)
     if metric < 0.0:
         raise ValueError("metric_factor must be nonnegative.")
-    if lam <= 0.0:
+    if tau <= 0.0:
         raise ValueError("regularization must be positive.")
-    return 4.0 * metric / (metric + lam) ** 2
+    return 4.0 * metric / (metric + tau) ** 2
 
 
 def regularized_natural_gradient_second_moment_bound(regularization: float) -> float:
-    """Return the uniform bound ``1/lambda`` for the regularized second moment."""
+    """Return the uniform bound ``1/tau`` for the damped second moment."""
 
-    lam = float(regularization)
-    if lam <= 0.0:
+    tau = float(regularization)
+    if tau <= 0.0:
         raise ValueError("regularization must be positive.")
-    return 1.0 / lam
+    return 1.0 / tau
+
+
+def ambient_phase_metric(probabilities: object) -> np.ndarray:
+    """Return the ambient-sphere phase block ``diag(p)``."""
+
+    values = _normalized_probability_vector(probabilities)
+    return np.diag(values)
+
+
+def projective_phase_metric(probabilities: object) -> np.ndarray:
+    """Return the projective Fubini--Study phase block ``diag(p)-p p^T``."""
+
+    values = _normalized_probability_vector(probabilities)
+    return np.diag(values) - np.outer(values, values)
 
 
 def project_common_phase_gradient(gradient: object) -> np.ndarray:
-    """Project a phase-gradient estimate onto the zero-sum physical subspace."""
+    """Project onto the zero-sum subspace implied by uniform-phase invariance."""
 
     values = np.asarray(gradient, dtype=float).reshape(-1)
     if values.size == 0:
@@ -250,8 +327,8 @@ def global_marker_readout_attenuation(
 ) -> float:
     """Attenuation of ``(-1)^(b + marker dot y)`` under readout flips.
 
-    System probabilities use the repository's big-endian system order.
-    Only marker-supported bits enter the parity factor.
+    System probabilities use the repository's big-endian system order. Only
+    marker-supported bits enter the parity factor.
     """
 
     if n < 1:
@@ -261,9 +338,17 @@ def global_marker_readout_attenuation(
     if len(system_error_probabilities) != n:
         raise ValueError("system_error_probabilities must contain n entries.")
 
-    selected = [_validate_probability(ancilla_error_probability, "ancilla_error_probability")]
+    selected = [
+        _validate_probability(
+            ancilla_error_probability,
+            "ancilla_error_probability",
+        )
+    ]
     for system_index, probability in enumerate(system_error_probabilities):
-        p = _validate_probability(probability, f"system_error_probabilities[{system_index}]")
+        p = _validate_probability(
+            probability,
+            f"system_error_probabilities[{system_index}]",
+        )
         bit = (int(marker) >> (n - 1 - system_index)) & 1
         if bit:
             selected.append(p)

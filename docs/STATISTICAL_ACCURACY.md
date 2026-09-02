@@ -1,20 +1,19 @@
-# Statistical accuracy beyond coordinatewise error
+# Statistical accuracy, output geometry, and conditioning
 
-The manuscript's primary finite-shot target is simultaneous absolute
-coordinatewise accuracy. Appendix B now gives the complete-vector Euclidean
-bound, the conditional relative and directional consequences, and the
-magnitude-block natural-gradient conditioning statement. This page retains the
-full derivation, gauge interpretation, optimizer boundary, and executable test
-map without changing the core estimator.
+The manuscript's primary finite-shot target is simultaneous absolute accuracy
+of the **raw Hopf-coordinate gradient**. Appendix B also gives the complete
+magnitude-vector `l_2` bound, conditional relative and directional guarantees,
+and magnitude-block natural-gradient conditioning. This page makes the output
+objects, metric conventions, separation examples, and executable test map
+explicit.
 
-## 1. Coordinatewise target
+## 1. Raw coordinatewise target
 
 For each magnitude depth, one global outcome produces a vector record of exact
 Euclidean norm `2`. A checkpoint record and a direct complex phase record are
 also norm-`2` signed one-hot vectors.
 
-For a norm-`R` random vector, the concentration bound used by the manuscript
-gives the sufficient count
+For a norm-`R` random vector, the sufficient fixed-norm count is
 
 ```math
 S(R,\varepsilon,\eta)
@@ -36,10 +35,11 @@ O\left(
 \right).
 ```
 
-This is an absolute `l_infinity` statement. It is not silently interpreted as
-relative error or optimizer convergence.
+This is an absolute raw-coordinate `l_infinity` statement. It is not a claim of
+relative error, state-space tangent accuracy, natural-gradient accuracy, or
+optimizer convergence.
 
-## 2. Complete magnitude-vector `l_2` accuracy
+## 2. Complete raw magnitude-vector `l_2` accuracy
 
 Concatenate the `n` magnitude-depth records obtained from one global outcome:
 
@@ -49,8 +49,7 @@ Z_{\mathrm{mag}}
 Z_0\oplus Z_1\oplus\cdots\oplus Z_{n-1}.
 ```
 
-Every depth block has norm `2`, so every concatenated record has deterministic
-norm
+Every depth block has norm `2`, so
 
 ```math
 \|Z_{\mathrm{mag}}\|_2
@@ -58,8 +57,7 @@ norm
 2\sqrt n.
 ```
 
-Applying the same vector concentration argument directly, without a union bound
-over coordinates or depths, yields
+Applying the same vector concentration argument directly gives
 
 ```math
 S_{2,\mathrm{mag}}
@@ -71,7 +69,7 @@ S_{2,\mathrm{mag}}
 \right\rceil.
 ```
 
-Therefore fixed complete-vector Euclidean accuracy requires
+Hence fixed complete-vector Euclidean accuracy requires
 
 ```math
 O\left(
@@ -83,93 +81,182 @@ O\left(
 \right)
 ```
 
-independent executions. At fixed shot count the accumulated complete-vector
-noise grows as `sqrt(n) = sqrt(log M)`, not as `sqrt(M)`.
+independent executions. At fixed shot count the accumulated raw-vector noise
+grows as `sqrt(n) = sqrt(log M)`, not as `sqrt(M)`.
 
-For the complex chart, the direct phase record is produced by a separate
-norm-`2` stream. Allocating the total Euclidean error and failure probability
-between the magnitude and phase blocks adds only an `O(1)` phase-stream term;
-the complete complex scaling remains `O(n)` at fixed `l_2` accuracy.
+For the complex chart, the direct phase record is a separate norm-`2` stream.
+A fixed allocation of total Euclidean error and failure probability between the
+magnitude and phase blocks preserves the `O(n)` scaling.
 
 ## 3. Relative and directional guarantees are conditional
 
 Let
 
 ```math
-\widehat g=g+e,
+\widehat v=v+e,
 \qquad
-\|e\|_2\leq\eta,
+\|e\|_2\leq\xi,
 \qquad
-\|g\|_2=G.
+\|v\|_2=\mathcal G.
 ```
 
-When `0 <= eta < G`,
+When `0 <= xi < ||v||_2`,
 
 ```math
-g^\mathsf{T}\widehat g
+v^\mathsf{T}\widehat v
 \geq
-G(G-\eta)>0,
+\mathcal G(\mathcal G-\xi)>0,
 ```
 
-so `-g_hat` is guaranteed to be a descent direction. The normalized-direction
-error obeys
+so `-v_hat` is a descent direction. The normalized-direction error obeys
 
 ```math
 \left\|
-\frac{\widehat g}{\|\widehat g\|_2}
+\frac{\widehat v}{\|\widehat v\|_2}
 -
-\frac{g}{\|g\|_2}
+\frac{v}{\mathcal G}
 \right\|_2
 \leq
-\frac{2\eta}{G}.
+\frac{2\xi}{\mathcal G}.
 ```
 
-Choosing `eta = rho*G` gives relative `l_2` error at most `rho`, normalized
-direction error at most `2*rho`, and the sufficient global magnitude count
+Choosing `xi = rho*||v||_2` gives relative `l_2` error at most `rho`, direction
+error at most `2*rho`, and the sufficient magnitude-stream count
 
 ```math
 S_{\mathrm{rel}}
 =
 O\left(
 \frac{n\{1+\log(1/\delta)\}}
-{\rho^2G^2}
+{\rho^2\mathcal G^2}
 \right).
 ```
 
-A fixed allocation between magnitude and phase streams gives the same `n`
-dependence for the complete complex gradient. No uniform relative or
-directional guarantee can hold at a stationary point. For example, when the
-observable is the identity, the exact gradient is zero and a relative direction
-is undefined.
+A fixed magnitude/phase allocation gives the same `n` dependence for the
+complete complex gradient. No uniform relative or directional guarantee can
+hold at a stationary point.
 
-## 4. Small metric factors and natural-gradient conditioning
+Shared readout removes the coordinate-count penalty at fixed absolute accuracy;
+it does not remove signal-to-noise conditioning when the complete gradient norm
+is small. If `||v||_2` is exponentially small, the displayed relative-error
+count is correspondingly large.
 
-For a magnitude coordinate `j`, the ordinary coordinate-gradient record has
-the form
+## 4. Raw coordinate accuracy does not imply frame accuracy
+
+For an active magnitude coordinate `k`,
 
 ```math
-Z_j
+\partial_{\theta_k}|\psi\rangle
 =
-2\sqrt{g_{j,j}}\,\sigma_j,
-\qquad
-\sigma_j\in\{-1,+1\}.
+\sqrt{g_{k,k}}\,|e_k\rangle.
 ```
 
-Hence
+Define
 
 ```math
-\mathbb E[Z_j^2]
+q_k
+=
+\partial_{\theta_k}E_O,
+\qquad
+c_k
+=
+\frac{q_k}{\sqrt{g_{k,k}}},
+\qquad
+\nu_k
+=
+\frac{q_k}{g_{k,k}}.
+```
+
+These are respectively the raw coordinate derivative, normalized-frame
+coefficient, and inverse-metric coordinate.
+
+Choose `0 < g[k,k] < (epsilon/2)**2` and define the Householder reflection
+
+```math
+O_k
+=
+I-
+\bigl(|\psi\rangle-|e_k\rangle\bigr)
+\bigl(\langle\psi|-\langle e_k|\bigr).
+```
+
+Because `|psi>` and `|e_k>` are orthonormal,
+
+```math
+O_k^\dagger=O_k,
+\qquad
+O_k^2=I,
+\qquad
+O_k|\psi\rangle=|e_k\rangle.
+```
+
+Therefore
+
+```math
+q_k
+=
+2\sqrt{g_{k,k}}
+<
+\varepsilon,
+\qquad
+c_k=2,
+```
+
+and all other normalized-frame coefficients vanish. The zero estimate is thus
+`epsilon`-accurate in raw coordinate `l_infinity` error while its
+normalized-frame error is `2`.
+
+This is an exact separation of output tasks, not a defect in the raw-coordinate
+theorem. Converting raw-coordinate guarantees into normalized-frame or natural
+coordinates requires metric conditioning. The reflection is an existence
+construction; no efficient application-specific compiler for it is claimed.
+
+## 5. Magnitude-block norm hierarchy
+
+Let
+
+```math
+I_+
+=
+\{j:g_{j,j}>0\},
+\qquad
+M_+=|I_+|,
+\qquad
+g_{\min}=\min_{j\in I_+}g_{j,j}.
+```
+
+The following are sufficient bounds for direct rescalings of the displayed
+global magnitude record. They are not lower bounds or optimality statements.
+
+| Requested magnitude output | Single-record scale | Sufficient execution scaling |
+|---|---:|---:|
+| Raw coordinate `l_infinity` | depth-vector norm `2` | `O(epsilon^-2 log(n/delta))` |
+| Raw complete `l_2` | `2*sqrt(n)` | `O(n epsilon^-2 [1+log(1/delta)])` |
+| Frame coefficient `l_infinity` | each active component bounded by `2` | `O(epsilon^-2 log(M_+/delta))` |
+| Complete frame-vector `l_2` | `2*sqrt(M_+)` | `O(M_+ epsilon^-2 [1+log(1/delta)])` |
+| Natural coordinate `l_infinity` | at most `2/sqrt(g_min)` | `O(g_min^-1 epsilon^-2 log(M_+/delta))` |
+| Damped natural coordinate `l_infinity` | at most `1/sqrt(tau)` | `O(tau^-1 epsilon^-2 log(M_+/delta))` |
+
+The frame coefficients divide the raw record by `sqrt(g[j,j])`; natural
+coordinates divide it by `g[j,j]`. The table is restricted to the complete real
+gradient or the complex magnitude block. The complex phase block has its own
+support and metric structure.
+
+## 6. Small metric factors and natural-gradient conditioning
+
+For a global magnitude coordinate, every ordinary record satisfies
+
+```math
+Z_j^2
 =
 4g_{j,j}.
 ```
 
 Small metric factors do not create a division instability in the ordinary
-coordinate estimator; they reduce its absolute record scale. At
-`g[j,j] = 0`, the coordinate differential, exact derivative, and record all
-vanish.
+coordinate estimator; they reduce its absolute scale. At `g[j,j] = 0`, the
+coordinate differential, exact derivative, and ordinary record vanish.
 
-An unregularized natural-gradient component divides by the metric, so its
-rescaled record has second moment
+An unregularized inverse-metric record has second moment
 
 ```math
 \mathbb E\left[\left(\frac{Z_j}{g_{j,j}}\right)^2\right]
@@ -177,48 +264,89 @@ rescaled record has second moment
 \frac{4}{g_{j,j}},
 ```
 
-which is ill-conditioned near a chart boundary. A regularized inverse gives
+which is ill-conditioned near a chart boundary. A damped inverse with
+regularization `tau > 0` gives
 
 ```math
 \mathbb E\left[
-\left(\frac{Z_j}{g_{j,j}+\lambda}\right)^2
+\left(\frac{Z_j}{g_{j,j}+\tau}\right)^2
 \right]
 =
-\frac{4g_{j,j}}{(g_{j,j}+\lambda)^2}
+\frac{4g_{j,j}}{(g_{j,j}+\tau)^2}
 \leq
-\frac{1}{\lambda}.
+\frac{1}{\tau}.
 ```
 
-Thresholding or freezing small-weight coordinates provides an alternative.
-These choices belong to the optimizer layer; they are not required for the
-correctness of the ordinary gradient record.
+Thresholding or freezing small-weight coordinates is another possible
+optimizer-layer convention. These choices do not alter the correctness of the
+ordinary Hopf-QBP record.
 
-## 5. Common-phase gauge projection
+## 7. Complex phase metric convention
 
-The complex chart retains all `N` leaf phases and therefore parametrizes the
-unit sphere rather than quotienting by global phase. Expectation-value
-objectives are invariant under a uniform phase shift, so the exact phase block
-satisfies
+Write the leaf probabilities as
 
 ```math
-\mathbf 1^\mathsf{T}g_{\mathrm{ph}}=0.
+p_\ell=|x_\ell|^2,
+\qquad
+\sum_\ell p_\ell=1.
 ```
 
-A finite-shot estimate can be projected onto the physical zero-sum subspace:
+The complex Hopf chart follows the ambient round-sphere convention of the first
+paper. Its phase block is
 
 ```math
-\widehat g_{\mathrm{ph}}^{\perp}
+G_{\mathrm{ph}}^{\mathrm{sphere}}
 =
-\widehat g_{\mathrm{ph}}
+\mathrm{diag}(p).
+```
+
+Under this convention the uniform phase direction represents `i|psi>` and has
+ambient squared norm `1`; it is not metric-null.
+
+If one instead quotients by global phase and uses the projective
+Fubini--Study metric, the phase block becomes
+
+```math
+G_{\mathrm{ph}}^{\mathrm{FS}}
+=
+\mathrm{diag}(p)-pp^\mathsf{T}.
+```
+
+It satisfies
+
+```math
+G_{\mathrm{ph}}^{\mathrm{FS}}\mathbf 1=0.
+```
+
+If `s` leaves have positive probability, the projective block has rank `s-1`;
+zero-probability leaves add further null coordinate directions. This projective
+quotient is a valid alternative geometry, but it is not the metric convention
+used by Hopf-QBP.
+
+## 8. Uniform-phase objective invariance
+
+Expectation objectives are invariant under a uniform leaf-phase shift, so the
+exact phase-gradient block satisfies
+
+```math
+\mathbf 1^\mathsf{T}q_{\mathrm{ph}}=0.
+```
+
+A finite-shot estimate can be projected onto that zero-sum subspace:
+
+```math
+\widehat q_{\mathrm{ph}}^{\perp}
+=
+\widehat q_{\mathrm{ph}}
 -
-\frac{\mathbf 1^\mathsf{T}\widehat g_{\mathrm{ph}}}{N}\mathbf 1.
+\frac{\mathbf 1^\mathsf{T}\widehat q_{\mathrm{ph}}}{N}\mathbf 1.
 ```
 
 This projection is unbiased and cannot increase Euclidean error because the
-true phase gradient already lies in the projected subspace. It is an optional
-classical postprocessing step, not a change to the quantum circuit.
+true objective gradient is already zero-sum. It is optional classical
+postprocessing, not a switch to the projective natural gradient.
 
-## 6. Executable support
+## 9. Executable support
 
 The supporting formulas are implemented and tested in:
 
@@ -227,9 +355,17 @@ qbp_validation/supporting_analysis.py
 qbp_validation/tests/test_supporting_analysis.py
 ```
 
-The tests check the exact complete-record norm, sufficient shot-count formula,
-conditional direction bound, readout formulas, reflection-sum unbiasedness, and
-nonexpansive common-phase projection.
+The tests check:
+
+- complete-record norms and sufficient shot counts;
+- conditional descent and normalized-direction bounds;
+- the exact Hopf swap-reflection separation;
+- frame and natural-coordinate norm scales;
+- ordinary and damped inverse-metric second moments;
+- ambient and projective phase metrics, support rank, and the common-phase null vector;
+- reflection-sum unbiasedness;
+- readout transfer formulas; and
+- nonexpansive zero-sum projection.
 
 Run:
 
@@ -237,12 +373,9 @@ Run:
 python validate_qbp.py --analytic
 ```
 
-## 7. Deliberate boundary
+## 10. Deliberate boundary
 
-These statements characterize estimation error. They do not claim:
-
-- convergence of a particular optimizer;
-- a uniform relative guarantee near stationary points;
-- stability of an unregularized natural-gradient inverse at singular chart
-  coordinates; or
-- hardware noise resilience.
+These statements characterize estimation error and output geometry. They do not
+claim optimizer convergence, a uniform relative guarantee near stationarity,
+stability of an unregularized inverse at singular coordinates, optimality of
+the displayed norm hierarchy, or hardware-noise resilience.
