@@ -100,7 +100,7 @@ Let
 \|v\|_2=\mathcal G.
 ```
 
-When `0 <= xi < gradient_norm`,
+When `0 <= xi < ||v||_2`,
 
 ```math
 v^\mathsf{T}\widehat v
@@ -120,8 +120,8 @@ so `-v_hat` is a descent direction. The normalized-direction error obeys
 \frac{2\xi}{\mathcal G}.
 ```
 
-Choosing `xi = rho*G` gives relative `l_2` error at most `rho`, direction error
-at most `2*rho`, and the sufficient magnitude-stream count
+Choosing `xi = rho*||v||_2` gives relative `l_2` error at most `rho`, direction
+error at most `2*rho`, and the sufficient magnitude-stream count
 
 ```math
 S_{\mathrm{rel}}
@@ -138,8 +138,8 @@ hold at a stationary point.
 
 Shared readout removes the coordinate-count penalty at fixed absolute accuracy;
 it does not remove signal-to-noise conditioning when the complete gradient norm
-is small. If `G` is exponentially small, the displayed relative-error count is
-correspondingly large.
+is small. If `||v||_2` is exponentially small, the displayed relative-error
+count is correspondingly large.
 
 ## 4. Raw coordinate accuracy does not imply frame accuracy
 
