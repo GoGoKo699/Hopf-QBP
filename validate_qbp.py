@@ -18,6 +18,7 @@ ANALYTIC_MODULES = (
     "qbp_validation.tests.test_native_schedule",
     "qbp_validation.tests.test_resource_ledger",
     "qbp_validation.tests.test_optimized_compiler",
+    "qbp_validation.tests.test_ancilla_depth_compiler",
     "qbp_validation.tests.test_supporting_analysis",
 )
 
@@ -43,7 +44,7 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help=(
             "Run Qibo-free convention, decoder, schedule, resource, optimized-"
-            "compiler, and supporting-analysis checks."
+            "compiler, ancilla-depth, and supporting-analysis checks."
         ),
     )
     mode.add_argument(
