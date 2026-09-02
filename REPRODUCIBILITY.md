@@ -23,15 +23,14 @@ module selects that backend explicitly.
 The validation distinguishes two roles:
 
 1. **Direct-angle Hopf compiler:** the defining paper setting, in which each
-   coordinate remains a directly programmed physical angle at its designated
-   tree-split or leaf-phase location.
-2. **Multiplexed robustness companion:** an Appendix-B state-equivalent
-   robustness construction with detailed executable validation, used to test
-   whether the estimator identities and `O(N)` asymptotic comparison survive
-   after leaving the direct-angle setting.
+   coordinate remains a directly programmed physical angle at its tree-split or
+   leaf-phase location.
+2. **Multiplexed exact-compilation companion:** an Appendix-B state-equivalent
+   construction used to test whether the estimator and `O(N)` matched
+   comparison survive after leaving the direct-angle setting.
 
-Passing the second set of checks does not redefine the ansatz or imply that its
-elementary multiplexor angles remain the original Hopf coordinates.
+The second item is exact ideal-model invariance, not a noise-robustness claim.
+It generally does not preserve the original elementary Hopf angles.
 
 ## Minimal analytic check
 
@@ -41,10 +40,13 @@ This path has no Qibo dependency. It checks:
 - decoders and fixed-norm records;
 - native real/complex schedules and state columns;
 - interface projectors;
-- the direct-angle assigned resource formulas;
-- the clean-flag multiplexed robustness factorization and core counts;
+- direct-angle assigned resource formulas;
+- clean-flag multiplexed factorization and core counts;
 - complete-vector, relative/directional, and natural-gradient-conditioning formulas;
-- common-phase projection;
+- exact raw-coordinate versus normalized-frame separation;
+- magnitude frame/natural-coordinate norm scales;
+- ambient and projective phase metrics, support rank, and common-phase null vector;
+- zero-sum projection from uniform-phase objective invariance;
 - reflection-sum term sampling; and
 - analytic readout transfer functions.
 
@@ -91,7 +93,7 @@ python -m unittest discover \
 
 ## Regenerate validation figures
 
-Regenerate the two committed PNG files in the repository root:
+Regenerate the two committed PNG files:
 
 ```bash
 python make_validation_figures.py
@@ -128,14 +130,12 @@ python qbp_resource_ledger.py --nmin 2 --nmax 10 --format csv
 python qbp_resource_ledger.py --nmin 2 --nmax 10 --format json
 ```
 
-The table reproduces the manuscript's concrete coordinate-preserving
-no-clean-ancilla assigned charges. Magnitude coordinates remain the physical
-angles of their designated tree splits, and complex leaf phases remain directly
-programmed phase angles. The table excludes the controlled observable, readout,
-and any separately assigned diagonal phase-layer or workspace cost. It is not a
-global optimality or Qibo-transpiler claim.
+The table reproduces the manuscript's coordinate-preserving no-clean-ancilla
+assigned charges. It excludes the controlled observable, readout, and any
+separately assigned phase-layer or workspace cost. It is not a global
+optimality or transpiler claim.
 
-## Multiplexed robustness companion
+## Multiplexed exact-compilation companion
 
 ```bash
 python qbp_optimized_resource_ledger.py --nmin 2 --nmax 10
@@ -148,62 +148,79 @@ python qbp_optimized_resource_ledger.py --nmin 2 --nmax 10 --format csv
 python qbp_optimized_resource_ledger.py --nmin 2 --nmax 10 --format json
 ```
 
-The numeric CNOT columns are exact upper bounds for the uniformly controlled
-`R_y` cores in one state-equivalent recompilation. The all-zero suffix
-predicates are reported separately through their number and control widths
-because their finite elementary-gate count depends on the chosen
-multi-controlled-X decomposition. The exact clean-flag factorization is covered
-by `test_optimized_compiler.py`.
+The numeric CNOT columns are upper bounds for uniformly controlled `R_y` cores.
+The all-zero suffix predicates are reported through their number and control
+widths because the finite elementary-gate constant depends on the chosen
+multi-controlled-X decomposition. `test_optimized_compiler.py` checks the exact
+clean-flag factorization.
 
-This companion verifies estimator and asymptotic robustness outside the
-direct-angle compiler. It generally does not preserve one Hopf coordinate as
-one elementary physical multiplexor angle.
+## Output-geometry checks
+
+The analytic suite contains an explicit two-qubit Hopf separation witness. It
+constructs a small incoming metric weight, a normalized Hopf direction, and the
+Householder reflection swapping the state with that direction. The test verifies
+that the raw coordinate gradient is below a chosen tolerance while the
+normalized-frame coefficient remains exactly `2`.
+
+The same test module checks:
+
+- complete active-frame record norm `2*sqrt(M_+)`;
+- natural-coordinate bound `2/sqrt(g_min)`;
+- damped bound `1/sqrt(tau)`;
+- ambient phase block `diag(p)`;
+- projective block `diag(p)-p p^T`;
+- positive semidefiniteness, support rank, and the common-phase null vector.
+
+See [Statistical accuracy](docs/STATISTICAL_ACCURACY.md) for interpretation.
 
 ## Determinism and tolerances
 
 - Parameter arrays and observables use fixed seeds in `qbp_validation/cases.py`.
 - Circuit tests use exact statevectors and complete probability distributions.
 - The principal circuit/reference tolerance is `3e-12`.
-- No Monte Carlo sampling occurs in the central validation suite or figure generation.
+- No Monte Carlo sampling occurs in the central suite or figure generation.
 - Qibo-independent native state-column checks run through `n = 5`.
 - General Qibo circuit checks use `n <= 4`.
-- Optimized clean-flag depth checks run through `n = 5`.
-- The complete optimized flagged frame is checked through `n = 4`.
-- The integrated `W_C` and `B_{2,C}` compilers are checked only at the
-  manuscript's explicit four-qubit instance.
+- Clean-flag depth checks run through `n = 5`.
+- The complete flagged frame is checked through `n = 4`.
+- Integrated `W_C` and `B_{2,C}` compilers are checked at the manuscript's
+  explicit four-qubit instance.
 
 Small residual differences across supported BLAS or NumPy builds may occur at
-floating-point roundoff scale. Values exceeding the test tolerances cause a
-failure.
+floating-point roundoff scale. Values exceeding the test tolerances fail.
 
 ## Interpretation of the contracts
 
-- Replacing one forward preparation by another with the same initialized state
-  column leaves the complete later output distribution unchanged.
-- Replacing the separated complex frame by the addressed `R_C` compiler changes
-  only a common phase and leaves the global record distribution unchanged.
-- Replacing the separated depth-`2` complex checkpoint suffix by `B_{2,C}`
-  preserves checkpoint correlators and decoded gradient means. It need not
-  preserve the complete output distribution.
-- Replacing the direct addressed frame by the optimized flagged factorization
-  is valid when the reusable flag enters and leaves in `|0>`. No equality is
-  claimed on an arbitrary initial flag state.
-- None of these logical equalities alone implies preservation of the
-  direct-angle coordinate-to-control contract. Compiler scope and estimator
-  correctness must be reported separately.
+- A forward replacement with the same initialized state column preserves the
+  later output distribution.
+- The addressed `R_C` frame differs from the separated complex frame only by a
+  common phase in the validated four-qubit fixture.
+- The integrated complex checkpoint preserves active-interface correlators and
+  decoded means, not necessarily the complete distribution.
+- The flagged frame factorization is valid when the reusable flag enters and
+  leaves in `|0>`.
+- None of these equalities alone preserves the direct-angle
+  coordinate-to-control contract.
 
 ## Continuous integration
 
 `.github/workflows/validation.yml` runs:
 
 1. the Qibo-free analytic suite; and
-2. the complete Qibo exact-logical suite on the pinned optional dependency.
+2. the complete Qibo exact-logical suite.
 
-A green workflow therefore checks both the Appendix-B robustness analysis and
-the pre-existing direct-angle circuit contracts.
+A green workflow checks the manuscript-level circuit contracts, Appendix-B
+compiler analysis, and the output-geometry supporting results.
+
+## Method-comparison boundary
+
+[Method comparison](docs/METHOD_COMPARISON.md) is a documentation comparison,
+not an executable benchmark. It organizes methods by returned object, access
+model, structure, reuse, and error/resource statement. The repository does not
+claim that methods with different interfaces are directly ordered.
 
 ## Clean generated outputs
 
-The repository tracks only the two small PNG summaries used by `README.md`.
-PDF/SVG variants and local logs belong in ignored directories such as
+The repository tracks only the two PNG summaries used by `README.md`. PDF/SVG
+variants and local logs belong in ignored directories such as
 `generated_figures/` or `validation_logs/`.
