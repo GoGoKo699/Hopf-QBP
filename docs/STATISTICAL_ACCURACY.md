@@ -1,11 +1,11 @@
 # Statistical accuracy, output geometry, and conditioning
 
 The manuscript's primary finite-shot target is simultaneous absolute accuracy
-of the **raw Hopf-coordinate gradient**. Appendix B also gives the complete
-magnitude-vector `l_2` bound, conditional relative and directional guarantees,
-and magnitude-block natural-gradient conditioning. This page makes the output
-objects, metric conventions, separation examples, and executable test map
-explicit.
+of the **raw Hopf-coordinate gradient**. Its main text distinguishes coordinate
+and geometric outputs, adopts the ambient-sphere phase convention, and gives the
+reflection-sum extension; Appendix B supplies the complete-vector, conditional
+directional, separation, conditioning, and exact-recompilation derivations.
+This page retains the full output hierarchy and executable test map.
 
 ## 1. Raw coordinatewise target
 
@@ -120,8 +120,8 @@ so `-v_hat` is a descent direction. The normalized-direction error obeys
 \frac{2\xi}{\mathcal G}.
 ```
 
-Choosing `xi = rho*||v||_2` gives relative `l_2` error at most `rho`, direction
-error at most `2*rho`, and the sufficient magnitude-stream count
+Choosing `xi = rho*||v||_2` gives relative `l_2` error at most `rho`, direction error
+at most `2*rho`, and the sufficient magnitude-stream count
 
 ```math
 S_{\mathrm{rel}}
@@ -138,8 +138,8 @@ hold at a stationary point.
 
 Shared readout removes the coordinate-count penalty at fixed absolute accuracy;
 it does not remove signal-to-noise conditioning when the complete gradient norm
-is small. If `||v||_2` is exponentially small, the displayed relative-error
-count is correspondingly large.
+is small. If `||v||_2` is exponentially small, the displayed relative-error count is
+correspondingly large.
 
 ## 4. Raw coordinate accuracy does not imply frame accuracy
 
@@ -151,60 +151,52 @@ For an active magnitude coordinate `k`,
 \sqrt{g_{k,k}}\,|e_k\rangle.
 ```
 
-Define
+Following the paper, define the rescaled outputs
 
 ```math
-q_k
+\chi_k
 =
-\partial_{\theta_k}E_O,
-\qquad
-c_k
-=
-\frac{q_k}{\sqrt{g_{k,k}}},
+\frac{\partial_{\theta_k}E_O}{\sqrt{g_{k,k}}},
 \qquad
 \nu_k
 =
-\frac{q_k}{g_{k,k}}.
+\frac{\partial_{\theta_k}E_O}{g_{k,k}}.
 ```
 
-These are respectively the raw coordinate derivative, normalized-frame
-coefficient, and inverse-metric coordinate.
-
-Choose `0 < g[k,k] < (epsilon/2)**2` and define the Householder reflection
+These are the normalized-frame and inverse-metric coordinates, respectively.
+For an active real coordinate, choose
+`0 < g^R[k,k] < (epsilon/2)**2` and define
 
 ```math
 O_k
 =
 I-
-\bigl(|\psi\rangle-|e_k\rangle\bigr)
-\bigl(\langle\psi|-\langle e_k|\bigr).
+\bigl(|\psi^R\rangle-|e_k^R\rangle\bigr)
+\bigl(\langle\psi^R|-\langle e_k^R\\bigr).
 ```
 
-Because `|psi>` and `|e_k>` are orthonormal,
+Orthonormality gives
 
 ```math
 O_k^\dagger=O_k,
 \qquad
 O_k^2=I,
 \qquad
-O_k|\psi\rangle=|e_k\rangle.
+O_k|\psi^R\rangle=|e_k^R\rangle,
 ```
 
-Therefore
+and therefore
 
 ```math
-q_k
+\partial_{\theta_j}E_{O_k}
 =
-2\sqrt{g_{k,k}}
-<
-\varepsilon,
+2\sqrt{g^R_{k,k}}\,\delta_{jk},
 \qquad
-c_k=2,
+\chi_k=2.
 ```
 
-and all other normalized-frame coefficients vanish. The zero estimate is thus
-`epsilon`-accurate in raw coordinate `l_infinity` error while its
-normalized-frame error is `2`.
+The complete zero estimate is thus `epsilon`-accurate in raw coordinate
+`l_infinity` error while its normalized-frame error is exactly `2`.
 
 This is an exact separation of output tasks, not a defect in the raw-coordinate
 theorem. Converting raw-coordinate guarantees into normalized-frame or natural
@@ -291,11 +283,11 @@ p_\ell=|x_\ell|^2,
 \sum_\ell p_\ell=1.
 ```
 
-The complex Hopf chart follows the ambient round-sphere convention of the first
+The complex Hopf chart follows the ambient round-sphere convention used in the
 paper. Its phase block is
 
 ```math
-G_{\mathrm{ph}}^{\mathrm{sphere}}
+G_{\mathrm{ph}}^{\mathrm{sph}}
 =
 \mathrm{diag}(p).
 ```
@@ -319,9 +311,8 @@ G_{\mathrm{ph}}^{\mathrm{FS}}\mathbf 1=0.
 ```
 
 If `s` leaves have positive probability, the projective block has rank `s-1`;
-zero-probability leaves add further null coordinate directions. This projective
-quotient is a valid alternative geometry, but it is not the metric convention
-used by Hopf-QBP.
+zero-probability leaves add further null coordinate directions. This projective quotient is included only to distinguish the alternative
+geometry; it is not used by Hopf-QBP.
 
 ## 8. Uniform-phase objective invariance
 
