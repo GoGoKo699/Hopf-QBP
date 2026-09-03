@@ -1,102 +1,96 @@
-# Observable extensions and analytic readout sensitivity
+# Reflection-sum objectives and analytic readout sensitivity
 
-The validated core contract uses one known Hermitian unitary `O`, exact
-phase-calibrated controlled access to `O`, and exact-logical circuit execution.
-This page gives two portable extensions that do not alter that contract:
-reflection-sum term sampling and an analytic independent-readout-error model.
-It is not a hardware benchmark.
+The paper's validated core uses one known Hermitian-unitary objective, exact
+phase-calibrated controlled access, and exact-logical circuit execution. This
+page expands the main-text reflection-sum formula and records an independent
+symmetric-readout model. It is not a hardware benchmark.
 
 ## 1. Core controlled-reflection contract
 
 The objective is
 
 ```math
-E_O(\theta)
+E_O(\boldsymbol\theta)
 =
-\langle\psi(\theta)|O|\psi(\theta)\rangle,
-```
-
-with
-
-```math
+\langle\psi(\boldsymbol\theta)|O|\psi(\boldsymbol\theta)\rangle,
+\qquad
 O^\dagger=O,
 \qquad
 O^2=I.
 ```
 
 The controlled branch must have a known relative phase. If the implemented
-branch is `exp(i gamma) O`, the measured interference quadrature is rotated by
+branch is `exp(i gamma) O`, the measured interference components are rotated by
 `gamma`. A known phase can be compensated; an unknown phase invalidates the
-direct decoder.
+fixed decoder. A classical description of `O`, or uncontrolled access to it,
+does not itself supply this coherent interface.
 
-The repository does not claim to compile an arbitrary nonunitary observable,
-block encoding, or application-specific binary test into this interface.
+## 2. Reflection-sum objectives
 
-## 2. Reflection-sum Hamiltonians
-
-Suppose
+Let
 
 ```math
 H
 =
-\sum_{\alpha=1}^{L}c_\alpha O_\alpha,
+\sum_{\alpha=1}^{L}a_\alpha O_\alpha,
 \qquad
 O_\alpha^\dagger=O_\alpha,
 \qquad
 O_\alpha^2=I,
+\qquad
+\Lambda=\sum_\alpha|a_\alpha|>0.
 ```
 
-with real coefficients. Define
-
-```math
-\Lambda
-=
-\sum_{\alpha=1}^{L}|c_\alpha|.
-```
-
-For `Lambda > 0`, sample term `alpha` with
+Suppose every term has the calibrated controlled access above. Sample term
+`alpha` with
 
 ```math
 p_\alpha
 =
-\frac{|c_\alpha|}{\Lambda}.
+\frac{|a_\alpha|}{\Lambda}.
 ```
 
-If `Z^(alpha)` is any unbiased Hopf-QBP record for `O_alpha`, output
+If `Z^(alpha)` is any unbiased Hopf-QBP record for `O_alpha`, return
 
 ```math
 \widetilde Z
 =
-\Lambda\,\mathrm{sgn}(c_\alpha)Z^{(\alpha)}.
+\Lambda\,\mathrm{sgn}(a_\alpha)Z^{(\alpha)}.
 ```
 
 Then
 
 ```math
+\begin{aligned}
 \mathbb E[\widetilde Z]
-=
-\sum_\alpha c_\alpha\mathbb E[Z^{(\alpha)}]
+&=
+\sum_\alpha
+\frac{|a_\alpha|}{\Lambda}
+\Lambda\,\mathrm{sgn}(a_\alpha)
+\mathbb E[Z^{(\alpha)}]\\
+&=
+\sum_\alpha a_\alpha\nabla E_{O_\alpha}
 =
 \nabla\langle H\rangle.
+\end{aligned}
 ```
 
-A norm-`2` depth or phase record becomes a norm-at-most-`2 Lambda` sampled
-record. The sufficient execution count therefore gains a factor
-`Lambda**2`. For the complete concatenated magnitude record, the norm bound is
-`2 Lambda sqrt(n)`.
+A base norm bound `B` becomes `Lambda*B`, so the corresponding sufficient
+execution count gains a factor `Lambda**2`. For a norm-`2` depth or phase
+record the sampled norm is at most `2*Lambda`; for the concatenated magnitude
+record it is at most `2*Lambda*sqrt(n)`.
 
-The expected controlled-operation cost of one term-sampled record is
+The expected controlled-term charge of one sampled record is
 
 ```math
 \sum_\alpha p_\alpha C(\mathrm{ctrl}(O_\alpha)).
 ```
 
-A matched scalar comparator can use the same term sampling and controlled-term
-cost. This is a portable upper bound, not a claim that independent term
-sampling is optimal for every Hamiltonian. Commuting-group measurements,
-classical shadows, coefficient-aware shot allocation, or application-specific
-block encodings may provide better scalar and gradient interfaces and must be
-compared under their own access assumptions.
+A matched scalar comparator uses the same term distribution and expected
+controlled-term charge. This is a portable upper bound, not a claim that term
+sampling is optimal for every Hamiltonian. Commuting groups, shadow methods,
+coefficient-aware allocation, or application-specific block encodings require
+their own access and normalization models.
 
 ## 3. Global parity under independent readout flips
 
@@ -107,8 +101,8 @@ For internal node `j`, the global magnitude sign is
 ```
 
 Let the interference-ancilla bit flip independently with probability `p_c` and
-system bit `k` flip with probability `p_k`. Conditional on the ideal outcome,
-the observed sign is attenuated by
+system bit `k` with probability `p_k`. Conditional on the ideal outcome, the
+mean sign is attenuated by
 
 ```math
 \kappa_j
@@ -117,10 +111,8 @@ the observed sign is attenuated by
 \prod_{k:\lambda(j)_k=1}(1-2p_k).
 ```
 
-Only marker-supported system bits enter this product. The record is not
-necessarily a parity of the entire measured string.
-
-For uniform error probability `p`, with node `j = 2**d + r`,
+Only marker-supported system bits enter this product. For a uniform error rate
+`p` and node `j=2**d+r`,
 
 ```math
 \kappa_j
@@ -130,26 +122,20 @@ For uniform error probability `p`, with node `j = 2**d + r`,
 (1-2p)^{2+\mathrm{wt}(r)}.
 ```
 
-The largest sign-parity weight at depth `d` is therefore `d+2`, including the
+Thus the largest sign-parity weight at depth `d` is `d+2`, including the
 interference ancilla.
 
 ## 4. Checkpoint and direct-phase records
 
-The checkpoint sign is
-
-```math
-(-1)^{b_c+b_t}.
-```
-
-Independent ancilla and target readout errors attenuate it by
+The checkpoint sign is `(-1)^(b_c+b_t)`. Independent branch and target errors
+attenuate it by
 
 ```math
 (1-2p_c)(1-2p_t).
 ```
 
-Errors in the measured prefix do not add to this sign parity; instead they mix
-the one-hot address bins through the classical independent-bit-flip channel.
-For bit error probabilities `p_1, ..., p_d`, the bin channel is
+Prefix errors do not add to the sign parity; they mix the one-hot address bins
+through
 
 ```math
 T
@@ -161,52 +147,43 @@ p_k & 1-p_k
 \end{pmatrix}.
 ```
 
-The direct complex phase record behaves similarly:
+For the direct complex phase record, the branch error attenuates the sign by
+`1-2p_c`, while system `Z`-readout errors mix leaf bins through the analogous
+independent-bit-flip channel.
 
-- the ancilla error attenuates the sign by `1-2p_c`;
-- system `Z`-readout errors mix the leaf bins through the corresponding
-  independent-bit-flip channel.
+If calibrated transfer factors are nonsingular, one may invert or regularize
+these classical channels. Such correction amplifies variance and is not part of
+the exact-logical theorem.
 
-If the error rates are calibrated and the transfer factors are nonsingular,
-one may invert or regularize these classical channels. Such correction
-amplifies variance and is not included in the exact-logical theorem.
+## 5. Boundary of this analysis
 
-## 5. What this analysis does and does not establish
+The formulas above establish unbiased reflection-sum sampling and exact mean
+transformations under independent symmetric readout flips. They do not model:
 
-It establishes the exact mean transformation under independent symmetric
-readout flips. It does not model:
-
-- coherent gate errors;
+- coherent state-preparation, frame, or controlled-reflection errors;
 - two-qubit depolarizing noise;
 - correlated readout;
-- device connectivity and SWAP insertion;
-- controlled-observable synthesis noise;
-- error mitigation; or
+- device routing and SWAP insertion;
+- approximate synthesis;
+- mitigation; or
 - optimizer behavior.
 
-A meaningful comparison of global, checkpoint, separate-tangent, and
-parameter-shift methods under those effects must fix a device topology,
-transpiler, observable compiler, noise channel, mitigation method, parameter
-ensemble, shot allocation, and optimizer. Those choices define a separate
-hardware study rather than a validation requirement for the present
-exact-logical interface.
+A hardware comparison must fix the topology, transpiler, controlled-objective
+compiler, noise channel, mitigation method, parameter ensemble, shot
+allocation, and requested output norm.
 
 ## 6. Executable support
 
-The reflection-sum and readout transfer formulas are implemented in:
+The formulas are implemented and tested in:
 
 ```text
 qbp_validation/supporting_analysis.py
 qbp_validation/tests/test_supporting_analysis.py
 ```
 
-The tests verify:
-
-- unbiased one-norm term sampling;
-- the `Lambda` record-norm factor;
-- marker-supported global attenuation;
-- checkpoint and direct-phase sign attenuation; and
-- stochasticity of the independent bin-mixing channel.
+The tests verify coefficient-one-norm probabilities, unbiased scaled records,
+the `Lambda` norm factor, marker-supported parity attenuation, checkpoint and
+phase attenuation, and stochasticity of the bin-mixing channel.
 
 Run:
 

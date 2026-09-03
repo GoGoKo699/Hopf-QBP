@@ -47,12 +47,32 @@ analytic deductions.
 | Global coordinatewise execution scaling is `O((1 + log(n/delta))/epsilon^2)` | Paper-level analytic deduction | Record definitions and norm tests | Norm and decoder tests above | Absolute raw-coordinate error. |
 | The concatenated magnitude record has norm `2*sqrt(n)` and fixed `l_2` accuracy costs `O(n/epsilon_2^2)` up to confidence | Appendix-B analytic result with executable support | `supporting_analysis.py`, `STATISTICAL_ACCURACY.md` | `test_supporting_analysis.py` | Raw magnitude vector; the complex phase stream is separate. |
 | Relative/directional control and magnitude-block natural-gradient conditioning follow from the `l_2` bound and metric factors | Appendix-B conditional result | `supporting_analysis.py`, `STATISTICAL_ACCURACY.md` | `test_supporting_analysis.py` | Requires a nonzero-gradient margin; damping is an optimizer choice. |
-| Raw-coordinate accuracy does not imply normalized-frame accuracy without metric conditioning | Exact supporting separation | `swap_reflection`, `STATISTICAL_ACCURACY.md` | `test_coordinate_frame_separation_with_hopf_split` | Existence result; no efficient compiler for the witness reflection is claimed. |
-| Ambient-sphere and projective phase metrics are distinct conventions | Supporting geometric clarification | `ambient_phase_metric`, `projective_phase_metric` | `test_phase_metric_conventions_and_support_rank` | Hopf-QBP uses the ambient-sphere convention. |
+| Raw-coordinate accuracy does not imply normalized-frame accuracy without metric conditioning | Main-text interpretation with Appendix-B proof and exact executable support | `swap_reflection`, `STATISTICAL_ACCURACY.md` | `test_coordinate_frame_separation_with_hopf_split` | Real-chart existence result; no efficient compiler for the witness reflection is claimed. |
+| The ambient-sphere phase metric is the adopted convention; the projective block is an unused comparison | Main-text convention with Appendix-B derivation and executable support | `ambient_phase_metric`, `projective_phase_metric` | `test_phase_metric_conventions_and_support_rank` | The projective quotient remains low-profile and is not used by the theorem. |
 | The magnitude output objects obey the stated sufficient norm hierarchy | Supporting analytic result | norm-bound helpers, `STATISTICAL_ACCURACY.md` | `test_magnitude_norm_hierarchy` | Upper bounds for the displayed rescaling decoder, not converses. |
 | The direct-angle assigned CNOT ledger matches the manuscript's compiler model | **Paper-level resource claim** | `conventions.py`, `native_schedule.py`, `qbp_resource_ledger.py` | `test_resource_ledger.py` | Finite assigned counts, not global optimality or routing. |
-| The same forward and frame objects admit one `O(N)` multiplexed realization | **Appendix-B ideal-model compiler result** | `optimized_compiler.py`, `qbp_optimized_resource_ledger.py` | `test_optimized_compiler.py` | One reusable clean flag; elementary angles generally recombine Hopf coordinates. |
-| A reflection sum can be estimated by coefficient-one-norm term sampling | Supporting algebraic extension | `supporting_analysis.py` | `test_supporting_analysis.py` | Portable upper bound, not an optimal Hamiltonian strategy. |
+| One exact multiplexed realization preserves the estimator and the `O(N)` matched forward/frame scaling | **Appendix-B exact compiler result with detailed executable support** | `optimized_compiler.py`, `qbp_optimized_resource_ledger.py` | `test_optimized_compiler.py` | One reusable clean flag; elementary angles generally recombine Hopf coordinates. |
+| A reflection sum admits unbiased coefficient-one-norm term sampling with a `Lambda**2` sufficient-shot factor | Main-text extension with executable support | `supporting_analysis.py`, `OBSERVABLES_AND_READOUT.md` | `test_supporting_analysis.py` | Portable upper bound, not an optimal Hamiltonian strategy. |
+| Independent symmetric readout errors transform records by attenuation and bin mixing | Supporting analytic readout model | `supporting_analysis.py` | `test_supporting_analysis.py` | Readout-only; no coherent gate-noise or mitigation claim. |
+
+## Scope relative to the first paper
+
+The first Hopf paper supplie²È="27hase. |
+| The global complex magnitude circuit decodes all magnitude derivatives | Paper-level exact complete-distribution check | `circuits.py`, `decoders.py`, `reference.py` | `test_complex_magnitude.py` | General implementation uses separated phase/frame blocks. |
+| The direct complex phase circuit decodes all leaf-phase derivatives | Paper-level exact signed one-hot check | `circuits.py`, `decoders.py`, `reference.py` | `test_complex_phase.py` | Expectation objectives are invariant under a uniform leaf-phase shift. |
+| A checkpoint circuit returns every derivative at a selected depth | Paper-level exact depth-block check | `circuits.py`, `decoders.py`, `reference.py` | `test_checkpoints.py` | Each selected depth uses its own circuit stream. |
+| Integrated complex checkpoint substitution is valid on the active interface | Paper-level projected-matrix and decoded-mean checks | reference.py`, `circuits.py`, `conventions.py` | `test_operator_contracts.py`, `test_four_qubit_example.py` | It need not preserve the full unitary or complete distribution. |
+| Singular magnitude and zero-amplitude phase coordinates are handled without division | Paper-level exact singular checks | reference.py`, `circuits.py`, `decoders.py` | `test_singular_cases.py`, `test_complex_phase.py` | The derivative and ordinary record vanish when the differential vanishes. |
+| Every single-depth global, checkpoint, and direct-phase record has norm 2 | Paper-level algebraic record checks | `decoders.py`, `reference.py` | `test_decoders.py`, `test_checkpoints.py`, `test_complex_phase.py` | Finite premise of the concentration argument. |
+| Global coordinatewise execution scaling is O((1 + log(n/delta))/epsilon^2) | Paper-level analytic deduction | Record definitions and norm tests | Norm and decoder tests above | Absolute raw-coordinate error. |
+| The concatenated magnitude record has norm 2*sqrt(n) and fixed l_2 accuracy costs O(n/epsilon_2^2) up to confidence | Appendix-B analytic result with executable support | `supporting_analysis.py`, `SHATISTICAL_ACCURACY.md` | `test_supporting_analysis.py` | Raw magnitude vector; the complex phase stream is separate. |
+| Relative/directional control and magnitude-block natural-gradient conditioning follow from the l_2 bound and metric factors | Appendix-B conditional result | `supporting_analysis.py`, `STATISTICAL_ACCURACY.md` | `test_supporting_analysis.py` | Requires a nonzero-gradient margin; damping is an optimizer choice. |
+| Raw-coordinate accuracy does not imply normalized-frame accuracy without metric conditioning | Main-text interpretation with Appendix-B proof and exact executable support | `swap_reflection`, `STATISTICAL_ACCURACY.md` | `test_coordinate_frame_separation_with_hopf_split` | Real-chart existence result; no efficient compiler for the witness reflection is claimed. |
+| The ambient-sphere phase metric is the adopted convention; the projective block is an unused comparison | Main-text convention with Appendix-B derivation and executable support | `ambient_phase_metric`, `projective_phase_metric` | `test_phase_metric_conventions_and_support_rank` | The projective quotient remains low-profile and is not used by the theorem. |
+| The magnitude output objects obey the stated sufficient norm hierarchy | Supporting analytic result | norm-bound helpers, `STATISTICAL_ACCURACY.md` | `test_magnitude_norm_hierarchy` | Upper bounds for the displayed rescaling decoder, not converses. |
+| The direct-angle assigned CNOT ledger matches the manuscript's compiler model | Paper-level resource claim | `conventions.py`, `native_schedule.py`, `qbp_resource_ledger.py` | `test_resource_ledger.py` | Finite assigned counts, not global optimality or routing. |
+| One exact multiplexed realization preserves the estimator and the O(N) matched forward/frame scaling | Appendix-B exact compiler result with detailed executable support | `optimized_compiler.py`, `qbp_optimized_resource_ledger.py` | `test_optimized_compiler.py` | One reusable clean flag; elementary angles generally recombine Hopf coordinates. |
+| A reflection sum admits unbiased coefficient-one-norm term sampling with a Lambda**2 sufficient-shot factor | Main-text extension with executable support | `supporting_analysis.py`, `OBSERVABLES_AND_READOUT.md` | `test_supporting_analysis.py` | Portable upper bound, not an optimal Hamiltonian strategy. |
 | Independent symmetric readout errors transform records by attenuation and bin mixing | Supporting analytic readout model | `supporting_analysis.py` | `test_supporting_analysis.py` | Readout-only; no coherent gate-noise or mitigation claim. |
 
 ## Scope relative to the first paper
@@ -66,7 +86,7 @@ The present project supplies the computationally addressed differential frame,
 one magnitude record shared across coordinates and depths, Walsh decoding, the
 direct complete phase record, complete-gradient concentration, checkpoint
 suffixes and active-interface contracts, and the supporting compiler,
-statistical, observable, and readout analyses listed above.
+statistical, observable, readout, and method-positioning analyses listed above.
 
 ## Claim 1: inherited conventions and forward states
 
@@ -74,8 +94,7 @@ For `N = 2**n`:
 
 - the real magnitude block has length `N - 1`;
 - the complex phase block has length `N`;
-- the combined complex order is
-  `(theta_1, ..., theta_{N-1}, theta_N, ..., theta_{2N-1})`;
+- the combined complex order is `(theta_1, ..., theta_{N-1}, theta_N, ..., theta_{2N-1})`;
 - native `HopfReal` and `HopfComplex` schedules reproduce the recursive state.
 
 Evidence: `native_schedule.py`, `reference.py`, `test_native_schedule.py`, and
@@ -209,13 +228,13 @@ but its scale changes:
 ```math
 q_j=\partial_{\theta_j}E_O,
 \qquad
-c_j=\frac{q_j}{\sqrt{g_{j,j}}},
+\chi_j=\frac{q_j}{\sqrt{g_{j,j}}},
 \qquad
 \nu_j=\frac{q_j}{g_{j,j}}.
 ```
 
-The exact swap-reflection example shows that `q_k < epsilon` can coexist with
-`c_k = 2` when `g[k,k]` is small. Therefore raw-coordinate accuracy does not
+The exact swap-reflection example shows that `|partial_{theta_k} E| < epsilon` can coexist with
+`chi_k = 2` when `g[k,k]` is small. Therefore raw-coordinate accuracy does not
 imply normalized-frame accuracy without metric conditioning.
 
 The complete raw magnitude record has norm `2*sqrt(n)`, whereas the complete
@@ -229,7 +248,7 @@ its boundaries.
 For leaf probabilities `p`, Hopf-QBP follows the ambient-sphere phase block
 
 ```math
-G_{\mathrm{ph}}^{\mathrm{sphere}}=\mathrm{diag}(p).
+G_{\mathrm{ph}}^{\mathrm{sph}}=\mathrm{diag}(p).
 ```
 
 The optional projective convention is
@@ -260,13 +279,13 @@ model and does not establish routed or noisy-device performance.
 For
 
 ```math
-H=\sum_\alpha c_\alpha O_\alpha,
+H=\sum_\alpha a_\alpha O_\alpha,
 \qquad
-\Lambda=\sum_\alpha|c_\alpha|,
+\Lambda=\sum_\alpha|a_\alpha|,
 ```
 
-sampling term `alpha` with probability `|c_alpha|/Lambda` and scaling its QBP
-record by `Lambda*sign(c_alpha)` is unbiased. Record norms gain a factor
+sampling term `alpha` with probability `|a_alpha|/Lambda` and scaling its QBP
+record by `Lambda*sign(a_alpha)` is unbiased. Record norms gain a factor
 `Lambda`, and sufficient shot counts gain `Lambda**2`.
 
 Under independent symmetric readout flips, global parities are attenuated by
