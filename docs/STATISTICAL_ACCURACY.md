@@ -172,7 +172,7 @@ O_k
 =
 I-
 \bigl(|\psi^R\rangle-|e_k^R\rangle\bigr)
-\bigl(\langle\psi^R|-\langle e_k^R\\bigr).
+\bigl(\langle\psi^R|-\langle e_k^R|\bigr).
 ```
 
 Orthonormality gives

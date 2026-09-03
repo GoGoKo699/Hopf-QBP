@@ -57,4 +57,276 @@ analytic deductions.
 
 ## Scope relative to the first paper
 
-The first Hopf paper supplie²È="25±}ÑÉ••}‘…Ñ…€°É•…±}™É…µ•}µ…ÑÉ¥á€°½µÁ±•á}™É…µ•}µ…ÑÉ¥á€°)Ñ•ÍÑ}É•…±}™É…µ”¹Áå€°…¹Ñ•ÍÑ}½µÁ±•á}™É…µ”¹Áå€¸((ŒŒ±…¥´€Ìè±½‰…°É•…°É…‘¥•¹Ğ()1½¥…°Í•ÅÕ•¹”è()Ñ•áĞ)™½Éİ…ÉÉ•…°!½Á˜ÁÉ•Á…É…Ñ¥½¸(´ø½¹ÑÉ½±±•É•™±•Ñ¥½¸(´ø]}H‘…•È(´ø…¹¥±±„µ`…¹ÍåÍÑ•´µ`µ•…ÍÕÉ•µ•¹Ğ)€()=¹”½ÕÑ½µ”½¹ÑÉ¥‰ÕÑ•Ì()µ…Ñ )i}©yíqµ…Ñ¡‰ˆIô(ô(ÉqÍÅÉÑíyíqµ…Ñ¡‰ˆIõ}í¨±©õô( ´Ä¥yíˆ­q±…µ‰‘„¡¨¥q‘½Ğåô)€()™½È•Ù•Éä¥¹Ñ•É¹…°¹½‘”¸Í¥¹•¡¥ÍÑ½É…´…¹½¹”]…±Í µ!…‘…µ…ÉÑÉ…¹Í™½É´)É•½Ù•È…±°µ…É­•ÈÁ…É¥Ñ¥•Ì¸Ù¥‘•¹”èÉ•…±}±½‰…±}µ•…ÍÕÉ•µ•¹Ñ}¥ÉÕ¥Ñ€°)‘•½‘•}‰…±…¹•‘}µ…¹¥ÑÕ‘•}É…‘¥•¹Ñ€°É•…±}É…‘¥•¹Ñ€°…¹)Ñ•ÍÑ}É•…±}±½‰…±}•ÍÑ¥µ…Ñ½È¹Áå€¸((ŒŒ±…¥´€Ğè±½‰…°½µÁ±•àÉ…‘¥•¹Ğ()Q¡”½µÁ±•àµ…¹¥ÑÕ‘”™…µ¥±äÕÍ•ÌÑ¡”Í•Á…É…Ñ•½É‘•È()Ñ•áĞ)U}¡¬€´ø}Á €´ø½¹ÑÉ½±±•É•™±•Ñ¥½¸€´ø}Á ‘…•È€´ø]}H‘…•È)€()…¹Ñ¡”‘¥É•ĞÁ¡…Í”™…µ¥±äÕÍ•Ì…¹¥±±„µe€…¹ÍåÍÑ•´µi€É•…‘½ÕĞ¸=¹”Á¡…Í”)½ÕÑ½µ”½¹ÑÉ¥‰ÕÑ•Ì()µ…Ñ )i}í8­q•±±õyíqµ…Ñ¡‰ˆ±qµ…Ñ¡ÉµíÁ¡õô(ô(È ´Ä¥y‰qµ…Ñ¡‰˜€Åmqİ¥‘•¡…Ñq•±°õq•±±t¸)€()Ù¥‘•¹”èÑ•ÍÑ}½µÁ±•á}µ…¹¥ÑÕ‘”¹Áå€…¹Ñ•ÍÑ}½µÁ±•á}Á¡…Í”¹Áå€°¥¹±Õ‘¥¹œ)é•É¼µ…µÁ±¥ÑÕ‘”±•…Ù•Ì…¹Õ¹¥™½É´µÁ¡…Í”½‰©•Ñ¥Ù”¥¹Ù…É¥…¹”¸((ŒŒ±…¥´€Ôè¡•­Á½¥¹Ñ•‘•ÁÑ É…‘¥•¹ÑÌ()Ğ‘•ÁÑ ‘€è()Ñ•áĞ)™½Éİ…É!½Á˜ÁÉ•Á…É…Ñ¥½¸(´ø½¹ÑÉ½±±•É•™±•Ñ¥½¸(´ø¥¹Ù•ÉÍ”ÍÕ™™¥à‰•±½Ü(´ø…¹¥±±„µd°Ñ…É•Ğµd°…Ñ¥Ù”µÁÉ•™¥àµhµ•…ÍÕÉ•µ•¹Ğ)€()Q¡”É•½É¥Ì()µ…Ñ )i}‘yíqµ…Ñ¡Éµí¡­õô(ô(´È ´Ä¥yí‰}Œ­‰}Ñõ•}íqİ¥‘•¡…ĞÉô¸)€()Ù¥‘•¹”èÉ•…±}¡•­Á½¥¹Ñ}µ•…ÍÕÉ•µ•¹Ñ}¥ÉÕ¥Ñ€°)½µÁ±•á}¡•­Á½¥¹Ñ}Í•Á…É…Ñ•‘}¥ÉÕ¥Ñ€°‘•½‘•}¡•­Á½¥¹Ñ}É…‘¥•¹Ñ€°…¹)Ñ•ÍÑ}¡•­Á½¥¹ÑÌ¹Áå€¸((ŒŒ±…¥´€ØèÍÕ‰ÍÑ¥ÑÕÑ¥½¸½¹ÑÉ…ÑÌ()Q¡”¥µÁ±•µ•¹Ñ…Ñ¥½¸‘¥ÍÑ¥¹Õ¥Í¡•Ì™Õ±°µÕ¹¥Ñ…Éä°¥¹¥Ñ¥…±¥é•µÍÑ…Ñ”µ½±Õµ¸°)…Ñ¥Ù”µ¥¹Ñ•É™…”°…¹±•…¸µ™±…œ•ÅÕ…±¥Ñä¸Ñ•ÍÑ}½Á•É…Ñ½É}½¹ÑÉ…ÑÌ¹Áå€¥¹±Õ‘•Ì)¹•…Ñ¥Ù”¡•­ÌÍ¡½İ¥¹œÑ¡…Ğİ•…­•È½¹ÑÉ…ÑÌ‘¼¹½Ğ¥µÁ±ä™Õ±°µÕ¹¥Ñ…Éä)•ÅÕ…±¥Ñä¸Ñ•ÍÑ}½ÁÑ¥µ¥é•‘}½µÁ¥±•È¹Áå€¡•­ÌÑ¡”±•…¸µ™±…œÍåÍÑ•´‰±½¬…¹)é•É¼™±…œ±•…­…”¸9½¹”½˜Ñ¡•Í”±½¥…°½¹ÑÉ…ÑÌ…±½¹”ÁÉ•Í•ÉÙ•Ì½¹”!½Á˜)½½É‘¥¹…Ñ”…Ì½¹”•±•µ•¹Ñ…ÉäÁ¡åÍ¥…°…¹±”¸((ŒŒ±…¥´€ÜèÍ¥¹Õ±…È½½É‘¥¹…Ñ•Ì…¹Á¡…Í”¥¹Ù…É¥…¹”()Q¡”•ÍÑ¥µ…Ñ½ÉÌ‘¼¹½Ğ‘¥Ù¥‘”‰ä„µ•ÑÉ¥Œ™…Ñ½È½È±•…˜…µÁ±¥ÑÕ‘”è((´é•É¼¥¹½µ¥¹œµ•ÑÉ¥Œ™…Ñ½È¥Ù•Ì„é•É¼µ…¹¥ÑÕ‘”‘•É¥Ù…Ñ¥Ù”…¹É•½Éì(´é•É¼±•…˜…µÁ±¥ÑÕ‘”¥Ù•Ì„é•É¼Á¡…Í”‘•É¥Ù…Ñ¥Ù”ì(´Õ¹ÕÍ•½µÁ±•Ñ¥½¸½±Õµ¹Ì‘¼¹½Ğ…±Ñ•ÈÑ¡”…Ñ¥Ù”‘¥™™•É•¹Ñ¥…°¥¹Ñ•É™…”¸()áÁ•Ñ…Ñ¥½¸½‰©•Ñ¥Ù•Ì…É”¥¹Ù…É¥…¹ĞÕ¹‘•È„Õ¹¥™½É´±•…˜µÁ¡…Í”Í¡¥™Ğ°Í¼Ñ¡”)•á…ĞÁ¡…Í”µÉ…‘¥•¹Ğ‰±½¬¥Ìé•É¼µÍÕ´¸ÁÉ½©•Ñ}½µµ½¹}Á¡…Í•}É…‘¥•¹Ñ€)½ÁÑ¥½¹…±±äÉ•µ½Ù•Ì™¥¹¥Ñ”µÍ¡½Ğ½µµ½¸µÁ¡…Í”¹½¥Í”İ¥Ñ¡½ÕĞ¥¹É•…Í¥¹œÕ±¥‘•…¸)•ÉÉ½È¸Q¡¥Ì½‰©•Ñ¥Ù”µ¥¹Ù…É¥…¹”ÍÑ…Ñ•µ•¹Ğ¥Ì‘¥ÍÑ¥¹Ğ™É½´Ñ¡”½ÁÑ¥½¹…°)ÁÉ½©•Ñ¥Ù”Õ‰¥¹¤´µMÑÕ‘äµ•ÑÉ¥Œ½¹Ù•¹Ñ¥½¸¸((ŒŒ±…¥´€àè½ÕÑÁÕĞ¹½ÉµÌ…¹•½µ•ÑÉ¥Œ½¹‘¥Ñ¥½¹¥¹œ()Q¡”µ…¹ÕÍÉ¥ÁĞÑ¡•½É•´½¹ÑÉ½±ÌÑ¡”É…Ü!½Á˜µ½½É‘¥¹…Ñ”É…‘¥•¹Ğ¸Q¡”Í…µ”)µ…¹¥ÑÕ‘”É•½É…¸‰”É•Í…±•¥¹Ñ¼¹½Éµ…±¥é•µ™É…µ”½È¹…ÑÕÉ…°½½É‘¥¹…Ñ•Ì°)‰ÕĞ¥ÑÌÍ…±”¡…¹•Ìè()µ…Ñ )Å}¨õqÁ…ÉÑ¥…±}íqÑ¡•Ñ…}©õ}<°)qÅÅÕ…)}¨õq™É…íÅ}©õíqÍÅÉÑí}í¨±©õõô°)qÅÅÕ…)q¹Õ}¨õq™É…íÅ}©õí}í¨±©õô¸)€()Q¡”•á…ĞÍİ…ÀµÉ•™±•Ñ¥½¸•á…µÁ±”Í¡½İÌÑ¡…ĞñÁ…ÉÑ¥…±}íÑ¡•Ñ…}­ôğ€ğ•ÁÍ¥±½¹€…¸½•á¥ÍĞİ¥Ñ )¡¥}¬€ô€É€İ¡•¸m¬±­u€¥ÌÍµ…±°¸Q¡•É•™½É”É…Üµ½½É‘¥¹…Ñ”…ÕÉ…ä‘½•Ì¹½Ğ)¥µÁ±ä¹½Éµ…±¥é•µ™É…µ”…ÕÉ…äİ¥Ñ¡½ÕĞµ•ÑÉ¥Œ½¹‘¥Ñ¥½¹¥¹œ¸()Q¡”½µÁ±•Ñ”É…Üµ…¹¥ÑÕ‘”É•½É¡…Ì¹½É´€È©ÍÅÉĞ¡¸¥€°İ¡•É•…ÌÑ¡”½µÁ±•Ñ”)…Ñ¥Ù”™É…µ”É•½É¡…Ì¹½É´€È©ÍÅÉĞ¡5|¬¥€¸¸Õ¹É•Õ±…É¥é•¹…ÑÕÉ…°µ½½É‘¥¹…Ñ”)É•½É¥Ì‰½Õ¹‘•‰ä€È½ÍÅÉĞ¡}µ¥¸¥€°…¹„‘…µÁ•É•½É‰ä€Ä½ÍÅÉĞ¡Ñ…Ô¥€¸)M•”mMÑ…Ñ¥ÍÑ¥…°…ÕÉ…åt¡MQQ%MQ%1}UId¹µ¤™½ÈÑ¡”™Õ±°¡¥•É…É¡ä…¹)¥ÑÌ‰½Õ¹‘…É¥•Ì¸((ŒŒ±…¥´€äè½µÁ±•àÁ¡…Í”µ•ÑÉ¥Œ½¹Ù•¹Ñ¥½¸()½È±•…˜ÁÉ½‰…‰¥±¥Ñ¥•ÌÁ€°!½Á˜µE	@™½±±½İÌÑ¡”…µ‰¥•¹ĞµÍÁ¡•É”Á¡…Í”‰±½¬()µ…Ñ )}íqµ…Ñ¡ÉµíÁ¡õõyíqµ…Ñ¡ÉµíÍÁ¡õôõqµ…Ñ¡Éµí‘¥…ô¡À¤¸)€()Q¡”½ÁÑ¥½¹…°ÁÉ½©•Ñ¥Ù”½¹Ù•¹Ñ¥½¸¥Ì()µ…Ñ )}íqµ…Ñ¡ÉµíÁ¡õõyíqµ…Ñ¡ÉµíMõô(ô)qµ…Ñ¡Éµí‘¥…ô¡À¤µÁÁyqµ…Ñ¡Í™íQô°)€()İ¥Ñ Ñ¡”Õ¹¥™½É´Á¡…Í”¥¸¥ÑÌ¹Õ±°ÍÁ…”…¹É…¹¬Ì´Å€½¸ÍÕÁÁ½ÉĞÍ¥é”Í€¸)Q¡”ÁÉ½©•Ñ¥Ù”ÅÕ½Ñ¥•¹Ğ¥Ì¹½ĞÕÍ•‰äÑ¡”µ…¹ÕÍÉ¥ÁĞÑ¡•½É•´¸((ŒŒ±…¥´€ÄÀè½µÁ¥±•È±•‘•ÉÌ()Q¡”‘¥É•Ğµ…¹±”±•‘•È¥Ì¥µÁ±•µ•¹Ñ•‰äÑ¡”½¹ÑÉ½±±•µ…Ñ”°‘•ÁÑ µ±…å•È°)™½Éİ…É°™É…µ”°…¹ÍÕ™™¥à¡…É”™Õ¹Ñ¥½¹Ì…¹¡•­•‰ä)Ñ•ÍÑ}É•Í½ÕÉ•}±•‘•È¹Áå€¸()Q¡”µÕ±Ñ¥Á±•á•½µÁ…¹¥½¸É½ÕÁÌ•… ™½Éİ…É‘•ÁÑ ¥¹Ñ¼„Õ¹¥™½Éµ±ä½¹ÑÉ½±±•)I}å€…¹™…Ñ½ÉÌ•… …‘‘É•ÍÍ•µ™É…µ”‘•ÁÑ Ñ¡É½Õ ½¹”±•…¸ÍÕ™™¥à™±…œ¸%ÑÌ)µÕ±Ñ¥Á±•á½Èµ½É”½Õ¹ÑÌ…É”8€´€É€…¹€Ì©8¼È€´€É€ìÁÉ•‘¥…Ñ”İ½É¬¥ÌÁ½±å¹½µ¥…°)¥¸¹€°Í¼‰½Ñ ½‰©•ÑÌ…É”<¡8¥€¸Q¡”É•ÍÕ±Ğ¥Ì•á…Ğ¥¸Ñ¡”¥‘•…°¥ÉÕ¥Ğ)µ½‘•°…¹‘½•Ì¹½Ğ•ÍÑ…‰±¥Í É½ÕÑ•½È¹½¥Íäµ‘•Ù¥”Á•É™½Éµ…¹”¸((ŒŒ±…¥´€ÄÄèÉ•™±•Ñ¥½¸ÍÕµÌ…¹É•…‘½ÕĞÑÉ…¹Í™•È()½È()µ…Ñ ) õqÍÕµ}q…±Á¡„…}q…±Á¡„=}q…±Á¡„°)qÅÅÕ…)q1…µ‰‘„õqÍÕµ}q…±Á¡…ñ…}q…±Á¡…ğ°)€()Í…µÁ±¥¹œÑ•É´…±Á¡…€İ¥Ñ ÁÉ½‰…‰¥±¥Ñäñ…}…±Á¡…ğ½1…µ‰‘…€…¹Í…±¥¹œ¥ÑÌE	@)É•½É‰ä1…µ‰‘„©Í¥¸¡…}…±Á¡„¥€¥ÌÕ¹‰¥…Í•¸I•½É¹½ÉµÌ…¥¸„™…Ñ½È)1…µ‰‘…€°…¹ÍÕ™™¥¥•¹ĞÍ¡½Ğ½Õ¹ÑÌ…¥¸1…µ‰‘„¨¨É€¸()U¹‘•È¥¹‘•Á•¹‘•¹ĞÍåµµ•ÑÉ¥ŒÉ•…‘½ÕĞ™±¥ÁÌ°±½‰…°Á…É¥Ñ¥•Ì…É”…ÑÑ•¹Õ…Ñ•‰ä)Ñ¡”‰É…¹ ‰¥Ğ…¹µ…É­•ÈµÍÕÁÁ½ÉÑ•ÍåÍÑ•´‰¥ÑÌ¸¡•­Á½¥¹Ğ…¹Á¡…Í”…‘‘É•ÍÌ)•ÉÉ½ÉÌµ¥à½¹”µ¡½Ğ‰¥¹ÌÑ¡É½Õ …¸¥¹‘•Á•¹‘•¹Ğ‰¥Ğµ™±¥À¡…¹¹•°¸M•”)m=‰Í•ÉÙ…‰±•Ì…¹É•…‘½ÕÑt¡=	MIY	1M}9}I=UP¹µ¤¸((ŒŒ5•Ñ¡½Á½Í¥Ñ¥½¹¥¹œ()m5•Ñ¡½½µÁ…É¥Í½¹t¡5Q!=}=5AI%M=8¹µ¤½µÁ…É•Ì!½Á˜µE	@İ¥Ñ Á…É…µ•Ñ•È)Í¡¥™Ğ°Ñ¡”•…É±¥•È¥¹‘•á•!½Á˜ÁÉ½Ñ½½°°ÍÑÉÕÑÕÉ•µ¥ÉÕ¥Ğµ•Ñ¡½‘Ì°)1¥”µ…±•‰É…¥Œ•ÍÑ¥µ…Ñ½ÉÌ°±…ÍÍ¥…°Í¡…‘½İÌ°Í¡…‘½ÜµÉ…‘¥•¹Ğµ•Ñ¡½‘Ì°)‘¥É•Ñ¥½¹…°•ÍÑ¥µ…Ñ½ÉÌ°…¹•¹•É…±¥é•!…‘…µ…ÉÑ•ÍÑÌ¸Q¡”½µÁ…É¥Í½¸¥Ì)½É…¹¥é•‰äÉ•ÑÕÉ¹•½‰©•Ğ°…•ÍÌµ½‘•°°ÍÑÉÕÑÕÉ…°ÁÉ•µ¥Í”°É•ÕÍ”)µ•¡…¹¥Í´°…¹•ÉÉ½È½É•Í½ÕÉ”ÍÑ…Ñ•µ•¹Ğì¥Ğ‘½•Ì¹½Ğ±…¥´Õ¹¥Ù•ÉÍ…°‘½µ¥¹…¹”¸((ŒŒY…±¥‘…Ñ¥½¸µ…ÑÉ¥à()ğQ•ÍĞğ5…¥¸É•ÍÁ½¹Í¥‰¥±¥Ñäğ)ğ´´µğ´´µğ)ğÑ•ÍÑ}½¹Ù•¹Ñ¥½¹Ì¹Áå€ğQÉ•”¥¹‘•á¥¹œ°‰…Í¥Ì½É‘•È°Á…É…µ•Ñ•ÈÍÁ±¥ÑÑ¥¹œ°µ…É­•ÉÌ°…¹¥¹Ñ•É™…•Ì¸ğ)ğÑ•ÍÑ}¹…Ñ¥Ù•}Í¡•‘Õ±”¹Áå€ğ9…Ñ¥Ù”É•…°…¹½µÁ±•àÍ¡•‘Õ±•Ì…¹ÍÑ…Ñ”½±Õµ¹Ì¸ğ)ğÑ•ÍÑ}¥ÉÕ¥Ñ}½¹Ù•¹Ñ¥½¹Ì¹Áå€ğE¥‰¼‰¥ĞÍ¥¹¥™¥…¹”…¹…¹¥±±„µe€Í¥¸¸ğ)ğÑ•ÍÑ}½Á•É…Ñ½É}½¹ÑÉ…ÑÌ¹Áå€ğÕ±°µÕ¹¥Ñ…Éä°ÍÑ…Ñ”µ½±Õµ¸°…¹…Ñ¥Ù”µ¥¹Ñ•É™…”‘¥ÍÑ¥¹Ñ¥½¹Ì¸ğ)ğÑ•ÍÑ}É•…±}™É…µ”¹Áå€ğ½µÁ±•Ñ”É•…°™É…µ”…¹¥¹Ù•ÉÍ”¸ğ)ğÑ•ÍÑ}½µÁ±•á}™É…µ”¹Áå€ğM•Á…É…Ñ•½µÁ±•à™É…µ”…¹™½ÕÈµÅÕ‰¥Ğ¥¹Ñ•É…Ñ•½µÁ¥±•È¸ğ)ğÑ•ÍÑ}É•…±}±½‰…±}•ÍÑ¥µ…Ñ½È¹Áå€ğ½µÁ±•Ñ”É•…°±½‰…°É…‘¥•¹Ğ…¹]…±Í ‘•½‘•È¸ğ)ğÑ•ÍÑ}½µÁ±•á}µ…¹¥ÑÕ‘”¹Áå€ğ½µÁ±•àµ…¹¥ÑÕ‘”É…‘¥•¹Ğ¸ğ)ğÑ•ÍÑ}½µÁ±•á}Á¡…Í”¹Áå€ğ¥É•ĞÁ¡…Í”É…‘¥•¹Ğ…¹é•É¼µ…µÁ±¥ÑÕ‘”±•…Ù•Ì¸ğ)ğÑ•ÍÑ}¡•­Á½¥¹ÑÌ¹Áå€ğI•…°…¹½µÁ±•àÍ•±•Ñ•µ‘•ÁÑ É…‘¥•¹ÑÌ¸ğ)ğÑ•ÍÑ}Í¥¹Õ±…É}…Í•Ì¹Áå€ğá…ĞÍ¥¹Õ±…Èµ½½É‘¥¹…Ñ”‰•¡…Ù¥½È¸ğ)ğÑ•ÍÑ}‘•½‘•ÉÌ¹Áå€ğ]…±Í °Í¥¹•¡¥ÍÑ½É…µÌ°µ…É¥¹…±¥é…Ñ¥½¸°…¹™¥á•µ¹½É´É•½É‘Ì¸ğ)ğÑ•ÍÑ}™½ÕÉ}ÅÕ‰¥Ñ}•á…µÁ±”¹Áå€ğáÁ±¥¥Ğ½µÁ¥±•È™¥áÑÕÉ•Ì…¹¥¹Ñ•É™…•Ì¸ğ)ğÑ•ÍÑ}É•Í½ÕÉ•}±•‘•È¹Áå€ğ¥É•Ğµ…¹±”…ÍÍ¥¹•¡…É•Ì¸ğ)ğÑ•ÍÑ}½ÁÑ¥µ¥é•‘}½µÁ¥±•È¹Áå€ğ±•…¸µ™±…œ™…Ñ½É¥é…Ñ¥½¸…¹µÕ±Ñ¥Á±•á½È±•‘•È¸ğ)ğÑ•ÍÑ}ÍÕÁÁ½ÉÑ¥¹}…¹…±åÍ¥Ì¹Áå€ğ±|É€°‘¥É•Ñ¥½¸°Í•Á…É…Ñ¥½¸°Á¡…Í”µ•ÑÉ¥Ì°¹½É´¡¥•É…É¡ä°É•™±•Ñ¥½¸ÍÕµÌ°…¹É•…‘½ÕĞ¸ğ((ŒŒ•±¥‰•É…Ñ”¹½¹±…¥µÌ()Q¡”ÁÉ½©•Ğ‘½•Ì¹½ĞÁÉ½Ù¥‘”•Ù¥‘•¹”™½È½ÁÑ¥µ¥é•ÈÅÕ…±¥Ñä°¡…É‘İ…É”)…‘Ù…¹Ñ…”°½¡•É•¹Ğµ¹½¥Í”É•Í¥±¥•¹”°É½ÕÑ¥¹œ•™™¥¥•¹ä°…ÁÁÉ½á¥µ…Ñ”)Íå¹Ñ¡•Í¥Ì°½È…É‰¥ÑÉ…Éä½‰Í•ÉÙ…‰±•Ì½ÕÑÍ¥‘”Ñ¡”ÍÑ…Ñ•É•™±•Ñ¥½¸µ…•ÍÌ)µ½‘•±Ì¸Q¡”¹½É´¡¥•É…É¡ä½¹Ñ…¥¹ÌÍÕ™™¥¥•¹ĞÕÁÁ•È‰½Õ¹‘Ì™½ÈÑ¡”‘¥ÍÁ±…å•)‘•½‘•È°¹½Ğ„µ…Ñ¡¥¹œ±½İ•È‰½Õ¹½ÈÕ¹¥Ù•ÉÍ…°½µÁ±•á¥Ñä‰½Õ¹‘…Éä¸(
+The first Hopf paper supplie²È="27hase. |
+| The global complex magnitude circuit decodes all magnitude derivatives | Paper-level exact complete-distribution check | `circuits.py`, `decoders.py`, `reference.py` | `test_complex_magnitude.py` | General implementation uses separated phase/frame blocks. |
+| The direct complex phase circuit decodes all leaf-phase derivatives | Paper-level exact signed one-hot check | `circuits.py`, `decoders.py`, `reference.py` | `test_complex_phase.py` | Expectation objectives are invariant under a uniform leaf-phase shift. |
+| A checkpoint circuit returns every derivative at a selected depth | Paper-level exact depth-block check | `circuits.py`, `decoders.py`, `reference.py` | `test_checkpoints.py` | Each selected depth uses its own circuit stream. |
+| Integrated complex checkpoint substitution is valid on the active interface | Paper-level projected-matrix and decoded-mean checks | reference.py`, `circuits.py`, `conventions.py` | `test_operator_contracts.py`, `test_four_qubit_example.py` | It need not preserve the full unitary or complete distribution. |
+| Singular magnitude and zero-amplitude phase coordinates are handled without division | Paper-level exact singular checks | reference.py`, `circuits.py`, `decoders.py` | `test_singular_cases.py`, `test_complex_phase.py` | The derivative and ordinary record vanish when the differential vanishes. |
+| Every single-depth global, checkpoint, and direct-phase record has norm 2 | Paper-level algebraic record checks | `decoders.py`, `reference.py` | `test_decoders.py`, `test_checkpoints.py`, `test_complex_phase.py` | Finite premise of the concentration argument. |
+| Global coordinatewise execution scaling is O((1 + log(n/delta))/epsilon^2) | Paper-level analytic deduction | Record definitions and norm tests | Norm and decoder tests above | Absolute raw-coordinate error. |
+| The concatenated magnitude record has norm 2*sqrt(n) and fixed l_2 accuracy costs O(n/epsilon_2^2) up to confidence | Appendix-B analytic result with executable support | `supporting_analysis.py`, `SHATISTICAL_ACCURACY.md` | `test_supporting_analysis.py` | Raw magnitude vector; the complex phase stream is separate. |
+| Relative/directional control and magnitude-block natural-gradient conditioning follow from the l_2 bound and metric factors | Appendix-B conditional result | `supporting_analysis.py`, `STATISTICAL_ACCURACY.md` | `test_supporting_analysis.py` | Requires a nonzero-gradient margin; damping is an optimizer choice. |
+| Raw-coordinate accuracy does not imply normalized-frame accuracy without metric conditioning | Main-text interpretation with Appendix-B proof and exact executable support | `swap_reflection`, `STATISTICAL_ACCURACY.md` | `test_coordinate_frame_separation_with_hopf_split` | Real-chart existence result; no efficient compiler for the witness reflection is claimed. |
+| The ambient-sphere phase metric is the adopted convention; the projective block is an unused comparison | Main-text convention with Appendix-B derivation and executable support | `ambient_phase_metric`, `projective_phase_metric` | `test_phase_metric_conventions_and_support_rank` | The projective quotient remains low-profile and is not used by the theorem. |
+| The magnitude output objects obey the stated sufficient norm hierarchy | Supporting analytic result | norm-bound helpers, `STATISTICAL_ACCURACY.md` | `test_magnitude_norm_hierarchy` | Upper bounds for the displayed rescaling decoder, not converses. |
+| The direct-angle assigned CNOT ledger matches the manuscript's compiler model | Paper-level resource claim | `conventions.py`, `native_schedule.py`, `qbp_resource_ledger.py` | `test_resource_ledger.py` | Finite assigned counts, not global optimality or routing. |
+| One exact multiplexed realization preserves the estimator and the O(N) matched forward/frame scaling | Appendix-B exact compiler result with detailed executable support | `optimized_compiler.py`, `qbp_optimized_resource_ledger.py` | `test_optimized_compiler.py` | One reusable clean flag; elementary angles generally recombine Hopf coordinates. |
+| A reflection sum admits unbiased coefficient-one-norm term sampling with a Lambda**2 sufficient-shot factor | Main-text extension with executable support | `supporting_analysis.py`, `OBSERVABLES_AND_READOUT.md` | `test_supporting_analysis.py` | Portable upper bound, not an optimal Hamiltonian strategy. |
+| Independent symmetric readout errors transform records by attenuation and bin mixing | Supporting analytic readout model | `supporting_analysis.py` | `test_supporting_analysis.py` | Readout-only; no coherent gate-noise or mitigation claim. |
+
+## Scope relative to the first paper
+
+The first Hopf paper supplies the balanced real and complex charts, inverse map,
+diagonal pullback metric, normalized coordinate directions, indexed tangent and
+signed-branch estimators, native schedules, and the direct-angle
+coordinate-to-control interpretation.
+
+The present project supplies the computationally addressed differential frame,
+one magnitude record shared across coordinates and depths, Walsh decoding, the
+direct complete phase record, complete-gradient concentration, checkpoint
+suffixes and active-interface contracts, and the supporting compiler,
+statistical, observable, readout, and method-positioning analyses listed above.
+
+## Claim 1: inherited conventions and forward states
+
+For `N = 2**n`:
+
+- the real magnitude block has length `N - 1`;
+- the complex phase block has length `N`;
+- the combined complex order is `(theta_1, ..., theta_{N-1}, theta_N, ..., theta_{2N-1})`;
+- native `HopfReal` and `HopfComplex` schedules reproduce the recursive state.
+
+Evidence: `native_schedule.py`, `reference.py`, `test_native_schedule.py`, and
+`test_operator_contracts.py`. The initialized-state-column contract does not
+imply full-unitary equality or preservation of the direct-angle ledger.
+
+## Claim 2: balanced differential frame
+
+The addressed real frame has
+
+```math
+W_{\mathbb R}|0\rangle=|\psi^{\mathbb R}\rangle,
+\qquad
+W_{\mathbb R}|b_{\lambda(j)}\rangle=|e_j^{\mathbb R}\rangle,
+```
+
+and
+
+```math
+\partial_{\theta_j}|\psi\rangle
+=
+\sqrt{g_{j,j}}|e_j\rangle.
+```
+
+The complex magnitude frame is
+
+```math
+W_{\mathbb C}=D_{\mathrm{ph}}W_{\mathbb R}.
+```
+
+Evidence: `real_tree_data`, `real_frame_matrix`, `complex_frame_matrix`,
+`test_real_frame.py`, and `test_complex_frame.py`.
+
+## Claim 3: global real gradient
+
+Logical sequence:
+
+```text
+forward real Hopf preparation
+-> controlled reflection
+-> W_R dagger
+-> ancilla-X and system-X measurement
+```
+
+One outcome contributes
+
+```math
+Z_j^{\mathbb R}
+=
+2\sqrt{g^{\mathbb R}_{j,j}}
+(-1)^{b+\lambda(j)\cdot y}
+```
+
+for every internal node. A signed histogram and one Walsh-Hadamard transform
+recover all marker parities. Evidence: `real_global_measurement_circuit`,
+`decode_balanced_magnitude_gradient`, `real_gradient`, and
+`test_real_global_estimator.py`.
+
+## Claim 4: global complex gradient
+
+The complex magnitude family uses the separated order
+
+```text
+U_chk -> D_ph -> controlled reflection -> D_ph dagger -> W_R dagger
+```
+
+and the direct phase family uses ancilla-`Y` and system-`Z` readout. One phase
+outcome contributes
+
+```math
+Z_{N+\ell}^{\mathbb C,\mathrm{ph}}
+=
+2(-1)^b\mathbf 1[\widehat\ell=\ell].
+```
+
+Evidence: `test_complex_magnitude.py` and `test_complex_phase.py`, including
+zero-amplitude leaves and uniform-phase objective invariance.
+
+## Claim 5: checkpointed depth gradients
+
+At depth `d`:
+
+```text
+forward Hopf preparation
+-> controlled reflection
+-> inverse suffix below d
+-> ancilla-Y, target-Y, active-prefix-Z measurement
+```
+
+The record is
+
+```math
+Z_d^{\mathrm{chk}}
+=
+-2(-1)^{b_c+b_t}e_{\widehat r}.
+```
+
+Evidence: `real_checkpoint_measurement_circuit`,
+`complex_checkpoint_separated_circuit`, `decode_checkpoint_gradient`, and
+`test_checkpoints.py`.
+
+## Claim 6: substitution contracts
+
+The implementation distinguishes full-unitary, initialized-state-column,
+active-interface, and clean-flag equality. `test_operator_contracts.py` includes
+negative checks showing that weaker contracts do not imply full-unitary
+equality. `test_optimized_compiler.py` checks the clean-flag system block and
+zero flag leakage. None of these logical contracts alone preserves one Hopf
+coordinate as one elementary physical angle.
+
+## Claim 7: singular coordinates and phase invariance
+
+The estimators do not divide by a metric factor or leaf amplitude:
+
+- zero incoming metric factor gives a zero magnitude derivative and record;
+- zero leaf amplitude gives a zero phase derivative;
+- unused completion columns do not alter the active differential interface.
+
+Expectation objectives are invariant under a uniform leaf-phase shift, so the
+exact phase-gradient block is zero-sum. `project_common_phase_gradient`
+optionally removes finite-shot common-phase noise without increasing Euclidean
+error. This objective-invariance statement is distinct from the optional
+projective Fubini--Study metric convention.
+
+## Claim 8: output norms and geometric conditioning
+
+The manuscript theorem controls the raw Hopf-coordinate gradient. The same
+magnitude record can be rescaled into normalized-frame or natural coordinates,
+but its scale changes:
+
+```math
+q_j=\partial_{\theta_j}E_O,
+\qquad
+\chi_j=\frac{q_j}{\sqrt{g_{j,j}}},
+\qquad
+\nu_j=\frac{q_j}{g_{j,j}}.
+```
+
+The exact swap-reflection example shows that `|partial_{theta_k} E| < epsilon` can coexist with
+`chi_k = 2` when `g[k,k]` is small. Therefore raw-coordinate accuracy does not
+imply normalized-frame accuracy without metric conditioning.
+
+The complete raw magnitude record has norm `2*sqrt(n)`, whereas the complete
+active frame record has norm `2*sqrt(M_+)`. An unregularized natural-coordinate
+record is bounded by `2/sqrt(g_min)`, and a damped record by `1/sqrt(tau)`.
+See [Statistical accuracy](STATISTICAL_ACCURACY.md) for the full hierarchy and
+its boundaries.
+
+## Claim 9: complex phase metric convention
+
+For leaf probabilities `p`, Hopf-QBP follows the ambient-sphere phase block
+
+```math
+G_{\mathrm{ph}}^{\mathrm{sph}}=\mathrm{diag}(p).
+```
+
+The optional projective convention is
+
+```math
+G_{\mathrm{ph}}^{\mathrm{FS}}
+=
+\mathrm{diag}(p)-pp^\mathsf{T},
+```
+
+with the uniform phase in its null space and rank `s-1` on support size `s`.
+The projective quotient is not used by the manuscript theorem.
+
+## Claim 10: compiler ledgers
+
+The direct-angle ledger is implemented by the controlled-gate, depth-layer,
+forward, frame, and suffix charge functions and checked by
+`test_resource_ledger.py`.
+
+The multiplexed companion groups each forward depth into a uniformly controlled
+`R_y` and factors each addressed-frame depth through one clean suffix flag. Its
+multiplexor-core counts are `N - 2` and `3*N/2 - 2`; predicate work is polynomial
+in `n`, so both objects are `O(N)`. The result is exact in the ideal circuit
+model and does not establish routed or noisy-device performance.
+
+## Claim 11: reflection sums and readout transfer
+
+For
+
+```math
+H=\sum_\alpha a_\alpha O_\alpha,
+\qquad
+\Lambda=\sum_\alpha|a_\alpha|,
+```
+
+sampling term `alpha` with probability `|a_alpha|/Lambda` and scaling its QBP
+record by `Lambda*sign(a_alpha)` is unbiased. Record norms gain a factor
+`Lambda`, and sufficient shot counts gain `Lambda**2`.
+
+Under independent symmetric readout flips, global parities are attenuated by
+the branch bit and marker-supported system bits. Checkpoint and phase address
+errors mix one-hot bins through an independent bit-flip channel. See
+[Observables and readout](OBSERVABLES_AND_READOUT.md).
+
+## Method positioning
+
+[Method comparison](METHOD_COMPARISON.md) compares Hopf-QBP with parameter
+shift, the earlier indexed Hopf protocol, structured-circuit methods,
+Lie-algebraic estimators, classical shadows, shadow-gradient methods,
+directional estimators, and generalized Hadamard tests. The comparison is
+organized by returned object, access model, structural premise, reuse
+mechanism, and error/resource statement; it does not claim universal dominance.
+
+## Validation matrix
+
+| Test | Main responsibility |
+|---|---|
+| `test_conventions.py` | Tree indexing, basis order, parameter splitting, markers, and interfaces. |
+| `test_native_schedule.py` | Native real and complex schedules and state columns. |
+| `test_circuit_conventions.py` | Qibo bit significance and ancilla-`Y` sign. |
+| `test_operator_contracts.py` | Full-unitary, state-column, and active-interface distinctions. |
+| `test_real_frame.py` | Complete real frame and inverse. |
+| `test_complex_frame.py` | Separated complex frame and four-qubit integrated compiler. |
+| `test_real_global_estimator.py` | Complete real global gradient and Walsh decoder. |
+| `test_complex_magnitude.py` | Complex magnitude gradient. |
+| `test_complex_phase.py` | Direct phase gradient and zero-amplitude leaves. |
+| `test_checkpoints.py` | Real and complex selected-depth gradients. |
+| `test_singular_cases.py` | Exact singular-coordinate behavior. |
+| `test_decoders.py` | Walsh, signed histograms, marginalization, and fixed-norm records. |
+| `test_four_qubit_example.py` | Explicit compiler fixtures and interfaces. |
+| `test_resource_ledger.py` | Direct-angle assigned charges. |
+| `test_optimized_compiler.py` | Clean-flag factorization and multiplexor ledger. |
+| `test_supporting_analysis.py` | `l_2`, direction, separation, phase metrics, norm hierarchy, reflection sums, and readout. |
+
+## Deliberate nonclaims
+
+The project does not provide evidence for optimizer quality, hardware
+advantage, coherent-noise resilience, routing efficiency, approximate
+synthesis, or arbitrary observables outside the stated reflection-access
+models. The norm hierarchy contains sufficient upper bounds for the displayed
+decoder, not a matching lower bound or universal complexity boundary.
