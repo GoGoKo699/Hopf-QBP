@@ -19,6 +19,7 @@ ANALYTIC_MODULES = (
     "qbp_validation.tests.test_resource_ledger",
     "qbp_validation.tests.test_optimized_compiler",
     "qbp_validation.tests.test_supporting_analysis",
+    "qbp_validation.tests.test_documentation",
 )
 
 SMOKE_TESTS = (
@@ -43,7 +44,7 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help=(
             "Run Qibo-free convention, decoder, schedule, resource, optimized-"
-            "compiler, and supporting-analysis checks."
+            "compiler, supporting-analysis, and documentation checks."
         ),
     )
     mode.add_argument(
