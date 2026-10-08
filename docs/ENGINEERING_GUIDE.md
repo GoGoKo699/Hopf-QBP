@@ -1,18 +1,7 @@
 # Engineering guide
 
-This page specifies the implementable Hopf-QBP interface without reproducing
-the paper's motivation, proofs, or four-qubit narrative example.
-
-It is organized around the questions an engineer needs to answer:
-
-1. What is the input contract?
-2. Which circuit family returns the requested gradient block?
-3. What exactly is measured?
-4. How is the classical record decoded?
-5. Which circuit substitutions are valid?
-6. Which compiler contract is being preserved?
-7. Which resource costs are included?
-8. How can the reference implementation be adapted safely?
+This guide specifies Hopf-QBP inputs, circuit families, measurement records,
+decoders, compiler contracts, and resource accounting.
 
 ## 1. Input and output contract
 
@@ -198,12 +187,8 @@ The repository exposes three forward completions:
 3. addressed frame preparation.
 
 They can share the initialized state column without being equal as full
-unitaries. State-column equality is sufficient for replacing a forward block
-when only the prepared input state enters the later circuit. It is a
-correctness contract, not automatically a compiler-scope contract: a
-state-equivalent replacement may change the relationship between Hopf
-coordinates and elementary physical angles and therefore need not inherit the
-direct-angle resource ledger.
+unitaries. The [substitution contracts](#8-substitution-contracts-and-compiler-preservation)
+specify when each equality permits a circuit replacement.
 
 The designated direct-angle resource accounting uses:
 
@@ -212,9 +197,7 @@ real forward:    U_chk
 complex forward: D_ph U_chk
 ```
 
-Native forward circuits are also validated and remain coordinate-faithful. Use
-a state-equivalent optimized compiler only after distinguishing its logical
-correctness from preservation of the direct-angle interpretation.
+Native forward circuits are also validated and remain coordinate-faithful.
 
 ### Depth-layer compiler
 
@@ -362,11 +345,11 @@ The reference circuits implement a `Y`-basis measurement by applying
 order the net rotation is `H S dagger`. The decoder signs in the phase and
 checkpoint records assume this convention.
 
-### What is not supported automatically
+### Reflection-sum objectives
 
-The repository does not convert a generic Hermitian observable into a
-controlled reflection. A sum of terms, block encoding, LCU construction, or
-application-specific binary test requires a separate controlled-access layer.
+For a sum of reflections, supply calibrated controlled access to each term and
+use [coefficient-one-norm sampling](OBSERVABLES_AND_READOUT.md#2-reflection-sum-objectives).
+Account for controlled-objective costs separately from the Hopf circuit ledger.
 
 ## 5. Global real gradient
 
@@ -624,8 +607,6 @@ and place each decoded block in its breadth-first slice.
 
 ## 8. Substitution contracts and compiler preservation
 
-This is the most important implementation distinction in the repository.
-
 ### Full-unitary equality
 
 ```math
@@ -671,7 +652,7 @@ coordinate-to-control interpretation.
 
 ### Clean-flag robustness contract
 
-The repository-only multiplexed frame satisfies
+The multiplexed frame satisfies
 
 ```math
 \widetilde W_{\mathbb R}
@@ -826,32 +807,18 @@ sum(depth_layer_cnot_charge(k) for k in range(d + 1, n))
 Use `qbp_resource_ledger.py` rather than copying these formulas into downstream
 analysis.
 
-### Included and excluded costs
+### Accounting scope
 
-Included:
-
-- generated direct-angle Hopf controlled-gate charges for the selected forward
-  and reverse blocks.
-
-Excluded unless separately supplied:
-
-- controlled `O`;
-- readout;
-- device routing;
-- approximate synthesis;
-- application workspace;
-- generic diagonal phase-layer synthesis; and
-- backend transpilation effects.
-
-The output is an assigned logical ledger, not a physical gate estimate and not
-a global CNOT-optimality claim. The separate multiplexed analysis in
-`docs/OPTIMIZED_COMPILATION.md` asks whether the asymptotic conclusion survives
-after leaving this compiler setting.
+The ledger counts the direct-angle Hopf controlled gates in the selected
+forward and reverse blocks. Controlled `O`, readout, routing, approximate
+synthesis, application workspace, diagonal phase-layer synthesis, and backend
+transpilation costs must be added separately. These are assigned logical
+charges rather than globally optimal or physical gate counts. See
+[Optimized compilation](OPTIMIZED_COMPILATION.md) for the multiplexed ledger.
 
 ## 13. Minimal exact-logical usage
 
-The following examples use complete statevector distributions. They are small
-reference calls, not sampling or performance benchmarks.
+The following examples use complete statevector distributions.
 
 ### Complete real gradient
 

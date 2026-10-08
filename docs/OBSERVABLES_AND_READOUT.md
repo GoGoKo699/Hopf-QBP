@@ -2,8 +2,8 @@
 
 The paper's validated core uses one known Hermitian-unitary objective, exact
 phase-calibrated controlled access, and exact-logical circuit execution. This
-page expands the main-text reflection-sum formula and records an independent
-symmetric-readout model. It is not a hardware benchmark.
+page derives reflection-sum sampling and an independent symmetric-readout
+model.
 
 ## 1. Core controlled-reflection contract
 
@@ -87,10 +87,8 @@ The expected controlled-term charge of one sampled record is
 ```
 
 A matched scalar comparator uses the same term distribution and expected
-controlled-term charge. This is a portable upper bound, not a claim that term
-sampling is optimal for every Hamiltonian. Commuting groups, shadow methods,
-coefficient-aware allocation, or application-specific block encodings require
-their own access and normalization models.
+controlled-term charge. The resulting shot count is a sufficient upper bound
+for this term-sampling strategy.
 
 ## 3. Global parity under independent readout flips
 
@@ -155,24 +153,7 @@ If calibrated transfer factors are nonsingular, one may invert or regularize
 these classical channels. Such correction amplifies variance and is not part of
 the exact-logical theorem.
 
-## 5. Boundary of this analysis
-
-The formulas above establish unbiased reflection-sum sampling and exact mean
-transformations under independent symmetric readout flips. They do not model:
-
-- coherent state-preparation, frame, or controlled-reflection errors;
-- two-qubit depolarizing noise;
-- correlated readout;
-- device routing and SWAP insertion;
-- approximate synthesis;
-- mitigation; or
-- optimizer behavior.
-
-A hardware comparison must fix the topology, transpiler, controlled-objective
-compiler, noise channel, mitigation method, parameter ensemble, shot
-allocation, and requested output norm.
-
-## 6. Executable support
+## 5. Executable support
 
 The formulas are implemented and tested in:
 

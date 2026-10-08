@@ -1,41 +1,16 @@
-# Robustness under optimized recompilation
+# Exact optimized compilation
 
-This page studies a question that lies outside the defining compiler setting of
-the two Hopf papers but is scientifically valuable: does the Hopf-QBP estimator
-and its asymptotic resource conclusion survive after the direct-angle circuit is
-recompiled more aggressively?
+One multiplexed recompilation preserves the prepared state, addressed frame,
+and decoded Hopf-QBP estimator with `O(N)` Hopf work per execution. Its
+elementary angles generally combine several Hopf coordinates, whereas the
+[direct-angle compiler](ENGINEERING_GUIDE.md#direct-angle-hopf-compiler-contract)
+keeps each coordinate at its designated tree-split or leaf-phase location.
+Appendix B gives the factorization and matched resource comparison; the full
+derivation and finite count structure follow here.
 
-Appendix B of the manuscript now gives a self-contained summary of the exact
-clean-flag factorization and the resulting `O(N)` matched comparison. This page
-retains the full compiler derivation, finite count structure, primary synthesis
-references, and executable test map.
+## 1. Compiler contracts
 
-The primary Hopf setting is coordinate-preserving. It keeps
-
-```math
-\text{one Hopf coordinate}
-\longleftrightarrow
-\text{one designated tree-split or leaf-phase location}
-\longleftrightarrow
-\text{one directly programmed physical angle}.
-```
-
-For magnitude coordinates this is the rotation angle attached to an internal
-tree node; for complex leaf phases it is a directly programmed phase angle.
-This direct-angle correspondence is what keeps the inverse coordinates,
-diagonal metric, normalized tangents, forward preparation, and reverse records
-transparent in one circuit language. The manuscript's assigned ledger counts
-that realization.
-
-A uniformly controlled resynthesis can preserve the same logical state or frame
-while replacing the elementary physical angles by compiler-generated linear
-combinations of several Hopf coordinates. The analysis below therefore gives a
-**robustness result**, not a redefinition of the ansatz and not a replacement for
-the manuscript's coordinate-preserving resource model.
-
-## 1. Primary setting and robustness question
-
-| Property | Direct-angle Hopf realization | Multiplexed robustness compiler |
+| Property | Direct-angle Hopf realization | Multiplexed compiler |
 |---|---:|---:|
 | Same prepared state | Yes | Yes |
 | Same frame action or clean-flag system action | Yes | Yes |
@@ -43,18 +18,16 @@ the manuscript's coordinate-preserving resource model.
 | One coordinate is one directly programmed physical angle | **Yes** | Generally no |
 | Geometry remains explicit in the gate parameters | **Yes** | Generally no |
 | Defines the manuscript's resource setting | **Yes** | No |
-| Tests robustness outside that setting | Not applicable | **Yes** |
 
 The two command-line ledgers therefore have different roles:
 
 | Tool | Role | What is counted |
 |---|---|---|
 | `qbp_resource_ledger.py` | Direct-angle assigned ledger used by the manuscript | Independently decomposed coordinate-preserving controlled gates under the declared formulas |
-| `qbp_optimized_resource_ledger.py` | Detailed robustness companion | Uniformly controlled-rotation cores, with suffix-predicate work exposed separately |
+| `qbp_optimized_resource_ledger.py` | Exact multiplexed companion | Uniformly controlled-rotation cores, with suffix-predicate work exposed separately |
 
-Neither table is a routed hardware estimate. Both exclude the controlled
-observable, readout, device connectivity, and approximate synthesis unless a
-quantity is explicitly added.
+Both ledgers count logical Hopf work; controlled-observable, readout, routing,
+and approximate-synthesis costs are excluded.
 
 Run them with:
 
@@ -139,12 +112,8 @@ Finally uncompute the flag. The exact contract is
 \otimes|0\rangle_f
 ```
 
-for every system input `|varphi>`. Equality on an arbitrary initial flag state
-is neither needed nor claimed.
-
-This identity preserves the frame action and therefore the decoded QBP
-estimator. It does not assert that the elementary rotations appearing after
-multiplexor synthesis remain the original Hopf coordinates one by one.
+for every system input `|varphi>`, with the flag initialized to `|0>`. This
+identity preserves the frame action and therefore the decoded QBP estimator.
 
 For `d < n-1`, the multiplexor has `d+1` controls: the `d` prefix bits plus the
 flag. At the final depth there is no lower suffix and no flag is required. For
@@ -205,16 +174,10 @@ C(W_{\mathbb C})=O(N).
 ```
 
 The same conclusion applies to the separated complex forward preparation
-`D_ph U_chk`. The explicit four-qubit integrated `R_C` fixtures remain useful
-finite regression tests, but they are not required for this asymptotic
-robustness conclusion.
+`D_ph U_chk`. Generic diagonal synthesis preserves the logical phase layer
+while generally recombining its elementary angles.
 
-As with the real multiplexor, a generic diagonal synthesis need not retain one
-leaf-phase coordinate as one elementary physical phase angle. The logical state
-and frame are preserved; the direct coordinate-to-control interpretation is not
-claimed.
-
-## 5. Matched scalar robustness comparison
+## 5. Matched scalar comparison
 
 A scalar Hopf objective execution and a global-gradient-record execution share:
 
@@ -235,9 +198,6 @@ Thus the circuit-work ratio per independent execution remains `O(1)` after this
 particular recompilation. The global method's complete-gradient execution
 overhead remains its statistical factor, not an extra logarithmic compiler
 factor.
-
-This answers a robustness question raised outside the direct-angle theorem. It
-does not change which compiler defines the Hopf ansatz in the papers.
 
 The comparison is output-sensitive. The complete chart has
 `M = N - 1` real coordinates or `M = 2N - 1` complex coordinates, so
@@ -274,20 +234,7 @@ The matrix checks validate the exact flag factorization. The asymptotic CNOT
 claim additionally uses the established Gray-code synthesis of uniformly
 controlled rotations and standard multi-controlled-X constructions.
 
-## 7. Interpretation boundary
-
-This companion establishes that one exact multiplexed recompilation preserves:
-
-- the prepared state or frame action;
-- the QBP estimator identities;
-- and the `O(N)` asymptotic comparison with an optimized scalar preparation.
-
-It does **not** establish that every state-equivalent compiler preserves the
-same finite cost, that the direct-angle physical controls survive resynthesis,
-or that a routed device implementation has the same constants. Those are
-separate synthesis and hardware questions.
-
-## 8. Primary references
+## 7. Primary references
 
 - M. Möttönen, J. J. Vartiainen, V. Bergholm, and M. M. Salomaa,
   [Transformation of quantum states using uniformly controlled rotations](https://arxiv.org/abs/quant-ph/0407010),

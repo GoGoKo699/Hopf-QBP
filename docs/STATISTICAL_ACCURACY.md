@@ -1,11 +1,8 @@
 # Statistical accuracy, output geometry, and conditioning
 
-The manuscript's primary finite-shot target is simultaneous absolute accuracy
-of the **raw Hopf-coordinate gradient**. Its main text distinguishes coordinate
-and geometric outputs, adopts the ambient-sphere phase convention, and gives the
-reflection-sum extension; Appendix B supplies the complete-vector, conditional
-directional, separation, conditioning, and exact-recompilation derivations.
-This page retains the full output hierarchy and executable test map.
+The primary finite-shot target is simultaneous absolute accuracy of the
+**raw Hopf-coordinate gradient**. This page derives the corresponding vector,
+directional, and geometric error bounds, using the ambient-sphere phase metric.
 
 ## 1. Raw coordinatewise target
 
@@ -35,9 +32,8 @@ O\left(
 \right).
 ```
 
-This is an absolute raw-coordinate `l_infinity` statement. It is not a claim of
-relative error, state-space tangent accuracy, natural-gradient accuracy, or
-optimizer convergence.
+This controls absolute raw-coordinate `l_infinity` error. The other output
+norms and their conditioning factors are derived below.
 
 ## 2. Complete raw magnitude-vector `l_2` accuracy
 
@@ -198,10 +194,9 @@ and therefore
 The complete zero estimate is thus `epsilon`-accurate in raw coordinate
 `l_infinity` error while its normalized-frame error is exactly `2`.
 
-This is an exact separation of output tasks, not a defect in the raw-coordinate
-theorem. Converting raw-coordinate guarantees into normalized-frame or natural
-coordinates requires metric conditioning. The reflection is an existence
-construction; no efficient application-specific compiler for it is claimed.
+Converting raw-coordinate guarantees into normalized-frame or natural
+coordinates requires metric conditioning. This reflection is an existence
+construction with controlled access assumed separately.
 
 ## 5. Magnitude-block norm hierarchy
 
@@ -363,10 +358,3 @@ Run:
 ```bash
 python validate_qbp.py --analytic
 ```
-
-## 10. Deliberate boundary
-
-These statements characterize estimation error and output geometry. They do not
-claim optimizer convergence, a uniform relative guarantee near stationarity,
-stability of an unregularized inverse at singular coordinates, optimality of
-the displayed norm hierarchy, or hardware-noise resilience.

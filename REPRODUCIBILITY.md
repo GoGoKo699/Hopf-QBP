@@ -1,7 +1,6 @@
-# Reproducibility checklist
+# Reproducibility
 
-The commands below assume they are run from the repository root. The validation
-is deterministic and does not download datasets or create benchmark traces.
+Run these commands from the repository root. Validation is deterministic.
 
 ## Environment
 
@@ -15,40 +14,15 @@ python -m pip install -r requirements.txt
 python -m pip install -r requirements-optional.txt
 ```
 
-The release target is Qibo 0.3.4 with its NumPy statevector backend. The circuit
+The circuit tests use Qibo 0.3.4 with its NumPy statevector backend. The circuit
 module selects that backend explicitly.
-
-## Compiler hierarchy used by the checks
-
-The validation distinguishes two roles:
-
-1. **Direct-angle Hopf compiler:** the defining paper setting, in which each
-   coordinate remains a directly programmed physical angle at its tree-split or
-   leaf-phase location.
-2. **Multiplexed exact-compilation companion:** an Appendix-B state-equivalent
-   construction used to test whether the estimator and `O(N)` matched
-   comparison survive after leaving the direct-angle setting.
-
-The second item is exact ideal-model invariance, not a noise-robustness claim.
-It generally does not preserve the original elementary Hopf angles.
 
 ## Minimal analytic check
 
-This path has no Qibo dependency. It checks:
-
-- tree indexing and wire translation;
-- decoders and fixed-norm records;
-- native real/complex schedules and state columns;
-- interface projectors;
-- direct-angle assigned resource formulas;
-- clean-flag multiplexed factorization and core counts;
-- complete-vector, relative/directional, and natural-gradient-conditioning formulas;
-- exact raw-coordinate versus normalized-frame separation;
-- magnitude frame/natural-coordinate norm scales;
-- ambient and projective phase metrics, support rank, and common-phase null vector;
-- zero-sum projection from uniform-phase objective invariance;
-- reflection-sum term sampling; and
-- analytic readout transfer functions.
+This Qibo-free suite checks conventions, decoders, native schedules, resource
+formulas, optimized factorization, statistical and readout identities, and
+documentation integrity. See the [validation map](docs/CLAIM_SUPPORT.md) for
+individual claims and tests.
 
 ```bash
 python validate_qbp.py --analytic
@@ -154,25 +128,6 @@ widths because the finite elementary-gate constant depends on the chosen
 multi-controlled-X decomposition. `test_optimized_compiler.py` checks the exact
 clean-flag factorization.
 
-## Output-geometry checks
-
-The analytic suite contains an explicit two-qubit Hopf separation witness. It
-constructs a small incoming metric weight, a normalized Hopf direction, and the
-Householder reflection swapping the state with that direction. The test verifies
-that the raw coordinate gradient is below a chosen tolerance while the
-normalized-frame coefficient remains exactly `2`.
-
-The same test module checks:
-
-- complete active-frame record norm `2*sqrt(M_+)`;
-- natural-coordinate bound `2/sqrt(g_min)`;
-- damped bound `1/sqrt(tau)`;
-- ambient phase block `diag(p)`;
-- projective block `diag(p)-p p^T`;
-- positive semidefiniteness, support rank, and the common-phase null vector.
-
-See [Statistical accuracy](docs/STATISTICAL_ACCURACY.md) for interpretation.
-
 ## Determinism and tolerances
 
 - Parameter arrays and observables use fixed seeds in `qbp_validation/cases.py`.
@@ -189,19 +144,6 @@ See [Statistical accuracy](docs/STATISTICAL_ACCURACY.md) for interpretation.
 Small residual differences across supported BLAS or NumPy builds may occur at
 floating-point roundoff scale. Values exceeding the test tolerances fail.
 
-## Interpretation of the contracts
-
-- A forward replacement with the same initialized state column preserves the
-  later output distribution.
-- The addressed `R_C` frame differs from the separated complex frame only by a
-  common phase in the validated four-qubit fixture.
-- The integrated complex checkpoint preserves active-interface correlators and
-  decoded means, not necessarily the complete distribution.
-- The flagged frame factorization is valid when the reusable flag enters and
-  leaves in `|0>`.
-- None of these equalities alone preserves the direct-angle
-  coordinate-to-control contract.
-
 ## Continuous integration
 
 `.github/workflows/validation.yml` runs:
@@ -211,13 +153,6 @@ floating-point roundoff scale. Values exceeding the test tolerances fail.
 
 A green workflow checks the manuscript-level circuit contracts, Appendix-B
 compiler analysis, and the output-geometry supporting results.
-
-## Method-comparison boundary
-
-[Method comparison](docs/METHOD_COMPARISON.md) is a documentation comparison,
-not an executable benchmark. It organizes methods by returned object, access
-model, structure, reuse, and error/resource statement. The repository does not
-claim that methods with different interfaces are directly ordered.
 
 ## Clean generated outputs
 
