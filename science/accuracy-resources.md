@@ -13,7 +13,7 @@ The controlled reflection creates one objective response on state space. The inv
 <a id="S7.E47"></a>
 
 ```math
-\partial_{\theta_{j}}E_{O}=2\sqrt{g^{\mathbb{K}}_{j,j}}\operatorname{Re}\langle b_{\lambda(j)}\rvert W_{\mathbb{K}}^{\dagger}O\lvert \psi^{\mathbb{K}}\rangle .\tag{47}
+{\partial_{\theta_{j}}E_{O}=2\sqrt{g^{\mathbb{K}}_{j,j}}\mathrm{Re}\langle b_{\lambda(j)}\rvert W_{\mathbb{K}}^{\dagger}O\lvert \psi^{\mathbb{K}}\rangle .}\tag{47}
 ```
 
 Controlled interference makes all addressed components in Eq. ([47](accuracy-resources.md#S7.E47)) jointly readable. The checkpoint identity in Eq. ([40](checkpoints.md#S6.E40)), together with the complex active-interface construction of Sec. [VI C](checkpoints.md#S6.SS3), implements the same coordinate pullback after transport to one selected depth. Complex phase directions are already localized in the computational basis, so their differential resolution is the identity. The global, checkpoint, and direct phase records therefore meet the operational record condition in Definition [2](reverse-task.md#Thmdefinition2).
@@ -31,7 +31,7 @@ The width of a tree depth does not set its statistical scale. Every global magni
 <a id="S7.E48"></a>
 
 ```math
-\mathbb{P}\!\left[\|\widehat{\mu}-\mu\|_{\infty}>\frac{B\{1+\sqrt{2\log(1/\eta)}\}}{\sqrt{S}}\right]\leq\eta.\tag{48}
+{\mathbb{P}\!\left[\|\widehat{\mu}-\mu\|_{\infty}>\frac{B\{1+\sqrt{2\log(1/\eta)}\}}{\sqrt{S}}\right]\leq\eta.}\tag{48}
 ```
 
 For the norm-two Hopf records, define the common sufficient count
@@ -39,7 +39,7 @@ For the norm-two Hopf records, define the common sufficient count
 <a id="S7.E49"></a>
 
 ```math
-S_{\star}(\eta):=\left\lceil\frac{4\{1+\sqrt{2\log(1/\eta)}\}^{2}}{\varepsilon^{2}}\right\rceil.\tag{49}
+{S_{\star}(\eta):=\left\lceil\frac{4\{1+\sqrt{2\log(1/\eta)}\}^{2}}{\varepsilon^{2}}\right\rceil.}\tag{49}
 ```
 
 Applying Eq. ([48](accuracy-resources.md#S7.E48)) to each complete depth vector and combining the depth-level failure events gives a simultaneous coordinate guarantee. This union bound does not require the depth records decoded from one outcome to be independent. Allocating the total failure probability across the required blocks gives
@@ -61,7 +61,7 @@ Applying Eq. ([48](accuracy-resources.md#S7.E48)) to each complete depth vector 
 <a id="S7.E50"></a>
 
 ```math
-\begin{aligned}S_{\mathrm{chk}}^{\mathbb{C}} & :=nS_{\mathrm{mag}}^{\mathbb{C}}+S_{\mathrm{ph}}^{\mathbb{C}}.\end{aligned}\tag{50}
+{\begin{aligned}S_{\mathrm{chk}}^{\mathbb{C}} & :=nS_{\mathrm{mag}}^{\mathbb{C}}+S_{\mathrm{ph}}^{\mathbb{C}}.\end{aligned}}\tag{50}
 ```
 
 Consequently, for either chart $`\mathbb{K}\in\{\mathbb{R},\mathbb{C}\}`$,
@@ -75,7 +75,7 @@ Consequently, for either chart $`\mathbb{K}\in\{\mathbb{R},\mathbb{C}\}`$,
 <a id="S7.E51"></a>
 
 ```math
-\begin{aligned}S_{\mathrm{chk}}^{\mathbb{K}} & =\mathcal{O}\!\left(\frac{n\{1+\log(n/\delta)\}}{\varepsilon^{2}}\right).\end{aligned}\tag{51}
+{\begin{aligned}S_{\mathrm{chk}}^{\mathbb{K}} & =\mathcal{O}\!\left(\frac{n\{1+\log(n/\delta)\}}{\varepsilon^{2}}\right).\end{aligned}}\tag{51}
 ```
 
 At fixed absolute coordinate accuracy and confidence, these become $`\mathcal{O}(\log\log M)`$ and $`\mathcal{O}(\log M\log\log M)`$, respectively. These are sufficient counts for the displayed allocations, not lower bounds on the number of executions. Per-execution work and the $`M`$-entry classical output are accounted for below. Appendix [B 8](proofs-and-compilation.md#A2.SS8) proves the concentration bound, derives both orders explicitly, and records the corresponding complete-vector $`\ell_{2}`$ guarantee.
@@ -88,7 +88,7 @@ At fixed absolute coordinate accuracy and confidence, these become $`\mathcal{O}
 
 The resource comparison uses the direct-angle Hopf realization inherited from Ref. [[1](../references/paper-bibliography.md#bib.bib6)]. Each magnitude coordinate remains the physical rotation angle of its designated tree split, and each complex leaf phase remains a directly programmed phase angle. Keeping this coordinate-to-control map explicit makes the chart, inverse, metric, tangent frame, and counted physical controls part of one transparent geometry. The same cost functional is used for scalar and gradient programs. Assigned Hopf CNOT work is the assigned CNOT charge of Hopf-specific circuit blocks. For such a block $`U`$, let $`C_{\mathrm{H}}(U)`$ denote its assigned CNOT count. For a program $`\mathcal{P}`$, let $`\mathsf{W}_{\mathrm{H}}^{\mathbb{K}}(\mathcal{P};\varepsilon,\delta)`$ denote the total charge of its Hopf forward and reverse blocks over all executions required for $`(\varepsilon,\delta)`$ accuracy.
 
-The controlled reflection, its compiler workspace, final basis changes, measurement, and classical processing are reported as separate application and classical resources. Each matched scalar or gradient execution contains one call to the same $`\operatorname{ctrl}(O)`$. Adding the same nonnegative application-dependent controlled-reflection charge to every scalar and gradient execution preserves the overhead orders below up to a constant factor. The logarithmic matched-resource benchmark is therefore evaluated using assigned Hopf CNOT work and the matched storage comparison below. The explicit controlled two-level Hopf-gate charges assume all-to-all connectivity, zero clean work ancillas, exact one-qubit primitives, and the decompositions stated in Appendix [B 9](proofs-and-compilation.md#A2.SS9).
+The controlled reflection, its compiler workspace, final basis changes, measurement, and classical processing are reported as separate application and classical resources. Each matched scalar or gradient execution contains one call to the same $`\mathrm{ctrl}(O)`$. Adding the same nonnegative application-dependent controlled-reflection charge to every scalar and gradient execution preserves the overhead orders below up to a constant factor. The logarithmic matched-resource benchmark is therefore evaluated using assigned Hopf CNOT work and the matched storage comparison below. The explicit controlled two-level Hopf-gate charges assume all-to-all connectivity, zero clean work ancillas, exact one-qubit primitives, and the decompositions stated in Appendix [B 9](proofs-and-compilation.md#A2.SS9).
 
 For the designated schedules used in the theorem, set
 
@@ -104,12 +104,12 @@ For the designated schedules used in the theorem, set
 
 <a id="S7.SS3.p3.2"></a>
 
-The matched scalar circuit uses this same forward preparation and the same $`\operatorname{ctrl}(O)`$ access. It omits the Hopf reverse block and measures the branch ancilla in $`X`$ to estimate $`E_{O}`$. Hoeffding’s inequality [[41](../references/paper-bibliography.md#bib.bib4)] gives
+The matched scalar circuit uses this same forward preparation and the same $`\mathrm{ctrl}(O)`$ access. It omits the Hopf reverse block and measures the branch ancilla in $`X`$ to estimate $`E_{O}`$. Hoeffding’s inequality [[41](../references/paper-bibliography.md#bib.bib4)] gives
 
 <a id="S7.E52"></a>
 
 ```math
-S_{F}(\varepsilon,\delta)=\left\lceil\frac{2}{\varepsilon^{2}}\log\frac{2}{\delta}\right\rceil,\tag{52}
+{S_{F}(\varepsilon,\delta)=\left\lceil\frac{2}{\varepsilon^{2}}\log\frac{2}{\delta}\right\rceil,}\tag{52}
 ```
 
 and the corresponding assigned Hopf CNOT work is
@@ -117,7 +117,7 @@ and the corresponding assigned Hopf CNOT work is
 <a id="S7.E53"></a>
 
 ```math
-\mathsf{W}_{\mathrm{H}}^{\mathbb{K}}(\mathrm{scalar})=S_{F}\,c_{\mathrm{fwd}}^{\mathbb{K}}.\tag{53}
+{\mathsf{W}_{\mathrm{H}}^{\mathbb{K}}(\mathrm{scalar})=S_{F}\,c_{\mathrm{fwd}}^{\mathbb{K}}.}\tag{53}
 ```
 
 The arguments $`(\varepsilon,\delta)`$ are suppressed in the remaining work formulas.
@@ -153,7 +153,7 @@ The repeated Hopf-block charges of the displayed schedules are
 <a id="S7.E54"></a>
 
 ```math
-\begin{aligned}\mathsf{W}_{\mathrm{H}}^{\mathbb{C}}(\mathrm{checkpoint}) & =\sum_{d=0}^{n-1}S_{\mathrm{mag}}^{\mathbb{C}}\left(c_{\mathrm{fwd}}^{\mathbb{C}}+c_{d}^{\mathbb{C}}\right)+S_{\mathrm{ph}}^{\mathbb{C}}c_{\mathrm{fwd}}^{\mathbb{C}}.\end{aligned}\tag{54}
+{\begin{aligned}\mathsf{W}_{\mathrm{H}}^{\mathbb{C}}(\mathrm{checkpoint}) & =\sum_{d=0}^{n-1}S_{\mathrm{mag}}^{\mathbb{C}}\left(c_{\mathrm{fwd}}^{\mathbb{C}}+c_{d}^{\mathbb{C}}\right)+S_{\mathrm{ph}}^{\mathbb{C}}c_{\mathrm{fwd}}^{\mathbb{C}}.\end{aligned}}\tag{54}
 ```
 
 The complex magnitude and phase families therefore retain their separate execution counts and Hopf charges.
@@ -163,7 +163,7 @@ For the designated schedules,
 <a id="S7.E55"></a>
 
 ```math
-c_{\mathrm{fr}}^{\mathbb{K}}\leq 2c_{\mathrm{fwd}}^{\mathbb{K}},\qquad c_{d}^{\mathbb{K}}\leq c_{\mathrm{fwd}}^{\mathbb{K}}\quad(0\leq d<n).\tag{55}
+{c_{\mathrm{fr}}^{\mathbb{K}}\leq 2c_{\mathrm{fwd}}^{\mathbb{K}},\qquad c_{d}^{\mathbb{K}}\leq c_{\mathrm{fwd}}^{\mathbb{K}}\quad(0\leq d<n).}\tag{55}
 ```
 
 The real frame bound follows because the final depth of $`U_{\mathrm{chk}}`$ already contains half as many gates with the same largest control count as $`W_{\mathbb{R}}`$. Every inverse suffix is a subset of the depth layers of $`U_{\mathrm{chk}}`$. Adding the same diagonal phase layer to the designated complex forward and reverse blocks preserves the factors in Eq. ([55](accuracy-resources.md#S7.E55)). The exact sums appear in Appendix [B 9](proofs-and-compilation.md#A2.SS9).
@@ -191,7 +191,7 @@ independent executions. Under Eq. ([55](accuracy-resources.md#S7.E55)), the assi
 <a id="S7.E56"></a>
 
 ```math
-\frac{\mathsf{W}_{\mathrm{H}}^{\mathbb{K}}(\mathrm{global})}{\mathsf{W}_{\mathrm{H}}^{\mathbb{K}}(\mathrm{scalar})}=\mathcal{O}\!\left(\frac{1+\log(n/\delta)}{\log(2/\delta)}\right).\tag{56}
+{\frac{\mathsf{W}_{\mathrm{H}}^{\mathbb{K}}(\mathrm{global})}{\mathsf{W}_{\mathrm{H}}^{\mathbb{K}}(\mathrm{scalar})}=\mathcal{O}\!\left(\frac{1+\log(n/\delta)}{\log(2/\delta)}\right).}\tag{56}
 ```
 
 **(B) Checkpoint method.** At each depth, the checkpointed adjoint implements the transported pullback in Eq. ([40](checkpoints.md#S6.E40)), with the complex active-interface extension of Sec. [VI C](checkpoints.md#S6.SS3). A selected checkpoint therefore implements the reverse state-coordinate task of Definition [2](reverse-task.md#Thmdefinition2) for its depth block. With the allocations in Eq. ([50](accuracy-resources.md#S7.E50)), the complete all-depth schedule, together with the direct phase family for $`\mathbb{K}=\mathbb{C}`$, produces the same $`(\varepsilon,\delta)`$-accurate complete raw Hopf-coordinate gradient using
@@ -207,7 +207,7 @@ independent executions. Under Eq. ([55](accuracy-resources.md#S7.E55)),
 <a id="S7.E57"></a>
 
 ```math
-\frac{\mathsf{W}_{\mathrm{H}}^{\mathbb{K}}(\mathrm{checkpoint})}{\mathsf{W}_{\mathrm{H}}^{\mathbb{K}}(\mathrm{scalar})}=\mathcal{O}\!\left(\frac{n\{1+\log(n/\delta)\}}{\log(2/\delta)}\right).\tag{57}
+{\frac{\mathsf{W}_{\mathrm{H}}^{\mathbb{K}}(\mathrm{checkpoint})}{\mathsf{W}_{\mathrm{H}}^{\mathbb{K}}(\mathrm{scalar})}=\mathcal{O}\!\left(\frac{n\{1+\log(n/\delta)\}}{\log(2/\delta)}\right).}\tag{57}
 ```
 
 Under the designated direct-angle forward-charge condition $`c_{\mathrm{fwd}}^{\mathbb{K}}=\mathcal{O}(M\log M)`$, the same cost functional gives, at fixed accuracy and confidence,
@@ -225,7 +225,7 @@ Under the designated direct-angle forward-charge condition $`c_{\mathrm{fwd}}^{\
 <a id="S7.E58"></a>
 
 ```math
-\begin{aligned}\mathsf{W}_{\mathrm{H}}^{\mathbb{K}}(\mathrm{checkpoint}) & =\mathcal{O}(M\log^{2}M\log\log M).\end{aligned}\tag{58}
+{\begin{aligned}\mathsf{W}_{\mathrm{H}}^{\mathbb{K}}(\mathrm{checkpoint}) & =\mathcal{O}(M\log^{2}M\log\log M).\end{aligned}}\tag{58}
 ```
 
 <a id="Thmtheorem1.p4.2"></a>

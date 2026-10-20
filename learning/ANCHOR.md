@@ -74,7 +74,7 @@ state. For two qubits,
 \sin a\cos c\\ \sin a\sin c
 \end{pmatrix},
 \qquad
- g=\operatorname{diag}(1,\cos^2a,\sin^2a).
+ g=\mathrm{diag}(1,\cos^2a,\sin^2a).
 ```
 
 Here $g_{jj}=\lVert\partial_j\psi\rVert^2$ is the subtree probability
@@ -129,7 +129,7 @@ that property or its cost ledger.
 The required objective interface is the phase-calibrated gate
 
 ```math
-\operatorname{ctrl}(O)
+\mathrm{ctrl}(O)
 =\lvert0\rangle\langle0\rvert\otimes I
 +\lvert1\rangle\langle1\rvert\otimes O.
 ```
@@ -139,7 +139,7 @@ $(\lvert0\rangle\psi+\lvert1\rangle O\psi)/\sqrt2$.
 The off-diagonal ancilla coherences retain the transition moments needed by
 
 ```math
-q_j=2w_j\operatorname{Re}\langle e_j\mid O\mid\psi\rangle.
+q_j=2w_j\mathrm{Re}\langle e_j\mid O\mid\psi\rangle.
 ```
 
 Replacing the controlled branch by $e^{i\gamma}O$ rotates the measured
@@ -175,7 +175,7 @@ After its inverse, the interference state is
 Measuring every qubit in the $X$ basis gives an ancilla bit $b$ and system
 bits $y$. The product of the ancilla eigenvalue and the system eigenvalues
 selected by marker $\lambda$ is $(-1)^{b+\lambda\cdot y}$, where the dot
-product is modulo two. Its expectation is $\operatorname{Re}v_\lambda$.
+product is modulo two. Its expectation is $\mathrm{Re}v_\lambda$.
 Consequently, the same outcome gives
 
 ```math
@@ -220,7 +220,7 @@ and [Walsh proof](../science/proofs-and-compilation.md#A2.SS5).
 
 ## 6. Complex phases have a separate direct record
 
-Write $D_{\mathrm{ph}}=\operatorname{diag}(e^{i\phi_\ell})$.
+Write $D_{\mathrm{ph}}=\mathrm{diag}(e^{i\phi_\ell})$.
 The complex magnitude frame is $W_{\mathbb C}=D_{\mathrm{ph}}W_{\mathbb R}$,
 so removing phases and applying the real inverse frame preserves the magnitude
 parity rule.
@@ -230,7 +230,7 @@ For phase coordinate $\phi_\ell$, however,
 ```math
 \partial_{\phi_\ell}\psi=i\psi_\ell\lvert\ell\rangle,
 \qquad
-q_{\phi_\ell}=2\operatorname{Im}\bigl[\psi_\ell^*(O\psi)_\ell\bigr].
+q_{\phi_\ell}=2\mathrm{Im}\bigl[\psi_\ell^*(O\psi)_\ell\bigr].
 ```
 
 Measure the interference ancilla in $Y$ and the system in the computational
@@ -241,10 +241,10 @@ inverse magnitude frame. A zero-amplitude leaf has zero expected phase
 derivative, although individual signed records in that bin need not vanish.
 
 The chart retains the common phase. With $p_\ell=|\psi_\ell|^2$, its
-round-sphere phase metric is $\operatorname{diag}(p)$. A common phase
+round-sphere phase metric is $\mathrm{diag}(p)$. A common phase
 change gives tangent $i\psi$ with norm one. Quotienting by global phase
 instead gives the Fubini–Study block
-$\operatorname{diag}(p)-pp^{\mathsf T}$, which annihilates the all-ones
+$\mathrm{diag}(p)-pp^{\mathsf T}$, which annihilates the all-ones
 vector. Hopf-QBP uses the former convention. Expectation invariance gives
 $\sum_\ell q_{\phi_\ell}=0$ without changing that metric convention.
 

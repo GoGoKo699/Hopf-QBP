@@ -23,13 +23,13 @@ Let $`G_{j}`$ be the two-level rotation
 <a id="S4.E16"></a>
 
 ```math
-\begin{aligned}G_{j}\lvert b_{\ell_{0}(j)}\rangle & =\cos\theta_{j}\lvert b_{\ell_{0}(j)}\rangle +\sin\theta_{j}\lvert b_{\lambda(j)}\rangle ,\end{aligned}\tag{16}
+{\begin{aligned}G_{j}\lvert b_{\ell_{0}(j)}\rangle & =\cos\theta_{j}\lvert b_{\ell_{0}(j)}\rangle +\sin\theta_{j}\lvert b_{\lambda(j)}\rangle ,\end{aligned}}\tag{16}
 ```
 
 <a id="S4.E17"></a>
 
 ```math
-\begin{aligned}G_{j}\lvert b_{\lambda(j)}\rangle & =-\sin\theta_{j}\lvert b_{\ell_{0}(j)}\rangle +\cos\theta_{j}\lvert b_{\lambda(j)}\rangle ,\end{aligned}\tag{17}
+{\begin{aligned}G_{j}\lvert b_{\lambda(j)}\rangle & =-\sin\theta_{j}\lvert b_{\ell_{0}(j)}\rangle +\cos\theta_{j}\lvert b_{\lambda(j)}\rangle ,\end{aligned}}\tag{17}
 ```
 
 and let it act as the identity elsewhere. Gates at one depth act on disjoint basis pairs. Applying parent layers before descendant layers gives
@@ -47,7 +47,7 @@ Read columnwise, the product has the following action. At node $`j`$, the gate $
 <a id="S4.E18"></a>
 
 ```math
-W_{\mathbb{R}}(\boldsymbol{\theta}_{\mathrm{mag}})\lvert 0\rangle ^{\otimes n}=\lvert \psi^{\mathbb{R}}\rangle ,\qquad W_{\mathbb{R}}(\boldsymbol{\theta}_{\mathrm{mag}})\lvert b_{\lambda(j)}\rangle =\lvert e_{j}^{\mathbb{R}}\rangle .\tag{18}
+{W_{\mathbb{R}}(\boldsymbol{\theta}_{\mathrm{mag}})\lvert 0\rangle ^{\otimes n}=\lvert \psi^{\mathbb{R}}\rangle ,\qquad W_{\mathbb{R}}(\boldsymbol{\theta}_{\mathrm{mag}})\lvert b_{\lambda(j)}\rangle =\lvert e_{j}^{\mathbb{R}}\rangle .}\tag{18}
 ```
 
 Every normalized magnitude direction therefore has a reversible computational address. Appendix [B 4](proofs-and-compilation.md#A2.SS4) proves the marker bijection and column induction. Appendix [A 5](four-qubit-example.md#A1.SS5) lists the $`n=4`$ addressed gates.
@@ -61,7 +61,7 @@ With the differential columns computationally addressed, controlled interference
 <a id="S4.E19"></a>
 
 ```math
-\lvert \Omega_{W}\rangle =\frac{\lvert 0\rangle _{a}\lvert 0\rangle ^{\otimes n}+\lvert 1\rangle _{a}W^{\dagger}O\lvert \psi\rangle }{\sqrt{2}}.\tag{19}
+{\lvert \Omega_{W}\rangle =\frac{\lvert 0\rangle _{a}\lvert 0\rangle ^{\otimes n}+\lvert 1\rangle _{a}W^{\dagger}O\lvert \psi\rangle }{\sqrt{2}}.}\tag{19}
 ```
 
 For a basis label $`k=(k_{n}\cdots k_{1})_{2}`$, define
@@ -77,7 +77,7 @@ An all-$`X`$ outcome $`(b,\boldsymbol{y})`$ then has parity expectation
 <a id="S4.E20"></a>
 
 ```math
-\mathbb{E}\!\left[(-1)^{b+k\cdot\boldsymbol{y}}\right]=\operatorname{Re}\langle b_{k}\rvert W^{\dagger}O\lvert \psi\rangle .\tag{20}
+{\mathbb{E}\!\left[(-1)^{b+k\cdot\boldsymbol{y}}\right]=\mathrm{Re}\langle b_{k}\rvert W^{\dagger}O\lvert \psi\rangle .}\tag{20}
 ```
 
 Thus one measured bit string supplies a $`\{\pm 1\}`$ sample for every addressed frame column. Repeated outcomes estimate all corresponding transition moments. Setting $`W=W_{\mathbb{R}}`$ and $`k=\lambda(j)`$ recovers Eq. ([13](balanced-differential.md#S3.E13)). Appendix [B 1](proofs-and-compilation.md#A2.SS1) proves the generic identity, and Appendix [B 5](proofs-and-compilation.md#A2.SS5) proves its Hopf-frame specialization.
@@ -90,7 +90,7 @@ Thus one measured bit string supplies a $`\{\pm 1\}`$ sample for every addressed
 W^{\dagger}O\lvert \psi\rangle =\sum_{\ell=0}^{N-1}v_{\ell}\lvert b_{\ell}\rangle .
 ```
 
-Equation ([20](global-real.md#S4.E20)) reads $`\operatorname{Re}v_{k}`$ linearly from the coherent two-branch state. For comparison, let $`p_{\mathrm{unc}}(\boldsymbol{y})`$ be the all-$`X`$ probability obtained by applying $`O`$, then $`W^{\dagger}`$, and measuring only the system. Its Walsh coefficient is
+Equation ([20](global-real.md#S4.E20)) reads $`\mathrm{Re}v_{k}`$ linearly from the coherent two-branch state. For comparison, let $`p_{\mathrm{unc}}(\boldsymbol{y})`$ be the all-$`X`$ probability obtained by applying $`O`$, then $`W^{\dagger}`$, and measuring only the system. Its Walsh coefficient is
 
 <a id="S4.Ex35"></a>
 
@@ -109,7 +109,7 @@ where $`\ell\oplus k`$ is bitwise addition modulo two. System probabilities ther
 <a id="S4.E21"></a>
 
 ```math
-\mathrm{HopfReal}(\boldsymbol{\theta}_{\mathrm{mag}})\longrightarrow\operatorname{ctrl}(O)\longrightarrow W_{\mathbb{R}}^{\dagger}(\boldsymbol{\theta}_{\mathrm{mag}}),\tag{21}
+{\mathrm{HopfReal}(\boldsymbol{\theta}_{\mathrm{mag}})\longrightarrow\mathrm{ctrl}(O)\longrightarrow W_{\mathbb{R}}^{\dagger}(\boldsymbol{\theta}_{\mathrm{mag}}),}\tag{21}
 ```
 
 followed by $`X`$-basis measurement of the ancilla and all $`n`$ system qubits. This gate sequence and readout define the circuit template. One fresh execution returns the joint $`(n+1)`$-bit outcome
@@ -127,7 +127,7 @@ The state-column contract in Sec. [II D](reverse-task.md#S2.SS4) permits any exa
 <a id="S4.E22"></a>
 
 ```math
-Z_{j}^{\mathbb{R}}(b_{m},\boldsymbol{y}):=2\sqrt{g^{\mathbb{R}}_{j,j}}(-1)^{b_{m}+\lambda(j)\cdot\boldsymbol{y}}.\tag{22}
+{Z_{j}^{\mathbb{R}}(b_{m},\boldsymbol{y}):=2\sqrt{g^{\mathbb{R}}_{j,j}}(-1)^{b_{m}+\lambda(j)\cdot\boldsymbol{y}}.}\tag{22}
 ```
 
 Given $`S`$ independent outcomes $`\{(b_{m,t},\boldsymbol{y}_{t})\}_{t=1}^{S}`$, the empirical coordinate gradient is
@@ -141,7 +141,7 @@ Given $`S`$ independent outcomes $`\{(b_{m,t},\boldsymbol{y}_{t})\}_{t=1}^{S}`$,
 <a id="S4.E23"></a>
 
 ```math
-=\frac{2\sqrt{g^{\mathbb{R}}_{j,j}}}{S}\sum_{t=1}^{S}(-1)^{b_{m,t}+\lambda(j)\cdot\boldsymbol{y}_{t}}.\tag{23}
+{=\frac{2\sqrt{g^{\mathbb{R}}_{j,j}}}{S}\sum_{t=1}^{S}(-1)^{b_{m,t}+\lambda(j)\cdot\boldsymbol{y}_{t}}.}\tag{23}
 ```
 
 The same $`S`$ outcomes enter Eq. ([23](global-real.md#S4.E23)) for every $`j`$; only the predetermined marker $`\lambda(j)`$ and known metric factor change. Records from one execution are correlated, but distinct executions are independent.
@@ -169,7 +169,7 @@ The same $`S`$ recorded outcomes enter all three averages.
 <a id="S4.E24"></a>
 
 ```math
-C_{b,\boldsymbol{y}}:=\sum_{t=1}^{S}\mathbf{1}\!\left\{b_{m,t}=b,\ \boldsymbol{y}_{t}=\boldsymbol{y}\right\}\tag{24}
+{C_{b,\boldsymbol{y}}:=\sum_{t=1}^{S}\mathbf{1}\!\left\{b_{m,t}=b,\ \boldsymbol{y}_{t}=\boldsymbol{y}\right\}}\tag{24}
 ```
 
 The counts obey $`\sum_{\boldsymbol{y}}(C_{0,\boldsymbol{y}}+C_{1,\boldsymbol{y}})=S`$. Define their signed histogram by
@@ -187,7 +187,7 @@ A fast Walsh–Hadamard transform [[40](../references/paper-bibliography.md#bib.
 <a id="S4.E25"></a>
 
 ```math
-\widehat{m}_{k}=\frac{1}{S}\sum_{\boldsymbol{y}}h(\boldsymbol{y})(-1)^{k\cdot\boldsymbol{y}}.\tag{25}
+{\widehat{m}_{k}=\frac{1}{S}\sum_{\boldsymbol{y}}h(\boldsymbol{y})(-1)^{k\cdot\boldsymbol{y}}.}\tag{25}
 ```
 
 The $`k=0`$ entry is the marginal ancilla imbalance and estimates only $`E_{O}`$. The other system-resolved parity entries retain the frame components needed for the complete gradient. After a tree pass computes the metric factors,
@@ -195,7 +195,7 @@ The $`k=0`$ entry is the marginal ancilla imbalance and estimates only $`E_{O}`$
 <a id="S4.E26"></a>
 
 ```math
-\widehat{\partial_{\theta_{j}}E_{O}}=2\sqrt{g^{\mathbb{R}}_{j,j}}\widehat{m}_{\lambda(j)}.\tag{26}
+{\widehat{\partial_{\theta_{j}}E_{O}}=2\sqrt{g^{\mathbb{R}}_{j,j}}\widehat{m}_{\lambda(j)}.}\tag{26}
 ```
 
 The transform is the batched implementation of the direct averages in Eq. ([23](global-real.md#S4.E23)); it requires no additional quantum execution. The complete classical decoder uses $`\mathcal{O}(S+N\log N)`$ additions and subtractions and stores $`\mathcal{O}(N)`$ auxiliary histogram values.
@@ -209,7 +209,7 @@ The transform is the batched implementation of the direct averages in Eq. ([23](
 <a id="S4.E27"></a>
 
 ```math
-\mathbb{E}Z_{j}^{\mathbb{R}}=\partial_{\theta_{j}}E_{O},\qquad\vert Z_{j}^{\mathbb{R}}\vert \leq 2\sqrt{g^{\mathbb{R}}_{j,j}}\leq 2.\tag{27}
+{\mathbb{E}Z_{j}^{\mathbb{R}}=\partial_{\theta_{j}}E_{O},\qquad\vert Z_{j}^{\mathbb{R}}\vert \leq 2\sqrt{g^{\mathbb{R}}_{j,j}}\leq 2.}\tag{27}
 ```
 
 When $`g^{\mathbb{R}}_{j,j}=0`$, the record is identically zero. At depth $`d`$, collect the magnitude coordinates as
@@ -229,7 +229,7 @@ Every outcome satisfies
 <a id="S4.E28"></a>
 
 ```math
-\mathbb{E}Z_{d}^{\mathrm{fr}}=\mu_{d}^{\mathrm{mag}},\qquad\|Z_{d}^{\mathrm{fr}}\|_{2}=2.\tag{28}
+{\mathbb{E}Z_{d}^{\mathrm{fr}}=\mu_{d}^{\mathrm{mag}},\qquad\|Z_{d}^{\mathrm{fr}}\|_{2}=2.}\tag{28}
 ```
 
 Let $`S_{\mathrm{mag}}^{\mathbb{R}}`$ be the number of independent records in the real magnitude stream. The global-frame method repeats one template, and the same records serve every depth. The fixed-norm concentration result in Sec. [VII B](accuracy-resources.md#S7.SS2) gives the sufficient allocation in Eq. ([50](accuracy-resources.md#S7.E50)); one common count covers all coordinates and depths. Appendix [B 5](proofs-and-compilation.md#A2.SS5) proves the parity sign, unbiasedness, zero-weight behavior, depth normalization, and Walsh decoder. These identities supply the real case of Theorem [1](accuracy-resources.md#Thmtheorem1)(A).

@@ -84,7 +84,7 @@ a designated physical operation in the direct-angle compiler setting.
 
 **Understanding target.** Define $E_O=\langle\psi\mid O\mid\psi\rangle$
 with $O=O^\dagger$ and $O^2=I$, and derive
-$\partial_jE_O=2\operatorname{Re}\langle\partial_j\psi\mid O\mid\psi\rangle$.
+$\partial_jE_O=2\mathrm{Re}\langle\partial_j\psi\mid O\mid\psi\rangle$.
 
 **Prior dependencies.** M01.
 

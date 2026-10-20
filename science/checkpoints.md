@@ -43,7 +43,7 @@ For $`j=2^{d}+r`$, differentiation at the selected depth gives
 <a id="S6.E40"></a>
 
 ```math
-\partial_{\theta_{j}}E_{O}=2\operatorname{Im}\langle \beta_{d}^{\mathbb{R}}\rvert Q_{d,r}\lvert \alpha_{d}\rangle .\tag{40}
+{\partial_{\theta_{j}}E_{O}=2\mathrm{Im}\langle \beta_{d}^{\mathbb{R}}\rvert Q_{d,r}\lvert \alpha_{d}\rangle .}\tag{40}
 ```
 
 Thus $`B_{d}^{\dagger}`$ is the required real reverse block.
@@ -57,7 +57,7 @@ Thus $`B_{d}^{\dagger}`$ is the required real reverse block.
 <a id="S6.Ex64"></a>
 
 ```math
-\mathrm{HopfReal}(\boldsymbol{\theta}_{\mathrm{mag}})\longrightarrow\operatorname{ctrl}(O)\longrightarrow B_{d}^{\dagger}(\boldsymbol{\theta}_{\mathrm{mag}}).
+\mathrm{HopfReal}(\boldsymbol{\theta}_{\mathrm{mag}})\longrightarrow\mathrm{ctrl}(O)\longrightarrow B_{d}^{\dagger}(\boldsymbol{\theta}_{\mathrm{mag}}).
 ```
 
 The state-column contract permits any exact $`U_{\mathrm{fwd}}^{\mathbb{R}}`$ satisfying Eq. ([15](balanced-differential.md#S3.E15)) for correctness. The assigned-work comparison fixes $`U_{\mathrm{chk}}`$ as the designated direct-angle forward for this checkpoint program and its matched scalar baseline. After suffix reversal, the two branches are
@@ -65,7 +65,7 @@ The state-column contract permits any exact $`U_{\mathrm{fwd}}^{\mathbb{R}}`$ sa
 <a id="S6.E41"></a>
 
 ```math
-\lvert \Omega_{d}^{\mathbb{R}}\rangle =\frac{\lvert 0\rangle _{a}\lvert \alpha_{d}\rangle +\lvert 1\rangle _{a}\lvert \beta_{d}^{\mathbb{R}}\rangle }{\sqrt{2}}.\tag{41}
+{\lvert \Omega_{d}^{\mathbb{R}}\rangle =\frac{\lvert 0\rangle _{a}\lvert \alpha_{d}\rangle +\lvert 1\rangle _{a}\lvert \beta_{d}^{\mathbb{R}}\rangle }{\sqrt{2}}.}\tag{41}
 ```
 
 The $`Y`$-quadrature identity in Appendix [B 1](proofs-and-compilation.md#A2.SS1) converts their interference into the transported derivative in Eq. ([40](checkpoints.md#S6.E40)).
@@ -77,7 +77,7 @@ The $`Y`$-quadrature identity in Appendix [B 1](proofs-and-compilation.md#A2.SS1
 <a id="S6.E42"></a>
 
 ```math
-Z_{d}^{\mathrm{chk}}(b_{c},b_{t},\widehat{r}):=-2(-1)^{b_{c}+b_{t}}\mathbf{e}_{\widehat{r}}\in\mathbb{R}^{2^{d}},\tag{42}
+{Z_{d}^{\mathrm{chk}}(b_{c},b_{t},\widehat{r}):=-2(-1)^{b_{c}+b_{t}}\mathbf{e}_{\widehat{r}}\in\mathbb{R}^{2^{d}},}\tag{42}
 ```
 
 where $`\mathbf{e}_{\widehat{r}}`$ is the standard basis vector indexed by the measured prefix. Let $`S_{d}`$ be the number of records collected at depth $`d`$. Their average gives $`\widehat{\mu}_{d}^{\mathrm{mag}}=S_{d}^{-1}\sum_{s=1}^{S_{d}}Z_{d,s}^{\mathrm{chk}}`$. Componentwise,
@@ -85,7 +85,7 @@ where $`\mathbf{e}_{\widehat{r}}`$ is the standard basis vector indexed by the m
 <a id="S6.E43"></a>
 
 ```math
-\widehat{\partial_{\theta_{2^{d}+r}}E_{O}}=-\frac{2}{S_{d}}\sum_{s=1}^{S_{d}}(-1)^{b_{c,s}+b_{t,s}}\mathbf{1}\!\left\{\widehat{r}_{s}=r\right\}.\tag{43}
+{\widehat{\partial_{\theta_{2^{d}+r}}E_{O}}=-\frac{2}{S_{d}}\sum_{s=1}^{S_{d}}(-1)^{b_{c,s}+b_{t,s}}\mathbf{1}\!\left\{\widehat{r}_{s}=r\right\}.}\tag{43}
 ```
 
 Each outcome updates one of the $`2^{d}`$ prefix bins. The same stream therefore recovers every coordinate at depth $`d`$. Changing the depth changes the suffix, readout target, and associated circuit template.
@@ -118,12 +118,12 @@ This active-interface identity fixes exactly the action used by the checkpoint r
 \lvert \beta_{d}^{\mathbb{C}}\rangle :=B_{d,\mathbb{C}}^{\dagger}O\lvert \psi^{\mathbb{C}}\rangle .
 ```
 
-**One complex depth-$`d`$ template.** An integrated realization applies $`\mathrm{HopfComplex}`$, $`\operatorname{ctrl}(O)`$, and $`B_{d,\mathbb{C}}^{\dagger}`$, followed by the real checkpoint’s $`Y/Z/Y`$ measurement and signed one-hot record. The separated realization is
+**One complex depth-$`d`$ template.** An integrated realization applies $`\mathrm{HopfComplex}`$, $`\mathrm{ctrl}(O)`$, and $`B_{d,\mathbb{C}}^{\dagger}`$, followed by the real checkpoint’s $`Y/Z/Y`$ measurement and signed one-hot record. The separated realization is
 
 <a id="S6.E44"></a>
 
 ```math
-U_{\mathrm{chk}}\longrightarrow D_{\mathrm{ph}}\longrightarrow\operatorname{ctrl}(O)\longrightarrow D_{\mathrm{ph}}^{\dagger}\longrightarrow B_{d}^{\dagger}.\tag{44}
+{U_{\mathrm{chk}}\longrightarrow D_{\mathrm{ph}}\longrightarrow\mathrm{ctrl}(O)\longrightarrow D_{\mathrm{ph}}^{\dagger}\longrightarrow B_{d}^{\dagger}.}\tag{44}
 ```
 
 The interface identity preserves the measured correlators and the average in Eq. ([43](checkpoints.md#S6.E43)); integrated and separated completions may act differently on the unused columns. At the final depth, $`B_{n-1}=I`$ and $`P_{n-1}=I`$. The real reverse block is the identity, and the complex reverse block is $`D_{\mathrm{ph}}^{\dagger}`$. These templates supply the complex magnitude block. The direct phase template of Sec. [V](global-complex.md#S5) supplies the complementary phase-coordinate block.
@@ -142,7 +142,7 @@ Fix $`d`$. The checkpointed adjoint reverses the reflected branch only through t
 
 **ONE CHECKPOINT EXECUTION**
 
-Prepare the Hopf state, apply $`\operatorname{ctrl}(O)`$, and apply the chart-specific reverse block $`B_{d}^{\dagger}`$ or $`B_{d,\mathbb{C}}^{\dagger}`$. Measure the ancilla and the depth-$`d`$ target in $`Y`$ and the active prefix in $`Z`$, obtaining $`(b_{c},b_{t},\widehat{r})`$.
+Prepare the Hopf state, apply $`\mathrm{ctrl}(O)`$, and apply the chart-specific reverse block $`B_{d}^{\dagger}`$ or $`B_{d,\mathbb{C}}^{\dagger}`$. Measure the ancilla and the depth-$`d`$ target in $`Y`$ and the active prefix in $`Z`$, obtaining $`(b_{c},b_{t},\widehat{r})`$.
 
 **WHAT THAT EXECUTION MEANS**
 
@@ -165,7 +165,7 @@ For a complete complex gradient, append the direct phase stream from the global-
 <a id="S6.E45"></a>
 
 ```math
-\mathbb{E}Z_{d}^{\mathrm{chk}}=\mu_{d}^{\mathrm{mag}},\tag{45}
+{\mathbb{E}Z_{d}^{\mathrm{chk}}=\mu_{d}^{\mathrm{mag}},}\tag{45}
 ```
 
 and every record satisfies
@@ -173,7 +173,7 @@ and every record satisfies
 <a id="S6.E46"></a>
 
 ```math
-\|Z_{d}^{\mathrm{chk}}\|_{2}=2.\tag{46}
+{\|Z_{d}^{\mathrm{chk}}\|_{2}=2.}\tag{46}
 ```
 
 The checkpoint and global records therefore have the same statistical scale at a fixed depth. For one selected depth, the common count in Eq. ([49](accuracy-resources.md#S7.E49)) with failure probability $`\eta=\delta`$ suffices. Equation ([50](accuracy-resources.md#S7.E50)) gives the complete-coordinate allocations. A complete real gradient uses one stream for each of the $`n`$ magnitude depths; a complete complex gradient adds the direct phase stream. Appendix [B 7](proofs-and-compilation.md#A2.SS7) proves the transported derivative, $`Y`$-quadrature sign, one-hot readout, interface substitution, and within-depth commutation. Appendix [A 8](four-qubit-example.md#A1.SS8) gives the real and complex four-qubit depth-$`2`$ circuits. One selected depth is a block reverse pass; the complete all-depth schedule supplies Theorem [1](accuracy-resources.md#Thmtheorem1)(B).

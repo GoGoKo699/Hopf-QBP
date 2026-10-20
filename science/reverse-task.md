@@ -71,7 +71,7 @@ For a normalized state family and a parameter-independent Hermitian observable, 
 <a id="S2.E1"></a>
 
 ```math
-E_{O}(\boldsymbol{\theta})=\langle \psi(\boldsymbol{\theta})\rvert O\lvert \psi(\boldsymbol{\theta})\rangle\tag{1}
+{E_{O}(\boldsymbol{\theta})=\langle \psi(\boldsymbol{\theta})\rvert O\lvert \psi(\boldsymbol{\theta})\rangle}\tag{1}
 ```
 
 be the scalar expectation objective. A real coordinate changes this objective through the transition moment
@@ -79,10 +79,10 @@ be the scalar expectation objective. A real coordinate changes this objective th
 <a id="S2.E2"></a>
 
 ```math
-\partial_{\theta_{j}}E_{O}=2\operatorname{Re}\langle \partial_{\theta_{j}}\psi\rvert O\lvert \psi\rangle .\tag{2}
+{\partial_{\theta_{j}}E_{O}=2\mathrm{Re}\langle \partial_{\theta_{j}}\psi\rvert O\lvert \psi\rangle .}\tag{2}
 ```
 
-Normalization gives $`\operatorname{Re}\langle \psi\vert \partial_{\theta_{j}}\psi\rangle =0`$. Any component of the state differential parallel to $`\lvert \psi\rangle`$ therefore contributes no change to the expectation; only the orthogonal component is needed.
+Normalization gives $`\mathrm{Re}\langle \psi\vert \partial_{\theta_{j}}\psi\rangle =0`$. Any component of the state differential parallel to $`\lvert \psi\rangle`$ therefore contributes no change to the expectation; only the orthogonal component is needed.
 
 A reusable reverse record needs four ingredients: orthogonal differential directions, their coordinate weights, a reversible map to computational columns, and a classical rule that reuses one outcome across a coordinate block. The Hopf tree supplies the weighted differential frame; controlled interference and classical decoding convert it into shared gradient records. Sections [III](balanced-differential.md#S3)–[VI](checkpoints.md#S6) construct the block estimators. Theorem [1](accuracy-resources.md#Thmtheorem1) gives their accuracy, work, and storage guarantees, and Appendix [B 1](proofs-and-compilation.md#A2.SS1) proves the common interference identities.
 
@@ -109,12 +109,12 @@ and the exact controlled operation
 <a id="S2.Ex13"></a>
 
 ```math
-\operatorname{ctrl}(O)=\lvert 0\rangle \!\langle 0\rvert \otimes I+\lvert 1\rangle \!\langle 1\rvert \otimes O
+\mathrm{ctrl}(O)=\lvert 0\rangle \!\langle 0\rvert \otimes I+\lvert 1\rangle \!\langle 1\rvert \otimes O
 ```
 
 is available with a known relative phase between its branches, called the controlled-branch phase.
 
-A classical description of $`O`$, or uncontrolled access to it, does not supply this interface. If the controlled branch implements $`e^{\mathrm{i}\gamma}O`$, the $`X`$- and $`Y`$-readouts contain $`\operatorname{Re}(e^{\mathrm{i}\gamma}z)`$ and $`\operatorname{Im}(e^{\mathrm{i}\gamma}z)`$. A known $`\gamma`$ is removed by a phase correction or calibrated equatorial readout. An unknown one changes the fixed decoder but does not affect the uncontrolled channel $`O(\cdot)O^{\dagger}`$.
+A classical description of $`O`$, or uncontrolled access to it, does not supply this interface. If the controlled branch implements $`e^{\mathrm{i}\gamma}O`$, the $`X`$- and $`Y`$-readouts contain $`\mathrm{Re}(e^{\mathrm{i}\gamma}z)`$ and $`\mathrm{Im}(e^{\mathrm{i}\gamma}z)`$. A known $`\gamma`$ is removed by a phase correction or calibrated equatorial readout. An unknown one changes the fixed decoder but does not affect the uncontrolled channel $`O(\cdot)O^{\dagger}`$.
 
 <a id="S2.SS3.p3.1"></a>
 
@@ -139,7 +139,7 @@ An estimate $`\widehat{\nabla_{\boldsymbol{\theta}}E_{O}}\in\mathbb{R}^{M}`$ is 
 <a id="S2.E3"></a>
 
 ```math
-\mathbb{P}\!\left[\left\|\widehat{\nabla_{\boldsymbol{\theta}}E_{O}}-\nabla_{\boldsymbol{\theta}}E_{O}\right\|_{\infty}\leq\varepsilon\right]\geq 1-\delta.\tag{3}
+{\mathbb{P}\!\left[\left\|\widehat{\nabla_{\boldsymbol{\theta}}E_{O}}-\nabla_{\boldsymbol{\theta}}E_{O}\right\|_{\infty}\leq\varepsilon\right]\geq 1-\delta.}\tag{3}
 ```
 
 The condition gives simultaneous absolute coordinatewise accuracy for the complete classical output. Each shared record has a coordinate block as its mean.
@@ -153,7 +153,7 @@ For a known differentiable state circuit $`\boldsymbol{\theta}\mapsto\lvert \psi
 <a id="S2.E4"></a>
 
 ```math
-\mathbb{E}Z_{\mathcal{I}}=\left(2\operatorname{Re}\langle \partial_{\theta_{j}}\psi\rvert O\lvert \psi\rangle \right)_{j\in\mathcal{I}}\tag{4}
+{\mathbb{E}Z_{\mathcal{I}}=\left(2\mathrm{Re}\langle \partial_{\theta_{j}}\psi\rvert O\lvert \psi\rangle \right)_{j\in\mathcal{I}}}\tag{4}
 ```
 
 for a coordinate block $`\mathcal{I}`$. A complete protocol combines such shared blocks to produce the gradient in Definition [1](reverse-task.md#Thmdefinition1).
@@ -164,7 +164,7 @@ for a coordinate block $`\mathcal{I}`$. A complete protocol combines such shared
 
 Each execution starts from a fresh product input and ends with destructive product-basis measurement. State preparation, reverse blocks, controlled reflection, readout basis changes, and classical processing are exact. Only sampling fluctuations enter the accuracy bounds. The system and branch ancilla use $`n+1`$ qubits, besides compiler and controlled-reflection workspace. All displayed execution and Hopf-work bounds are per reflection.
 
-**Reflection-sum objectives.** Let $`H=\sum_{\alpha=1}^{L}a_{\alpha}O_{\alpha}`$ have fixed real coefficients $`a_{\alpha}`$ and parameter-independent terms satisfying $`O_{\alpha}^{\dagger}=O_{\alpha}`$ and $`O_{\alpha}^{2}=I`$. Set $`\Lambda:=\sum_{\alpha}\vert a_{\alpha}\vert >0`$ and assume calibrated controlled access to each term. Sample $`\alpha`$ with $`p_{\alpha}=\vert a_{\alpha}\vert /\Lambda`$ and return $`\widetilde{Z}_{\mathcal{I}}:=\Lambda\operatorname{sgn}(a_{\alpha})Z_{\mathcal{I}}^{(\alpha)}`$ for a record $`Z_{\mathcal{I}}^{(\alpha)}`$ on block $`\mathcal{I}`$. With $`E_{H}:=\langle \psi\rvert H\lvert \psi\rangle`$,
+**Reflection-sum objectives.** Let $`H=\sum_{\alpha=1}^{L}a_{\alpha}O_{\alpha}`$ have fixed real coefficients $`a_{\alpha}`$ and parameter-independent terms satisfying $`O_{\alpha}^{\dagger}=O_{\alpha}`$ and $`O_{\alpha}^{2}=I`$. Set $`\Lambda:=\sum_{\alpha}\vert a_{\alpha}\vert >0`$ and assume calibrated controlled access to each term. Sample $`\alpha`$ with $`p_{\alpha}=\vert a_{\alpha}\vert /\Lambda`$ and return $`\widetilde{Z}_{\mathcal{I}}:=\Lambda\mathrm{sgn}(a_{\alpha})Z_{\mathcal{I}}^{(\alpha)}`$ for a record $`Z_{\mathcal{I}}^{(\alpha)}`$ on block $`\mathcal{I}`$. With $`E_{H}:=\langle \psi\rvert H\lvert \psi\rangle`$,
 
 <a id="S2.EGx5"></a>
 
@@ -176,7 +176,7 @@ Each execution starts from a fresh product input and ends with destructive produ
 \begin{aligned}\|\widetilde{Z}_{\mathcal{I}}\|_{2} & \leq\Lambda B\quad\text{whenever}\quad\|Z_{\mathcal{I}}^{(\alpha)}\|_{2}\leq B.\end{aligned}
 ```
 
-The sufficient execution bounds therefore acquire a factor of $`\Lambda^{2}`$. The matched scalar uses the same term distribution and expected controlled-term charge $`\sum_{\alpha}p_{\alpha}C(\operatorname{ctrl}(O_{\alpha}))`$.
+The sufficient execution bounds therefore acquire a factor of $`\Lambda^{2}`$. The matched scalar uses the same term distribution and expected controlled-term charge $`\sum_{\alpha}p_{\alpha}C(\mathrm{ctrl}(O_{\alpha}))`$.
 
 <a id="S2.SS4"></a>
 
@@ -197,7 +197,7 @@ The constructions use three levels of circuit equality:
 <a id="S2.E5"></a>
 
 ```math
-\begin{aligned}UP & =VP, & \text{active-interface equality}.\end{aligned}\tag{5}
+{\begin{aligned}UP & =VP, & \text{active-interface equality}.\end{aligned}}\tag{5}
 ```
 
 Here $`P`$ projects onto the interface subspace reached by the forward prefix. Full-unitary equality identifies the complete circuit action. State-column equality fixes the prepared state, which is sufficient when all subsequent operations are held fixed. Active-interface equality fixes exactly the columns reached at a checkpoint while leaving the unused completion free. The global-frame method uses designated columns of a complete frame; the checkpoint method uses the reached active interface.

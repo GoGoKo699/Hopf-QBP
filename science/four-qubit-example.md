@@ -18,7 +18,7 @@ The wires are drawn with $`q_{1}`$ at the top and $`q_{4}`$ at the bottom, while
 \lvert b_{\ell}\rangle =\lvert q_{4}q_{3}q_{2}q_{1}\rangle ,\qquad\ell=(q_{4}q_{3}q_{2}q_{1})_{2}.
 ```
 
-A filled control fixes a basis bit to one, and an open control fixes it to zero. Rotations follow Eq. ([7](balanced-differential.md#S3.E7)); a library using $`\operatorname{RY}(\varphi)=e^{-\mathrm{i}\varphi Y/2}`$ therefore receives software angle $`2\theta`$. The dashed blocks use the full-unitary, state-column, and active-interface contracts of Eq. ([5](reverse-task.md#S2.E5)).
+A filled control fixes a basis bit to one, and an open control fixes it to zero. Rotations follow Eq. ([7](balanced-differential.md#S3.E7)); a library using $`\mathrm{RY}(\varphi)=e^{-\mathrm{i}\varphi Y/2}`$ therefore receives software angle $`2\theta`$. The dashed blocks use the full-unitary, state-column, and active-interface contracts of Eq. ([5](reverse-task.md#S2.E5)).
 
 The coordinate blocks are
 
@@ -108,7 +108,7 @@ and the corresponding incoming factor is
 <a id="A1.E59"></a>
 
 ```math
-\sqrt{g^{\mathbb{R}}_{5,5}}=\cos\theta_{1}\sin\theta_{2}.\tag{A1}
+{\sqrt{g^{\mathbb{R}}_{5,5}}=\cos\theta_{1}\sin\theta_{2}.}\tag{A1}
 ```
 
 <a id="A1.SS4"></a>
@@ -192,7 +192,7 @@ Thus
 <a id="A1.E60"></a>
 
 ```math
-\mathrm{HopfReal}\lvert 0000\rangle =U_{\mathrm{chk}}\lvert 0000\rangle =W_{\mathbb{R}}\lvert 0000\rangle =\lvert \psi^{\mathbb{R}}\rangle ,\tag{A2}
+{\mathrm{HopfReal}\lvert 0000\rangle =U_{\mathrm{chk}}\lvert 0000\rangle =W_{\mathbb{R}}\lvert 0000\rangle =\lvert \psi^{\mathbb{R}}\rangle ,}\tag{A2}
 ```
 
 while the three circuits generally give different full-unitary completions.
@@ -228,7 +228,7 @@ Then
 <a id="A1.E61"></a>
 
 ```math
-\begin{aligned}W_{\mathbb{C}}^{\dagger} & =W_{\mathbb{R}}^{\dagger}D_{\mathrm{ph}}^{\dagger}.\end{aligned}\tag{A3}
+{\begin{aligned}W_{\mathbb{C}}^{\dagger} & =W_{\mathbb{R}}^{\dagger}D_{\mathrm{ph}}^{\dagger}.\end{aligned}}\tag{A3}
 ```
 
 The first line is a state-column contract for the native and depth forwards; the remaining two identities fix the complete complex-magnitude frame used by the global record.
@@ -258,7 +258,7 @@ On the same active pair and with the same controls as the real gate, use
 <a id="A1.E62"></a>
 
 ```math
-\widetilde{G}_{j}:=R_{\mathbb{C}}\!\left(\theta_{j},-\Phi_{2j+1},-\Phi_{2j}\right).\tag{A4}
+{\widetilde{G}_{j}:=R_{\mathbb{C}}\!\left(\theta_{j},-\Phi_{2j+1},-\Phi_{2j}\right).}\tag{A4}
 ```
 
 With the same parent-before-descendant order,
@@ -266,7 +266,7 @@ With the same parent-before-descendant order,
 <a id="A1.E63"></a>
 
 ```math
-\boxed{\widetilde{W}_{\mathbb{C}}^{(R_{\mathbb{C}})}=e^{-\mathrm{i}\bar{\phi}}W_{\mathbb{C}}.}\tag{A5}
+{\boxed{\widetilde{W}_{\mathbb{C}}^{(R_{\mathbb{C}})}=e^{-\mathrm{i}\bar{\phi}}W_{\mathbb{C}}.}}\tag{A5}
 ```
 
 The compiler global phase multiplies every column equally and therefore leaves the protocol probabilities unchanged.
@@ -377,7 +377,7 @@ and with $`\lvert \alpha_{2}\rangle :=A_{2}\lvert 0000\rangle`$ and $`\lvert \be
 <a id="A1.Ex108"></a>
 
 ```math
-\partial_{\theta_{5}}E_{O}=2\operatorname{Im}\langle \beta_{2}^{\mathbb{R}}\rvert Q_{2,1}\lvert \alpha_{2}\rangle .
+\partial_{\theta_{5}}E_{O}=2\mathrm{Im}\langle \beta_{2}^{\mathbb{R}}\rvert Q_{2,1}\lvert \alpha_{2}\rangle .
 ```
 
 <a id="A1.SS8.SSS1"></a>
@@ -413,7 +413,7 @@ so
 <a id="A1.E64"></a>
 
 ```math
-\boxed{B_{2,\mathbb{C}}P_{2}=D_{\mathrm{ph}}B_{2}P_{2}.}\tag{A6}
+{\boxed{B_{2,\mathbb{C}}P_{2}=D_{\mathrm{ph}}B_{2}P_{2}.}}\tag{A6}
 ```
 
 The unused second column of each $`R_{\mathbb{C}}`$ gate completes the unitary outside the reached interface. With $`\lvert \beta_{2}^{\mathbb{C}}\rangle :=B_{2,\mathbb{C}}^{\dagger}O\lvert \psi^{\mathbb{C}}\rangle`$, the four transported derivatives are
@@ -421,7 +421,7 @@ The unused second column of each $`R_{\mathbb{C}}`$ gate completes the unitary o
 <a id="A1.E65"></a>
 
 ```math
-\partial_{\theta_{4+r}}E_{O}=2\operatorname{Im}\langle \beta_{2}^{\mathbb{C}}\rvert Q_{2,r}\lvert \alpha_{2}\rangle ,\qquad r=0,1,2,3.\tag{A7}
+{\partial_{\theta_{4+r}}E_{O}=2\mathrm{Im}\langle \beta_{2}^{\mathbb{C}}\rvert Q_{2,r}\lvert \alpha_{2}\rangle ,\qquad r=0,1,2,3.}\tag{A7}
 ```
 
 <a id="A1.SS8.SSS1.fig1"></a>

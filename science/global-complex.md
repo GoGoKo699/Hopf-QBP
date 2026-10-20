@@ -43,7 +43,7 @@ Write $`x_{\ell}(\boldsymbol{\theta}):=\langle b_{\ell}\vert \psi^{\mathbb{C}}(\
 <a id="S5.E29"></a>
 
 ```math
-=\lvert \psi^{\mathbb{C}}(\boldsymbol{\theta})\rangle .\tag{29}
+{=\lvert \psi^{\mathbb{C}}(\boldsymbol{\theta})\rangle .}\tag{29}
 ```
 
 For correctness substitutions, write $`U_{\mathrm{fwd}}^{\mathbb{C}}`$ for any exact complex preparation satisfying
@@ -51,7 +51,7 @@ For correctness substitutions, write $`U_{\mathrm{fwd}}^{\mathbb{C}}`$ for any e
 <a id="S5.E30"></a>
 
 ```math
-U_{\mathrm{fwd}}^{\mathbb{C}}\lvert 0\rangle ^{\otimes n}=\lvert \psi^{\mathbb{C}}(\boldsymbol{\theta})\rangle .\tag{30}
+{U_{\mathrm{fwd}}^{\mathbb{C}}\lvert 0\rangle ^{\otimes n}=\lvert \psi^{\mathbb{C}}(\boldsymbol{\theta})\rangle .}\tag{30}
 ```
 
 This is the complex instance of the state-column principle in Sec. [II D](reverse-task.md#S2.SS4). The designated assigned-work schedule is the direct-angle preparation $`D_{\mathrm{ph}}U_{\mathrm{chk}}`$; the native $`\mathrm{HopfComplex}`$ circuit is another direct-angle state-column completion. Appendix [A 2](four-qubit-example.md#A1.SS2) recalls the native gate-level realization, including the complex two-leaf completion.
@@ -69,7 +69,7 @@ The complex magnitude metric equals the real tree metric,
 <a id="S5.E31"></a>
 
 ```math
-g^{\mathbb{C}}_{j,j}(\boldsymbol{\theta})=g^{\mathbb{R}}_{j,j}(\boldsymbol{\theta}_{\mathrm{mag}}),\qquad 1\leq j<N.\tag{31}
+{g^{\mathbb{C}}_{j,j}(\boldsymbol{\theta})=g^{\mathbb{R}}_{j,j}(\boldsymbol{\theta}_{\mathrm{mag}}),\qquad 1\leq j<N.}\tag{31}
 ```
 
 Therefore,
@@ -83,7 +83,7 @@ Therefore,
 <a id="S5.E32"></a>
 
 ```math
-\begin{aligned}\partial_{\theta_{j}}E_{O} & =2\sqrt{g^{\mathbb{C}}_{j,j}(\boldsymbol{\theta})}\operatorname{Re}\langle e_{j}^{\mathbb{C}}\rvert O\lvert \psi^{\mathbb{C}}\rangle ,\qquad 1\leq j<N.\end{aligned}\tag{32}
+{\begin{aligned}\partial_{\theta_{j}}E_{O} & =2\sqrt{g^{\mathbb{C}}_{j,j}(\boldsymbol{\theta})}\mathrm{Re}\langle e_{j}^{\mathbb{C}}\rvert O\lvert \psi^{\mathbb{C}}\rangle ,\qquad 1\leq j<N.\end{aligned}}\tag{32}
 ```
 
 The complete complex magnitude frame is
@@ -115,12 +115,12 @@ Common parameter arguments may now be suppressed. The displayed definition gives
 <a id="S5.Ex54"></a>
 
 ```math
-G_{\mathrm{ph}}^{\mathrm{sph}}=\operatorname{diag}(\boldsymbol{p}).
+G_{\mathrm{ph}}^{\mathrm{sph}}=\mathrm{diag}(\boldsymbol{p}).
 ```
 
-Quotienting global phase would instead give the unused projective comparison $`G_{\mathrm{ph}}^{\mathrm{FS}}=\operatorname{diag}(\boldsymbol{p})-\boldsymbol{p}\boldsymbol{p}^{\mathsf{T}}`$. Uniform phase is not metric-null in the adopted geometry, although expectation objectives are invariant along it.
+Quotienting global phase would instead give the unused projective comparison $`G_{\mathrm{ph}}^{\mathrm{FS}}=\mathrm{diag}(\boldsymbol{p})-\boldsymbol{p}\boldsymbol{p}^{\mathsf{T}}`$. Uniform phase is not metric-null in the adopted geometry, although expectation objectives are invariant along it.
 
-The complete complex gradient uses two templates. The magnitude template reuses each joint all-$`X`$ outcome across the $`N-1`$ magnitude coordinates. The phase template places each ancilla-$`Y`$/system-$`Z`$ outcome in a signed one-hot histogram for the $`N`$ leaf phases. They share state preparation and $`\operatorname{ctrl}(O)`$ but run as separate circuit families with different reverse blocks and readouts.
+The complete complex gradient uses two templates. The magnitude template reuses each joint all-$`X`$ outcome across the $`N-1`$ magnitude coordinates. The phase template places each ancilla-$`Y`$/system-$`Z`$ outcome in a signed one-hot histogram for the $`N`$ leaf phases. They share state preparation and $`\mathrm{ctrl}(O)`$ but run as separate circuit families with different reverse blocks and readouts.
 
 <a id="S5.SS2"></a>
 
@@ -131,7 +131,7 @@ The complete complex gradient uses two templates. The magnitude template reuses 
 <a id="S5.Ex55"></a>
 
 ```math
-U_{\mathrm{fwd}}^{\mathbb{C}}\longrightarrow\operatorname{ctrl}(O)\longrightarrow W_{\mathbb{C}}^{\dagger},
+U_{\mathrm{fwd}}^{\mathbb{C}}\longrightarrow\mathrm{ctrl}(O)\longrightarrow W_{\mathbb{C}}^{\dagger},
 ```
 
 followed by $`X`$-basis measurement of every qubit. The accounting of assigned Hopf CNOT work for the designated separated implementation uses the block order
@@ -139,7 +139,7 @@ followed by $`X`$-basis measurement of every qubit. The accounting of assigned H
 <a id="S5.Ex56"></a>
 
 ```math
-U_{\mathrm{chk}}\longrightarrow D_{\mathrm{ph}}\longrightarrow\operatorname{ctrl}(O)\longrightarrow D_{\mathrm{ph}}^{\dagger}\longrightarrow W_{\mathbb{R}}^{\dagger}.
+U_{\mathrm{chk}}\longrightarrow D_{\mathrm{ph}}\longrightarrow\mathrm{ctrl}(O)\longrightarrow D_{\mathrm{ph}}^{\dagger}\longrightarrow W_{\mathbb{R}}^{\dagger}.
 ```
 
 The state-column identity in Eq. ([29](global-complex.md#S5.E29)) also permits the native $`\mathrm{HopfComplex}`$ circuit as the forward block. Both forward choices belong to the same complex-magnitude measurement family and retain direct coordinate-to-angle control; the theorem’s finite constants refer to the separated schedule.
@@ -149,7 +149,7 @@ One execution returns the joint $`(n+1)`$-bit outcome $`(b_{m},\boldsymbol{y})`$
 <a id="S5.E33"></a>
 
 ```math
-Z_{j}^{\mathbb{C},\mathrm{mag}}(b_{m},\boldsymbol{y}):=2\sqrt{g^{\mathbb{C}}_{j,j}}(-1)^{b_{m}+\lambda(j)\cdot\boldsymbol{y}},\qquad 1\leq j<N.\tag{33}
+{Z_{j}^{\mathbb{C},\mathrm{mag}}(b_{m},\boldsymbol{y}):=2\sqrt{g^{\mathbb{C}}_{j,j}}(-1)^{b_{m}+\lambda(j)\cdot\boldsymbol{y}},\qquad 1\leq j<N.}\tag{33}
 ```
 
 Let $`S_{\mathrm{mag}}^{\mathbb{C}}`$ be the number of independent magnitude executions. Their empirical average is
@@ -157,7 +157,7 @@ Let $`S_{\mathrm{mag}}^{\mathbb{C}}`$ be the number of independent magnitude exe
 <a id="S5.E34"></a>
 
 ```math
-\widehat{\partial_{\theta_{j}}E_{O}}=\frac{1}{S_{\mathrm{mag}}^{\mathbb{C}}}\sum_{t=1}^{S_{\mathrm{mag}}^{\mathbb{C}}}Z_{j}^{\mathbb{C},\mathrm{mag}}(b_{m,t},\boldsymbol{y}_{t}).\tag{34}
+{\widehat{\partial_{\theta_{j}}E_{O}}=\frac{1}{S_{\mathrm{mag}}^{\mathbb{C}}}\sum_{t=1}^{S_{\mathrm{mag}}^{\mathbb{C}}}Z_{j}^{\mathbb{C},\mathrm{mag}}(b_{m,t},\boldsymbol{y}_{t}).}\tag{34}
 ```
 
 The same outcomes serve every $`j`$; only the marker and known metric factor change. Because $`g^{\mathbb{C}}_{j,j}=g^{\mathbb{R}}_{j,j}`$, the signed histogram and Walsh transform in Eqs. ([24](global-real.md#S4.E24))–([26](global-real.md#S4.E26)) apply without modification.
@@ -171,7 +171,7 @@ Each phase derivative is already supported on one computational-basis leaf and n
 <a id="S5.E35"></a>
 
 ```math
-\partial_{\theta_{N+\ell}}\lvert \psi^{\mathbb{C}}(\boldsymbol{\theta})\rangle =\mathrm{i}x_{\ell}(\boldsymbol{\theta})\lvert b_{\ell}\rangle ,\qquad 0\leq\ell<N.\tag{35}
+{\partial_{\theta_{N+\ell}}\lvert \psi^{\mathbb{C}}(\boldsymbol{\theta})\rangle =\mathrm{i}x_{\ell}(\boldsymbol{\theta})\lvert b_{\ell}\rangle ,\qquad 0\leq\ell<N.}\tag{35}
 ```
 
 Computational-basis readout is therefore the identity differential resolution in Definition [2](reverse-task.md#Thmdefinition2). The corresponding objective derivative is
@@ -179,17 +179,17 @@ Computational-basis readout is therefore the identity differential resolution in
 <a id="S5.Ex57"></a>
 
 ```math
-\partial_{\theta_{N+\ell}}E_{O}=2\operatorname{Im}\langle \psi^{\mathbb{C}}\rvert \Pi_{\ell}O\lvert \psi^{\mathbb{C}}\rangle ,\qquad\Pi_{\ell}:=\lvert b_{\ell}\rangle \!\langle b_{\ell}\rvert .
+\partial_{\theta_{N+\ell}}E_{O}=2\mathrm{Im}\langle \psi^{\mathbb{C}}\rvert \Pi_{\ell}O\lvert \psi^{\mathbb{C}}\rangle ,\qquad\Pi_{\ell}:=\lvert b_{\ell}\rangle \!\langle b_{\ell}\rvert .
 ```
 
-**One phase circuit template.** Prepare $`\lvert +\rangle _{a}\lvert 0\rangle ^{\otimes n}`$ with $`\mathrm{HopfComplex}`$, apply $`\operatorname{ctrl}(O)`$, then measure the ancilla in $`Y`$ and the system in $`Z`$. The state-column contract permits any exact $`U_{\mathrm{fwd}}^{\mathbb{C}}`$ satisfying Eq. ([30](global-complex.md#S5.E30)) for correctness; the assigned-work comparison retains the designated direct-angle schedule. One execution returns $`(b_{p},\widehat{\ell})`$, where $`b_{p}\in\{0,1\}`$ and $`\widehat{\ell}=(z_{n}\cdots z_{1})_{2}\in\{0,\ldots,N-1\}`$.
+**One phase circuit template.** Prepare $`\lvert +\rangle _{a}\lvert 0\rangle ^{\otimes n}`$ with $`\mathrm{HopfComplex}`$, apply $`\mathrm{ctrl}(O)`$, then measure the ancilla in $`Y`$ and the system in $`Z`$. The state-column contract permits any exact $`U_{\mathrm{fwd}}^{\mathbb{C}}`$ satisfying Eq. ([30](global-complex.md#S5.E30)) for correctness; the assigned-work comparison retains the designated direct-angle schedule. One execution returns $`(b_{p},\widehat{\ell})`$, where $`b_{p}\in\{0,1\}`$ and $`\widehat{\ell}=(z_{n}\cdots z_{1})_{2}\in\{0,\ldots,N-1\}`$.
 
 **Single-execution record and direct average.** For each leaf,
 
 <a id="S5.E36"></a>
 
 ```math
-Z_{N+\ell}^{\mathbb{C},\mathrm{ph}}(b_{p},\widehat{\ell}):=2(-1)^{b_{p}}\mathbf{1}\!\left\{\widehat{\ell}=\ell\right\}.\tag{36}
+{Z_{N+\ell}^{\mathbb{C},\mathrm{ph}}(b_{p},\widehat{\ell}):=2(-1)^{b_{p}}\mathbf{1}\!\left\{\widehat{\ell}=\ell\right\}.}\tag{36}
 ```
 
 Here and below, $`\mathbf{e}_{r}`$ denotes a classical standard basis vector; it is distinct from the normalized quantum tangent kets $`\lvert e_{j}^{\mathbb{R}}\rangle`$ and $`\lvert e_{j}^{\mathbb{C}}\rangle`$. Equivalently, with $`\mathbf{e}_{\widehat{\ell}}`$ the standard basis vector of $`\mathbb{R}^{N}`$, the complete phase record is
@@ -197,7 +197,7 @@ Here and below, $`\mathbf{e}_{r}`$ denotes a classical standard basis vector; it
 <a id="S5.E37"></a>
 
 ```math
-Z^{\mathbb{C},\mathrm{ph}}(b_{p},\widehat{\ell})=2(-1)^{b_{p}}\mathbf{e}_{\widehat{\ell}},\qquad\|Z^{\mathbb{C},\mathrm{ph}}\|_{2}=2.\tag{37}
+{Z^{\mathbb{C},\mathrm{ph}}(b_{p},\widehat{\ell})=2(-1)^{b_{p}}\mathbf{e}_{\widehat{\ell}},\qquad\|Z^{\mathbb{C},\mathrm{ph}}\|_{2}=2.}\tag{37}
 ```
 
 Let $`S_{\mathrm{ph}}^{\mathbb{C}}`$ be the number of independent phase outcomes. Their empirical average is
@@ -228,7 +228,7 @@ Protocol [1](global-complex.md#S5.SS3.p6.pic1) summarizes the single-execution e
 
 **ONE MAGNITUDE EXECUTION**
 
-Prepare the real or complex Hopf state, apply $`\operatorname{ctrl}(O)`$, and apply the chart-specific inverse frame $`W_{\mathbb{R}}^{\dagger}`$ or $`W_{\mathbb{C}}^{\dagger}`$. Measure the ancilla and system in $`X`$, obtaining $`(b_{m},\boldsymbol{y})`$.
+Prepare the real or complex Hopf state, apply $`\mathrm{ctrl}(O)`$, and apply the chart-specific inverse frame $`W_{\mathbb{R}}^{\dagger}`$ or $`W_{\mathbb{C}}^{\dagger}`$. Measure the ancilla and system in $`X`$, obtaining $`(b_{m},\boldsymbol{y})`$.
 
 **WHAT THAT EXECUTION MEANS**
 
@@ -257,13 +257,13 @@ The real chart returns the magnitude block. The complex chart concatenates the m
 <a id="S5.E38"></a>
 
 ```math
-\begin{aligned}\mathbb{E}Z_{j}^{\mathbb{C},\mathrm{mag}} & =\partial_{\theta_{j}}E_{O}, & \vert Z_{j}^{\mathbb{C},\mathrm{mag}}\vert & \leq 2\sqrt{g^{\mathbb{C}}_{j,j}}\leq 2,\end{aligned}\tag{38}
+{\begin{aligned}\mathbb{E}Z_{j}^{\mathbb{C},\mathrm{mag}} & =\partial_{\theta_{j}}E_{O}, & \vert Z_{j}^{\mathbb{C},\mathrm{mag}}\vert & \leq 2\sqrt{g^{\mathbb{C}}_{j,j}}\leq 2,\end{aligned}}\tag{38}
 ```
 
 <a id="S5.E39"></a>
 
 ```math
-\begin{aligned}\mathbb{E}Z_{N+\ell}^{\mathbb{C},\mathrm{ph}} & =\partial_{\theta_{N+\ell}}E_{O}.\end{aligned}\tag{39}
+{\begin{aligned}\mathbb{E}Z_{N+\ell}^{\mathbb{C},\mathrm{ph}} & =\partial_{\theta_{N+\ell}}E_{O}.\end{aligned}}\tag{39}
 ```
 
 Every complex magnitude depth has the norm-two property in Eq. ([28](global-real.md#S4.E28)), and every phase record has norm two by Eq. ([37](global-complex.md#S5.E37)). With the allocations $`S_{\mathrm{mag}}^{\mathbb{C}}`$ and $`S_{\mathrm{ph}}^{\mathbb{C}}`$ in Eq. ([50](accuracy-resources.md#S7.E50)), the all-$`X`$ magnitude and separate $`Y/Z`$ phase templates recover the complete complex coordinate vector. Appendix [B 6](proofs-and-compilation.md#A2.SS6) proves phase dressing, magnitude parity, the phase-quadrature sign, the one-hot identity, and the compiler global-phase identity. The two records supply the complex case of Theorem [1](accuracy-resources.md#Thmtheorem1)(A).

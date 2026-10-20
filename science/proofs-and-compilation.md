@@ -10,12 +10,12 @@ This appendix develops the proofs from the common interference identities to the
 
 ## B 1 Controlled-interference identities
 
-Let $`W\lvert 0\rangle ^{\otimes n}=\lvert \psi\rangle`$ and let an admissible forward circuit prepare the same state. Starting from $`\lvert +\rangle _{a}\lvert 0\rangle ^{\otimes n}`$, the forward block, $`\operatorname{ctrl}(O)`$, and $`W^{\dagger}`$ produce Eq. ([19](global-real.md#S4.E19)). Since $`X(k)\lvert 0\rangle ^{\otimes n}=\lvert b_{k}\rangle`$,
+Let $`W\lvert 0\rangle ^{\otimes n}=\lvert \psi\rangle`$ and let an admissible forward circuit prepare the same state. Starting from $`\lvert +\rangle _{a}\lvert 0\rangle ^{\otimes n}`$, the forward block, $`\mathrm{ctrl}(O)`$, and $`W^{\dagger}`$ produce Eq. ([19](global-real.md#S4.E19)). Since $`X(k)\lvert 0\rangle ^{\otimes n}=\lvert b_{k}\rangle`$,
 
 <a id="A2.Ex113"></a>
 
 ```math
-\langle \Omega_{W}\rvert X_{a}\otimes X(k)\lvert \Omega_{W}\rangle =\frac{1}{2}\left(\langle 0\rvert X(k)W^{\dagger}O\lvert \psi\rangle +\langle \psi\rvert OWX(k)\lvert 0\rangle \right)=\operatorname{Re}\langle b_{k}\rvert W^{\dagger}O\lvert \psi\rangle .
+\langle \Omega_{W}\rvert X_{a}\otimes X(k)\lvert \Omega_{W}\rangle =\frac{1}{2}\left(\langle 0\rvert X(k)W^{\dagger}O\lvert \psi\rangle +\langle \psi\rvert OWX(k)\lvert 0\rangle \right)=\mathrm{Re}\langle b_{k}\rvert W^{\dagger}O\lvert \psi\rangle .
 ```
 
 The measured eigenvalue of $`X_{a}\otimes X(k)`$ is $`(-1)^{b+k\cdot\boldsymbol{y}}`$, proving Eq. ([20](global-real.md#S4.E20)).
@@ -25,7 +25,7 @@ For normalized branches $`\lvert \alpha\rangle ,\lvert \beta\rangle`$ and a Herm
 <a id="A2.E66"></a>
 
 ```math
-\langle \Omega\rvert Y_{a}\otimes A\lvert \Omega\rangle =\operatorname{Im}\langle \alpha\rvert A\lvert \beta\rangle =-\operatorname{Im}\langle \beta\rvert A\lvert \alpha\rangle .\tag{B1}
+{\langle \Omega\rvert Y_{a}\otimes A\lvert \Omega\rangle =\mathrm{Im}\langle \alpha\rvert A\lvert \beta\rangle =-\mathrm{Im}\langle \beta\rvert A\lvert \alpha\rangle .}\tag{B1}
 ```
 
 The direct phase record uses the first form and the checkpoint record the second.
@@ -64,7 +64,7 @@ At the root, Lemma [1](proofs-and-compilation.md#Thmlemma1) gives Eq. ([10](bala
 <a id="A2.E67"></a>
 
 ```math
-\lvert \psi^{\mathbb{R}}\rangle =\lvert \psi_{\neg j}\rangle +\sqrt{g^{\mathbb{R}}_{j,j}}\lvert \sigma_{j}\rangle ,\qquad\lvert \psi_{\neg j}\rangle \in\mathcal{H}_{j}^{\perp}.\tag{B2}
+{\lvert \psi^{\mathbb{R}}\rangle =\lvert \psi_{\neg j}\rangle +\sqrt{g^{\mathbb{R}}_{j,j}}\lvert \sigma_{j}\rangle ,\qquad\lvert \psi_{\neg j}\rangle \in\mathcal{H}_{j}^{\perp}.}\tag{B2}
 ```
 
 The first term and incoming coefficient are independent of $`\theta_{j}`$. The coefficient is the nonnegative product of ancestor sine and cosine factors; its square obeys Eq. ([8](balanced-differential.md#S3.E8)). Since $`\partial_{\theta_{j}}\lvert \sigma_{j}\rangle =\lvert e_{j}^{\mathbb{R}}\rangle`$, Eq. ([11](balanced-differential.md#S3.E11)) follows. Orthonormality gives Eq. ([12](balanced-differential.md#S3.E12)). For $`g^{\mathbb{R}}_{j,j}=0`$, the coordinate derivative vanishes by Eq. ([B2](proofs-and-compilation.md#A2.E67)); Eq. ([9](balanced-differential.md#S3.E9)) still defines a normalized completion column.
@@ -74,7 +74,7 @@ For a Hermitian observable,
 <a id="A2.Ex115"></a>
 
 ```math
-\partial_{\theta_{j}}E_{O}=\langle \partial_{\theta_{j}}\psi\rvert O\lvert \psi\rangle +\langle \psi\rvert O\lvert \partial_{\theta_{j}}\psi\rangle =2\sqrt{g^{\mathbb{R}}_{j,j}}\operatorname{Re}\langle e_{j}^{\mathbb{R}}\rvert O\lvert \psi^{\mathbb{R}}\rangle ,
+\partial_{\theta_{j}}E_{O}=\langle \partial_{\theta_{j}}\psi\rvert O\lvert \psi\rangle +\langle \psi\rvert O\lvert \partial_{\theta_{j}}\psi\rangle =2\sqrt{g^{\mathbb{R}}_{j,j}}\mathrm{Re}\langle e_{j}^{\mathbb{R}}\rvert O\lvert \psi^{\mathbb{R}}\rangle ,
 ```
 
 which is Eq. ([13](balanced-differential.md#S3.E13)).
@@ -88,7 +88,7 @@ Define real path coefficients recursively by
 <a id="A2.E68"></a>
 
 ```math
-a_{0,0}=1,\qquad a_{d+1,2r}=a_{d,r}\cos\theta_{2^{d}+r},\qquad a_{d+1,2r+1}=a_{d,r}\sin\theta_{2^{d}+r}.\tag{B3}
+{a_{0,0}=1,\qquad a_{d+1,2r}=a_{d,r}\cos\theta_{2^{d}+r},\qquad a_{d+1,2r+1}=a_{d,r}\sin\theta_{2^{d}+r}.}\tag{B3}
 ```
 
 After the first $`d+1`$ depth layers,
@@ -96,7 +96,7 @@ After the first $`d+1`$ depth layers,
 <a id="A2.E69"></a>
 
 ```math
-U_{d}\cdots U_{0}\lvert 0\rangle ^{\otimes n}=\sum_{r=0}^{2^{d+1}-1}a_{d+1,r}\lvert r\rangle _{q_{n}\cdots q_{n-d}}\lvert 0\rangle _{q_{n-d-1}\cdots q_{1}}.\tag{B4}
+{U_{d}\cdots U_{0}\lvert 0\rangle ^{\otimes n}=\sum_{r=0}^{2^{d+1}-1}a_{d+1,r}\lvert r\rangle _{q_{n}\cdots q_{n-d}}\lvert 0\rangle _{q_{n-d-1}\cdots q_{1}}.}\tag{B4}
 ```
 
 For $`d=0`$, this is the rotation in Eq. ([7](balanced-differential.md#S3.E7)) on $`q_{n}`$. Assume the statement through depth $`d-1`$. In the component with prefix $`r`$, exactly one projector in $`U_{d}`$ is active, and it rotates the fresh target $`q_{n-d}`$ from $`\lvert 0\rangle`$ to $`\cos\theta_{2^{d}+r}\lvert 0\rangle +\sin\theta_{2^{d}+r}\lvert 1\rangle`$. This gives the two recursions in Eq. ([B3](proofs-and-compilation.md#A2.E68)), so Eq. ([B4](proofs-and-compilation.md#A2.E69)) follows by induction.
@@ -140,7 +140,7 @@ For any admissible real forward preparation, the state-column contract gives $`W
 ```
 
 ```math
-\begin{aligned}\mathbb{E}\!\left[(-1)^{b_{m}+\lambda(j)\cdot\boldsymbol{y}}\right] & =\operatorname{Re}\langle e_{j}^{\mathbb{R}}\rvert O\lvert \psi^{\mathbb{R}}\rangle ,\end{aligned}
+\begin{aligned}\mathbb{E}\!\left[(-1)^{b_{m}+\lambda(j)\cdot\boldsymbol{y}}\right] & =\mathrm{Re}\langle e_{j}^{\mathbb{R}}\rvert O\lvert \psi^{\mathbb{R}}\rangle ,\end{aligned}
 ```
 
 where the second line uses Eq. ([20](global-real.md#S4.E20)) at $`k=\lambda(j)`$ and Eq. ([18](global-real.md#S4.E18)). Multiplication by $`2\sqrt{g^{\mathbb{R}}_{j,j}}`$ proves Eqs. ([22](global-real.md#S4.E22)) and ([27](global-real.md#S4.E27)). Averaging independent copies gives Eq. ([23](global-real.md#S4.E23)); the same argument after phase dressing gives Eq. ([34](global-complex.md#S5.E34)). A zero metric factor makes the record zero for every outcome.
@@ -200,7 +200,7 @@ The first line proves Eq. ([32](global-complex.md#S5.E32)); the second uses $`W_
 ```
 
 ```math
-\begin{aligned}\mathbb{E}(-1)^{b_{m}+\lambda(j)\cdot\boldsymbol{y}} & =\operatorname{Re}\langle e_{j}^{\mathbb{C}}\rvert O\lvert \psi^{\mathbb{C}}\rangle .\end{aligned}
+\begin{aligned}\mathbb{E}(-1)^{b_{m}+\lambda(j)\cdot\boldsymbol{y}} & =\mathrm{Re}\langle e_{j}^{\mathbb{C}}\rvert O\lvert \psi^{\mathbb{C}}\rangle .\end{aligned}
 ```
 
 Thus Eqs. ([33](global-complex.md#S5.E33)) and ([38](global-complex.md#S5.E38)) follow. Phase dressing preserves the metric factors, so each depth record has norm two.
@@ -214,7 +214,7 @@ For a phase coordinate, direct differentiation and the controlled-interference i
 ```
 
 ```math
-\begin{aligned}\partial_{\theta_{N+\ell}}E_{O} & =2\operatorname{Im}\langle \psi^{\mathbb{C}}\rvert \Pi_{\ell}O\lvert \psi^{\mathbb{C}}\rangle ,\end{aligned}
+\begin{aligned}\partial_{\theta_{N+\ell}}E_{O} & =2\mathrm{Im}\langle \psi^{\mathbb{C}}\rvert \Pi_{\ell}O\lvert \psi^{\mathbb{C}}\rangle ,\end{aligned}
 ```
 
 ```math
@@ -222,12 +222,12 @@ For a phase coordinate, direct differentiation and the controlled-interference i
 ```
 
 ```math
-\begin{aligned}\langle \Omega_{\mathrm{ph}}\rvert Y_{a}\otimes\Pi_{\ell}\lvert \Omega_{\mathrm{ph}}\rangle & =\operatorname{Im}\langle \psi^{\mathbb{C}}\rvert \Pi_{\ell}O\lvert \psi^{\mathbb{C}}\rangle .\end{aligned}
+\begin{aligned}\langle \Omega_{\mathrm{ph}}\rvert Y_{a}\otimes\Pi_{\ell}\lvert \Omega_{\mathrm{ph}}\rangle & =\mathrm{Im}\langle \psi^{\mathbb{C}}\rvert \Pi_{\ell}O\lvert \psi^{\mathbb{C}}\rangle .\end{aligned}
 ```
 
 The first line is Eq. ([35](global-complex.md#S5.E35)); the last follows from Eq. ([B1](proofs-and-compilation.md#A2.E66)) with $`A=\Pi_{\ell}`$. The measured eigenvalue is $`(-1)^{b_{p}}\mathbf{1}\!\left\{\widehat{\ell}=\ell\right\}`$, so multiplication by two proves Eqs. ([36](global-complex.md#S5.E36))– ([37](global-complex.md#S5.E37)).
 
-The phase tangents also satisfy $`\operatorname{Re}\langle\partial_{\theta_{N+\ell}}\psi^{\mathbb{C}}\vert \partial_{\theta_{N+m}}\psi^{\mathbb{C}}\rangle=p_{\ell}\delta_{\ell m}`$, with $`p_{\ell}:=\vert x_{\ell}\vert ^{2}`$. Hence $`G_{\mathrm{ph}}^{\mathrm{sph}}=\operatorname{diag}(\boldsymbol{p})`$; subtracting the state-parallel part gives the unused projective block $`G_{\mathrm{ph}}^{\mathrm{FS}}=\operatorname{diag}(\boldsymbol{p})-\boldsymbol{p}\boldsymbol{p}^{\mathsf{T}}`$.
+The phase tangents also satisfy $`\mathrm{Re}\langle\partial_{\theta_{N+\ell}}\psi^{\mathbb{C}}\vert \partial_{\theta_{N+m}}\psi^{\mathbb{C}}\rangle=p_{\ell}\delta_{\ell m}`$, with $`p_{\ell}:=\vert x_{\ell}\vert ^{2}`$. Hence $`G_{\mathrm{ph}}^{\mathrm{sph}}=\mathrm{diag}(\boldsymbol{p})`$; subtracting the state-parallel part gives the unused projective block $`G_{\mathrm{ph}}^{\mathrm{FS}}=\mathrm{diag}(\boldsymbol{p})-\boldsymbol{p}\boldsymbol{p}^{\mathsf{T}}`$.
 
 For the integrated four-qubit $`R_{\mathbb{C}}`$ compiler in Appendix [A 6 a](four-qubit-example.md#A1.SS6.SSS1), let $`D_{\widehat{\phi}}:=\sum_{\ell=0}^{15}e^{\mathrm{i}\widehat{\phi}_{\ell}}\lvert b_{\ell}\rangle \!\langle b_{\ell}\rvert`$. Suppose the two child-anchor columns have already expanded to
 
@@ -280,7 +280,7 @@ The generators within one depth commute because their prefix projectors are orth
 ```
 
 ```math
-\begin{aligned}\partial_{\theta_{j}}E_{O} & =2\operatorname{Im}\langle \beta_{d}^{\mathbb{R}}\rvert Q_{d,r}\lvert \alpha_{d}\rangle ,\qquad\lvert \beta_{d}^{\mathbb{R}}\rangle :=B_{d}^{\dagger}O\lvert \psi^{\mathbb{R}}\rangle .\end{aligned}
+\begin{aligned}\partial_{\theta_{j}}E_{O} & =2\mathrm{Im}\langle \beta_{d}^{\mathbb{R}}\rvert Q_{d,r}\lvert \alpha_{d}\rangle ,\qquad\lvert \beta_{d}^{\mathbb{R}}\rangle :=B_{d}^{\dagger}O\lvert \psi^{\mathbb{R}}\rangle .\end{aligned}
 ```
 
 The last line is Eq. ([40](checkpoints.md#S6.E40)). For the state in Eq. ([41](checkpoints.md#S6.E41)), Eq. ([B1](proofs-and-compilation.md#A2.E66)) gives
@@ -288,7 +288,7 @@ The last line is Eq. ([40](checkpoints.md#S6.E40)). For the state in Eq. ([41](c
 <a id="A2.EGx40"></a>
 
 ```math
-\begin{aligned}\langle \Omega_{d}^{\mathbb{R}}\rvert Y_{a}\otimes Q_{d,r}\lvert \Omega_{d}^{\mathbb{R}}\rangle & =-\operatorname{Im}\langle \beta_{d}^{\mathbb{R}}\rvert Q_{d,r}\lvert \alpha_{d}\rangle ,\end{aligned}
+\begin{aligned}\langle \Omega_{d}^{\mathbb{R}}\rvert Y_{a}\otimes Q_{d,r}\lvert \Omega_{d}^{\mathbb{R}}\rangle & =-\mathrm{Im}\langle \beta_{d}^{\mathbb{R}}\rvert Q_{d,r}\lvert \alpha_{d}\rangle ,\end{aligned}
 ```
 
 ```math
@@ -304,7 +304,7 @@ Equation ([B4](proofs-and-compilation.md#A2.E69)) shows that $`\lvert \alpha_{d}
 <a id="A2.E70"></a>
 
 ```math
-\begin{aligned}\partial_{\theta_{j}}\lvert \psi^{\mathbb{C}}\rangle & =-\mathrm{i}D_{\mathrm{ph}}B_{d}Q_{d,r}\lvert \alpha_{d}\rangle =-\mathrm{i}B_{d,\mathbb{C}}Q_{d,r}\lvert \alpha_{d}\rangle ,\end{aligned}\tag{B5}
+{\begin{aligned}\partial_{\theta_{j}}\lvert \psi^{\mathbb{C}}\rangle & =-\mathrm{i}D_{\mathrm{ph}}B_{d}Q_{d,r}\lvert \alpha_{d}\rangle =-\mathrm{i}B_{d,\mathbb{C}}Q_{d,r}\lvert \alpha_{d}\rangle ,\end{aligned}}\tag{B5}
 ```
 
 ```math
@@ -370,7 +370,7 @@ with the $`\mathcal{O}(1)`$ phase term included only in the complex chart. The u
 <a id="A2.E71"></a>
 
 ```math
-\mathbb{P}\!\left[\left\|\widehat{\mu}_{\mathrm{mag}}-\mu_{\mathrm{mag}}\right\|_{2}>\frac{2\sqrt{n}\{1+\sqrt{2\log(1/\delta)}\}}{\sqrt{S}}\right]\leq\delta.\tag{B6}
+{\mathbb{P}\!\left[\left\|\widehat{\mu}_{\mathrm{mag}}-\mu_{\mathrm{mag}}\right\|_{2}>\frac{2\sqrt{n}\{1+\sqrt{2\log(1/\delta)}\}}{\sqrt{S}}\right]\leq\delta.}\tag{B6}
 ```
 
 A sufficient allocation for fixed complete-magnitude $`\ell_{2}`$ accuracy $`\varepsilon_{2}`$ is
@@ -460,7 +460,7 @@ The final depth contributes $`(N/2)c_{R_{y}}(n-1)`$ and every suffix is containe
 <a id="A2.E72"></a>
 
 ```math
-C_{W}\leq 2\left(1-\frac{1}{N}\right)C_{U}\leq 2C_{U},\qquad C_{B_{d}}\leq C_{U},\tag{B7}
+{C_{W}\leq 2\left(1-\frac{1}{N}\right)C_{U}\leq 2C_{U},\qquad C_{B_{d}}\leq C_{U},}\tag{B7}
 ```
 
 with $`C_{U},C_{W}=\mathcal{O}(nN)`$ for $`n\geq 2`$. In the real chart set $`(c_{\mathrm{fwd}},c_{\mathrm{fr}},c_{d})=(C_{U},C_{W},C_{B_{d}})`$; in the separated complex chart add the common phase charge $`C_{D}:=C_{\mathrm{H}}(D_{\mathrm{ph}})`$ to all three. Equation ([B7](proofs-and-compilation.md#A2.E72)) then gives
@@ -492,7 +492,7 @@ For an addressed depth $`d<n-1`$, write a basis label as prefix $`r`$, target bi
 <a id="A2.E73"></a>
 
 ```math
-\widetilde{W}_{\mathbb{R}}(\lvert \varphi\rangle \lvert 0\rangle _{f})=(W_{\mathbb{R}}\lvert \varphi\rangle )\lvert 0\rangle _{f}\qquad\text{for every }\lvert \varphi\rangle .\tag{B8}
+{\widetilde{W}_{\mathbb{R}}(\lvert \varphi\rangle \lvert 0\rangle _{f})=(W_{\mathbb{R}}\lvert \varphi\rangle )\lvert 0\rangle _{f}\qquad\text{for every }\lvert \varphi\rangle .}\tag{B8}
 ```
 
 The nonfinal multiplexors have $`d+1`$ controls, hence
