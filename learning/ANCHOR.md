@@ -304,10 +304,10 @@ S_*(\eta)=
 ```
 
 A block Euclidean bound also bounds every coordinate in that block.
-For real global readout, the same $S_*(\delta/n)$ shots serve every depth;
+For real global readout, the same $`S_*(\delta/n)`$ shots serve every depth;
 a union bound combines only the $n$ depth failures. For complex global
-readout, use $S_*(\delta/(2n))$ magnitude shots and
-$S_*(\delta/2)$ phase shots. The complete checkpoint schedule instead
+readout, use $`S_*(\delta/(2n))`$ magnitude shots and
+$`S_*(\delta/2)`$ phase shots. The complete checkpoint schedule instead
 executes the magnitude stream separately at every depth.
 
 This yields sufficient scaling
@@ -356,7 +356,7 @@ comparator compiled in the same setting.
 
 The tree gives weighted orthogonal magnitude directions. The addressed frame
 turns their objective responses into computational labels. Interference and
-all-$X$ parity measurements then make one record informative about every
+all-$`X`$ parity measurements then make one record informative about every
 magnitude coordinate. A direct signed leaf record supplies phases, while
 checkpoint suffixes supply selected layers. Fixed record norms establish the
 accuracy bounds; matched ledgers state the computational cost.

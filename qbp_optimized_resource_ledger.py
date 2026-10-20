@@ -26,7 +26,8 @@ from qbp_validation.optimized_compiler import (
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description=(
-            "Print the repository-only multiplexed robustness ledger: "
+            "Print the Appendix B.10 exact multiplexed recompilation ledger "
+            "(outside the direct-angle compiler setting): "
             "uniformly-controlled-rotation core counts and separately exposed "
             "suffix-predicate structure."
         )
@@ -48,7 +49,7 @@ def _validate_range(nmin: int, nmax: int) -> None:
 
 def _print_text(rows: list[dict[str, int]]) -> None:
     print("Multiplexed Hopf-QBP robustness companion")
-    print("This is repository-only analysis outside the direct-angle compiler setting.")
+    print("Appendix B.10 exact multiplexed recompilation (outside the direct-angle compiler setting).")
     print("Numeric CNOT columns count uniformly controlled R_y cores only.")
     print("Suffix predicates are exact compute/uncompute operations with compiler-dependent finite counts.")
     print(
@@ -98,7 +99,7 @@ def main() -> int:
         _print_csv(rows)
     else:
         payload = {
-            "scope": "repository-only robustness beyond the direct-angle Hopf compiler",
+            "scope": "Appendix B.10 exact multiplexed recompilation (outside the direct-angle compiler setting)",
             "direct_angle_setting": "one Hopf coordinate is one directly programmed physical angle at its designated tree-split or leaf-phase location",
             "rows": rows,
             "predicate_details": {
