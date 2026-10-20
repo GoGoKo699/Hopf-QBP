@@ -2,12 +2,13 @@ cff-version: 1.2.0
 message: >-
   If you use this software, cite Compass in the Mirror: Quantum Backpropagation
   with the Hopf Ansatz and the first Hopf-ansatz paper.
-title: Hopf-QBP Exact-Logical Validation
+title: Hopf Quantum Backpropagation — Scientific Account and Reference Implementation
 type: software
 authors:
   - family-names: Lin
     given-names: Ruge
 repository-code: https://github.com/GoGoKo699/Hopf-QBP
+url: https://arxiv.org/abs/2610.14177
 license: MIT
 version: 1.1.0
 date-released: 2026-08-27
@@ -18,3 +19,16 @@ keywords:
   - gradient estimation
   - uniformly controlled rotations
   - Qibo
+
+preferred-citation:
+  type: article
+  authors:
+    - family-names: Lin
+      given-names: Ruge
+    - family-names: Chen
+      given-names: Ranyiliu
+  title: >-
+    Compass in the Mirror: Quantum Backpropagation with the Hopf Ansatz
+  year: 2026
+  journal: arXiv preprint arXiv:2610.14177
+  url: https://arxiv.org/abs/2610.14177

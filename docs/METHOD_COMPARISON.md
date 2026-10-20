@@ -79,7 +79,7 @@ coefficient-one-norm term sampling gives an unbiased Hopf-QBP record with a
 
 ## Output-norm boundary
 
-The manuscript theorem controls the raw coordinate gradient. The same record
+The paper theorem controls the raw coordinate gradient. The same record
 can be rescaled to normalized-frame or natural-gradient coordinates, but those
 outputs have different norm and conditioning scales. See
 [Statistical accuracy](STATISTICAL_ACCURACY.md) for the exact separation and
