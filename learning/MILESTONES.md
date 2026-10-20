@@ -291,7 +291,7 @@ computational addresses that can be decoded by parity measurements.
 
 **Understanding target.** Show that
 $(W_{\mathbb R}^\dagger O\psi)_{\lambda(j)}=\langle e_j\mid O\mid\psi\rangle$
-and derive its relation to an all-$X$ ancilla–system parity correlator.
+and derive its relation to an all-$`X`$ ancilla–system parity correlator.
 
 **Prior dependencies.** M04–M05, M09, M15.
 
@@ -359,7 +359,7 @@ through a phase layer while preserving the magnitude differential structure.
 **Central question.** Why can phase derivatives be read without an inverse frame?
 
 **Understanding target.** Derive the leaf-local phase differential and the
-signed one-hot record from ancilla-$Y$/system-$Z$ measurement. Explain zero
+signed one-hot record from ancilla-$`Y`$/system-$`Z`$ measurement. Explain zero
 expected derivatives at zero leaves and the zero sum under a common phase shift.
 
 **Prior dependencies.** M02, M04–M05, M10, M19.

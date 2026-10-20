@@ -5,8 +5,8 @@ This is the concrete coordinate-preserving, no-clean-ancilla ledger used for
 the manuscript's finite examples.  Each Hopf coordinate remains a directly
 programmed physical angle at its designated tree-split or leaf-phase location.
 The ledger is not a global optimal-synthesis claim.  See
-``qbp_optimized_resource_ledger.py`` for the repository-only multiplexed
-robustness companion.
+``qbp_optimized_resource_ledger.py`` for the Appendix B.10 exact multiplexed
+recompilation companion, outside the direct-angle compiler setting.
 """
 from __future__ import annotations
 
