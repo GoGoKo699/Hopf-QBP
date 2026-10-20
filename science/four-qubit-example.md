@@ -52,7 +52,7 @@ The promoted two-leaf completion used by the complex circuit is
 
 ```math
 R_{\mathbb{C}}(\theta_{a},\theta_{b},\theta_{c})=\begin{pmatrix}e^{\mathrm{i}\theta_{b}}\cos\theta_{a}&-e^{-\mathrm{i}\theta_{c}}\sin\theta_{a}\\
-e^{\mathrm{i}\theta_{c}}\sin\theta_{a}&\phantom{-}e^{-\mathrm{i}\theta_{b}}\cos\theta_{a}\end{pmatrix}.
+e^{\mathrm{i}\theta_{c}}\sin\theta_{a}&e^{-\mathrm{i}\theta_{b}}\cos\theta_{a}\end{pmatrix}.
 ```
 
 <a id="A1.SS2.p2.2"></a>
@@ -61,7 +61,7 @@ Its first column assigns phases $`\theta_{b}`$ and $`\theta_{c}`$ to two sibling
 
 <a id="A1.SS2.fig2"></a>
 
-![Figure 2: Native four-qubit Hopf ansatz circuit. For HopfReal⁡(𝜽mag)\mathrm{HopfReal}(\boldsymbol{\t](../figures/paper/ansatz_circuit.png)
+![Figure 2: Native four-qubit Hopf circuit with the complex variant acting in the final layer.](../figures/paper/ansatz_circuit.png)
 
 Figure 2: Native four-qubit Hopf ansatz circuit. For $`\mathrm{HopfReal}(\boldsymbol{\theta}_{\mathrm{mag}})`$, every box is $`R_{y}(\theta_{j})`$. For $`\mathrm{HopfComplex}(\boldsymbol{\theta})`$, each final-layer gate $`j=8+r`$, $`0\leq r<8`$, is promoted to $`R_{\mathbb{C}}(\theta_{8+r},\theta_{16+2r},\theta_{17+2r})`$. The blue boxes identify that promoted final layer.
 
@@ -145,7 +145,7 @@ U_{\mathrm{chk}}=U_{3}U_{2}U_{1}U_{0},\qquad A_{2}:=U_{2}U_{1}U_{0},\qquad B_{2}
 
 <a id="A1.SS4.fig1"></a>
 
-![Figure 3: Four-qubit depth completion. The left bracket is A2​(𝜽mag)=U2​U1​U0A_{2}(\boldsymbol{\thet](../figures/paper/hopf_checkpoint_Uchk.png)
+![Figure 3: Four-qubit circuit split into a depth-2 prefix and its completing suffix.](../figures/paper/hopf_checkpoint_Uchk.png)
 
 Figure 3: Four-qubit depth completion. The left bracket is $`A_{2}(\boldsymbol{\theta}_{\mathrm{mag}})=U_{2}U_{1}U_{0}`$ and the right bracket is $`B_{2}(\boldsymbol{\theta}_{\mathrm{mag}})=U_{3}`$, giving the full-unitary factorization $`U_{\mathrm{chk}}=B_{2}A_{2}`$. Open controls select zero-valued prefix bits. Section [A 8](four-qubit-example.md#A1.SS8) constructs the corresponding complex depth-$`2`$ completion.
 
@@ -167,7 +167,7 @@ with $`V_{0}`$ applied first in state-update order.
 
 <a id="A1.SS5.fig1"></a>
 
-![Figure 4: Fully addressed four-qubit real-magnitude frame WℝW_{\mathbb{R}}, with V0V_{0} acting firs](../figures/paper/hopf_frame_W_gatelevel_4q.png)
+![Figure 4: Fully addressed four-qubit real-magnitude frame with open and closed controls.](../figures/paper/hopf_frame_W_gatelevel_4q.png)
 
 Figure 4: Fully addressed four-qubit real-magnitude frame $`W_{\mathbb{R}}`$, with $`V_{0}`$ acting first. Every non-target qubit is fixed by a closed or open control, so each gate preserves the required state-and-complement column action. A box labeled $`\theta_{j}`$ denotes Eq. ([7](balanced-differential.md#S3.E7)). The same addressed gate skeleton is used for the complex-magnitude frame constructed in Sec. [A 6](four-qubit-example.md#A1.SS6). Circuit layouts use the visual language of the quantum-circuit-drawio library [[44](../references/paper-bibliography.md#bib.bib16)].
 
@@ -297,7 +297,7 @@ The real circuit uses native preparation for the initialized state column and $`
 
 <a id="A1.SS7.fig1"></a>
 
-![Figure 5: Real-Hopf global-gradient circuit. The forward bracket uses the state-column contract Hopf](../figures/paper/hopf_frame_real_4q.png)
+![Figure 5: Real-Hopf global-gradient circuit with state preparation, reverse frame, and readout.](../figures/paper/hopf_frame_real_4q.png)
 
 Figure 5: Real-Hopf global-gradient circuit. The forward bracket uses the state-column contract $`\mathrm{HopfReal}(\boldsymbol{\theta}_{\mathrm{mag}})\lvert 0000\rangle =W_{\mathbb{R}}(\boldsymbol{\theta}_{\mathrm{mag}})\lvert 0000\rangle`$. The reverse block is $`W_{\mathbb{R}}^{\dagger}`$. The measured bits are $`b_{m}`$ and $`\boldsymbol{y}=(y_{1},y_{2},y_{3},y_{4})`$.
 
@@ -315,7 +315,7 @@ For complex magnitudes, the initialized-state chain is the first line of Eq. ([A
 
 <a id="A1.SS7.fig2"></a>
 
-![Figure 6: Complex-Hopf magnitude circuit. The forward bracket uses the state-column chain in Eq. (A3](../figures/paper/hopf_frame_complex_magnitude_4q.png)
+![Figure 6: Complex-Hopf magnitude circuit with phase removal followed by the reverse real frame.](../figures/paper/hopf_frame_complex_magnitude_4q.png)
 
 Figure 6: Complex-Hopf magnitude circuit. The forward bracket uses the state-column chain in Eq. ([A3](four-qubit-example.md#A1.E61)). The reverse bracket uses the full-unitary identity $`W_{\mathbb{C}}^{\dagger}=W_{\mathbb{R}}^{\dagger}D_{\mathrm{ph}}^{\dagger}`$, so the physical order is $`D_{\mathrm{ph}}^{\dagger}`$ followed by $`W_{\mathbb{R}}^{\dagger}`$. The addressed $`R_{\mathbb{C}}`$ compiler realizes the same decoder up to the compiler global phase in Eq. ([A5](four-qubit-example.md#A1.E63)).
 
@@ -325,7 +325,7 @@ The leaf phases use the direct ancilla-$`Y`$/system-$`Z`$ record of Eq. ([36](gl
 
 <a id="A1.SS7.fig3"></a>
 
-![Figure 7: Direct complex phase circuit. Native HopfComplex⁡(𝜽)\mathrm{HopfComplex}(\boldsymbol{\thet](../figures/paper/hopf_complex_phase_4q.png)
+![Figure 7: Direct complex-phase circuit with system Z readout and ancilla Y readout.](../figures/paper/hopf_complex_phase_4q.png)
 
 Figure 7: Direct complex phase circuit. Native $`\mathrm{HopfComplex}(\boldsymbol{\theta})`$ prepares the state through the state-column contract in Eq. ([A3](four-qubit-example.md#A1.E61)). After the controlled reflection, the system is measured in $`Z`$ and the branch ancilla in $`Y`$, implemented by $`S^{\dagger}`$ followed by $`H`$. This circuit uses the leaf-local phase record directly.
 
@@ -360,7 +360,7 @@ The target $`q_{2}`$ and branch ancilla are measured in $`Y`$, the prefix $`q_{4
 
 <a id="A1.SS8.fig2"></a>
 
-![Figure 8: Real-Hopf depth-22 checkpoint. The forward bracket uses the state-column contract HopfReal](../figures/paper/hopf_checkpoint_real_depth2_4q.png)
+![Figure 8: Real-Hopf depth-2 checkpoint circuit for the four active magnitude nodes.](../figures/paper/hopf_checkpoint_real_depth2_4q.png)
 
 Figure 8: Real-Hopf depth-$`2`$ checkpoint. The forward bracket uses the state-column contract $`\mathrm{HopfReal}(\boldsymbol{\theta}_{\mathrm{mag}})\lvert 0000\rangle =B_{2}A_{2}\lvert 0000\rangle`$. After controlled-$`O`$, the reverse suffix is $`B_{2}^{\dagger}=U_{3}^{\dagger}`$. One execution returns $`-2(-1)^{b_{c}+b_{t}}\mathbf{e}_{\widehat{r}}`$ for nodes $`4,5,6,7`$.
 
@@ -426,7 +426,7 @@ The unused second column of each $`R_{\mathbb{C}}`$ gate completes the unitary o
 
 <a id="A1.SS8.SSS1.fig1"></a>
 
-![Figure 9: Complex-Hopf magnitude checkpoint at depth 22. The inner and outer forward brackets use th](../figures/paper/hopf_checkpoint_complex_magnitude_depth2_4q.png)
+![Figure 9: Complex-Hopf depth-2 magnitude checkpoint circuit with partial reverse evolution.](../figures/paper/hopf_checkpoint_complex_magnitude_depth2_4q.png)
 
 Figure 9: Complex-Hopf magnitude checkpoint at depth $`2`$. The inner and outer forward brackets use the real and complex state-column contracts. The reverse bracket uses the active-interface identity $`B_{2,\mathbb{C}}P_{2}=D_{\mathrm{ph}}B_{2}P_{2}`$, which gives the same checkpoint correlators as the separated physical sequence $`D_{\mathrm{ph}}^{\dagger}`$ followed by $`B_{2}^{\dagger}`$. The readout measures $`q_{4}q_{3}`$ in $`Z`$ and $`q_{2}`$ together with the ancilla in $`Y`$, while $`q_{1}`$ is discarded because it belongs to the unused lower suffix.
 
