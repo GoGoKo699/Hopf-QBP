@@ -77,7 +77,7 @@ class DocumentationTests(unittest.TestCase):
         self.assertEqual(errors, [], "\n".join(errors))
 
     def test_claim_map_has_one_scope_and_unique_audit_rows(self) -> None:
-        text = (ROOT / "docs" / "CLAIM_SUPPORT.md").read_text(encoding="utf-8")
+        text = (ROOT / "review" / "README.md").read_text(encoding="utf-8")
         self.assertEqual(text.count("## Scope relative to the first paper"), 1)
         self.assertNotIn("SHATISTICAL_ACCURACY.md", text)
         summary = text.split("## Audit summary\n", 1)[1].split("\n## ", 1)[0]

@@ -24,7 +24,7 @@ decoders, compiler contracts, and resource accounting.
 
 ### Outputs
 
-The output is a classical real vector in manuscript coordinate order:
+The output is a classical real vector in paper coordinate order:
 
 - real: length `N - 1`;
 - complex: length `2*N - 1`, obtained by concatenating magnitude and phase
@@ -66,9 +66,9 @@ Internal nodes use breadth-first labels:
 ```math
 j = 2^d + r,
 \qquad
-0\le d<n,
+0\le d\lt n,
 \qquad
-0\le r<2^d.
+0\le r\lt 2^d.
 ```
 
 The computational-basis marker assigned to node `j` is implemented by
@@ -99,7 +99,7 @@ Basis states are written
 ```
 
 Qibo system index `0` is the most-significant basis bit and corresponds to
-manuscript wire `q_n`. Qibo index `n - 1` corresponds to `q_1`.
+paper wire `q_n`. Qibo index `n - 1` corresponds to `q_1`.
 
 Use:
 
@@ -756,7 +756,7 @@ the same at a fixed depth; the difference is circuit organization.
 
 ## 12. Direct-angle assigned resource ledger
 
-The manuscript uses a declared coordinate-preserving Hopf CNOT model. It keeps
+The paper uses a declared coordinate-preserving Hopf CNOT model. It keeps
 each magnitude coordinate as the rotation angle of its designated internal tree
 split and each complex leaf phase as a directly programmed phase angle. It then
 decomposes those controlled gates independently. This is the defining compiler

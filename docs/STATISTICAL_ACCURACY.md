@@ -101,7 +101,7 @@ When `0 <= xi < ||v||_2`,
 ```math
 v^\mathsf{T}\widehat v
 \geq
-\mathcal G(\mathcal G-\xi)>0,
+\mathcal G(\mathcal G-\xi)\gt 0,
 ```
 
 so `-v_hat` is a descent direction. The normalized-direction error obeys
@@ -205,7 +205,7 @@ Let
 ```math
 I_+
 =
-\{j:g_{j,j}>0\},
+\{j:g_{j,j}\gt 0\},
 \qquad
 M_+=|I_+|,
 \qquad

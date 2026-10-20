@@ -5,8 +5,9 @@ and decoded Hopf-QBP estimator with `O(N)` Hopf work per execution. Its
 elementary angles generally combine several Hopf coordinates, whereas the
 [direct-angle compiler](ENGINEERING_GUIDE.md#direct-angle-hopf-compiler-contract)
 keeps each coordinate at its designated tree-split or leaf-phase location.
-Appendix B gives the factorization and matched resource comparison; the full
-derivation and finite count structure follow here.
+The [complete derivation in Appendix B.10](../science/proofs-and-compilation.md#A2.SS10)
+is the authoritative scientific account. This implementation companion records
+the contracts, finite ledger fields, and executable factorization checks.
 
 ## 1. Compiler contracts
 
@@ -17,13 +18,13 @@ derivation and finite count structure follow here.
 | Same decoded Hopf-QBP estimator | Yes | Yes |
 | One coordinate is one directly programmed physical angle | **Yes** | Generally no |
 | Geometry remains explicit in the gate parameters | **Yes** | Generally no |
-| Defines the manuscript's resource setting | **Yes** | No |
+| Defines the paper's resource setting | **Yes** | No |
 
 The two command-line ledgers therefore have different roles:
 
 | Tool | Role | What is counted |
 |---|---|---|
-| `qbp_resource_ledger.py` | Direct-angle assigned ledger used by the manuscript | Independently decomposed coordinate-preserving controlled gates under the declared formulas |
+| `qbp_resource_ledger.py` | Direct-angle assigned ledger used by the paper | Independently decomposed coordinate-preserving controlled gates under the declared formulas |
 | `qbp_optimized_resource_ledger.py` | Exact multiplexed companion | Uniformly controlled-rotation cores, with suffix-predicate work exposed separately |
 
 Both ledgers count logical Hopf work; controlled-observable, readout, routing,
@@ -36,175 +37,58 @@ python qbp_resource_ledger.py --nmin 2 --nmax 10
 python qbp_optimized_resource_ledger.py --nmin 2 --nmax 10
 ```
 
-## 2. Forward preparation after multiplexed recompilation
+## 2. Finite ledger and compiler interfaces
 
-For depth `d`, let the first `d` system qubits be the prefix register, let the
-next qubit be the target, and leave the lower suffix untouched. The direct-angle
-checkpoint layer is
+Write `N = 2**n`. The following bounds count uniformly controlled-rotation
+cores. The uncontrolled layer uses no CNOT; adjacent-layer cancellation is not
+assumed.
 
-```math
-U_d
-=
-\sum_{r=0}^{2^d-1}
-|r\rangle\!\langle r|
-\otimes R_y(\theta_{2^d+r})
-\otimes I_{2^{n-d-1}}.
-```
+| Compiler object | Core CNOT upper bound | Implementation |
+|---|---:|---|
+| Forward depth preparation `U_chk` | `N - 2` | `forward_ucr_cnot_upper_bound` |
+| Inverse suffix below depth `d` | `N - 2**(d+1)` | `inverse_suffix_ucr_cnot_upper_bound` |
+| Addressed real frame, `n >= 2` | `3*N/2 - 2` | `frame_ucr_core_cnot_upper_bound` |
 
-At the logical level this is a uniformly controlled `R_y` with `d` controls. In
-the standard Gray-code construction, a nontrivial `k`-control uniformly
-controlled rotation uses `2**k` CNOTs and `2**k` local rotations. Those local
-angles are synthesis parameters and need not equal the original Hopf
-coordinates individually. The uncontrolled layer uses no CNOT.
+Each nonfinal addressed depth computes and uncomputes the all-zero lower-suffix
+predicate into one reusable clean flag. The flag is the least-significant
+register bit in the matrix fixtures. Its predicate widths are
+`n-1, n-1, n-2, n-2, ..., 1, 1`; the final depth uses the ordinary prefix
+multiplexor and leaves the unused flag unchanged.
 
-Therefore
+The relevant API is in [`qbp_validation/optimized_compiler.py`](../qbp_validation/optimized_compiler.py):
 
-```math
-C_{\mathrm{ucr}}(U_{\mathrm{chk}})
-\leq
-\sum_{d=1}^{n-1}2^d
-=
-N-2.
-```
+| Function | Contract checked |
+|---|---|
+| `direct_addressed_depth_layer` | Prefix selects the Hopf angle, active only on a zero lower suffix. |
+| `suffix_zero_flag_permutation` | Computes `flag ^= [lower suffix == 0]`; it is self-inverse. |
+| `flagged_multiplexor_depth_layer` | Flag zero selects angle zero; flag one selects the prefix's angle. |
+| `flagged_addressed_depth_layer` | Compute–multiplex–uncompute for one depth. |
+| `flagged_real_frame` | Composition of the depth factorizations using the same clean flag. |
+| `clean_flag_system_block` / `clean_flag_leakage_block` | Extracts the preserved system operator and tests zero leakage into flag one. |
 
-For the inverse suffix below a selected depth `d`,
+The exact requirement is equality with `W_R` for **every system input** when
+the flag starts at zero, together with return of that flag to zero. It is
+stronger than a prepared-state-column comparison. The code checks this logical
+factorization, while the [proof and cited synthesis constructions](../science/proofs-and-compilation.md#A2.SS10)
+provide the elementary-gate resource argument.
 
-```math
-C_{\mathrm{ucr}}(B_d^\dagger)
-\leq
-\sum_{k=d+1}^{n-1}2^k
-=
-N-2^{d+1}.
-```
+## 3. Complete cost and matched comparison
 
-These are upper bounds for the multiplexor cores. Adjacent-layer cancellations
-may reduce particular compiled circuits further; no such cancellation is used
-here.
+The predicate ledger exposes widths rather than assigning one
+compiler-independent finite constant. Standard exact multi-controlled-X
+synthesis gives total predicate work `O(n**3)`; the uniformly controlled cores
+have `O(N)` work. With `N = 2**n`, the complete real frame therefore has `O(N)`
+work and one reusable clean flag. The complex separated frame
+`W_C = D_ph W_R` additionally uses the paper's exact `O(N)` diagonal synthesis.
 
-## 3. Addressed-frame robustness factorization with one clean flag
+The matched scalar and global-record executions use the same state, system
+size, controlled objective, and calibrated branch phase. Under this particular
+multiplexed compilation, both have `O(N)` Hopf work per execution. Their
+statistical repetition counts, classical Walsh decoding, materialized output,
+and storage remain separate resources. The exact comparison and assumptions
+are in [Appendix B.10](../science/proofs-and-compilation.md#A2.SS10).
 
-At depth `d`, the direct addressed frame applies angle
-`theta[2**d + r]` only when:
-
-1. the upper prefix equals `r`; and
-2. every lower suffix bit is zero.
-
-Introduce one clean flag `f` and compute
-
-```math
-f
-\mathrel{\oplus}=
-[\text{lower suffix}=0].
-```
-
-Then apply one uniformly controlled `R_y` to the depth-`d` target:
-
-- prefix `r`, flag `1`: logical angle `theta[2**d + r]`;
-- prefix `r`, flag `0`: logical angle `0`.
-
-Finally uncompute the flag. The exact contract is
-
-```math
-\widetilde W_{\mathbb R}
-\bigl(|\varphi\rangle\otimes|0\rangle_f\bigr)
-=
-\bigl(W_{\mathbb R}|\varphi\rangle\bigr)
-\otimes|0\rangle_f
-```
-
-for every system input `|varphi>`, with the flag initialized to `|0>`. This
-identity preserves the frame action and therefore the decoded QBP estimator.
-
-For `d < n-1`, the multiplexor has `d+1` controls: the `d` prefix bits plus the
-flag. At the final depth there is no lower suffix and no flag is required. For
-`n >= 2`, the CNOT count of the uniformly controlled-rotation cores is therefore
-
-```math
-\begin{aligned}
-C_{\mathrm{ucr-core}}(W_{\mathbb R})
-&\leq
-\sum_{d=0}^{n-2}2^{d+1}+2^{n-1} \\
-&=
-3\,2^{n-1}-2
-=
-\frac{3}{2}N-2.
-\end{aligned}
-```
-
-The suffix predicate is computed and uncomputed once at each nonfinal depth.
-Its control widths are
-
-```text
-n-1, n-1, n-2, n-2, ..., 1, 1.
-```
-
-A standard exact ancilla-free multi-controlled-X decomposition is quadratic in
-its control width. Consequently the total predicate contribution is
-`O(n**3)`. The overall frame cost is
-
-```math
-C(W_{\mathbb R})
-=
-O(N+n^3)
-=
-O(N),
-```
-
-because `N = 2**n`. The same flag is reused at every depth and is returned to
-`|0>` before the next layer.
-
-The detailed ledger reports the multiplexor CNOT count and the predicate widths
-separately rather than hiding a compiler-dependent finite constant inside one
-number.
-
-## 4. Complex frame after recompilation
-
-The portable complex magnitude frame is
-
-```math
-W_{\mathbb C}=D_{\mathrm{ph}}W_{\mathbb R}.
-```
-
-An arbitrary `n`-qubit diagonal unitary has an exact `O(2**n)` synthesis, so
-
-```math
-C(D_{\mathrm{ph}})=O(N),
-\qquad
-C(W_{\mathbb C})=O(N).
-```
-
-The same conclusion applies to the separated complex forward preparation
-`D_ph U_chk`. Generic diagonal synthesis preserves the logical phase layer
-while generally recombining its elementary angles.
-
-## 5. Matched scalar comparison
-
-A scalar Hopf objective execution and a global-gradient-record execution share:
-
-- the same system size;
-- the same forward state;
-- the same controlled observable; and
-- the same observable-access phase convention.
-
-Using the optimized state-equivalent constructions above,
-
-```math
-C_{\mathrm{scalar}}=O(N),
-\qquad
-C_{\mathrm{global\ record}}=O(N).
-```
-
-Thus the circuit-work ratio per independent execution remains `O(1)` after this
-particular recompilation. The global method's complete-gradient execution
-overhead remains its statistical factor, not an extra logarithmic compiler
-factor.
-
-The comparison is output-sensitive. The complete chart has
-`M = N - 1` real coordinates or `M = 2N - 1` complex coordinates, so
-`M = Theta(2**n)`. The result is not an exponential compression of an
-exponentially long classical output vector.
-
-## 6. Executable support
+## 4. Executable support
 
 The Qibo-free reference implementation is in:
 
@@ -234,7 +118,7 @@ The matrix checks validate the exact flag factorization. The asymptotic CNOT
 claim additionally uses the established Gray-code synthesis of uniformly
 controlled rotations and standard multi-controlled-X constructions.
 
-## 7. Primary references
+## 5. Primary references
 
 - M. Möttönen, J. J. Vartiainen, V. Bergholm, and M. M. Salomaa,
   [Transformation of quantum states using uniformly controlled rotations](https://arxiv.org/abs/quant-ph/0407010),

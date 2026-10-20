@@ -1,0 +1,1425 @@
+{
+  "arxiv": "2610.14177v1",
+  "paper_url": "https://arxiv.org/abs/2610.14177v1",
+  "source_html_url": "https://arxiv.org/html/2610.14177v1",
+  "source_html_sha256": "aa3550911754bd93d57678653d8c038f53e64339657b9bbea3ad366e6b60b50f",
+  "label_convention": "Printed PDF identifiers; original HTML IDs retained as stable anchors.",
+  "counts": {
+    "Section": 60,
+    "Statement": 5,
+    "Equation": 73,
+    "Figure": 9,
+    "Table": 3,
+    "Protocol": 2,
+    "Reference": 49
+  },
+  "items": [
+    {
+      "kind": "Section",
+      "label": "Abstract",
+      "description": "",
+      "source_id": "abstract1",
+      "target": "science/README.md#abstract"
+    },
+    {
+      "kind": "Section",
+      "label": "I — Introduction",
+      "description": "",
+      "source_id": "S1",
+      "target": "science/motivation.md#S1"
+    },
+    {
+      "kind": "Section",
+      "label": "II — The two-qubit clue and the reverse task",
+      "description": "",
+      "source_id": "S2",
+      "target": "science/reverse-task.md#S2"
+    },
+    {
+      "kind": "Section",
+      "label": "II A — One split, three directions",
+      "description": "",
+      "source_id": "S2.SS1",
+      "target": "science/reverse-task.md#S2.SS1"
+    },
+    {
+      "kind": "Section",
+      "label": "II B — What a reusable reverse record must provide",
+      "description": "",
+      "source_id": "S2.SS2",
+      "target": "science/reverse-task.md#S2.SS2"
+    },
+    {
+      "kind": "Section",
+      "label": "II C — Objective access and output target",
+      "description": "",
+      "source_id": "S2.SS3",
+      "target": "science/reverse-task.md#S2.SS3"
+    },
+    {
+      "kind": "Section",
+      "label": "II D — Three circuit contracts",
+      "description": "",
+      "source_id": "S2.SS4",
+      "target": "science/reverse-task.md#S2.SS4"
+    },
+    {
+      "kind": "Section",
+      "label": "III — The balanced Hopf differential and forward interfaces",
+      "description": "",
+      "source_id": "S3",
+      "target": "science/balanced-differential.md#S3"
+    },
+    {
+      "kind": "Section",
+      "label": "III A — Repeating the local split across the tree",
+      "description": "",
+      "source_id": "S3.SS1",
+      "target": "science/balanced-differential.md#S3.SS1"
+    },
+    {
+      "kind": "Section",
+      "label": "III B — Subtree states, complements, and weights",
+      "description": "",
+      "source_id": "S3.SS2",
+      "target": "science/balanced-differential.md#S3.SS2"
+    },
+    {
+      "kind": "Section",
+      "label": "III C — Depth-ordered completion and the state-column contract",
+      "description": "",
+      "source_id": "S3.SS3",
+      "target": "science/balanced-differential.md#S3.SS3"
+    },
+    {
+      "kind": "Section",
+      "label": "IV — Global-frame method for the real Hopf chart",
+      "description": "",
+      "source_id": "S4",
+      "target": "science/global-real.md#S4"
+    },
+    {
+      "kind": "Section",
+      "label": "IV A — Construction of the addressed frame",
+      "description": "",
+      "source_id": "S4.SS1",
+      "target": "science/global-real.md#S4.SS1"
+    },
+    {
+      "kind": "Section",
+      "label": "IV B — Why the inverse frame is readable",
+      "description": "",
+      "source_id": "S4.SS2",
+      "target": "science/global-real.md#S4.SS2"
+    },
+    {
+      "kind": "Section",
+      "label": "IV C — Circuit template, outcomes, and decoder",
+      "description": "",
+      "source_id": "S4.SS3",
+      "target": "science/global-real.md#S4.SS3"
+    },
+    {
+      "kind": "Section",
+      "label": "IV D — Global real guarantee and cost at a glance",
+      "description": "",
+      "source_id": "S4.SS4",
+      "target": "science/global-real.md#S4.SS4"
+    },
+    {
+      "kind": "Section",
+      "label": "V — Global-frame method for the complex Hopf chart",
+      "description": "",
+      "source_id": "S5",
+      "target": "science/global-complex.md#S5"
+    },
+    {
+      "kind": "Section",
+      "label": "V A — Complex chart and phase-dressed frame",
+      "description": "",
+      "source_id": "S5.SS1",
+      "target": "science/global-complex.md#S5.SS1"
+    },
+    {
+      "kind": "Section",
+      "label": "V B — Complex magnitude circuit and parity reuse",
+      "description": "",
+      "source_id": "S5.SS2",
+      "target": "science/global-complex.md#S5.SS2"
+    },
+    {
+      "kind": "Section",
+      "label": "V C — Direct phase circuit and signed leaf histogram",
+      "description": "",
+      "source_id": "S5.SS3",
+      "target": "science/global-complex.md#S5.SS3"
+    },
+    {
+      "kind": "Section",
+      "label": "V D — Complex guarantee and cost at a glance",
+      "description": "",
+      "source_id": "S5.SS4",
+      "target": "science/global-complex.md#S5.SS4"
+    },
+    {
+      "kind": "Section",
+      "label": "VI — Checkpoint method: layer-local reverse gradients",
+      "description": "",
+      "source_id": "S6",
+      "target": "science/checkpoints.md#S6"
+    },
+    {
+      "kind": "Section",
+      "label": "VI A — From a complete frame to one active depth",
+      "description": "",
+      "source_id": "S6.SS1",
+      "target": "science/checkpoints.md#S6.SS1"
+    },
+    {
+      "kind": "Section",
+      "label": "VI B — Real checkpoint template and decoder",
+      "description": "",
+      "source_id": "S6.SS2",
+      "target": "science/checkpoints.md#S6.SS2"
+    },
+    {
+      "kind": "Section",
+      "label": "VI C — Complex active-interface extension",
+      "description": "",
+      "source_id": "S6.SS3",
+      "target": "science/checkpoints.md#S6.SS3"
+    },
+    {
+      "kind": "Section",
+      "label": "VI D — Checkpoint guarantee and cost at a glance",
+      "description": "",
+      "source_id": "S6.SS4",
+      "target": "science/checkpoints.md#S6.SS4"
+    },
+    {
+      "kind": "Section",
+      "label": "VII — Backpropagation accuracy, resources, and protocol choice",
+      "description": "",
+      "source_id": "S7",
+      "target": "science/accuracy-resources.md#S7"
+    },
+    {
+      "kind": "Section",
+      "label": "VII A — Reverse pullback and shared records",
+      "description": "",
+      "source_id": "S7.SS1",
+      "target": "science/accuracy-resources.md#S7.SS1"
+    },
+    {
+      "kind": "Section",
+      "label": "VII B — Fixed-norm records and complete-chart accuracy",
+      "description": "",
+      "source_id": "S7.SS2",
+      "target": "science/accuracy-resources.md#S7.SS2"
+    },
+    {
+      "kind": "Section",
+      "label": "VII C — Assigned Hopf CNOT work",
+      "description": "",
+      "source_id": "S7.SS3",
+      "target": "science/accuracy-resources.md#S7.SS3"
+    },
+    {
+      "kind": "Section",
+      "label": "VII D — Choosing the reverse protocol",
+      "description": "",
+      "source_id": "S7.SS4",
+      "target": "science/accuracy-resources.md#S7.SS4"
+    },
+    {
+      "kind": "Section",
+      "label": "VIII — Conclusion",
+      "description": "",
+      "source_id": "S8",
+      "target": "science/conclusion.md#S8"
+    },
+    {
+      "kind": "Section",
+      "label": "Data and code availability",
+      "description": "",
+      "source_id": "Sx1",
+      "target": "science/endmatter.md#Sx1"
+    },
+    {
+      "kind": "Section",
+      "label": "Generative AI disclosure",
+      "description": "",
+      "source_id": "Sx2",
+      "target": "science/endmatter.md#Sx2"
+    },
+    {
+      "kind": "Section",
+      "label": "References",
+      "description": "",
+      "source_id": "bib",
+      "target": "references/paper-bibliography.md#bib"
+    },
+    {
+      "kind": "Section",
+      "label": "A — Four-qubit implementation companion",
+      "description": "",
+      "source_id": "A1",
+      "target": "science/four-qubit-example.md#A1"
+    },
+    {
+      "kind": "Section",
+      "label": "A 1 — How to read the four-qubit construction",
+      "description": "",
+      "source_id": "A1.SS1",
+      "target": "science/four-qubit-example.md#A1.SS1"
+    },
+    {
+      "kind": "Section",
+      "label": "A 2 — Native real and complex preparation",
+      "description": "",
+      "source_id": "A1.SS2",
+      "target": "science/four-qubit-example.md#A1.SS2"
+    },
+    {
+      "kind": "Section",
+      "label": "A 3 — Metric factors and tangent-state registry",
+      "description": "",
+      "source_id": "A1.SS3",
+      "target": "science/four-qubit-example.md#A1.SS3"
+    },
+    {
+      "kind": "Section",
+      "label": "A 4 — Depth completion $`U_{\\mathrm{chk}}`$",
+      "description": "",
+      "source_id": "A1.SS4",
+      "target": "science/four-qubit-example.md#A1.SS4"
+    },
+    {
+      "kind": "Section",
+      "label": "A 5 — Real addressed frame $`W_{\\mathbb{R}}`$",
+      "description": "",
+      "source_id": "A1.SS5",
+      "target": "science/four-qubit-example.md#A1.SS5"
+    },
+    {
+      "kind": "Section",
+      "label": "A 6 — Complex magnitude frame $`W_{\\mathbb{C}}`$",
+      "description": "",
+      "source_id": "A1.SS6",
+      "target": "science/four-qubit-example.md#A1.SS6"
+    },
+    {
+      "kind": "Section",
+      "label": "A 6 a — Addressed $`R_{\\mathbb{C}}`$ compilation up to a compiler global phase",
+      "description": "",
+      "source_id": "A1.SS6.SSS1",
+      "target": "science/four-qubit-example.md#A1.SS6.SSS1"
+    },
+    {
+      "kind": "Section",
+      "label": "A 7 — Global gradient records",
+      "description": "",
+      "source_id": "A1.SS7",
+      "target": "science/four-qubit-example.md#A1.SS7"
+    },
+    {
+      "kind": "Section",
+      "label": "A 8 — Checkpoint records and complex suffix $`B_{2,\\mathbb{C}}`$",
+      "description": "",
+      "source_id": "A1.SS8",
+      "target": "science/four-qubit-example.md#A1.SS8"
+    },
+    {
+      "kind": "Section",
+      "label": "A 8 a — Complex depth- $`2`$ active-interface construction",
+      "description": "",
+      "source_id": "A1.SS8.SSS1",
+      "target": "science/four-qubit-example.md#A1.SS8.SSS1"
+    },
+    {
+      "kind": "Section",
+      "label": "A 9 — Four-qubit assigned Hopf CNOT ledger",
+      "description": "",
+      "source_id": "A1.SS9",
+      "target": "science/four-qubit-example.md#A1.SS9"
+    },
+    {
+      "kind": "Section",
+      "label": "B — Technical foundations, proofs, and compiler derivations",
+      "description": "",
+      "source_id": "A2",
+      "target": "science/proofs-and-compilation.md#A2"
+    },
+    {
+      "kind": "Section",
+      "label": "B 1 — Controlled-interference identities",
+      "description": "",
+      "source_id": "A2.SS1",
+      "target": "science/proofs-and-compilation.md#A2.SS1"
+    },
+    {
+      "kind": "Section",
+      "label": "B 2 — Balanced Hopf differential frame",
+      "description": "",
+      "source_id": "A2.SS2",
+      "target": "science/proofs-and-compilation.md#A2.SS2"
+    },
+    {
+      "kind": "Section",
+      "label": "B 3 — Depth completion and forward-state substitution",
+      "description": "",
+      "source_id": "A2.SS3",
+      "target": "science/proofs-and-compilation.md#A2.SS3"
+    },
+    {
+      "kind": "Section",
+      "label": "B 4 — Addressed real-frame columns",
+      "description": "",
+      "source_id": "A2.SS4",
+      "target": "science/proofs-and-compilation.md#A2.SS4"
+    },
+    {
+      "kind": "Section",
+      "label": "B 5 — Global real readout and Walsh decoding",
+      "description": "",
+      "source_id": "A2.SS5",
+      "target": "science/proofs-and-compilation.md#A2.SS5"
+    },
+    {
+      "kind": "Section",
+      "label": "B 6 — Complex magnitude and direct phase identities",
+      "description": "",
+      "source_id": "A2.SS6",
+      "target": "science/proofs-and-compilation.md#A2.SS6"
+    },
+    {
+      "kind": "Section",
+      "label": "B 7 — Checkpoint transport and active-interface substitution",
+      "description": "",
+      "source_id": "A2.SS7",
+      "target": "science/proofs-and-compilation.md#A2.SS7"
+    },
+    {
+      "kind": "Section",
+      "label": "B 8 — Fixed-norm concentration and complete-chart allocations",
+      "description": "",
+      "source_id": "A2.SS8",
+      "target": "science/proofs-and-compilation.md#A2.SS8"
+    },
+    {
+      "kind": "Section",
+      "label": "B 9 — Assigned Hopf CNOT ledger and finite charges",
+      "description": "",
+      "source_id": "A2.SS9",
+      "target": "science/proofs-and-compilation.md#A2.SS9"
+    },
+    {
+      "kind": "Section",
+      "label": "B 10 — Exact multiplexed recompilation",
+      "description": "",
+      "source_id": "A2.SS10",
+      "target": "science/proofs-and-compilation.md#A2.SS10"
+    },
+    {
+      "kind": "Section",
+      "label": "B 11 — Proof of the complete-gradient Hopf quantum-backpropagation theorem",
+      "description": "",
+      "source_id": "A2.SS11",
+      "target": "science/proofs-and-compilation.md#A2.SS11"
+    },
+    {
+      "kind": "Section",
+      "label": "Acknowledgements",
+      "description": "",
+      "source_id": "S8.acknowledgements1",
+      "target": "science/endmatter.md#S8.acknowledgements1"
+    },
+    {
+      "kind": "Statement",
+      "label": "Assumption 1 (Phase-calibrated controlled reflection) .",
+      "description": "",
+      "source_id": "Thmassumption1",
+      "target": "science/reverse-task.md#Thmassumption1"
+    },
+    {
+      "kind": "Statement",
+      "label": "Definition 1 (Complete-gradient accuracy) .",
+      "description": "",
+      "source_id": "Thmdefinition1",
+      "target": "science/reverse-task.md#Thmdefinition1"
+    },
+    {
+      "kind": "Statement",
+      "label": "Definition 2 (State-coordinate quantum backpropagation) .",
+      "description": "",
+      "source_id": "Thmdefinition2",
+      "target": "science/reverse-task.md#Thmdefinition2"
+    },
+    {
+      "kind": "Statement",
+      "label": "Theorem 1 (Quantum backpropagation and checkpointed reverse gradients with the Hopf ansatz) .",
+      "description": "",
+      "source_id": "Thmtheorem1",
+      "target": "science/accuracy-resources.md#Thmtheorem1"
+    },
+    {
+      "kind": "Statement",
+      "label": "Lemma 1 (Subtree frame) .",
+      "description": "",
+      "source_id": "Thmlemma1",
+      "target": "science/proofs-and-compilation.md#Thmlemma1"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (1)",
+      "description": "",
+      "source_id": "S2.E1",
+      "target": "science/reverse-task.md#S2.E1"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (2)",
+      "description": "",
+      "source_id": "S2.E2",
+      "target": "science/reverse-task.md#S2.E2"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (3)",
+      "description": "",
+      "source_id": "S2.E3",
+      "target": "science/reverse-task.md#S2.E3"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (4)",
+      "description": "",
+      "source_id": "S2.E4",
+      "target": "science/reverse-task.md#S2.E4"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (5)",
+      "description": "",
+      "source_id": "S2.E5",
+      "target": "science/reverse-task.md#S2.E5"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (6)",
+      "description": "",
+      "source_id": "S3.E6",
+      "target": "science/balanced-differential.md#S3.E6"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (7)",
+      "description": "",
+      "source_id": "S3.E7",
+      "target": "science/balanced-differential.md#S3.E7"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (8)",
+      "description": "",
+      "source_id": "S3.E8",
+      "target": "science/balanced-differential.md#S3.E8"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (9)",
+      "description": "",
+      "source_id": "S3.E9",
+      "target": "science/balanced-differential.md#S3.E9"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (10)",
+      "description": "",
+      "source_id": "S3.E10",
+      "target": "science/balanced-differential.md#S3.E10"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (11)",
+      "description": "",
+      "source_id": "S3.E11",
+      "target": "science/balanced-differential.md#S3.E11"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (12)",
+      "description": "",
+      "source_id": "S3.E12",
+      "target": "science/balanced-differential.md#S3.E12"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (13)",
+      "description": "",
+      "source_id": "S3.E13",
+      "target": "science/balanced-differential.md#S3.E13"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (14)",
+      "description": "",
+      "source_id": "S3.E14",
+      "target": "science/balanced-differential.md#S3.E14"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (15)",
+      "description": "",
+      "source_id": "S3.E15",
+      "target": "science/balanced-differential.md#S3.E15"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (16)",
+      "description": "",
+      "source_id": "S4.E16",
+      "target": "science/global-real.md#S4.E16"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (17)",
+      "description": "",
+      "source_id": "S4.E17",
+      "target": "science/global-real.md#S4.E17"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (18)",
+      "description": "",
+      "source_id": "S4.E18",
+      "target": "science/global-real.md#S4.E18"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (19)",
+      "description": "",
+      "source_id": "S4.E19",
+      "target": "science/global-real.md#S4.E19"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (20)",
+      "description": "",
+      "source_id": "S4.E20",
+      "target": "science/global-real.md#S4.E20"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (21)",
+      "description": "",
+      "source_id": "S4.E21",
+      "target": "science/global-real.md#S4.E21"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (22)",
+      "description": "",
+      "source_id": "S4.E22",
+      "target": "science/global-real.md#S4.E22"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (23)",
+      "description": "",
+      "source_id": "S4.E23",
+      "target": "science/global-real.md#S4.E23"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (24)",
+      "description": "",
+      "source_id": "S4.E24",
+      "target": "science/global-real.md#S4.E24"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (25)",
+      "description": "",
+      "source_id": "S4.E25",
+      "target": "science/global-real.md#S4.E25"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (26)",
+      "description": "",
+      "source_id": "S4.E26",
+      "target": "science/global-real.md#S4.E26"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (27)",
+      "description": "",
+      "source_id": "S4.E27",
+      "target": "science/global-real.md#S4.E27"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (28)",
+      "description": "",
+      "source_id": "S4.E28",
+      "target": "science/global-real.md#S4.E28"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (29)",
+      "description": "",
+      "source_id": "S5.E29",
+      "target": "science/global-complex.md#S5.E29"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (30)",
+      "description": "",
+      "source_id": "S5.E30",
+      "target": "science/global-complex.md#S5.E30"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (31)",
+      "description": "",
+      "source_id": "S5.E31",
+      "target": "science/global-complex.md#S5.E31"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (32)",
+      "description": "",
+      "source_id": "S5.E32",
+      "target": "science/global-complex.md#S5.E32"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (33)",
+      "description": "",
+      "source_id": "S5.E33",
+      "target": "science/global-complex.md#S5.E33"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (34)",
+      "description": "",
+      "source_id": "S5.E34",
+      "target": "science/global-complex.md#S5.E34"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (35)",
+      "description": "",
+      "source_id": "S5.E35",
+      "target": "science/global-complex.md#S5.E35"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (36)",
+      "description": "",
+      "source_id": "S5.E36",
+      "target": "science/global-complex.md#S5.E36"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (37)",
+      "description": "",
+      "source_id": "S5.E37",
+      "target": "science/global-complex.md#S5.E37"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (38)",
+      "description": "",
+      "source_id": "S5.E38",
+      "target": "science/global-complex.md#S5.E38"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (39)",
+      "description": "",
+      "source_id": "S5.E39",
+      "target": "science/global-complex.md#S5.E39"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (40)",
+      "description": "",
+      "source_id": "S6.E40",
+      "target": "science/checkpoints.md#S6.E40"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (41)",
+      "description": "",
+      "source_id": "S6.E41",
+      "target": "science/checkpoints.md#S6.E41"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (42)",
+      "description": "",
+      "source_id": "S6.E42",
+      "target": "science/checkpoints.md#S6.E42"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (43)",
+      "description": "",
+      "source_id": "S6.E43",
+      "target": "science/checkpoints.md#S6.E43"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (44)",
+      "description": "",
+      "source_id": "S6.E44",
+      "target": "science/checkpoints.md#S6.E44"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (45)",
+      "description": "",
+      "source_id": "S6.E45",
+      "target": "science/checkpoints.md#S6.E45"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (46)",
+      "description": "",
+      "source_id": "S6.E46",
+      "target": "science/checkpoints.md#S6.E46"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (47)",
+      "description": "",
+      "source_id": "S7.E47",
+      "target": "science/accuracy-resources.md#S7.E47"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (48)",
+      "description": "",
+      "source_id": "S7.E48",
+      "target": "science/accuracy-resources.md#S7.E48"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (49)",
+      "description": "",
+      "source_id": "S7.E49",
+      "target": "science/accuracy-resources.md#S7.E49"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (50)",
+      "description": "",
+      "source_id": "S7.E50",
+      "target": "science/accuracy-resources.md#S7.E50"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (51)",
+      "description": "",
+      "source_id": "S7.E51",
+      "target": "science/accuracy-resources.md#S7.E51"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (52)",
+      "description": "",
+      "source_id": "S7.E52",
+      "target": "science/accuracy-resources.md#S7.E52"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (53)",
+      "description": "",
+      "source_id": "S7.E53",
+      "target": "science/accuracy-resources.md#S7.E53"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (54)",
+      "description": "",
+      "source_id": "S7.E54",
+      "target": "science/accuracy-resources.md#S7.E54"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (55)",
+      "description": "",
+      "source_id": "S7.E55",
+      "target": "science/accuracy-resources.md#S7.E55"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (56)",
+      "description": "",
+      "source_id": "S7.E56",
+      "target": "science/accuracy-resources.md#S7.E56"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (57)",
+      "description": "",
+      "source_id": "S7.E57",
+      "target": "science/accuracy-resources.md#S7.E57"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (58)",
+      "description": "",
+      "source_id": "S7.E58",
+      "target": "science/accuracy-resources.md#S7.E58"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (A1)",
+      "description": "",
+      "source_id": "A1.E59",
+      "target": "science/four-qubit-example.md#A1.E59"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (A2)",
+      "description": "",
+      "source_id": "A1.E60",
+      "target": "science/four-qubit-example.md#A1.E60"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (A3)",
+      "description": "",
+      "source_id": "A1.E61",
+      "target": "science/four-qubit-example.md#A1.E61"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (A4)",
+      "description": "",
+      "source_id": "A1.E62",
+      "target": "science/four-qubit-example.md#A1.E62"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (A5)",
+      "description": "",
+      "source_id": "A1.E63",
+      "target": "science/four-qubit-example.md#A1.E63"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (A6)",
+      "description": "",
+      "source_id": "A1.E64",
+      "target": "science/four-qubit-example.md#A1.E64"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (A7)",
+      "description": "",
+      "source_id": "A1.E65",
+      "target": "science/four-qubit-example.md#A1.E65"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (B1)",
+      "description": "",
+      "source_id": "A2.E66",
+      "target": "science/proofs-and-compilation.md#A2.E66"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (B2)",
+      "description": "",
+      "source_id": "A2.E67",
+      "target": "science/proofs-and-compilation.md#A2.E67"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (B3)",
+      "description": "",
+      "source_id": "A2.E68",
+      "target": "science/proofs-and-compilation.md#A2.E68"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (B4)",
+      "description": "",
+      "source_id": "A2.E69",
+      "target": "science/proofs-and-compilation.md#A2.E69"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (B5)",
+      "description": "",
+      "source_id": "A2.E70",
+      "target": "science/proofs-and-compilation.md#A2.E70"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (B6)",
+      "description": "",
+      "source_id": "A2.E71",
+      "target": "science/proofs-and-compilation.md#A2.E71"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (B7)",
+      "description": "",
+      "source_id": "A2.E72",
+      "target": "science/proofs-and-compilation.md#A2.E72"
+    },
+    {
+      "kind": "Equation",
+      "label": "Equation (B8)",
+      "description": "",
+      "source_id": "A2.E73",
+      "target": "science/proofs-and-compilation.md#A2.E73"
+    },
+    {
+      "kind": "Figure",
+      "label": "Figure 1",
+      "description": "Four-qubit Hopf tree in the first-paper convention. A left branch contributes $`\\cos\\theta_{j}`$ and a right branch contributes $`\\sin\\theta_{j}`$ . The internal labels are the magnitude coordinates, the blue labels beneath the leaves are the complex phase coordinates, and the circled numbers give the native gate-application order. Padded binary labels identify subtree anchors and leaves.",
+      "source_id": "A1.SS2.fig1",
+      "target": "science/four-qubit-example.md#A1.SS2.fig1"
+    },
+    {
+      "kind": "Figure",
+      "label": "Figure 2",
+      "description": "Native four-qubit Hopf ansatz circuit. For $`\\mathrm{HopfReal}(\\boldsymbol{\\theta}_{\\mathrm{mag}})`$ , every box is $`R_{y}(\\theta_{j})`$ . For $`\\mathrm{HopfComplex}(\\boldsymbol{\\theta})`$ , each final-layer gate $`j=8+r`$ , $`0\\leq r<8`$ , is promoted to $`R_{\\mathbb{C}}(\\theta_{8+r},\\theta_{16+2r},\\theta_{17+2r})`$ . The blue boxes identify that promoted final layer.",
+      "source_id": "A1.SS2.fig2",
+      "target": "science/four-qubit-example.md#A1.SS2.fig2"
+    },
+    {
+      "kind": "Table",
+      "label": "Table I",
+      "description": "Four-qubit internal-node registry. For $`j=2^{d}+r`$ , the checkpoint prefix is $`r`$ , its target is $`q_{4-d}`$ , $`\\ell_{0}(j)`$ is the left-child anchor, and $`\\lambda(j)`$ addresses the normalized local complement.",
+      "source_id": "A1.SS3.fig1",
+      "target": "science/four-qubit-example.md#A1.SS3.fig1"
+    },
+    {
+      "kind": "Figure",
+      "label": "Figure 3",
+      "description": "Four-qubit depth completion. The left bracket is $`A_{2}(\\boldsymbol{\\theta}_{\\mathrm{mag}})=U_{2}U_{1}U_{0}`$ and the right bracket is $`B_{2}(\\boldsymbol{\\theta}_{\\mathrm{mag}})=U_{3}`$ , giving the full-unitary factorization $`U_{\\mathrm{chk}}=B_{2}A_{2}`$ . Open controls select zero-valued prefix bits. Section A.8 constructs the corresponding complex depth- $`2`$ completion.",
+      "source_id": "A1.SS4.fig1",
+      "target": "science/four-qubit-example.md#A1.SS4.fig1"
+    },
+    {
+      "kind": "Figure",
+      "label": "Figure 4",
+      "description": "Fully addressed four-qubit real-magnitude frame $`W_{\\mathbb{R}}`$ , with $`V_{0}`$ acting first. Every non-target qubit is fixed by a closed or open control, so each gate preserves the required state-and-complement column action. A box labeled $`\\theta_{j}`$ denotes Eq. ( 7 ). The same addressed gate skeleton is used for the complex-magnitude frame constructed in Sec. A.6 . Circuit layouts use the visual language of the quantum-circuit-drawio library [ 48 ] .",
+      "source_id": "A1.SS5.fig1",
+      "target": "science/four-qubit-example.md#A1.SS5.fig1"
+    },
+    {
+      "kind": "Figure",
+      "label": "Figure 5",
+      "description": "Real-Hopf global-gradient circuit. The forward bracket uses the state-column contract $`\\mathrm{HopfReal}(\\boldsymbol{\\theta}_{\\mathrm{mag}})\\ket{0000}=W_{\\mathbb{R}}(\\boldsymbol{\\theta}_{\\mathrm{mag}})\\ket{0000}`$ . The reverse block is $`W_{\\mathbb{R}}^{\\dagger}`$ . The measured bits are $`b_{m}`$ and $`\\boldsymbol{y}=(y_{1},y_{2},y_{3},y_{4})`$ .",
+      "source_id": "A1.SS7.fig1",
+      "target": "science/four-qubit-example.md#A1.SS7.fig1"
+    },
+    {
+      "kind": "Figure",
+      "label": "Figure 6",
+      "description": "Complex-Hopf magnitude circuit. The forward bracket uses the state-column chain in Eq. ( 61 ). The reverse bracket uses the full-unitary identity $`W_{\\mathbb{C}}^{\\dagger}=W_{\\mathbb{R}}^{\\dagger}D_{\\mathrm{ph}}^{\\dagger}`$ , so the physical order is $`D_{\\mathrm{ph}}^{\\dagger}`$ followed by $`W_{\\mathbb{R}}^{\\dagger}`$ . The addressed $`R_{\\mathbb{C}}`$ compiler realizes the same decoder up to the compiler global phase in Eq. ( 63 ).",
+      "source_id": "A1.SS7.fig2",
+      "target": "science/four-qubit-example.md#A1.SS7.fig2"
+    },
+    {
+      "kind": "Figure",
+      "label": "Figure 7",
+      "description": "Direct complex phase circuit. Native $`\\mathrm{HopfComplex}(\\boldsymbol{\\theta})`$ prepares the state through the state-column contract in Eq. ( 61 ). After the controlled reflection, the system is measured in $`Z`$ and the branch ancilla in $`Y`$ , implemented by $`S^{\\dagger}`$ followed by $`H`$ . This circuit uses the leaf-local phase record directly.",
+      "source_id": "A1.SS7.fig3",
+      "target": "science/four-qubit-example.md#A1.SS7.fig3"
+    },
+    {
+      "kind": "Table",
+      "label": "Table II",
+      "description": "All four real checkpoint settings. Compiler charges are consolidated in Table A.9 .",
+      "source_id": "A1.SS8.fig1",
+      "target": "science/four-qubit-example.md#A1.SS8.fig1"
+    },
+    {
+      "kind": "Figure",
+      "label": "Figure 8",
+      "description": "Real-Hopf depth- $`2`$ checkpoint. The forward bracket uses the state-column contract $`\\mathrm{HopfReal}(\\boldsymbol{\\theta}_{\\mathrm{mag}})\\ket{0000}=B_{2}A_{2}\\ket{0000}`$ . After controlled- $`O`$ , the reverse suffix is $`B_{2}^{\\dagger}=U_{3}^{\\dagger}`$ . One execution returns $`-2(-1)^{b_{c}+b_{t}}\\mathbf{e}_{\\widehat{r}}`$ for nodes $`4,5,6,7`$ .",
+      "source_id": "A1.SS8.fig2",
+      "target": "science/four-qubit-example.md#A1.SS8.fig2"
+    },
+    {
+      "kind": "Figure",
+      "label": "Figure 9",
+      "description": "Complex-Hopf magnitude checkpoint at depth $`2`$ . The inner and outer forward brackets use the real and complex state-column contracts. The reverse bracket uses the active-interface identity $`B_{2,\\mathbb{C}}P_{2}=D_{\\mathrm{ph}}B_{2}P_{2}`$ , which gives the same checkpoint correlators as the separated physical sequence $`D_{\\mathrm{ph}}^{\\dagger}`$ followed by $`B_{2}^{\\dagger}`$ . The readout measures $`q_{4}q_{3}`$ in $`Z`$ and $`q_{2}`$ together with the ancilla in $`Y`$ , while $`q_{1}`$ is discarded because it belongs to the unused lower suffix.",
+      "source_id": "A1.SS8.SSS1.fig1",
+      "target": "science/four-qubit-example.md#A1.SS8.SSS1.fig1"
+    },
+    {
+      "kind": "Table",
+      "label": "Table III",
+      "description": "Four-qubit compiler and record charges under the same direct-angle $`C_{\\mathrm{H}}`$ functional used in the theorem; the controlled observable and readout are excluded by definition. The theorem uses the designated separated schedules, while this table evaluates native-forward and integrated reverse alternatives whose finite constant ratios need not be $`2`$ and $`1`$ .",
+      "source_id": "A1.SS9.fig1",
+      "target": "science/four-qubit-example.md#A1.SS9.fig1"
+    },
+    {
+      "kind": "Protocol",
+      "label": "Protocol 1",
+      "description": "Global-frame method",
+      "source_id": "S5.SS3.p6.pic1",
+      "target": "science/global-complex.md#S5.SS3.p6.pic1"
+    },
+    {
+      "kind": "Protocol",
+      "label": "Protocol 2",
+      "description": "Checkpoint method",
+      "source_id": "S6.SS3.p4.pic1",
+      "target": "science/checkpoints.md#S6.SS3.p4.pic1"
+    },
+    {
+      "kind": "Reference",
+      "label": "Reference [1]",
+      "description": "",
+      "source_id": "bib.bib6",
+      "target": "references/paper-bibliography.md#bib.bib6"
+    },
+    {
+      "kind": "Reference",
+      "label": "Reference [2]",
+      "description": "",
+      "source_id": "bib.bib23",
+      "target": "references/paper-bibliography.md#bib.bib23"
+    },
+    {
+      "kind": "Reference",
+      "label": "Reference [3]",
+      "description": "",
+      "source_id": "bib.bib1",
+      "target": "references/paper-bibliography.md#bib.bib1"
+    },
+    {
+      "kind": "Reference",
+      "label": "Reference [4]",
+      "description": "",
+      "source_id": "bib.bib7",
+      "target": "references/paper-bibliography.md#bib.bib7"
+    },
+    {
+      "kind": "Reference",
+      "label": "Reference [5]",
+      "description": "",
+      "source_id": "bib.bib43",
+      "target": "references/paper-bibliography.md#bib.bib43"
+    },
+    {
+      "kind": "Reference",
+      "label": "Reference [6]",
+      "description": "",
+      "source_id": "bib.bib9",
+      "target": "references/paper-bibliography.md#bib.bib9"
+    },
+    {
+      "kind": "Reference",
+      "label": "Reference [7]",
+      "description": "",
+      "source_id": "bib.bib10",
+      "target": "references/paper-bibliography.md#bib.bib10"
+    },
+    {
+      "kind": "Reference",
+      "label": "Reference [8]",
+      "description": "",
+      "source_id": "bib.bib11",
+      "target": "references/paper-bibliography.md#bib.bib11"
+    },
+    {
+      "kind": "Reference",
+      "label": "Reference [9]",
+      "description": "",
+      "source_id": "bib.bib44",
+      "target": "references/paper-bibliography.md#bib.bib44"
+    },
+    {
+      "kind": "Reference",
+      "label": "Reference [10]",
+      "description": "",
+      "source_id": "bib.bib12",
+      "target": "references/paper-bibliography.md#bib.bib12"
+    },
+    {
+      "kind": "Reference",
+      "label": "Reference [11]",
+      "description": "",
+      "source_id": "bib.bib17",
+      "target": "references/paper-bibliography.md#bib.bib17"
+    },
+    {
+      "kind": "Reference",
+      "label": "Reference [12]",
+      "description": "",
+      "source_id": "bib.bib13",
+      "target": "references/paper-bibliography.md#bib.bib13"
+    },
+    {
+      "kind": "Reference",
+      "label": "Reference [13]",
+      "description": "",
+      "source_id": "bib.bib45",
+      "target": "references/paper-bibliography.md#bib.bib45"
+    },
+    {
+      "kind": "Reference",
+      "label": "Reference [14]",
+      "description": "",
+      "source_id": "bib.bib14",
+      "target": "references/paper-bibliography.md#bib.bib14"
+    },
+    {
+      "kind": "Reference",
+      "label": "Reference [15]",
+      "description": "",
+      "source_id": "bib.bib15",
+      "target": "references/paper-bibliography.md#bib.bib15"
+    },
+    {
+      "kind": "Reference",
+      "label": "Reference [16]",
+      "description": "",
+      "source_id": "bib.bib18",
+      "target": "references/paper-bibliography.md#bib.bib18"
+    },
+    {
+      "kind": "Reference",
+      "label": "Reference [17]",
+      "description": "",
+      "source_id": "bib.bib20",
+      "target": "references/paper-bibliography.md#bib.bib20"
+    },
+    {
+      "kind": "Reference",
+      "label": "Reference [18]",
+      "description": "",
+      "source_id": "bib.bib46",
+      "target": "references/paper-bibliography.md#bib.bib46"
+    },
+    {
+      "kind": "Reference",
+      "label": "Reference [19]",
+      "description": "",
+      "source_id": "bib.bib19",
+      "target": "references/paper-bibliography.md#bib.bib19"
+    },
+    {
+      "kind": "Reference",
+      "label": "Reference [20]",
+      "description": "",
+      "source_id": "bib.bib38",
+      "target": "references/paper-bibliography.md#bib.bib38"
+    },
+    {
+      "kind": "Reference",
+      "label": "Reference [21]",
+      "description": "",
+      "source_id": "bib.bib39",
+      "target": "references/paper-bibliography.md#bib.bib39"
+    },
+    {
+      "kind": "Reference",
+      "label": "Reference [22]",
+      "description": "",
+      "source_id": "bib.bib41",
+      "target": "references/paper-bibliography.md#bib.bib41"
+    },
+    {
+      "kind": "Reference",
+      "label": "Reference [23]",
+      "description": "",
+      "source_id": "bib.bib40",
+      "target": "references/paper-bibliography.md#bib.bib40"
+    },
+    {
+      "kind": "Reference",
+      "label": "Reference [24]",
+      "description": "",
+      "source_id": "bib.bib31",
+      "target": "references/paper-bibliography.md#bib.bib31"
+    },
+    {
+      "kind": "Reference",
+      "label": "Reference [25]",
+      "description": "",
+      "source_id": "bib.bib33",
+      "target": "references/paper-bibliography.md#bib.bib33"
+    },
+    {
+      "kind": "Reference",
+      "label": "Reference [26]",
+      "description": "",
+      "source_id": "bib.bib34",
+      "target": "references/paper-bibliography.md#bib.bib34"
+    },
+    {
+      "kind": "Reference",
+      "label": "Reference [27]",
+      "description": "",
+      "source_id": "bib.bib26",
+      "target": "references/paper-bibliography.md#bib.bib26"
+    },
+    {
+      "kind": "Reference",
+      "label": "Reference [28]",
+      "description": "",
+      "source_id": "bib.bib27",
+      "target": "references/paper-bibliography.md#bib.bib27"
+    },
+    {
+      "kind": "Reference",
+      "label": "Reference [29]",
+      "description": "",
+      "source_id": "bib.bib28",
+      "target": "references/paper-bibliography.md#bib.bib28"
+    },
+    {
+      "kind": "Reference",
+      "label": "Reference [30]",
+      "description": "",
+      "source_id": "bib.bib24",
+      "target": "references/paper-bibliography.md#bib.bib24"
+    },
+    {
+      "kind": "Reference",
+      "label": "Reference [31]",
+      "description": "",
+      "source_id": "bib.bib30",
+      "target": "references/paper-bibliography.md#bib.bib30"
+    },
+    {
+      "kind": "Reference",
+      "label": "Reference [32]",
+      "description": "",
+      "source_id": "bib.bib25",
+      "target": "references/paper-bibliography.md#bib.bib25"
+    },
+    {
+      "kind": "Reference",
+      "label": "Reference [33]",
+      "description": "",
+      "source_id": "bib.bib32",
+      "target": "references/paper-bibliography.md#bib.bib32"
+    },
+    {
+      "kind": "Reference",
+      "label": "Reference [34]",
+      "description": "",
+      "source_id": "bib.bib29",
+      "target": "references/paper-bibliography.md#bib.bib29"
+    },
+    {
+      "kind": "Reference",
+      "label": "Reference [35]",
+      "description": "",
+      "source_id": "bib.bib35",
+      "target": "references/paper-bibliography.md#bib.bib35"
+    },
+    {
+      "kind": "Reference",
+      "label": "Reference [36]",
+      "description": "",
+      "source_id": "bib.bib36",
+      "target": "references/paper-bibliography.md#bib.bib36"
+    },
+    {
+      "kind": "Reference",
+      "label": "Reference [37]",
+      "description": "",
+      "source_id": "bib.bib37",
+      "target": "references/paper-bibliography.md#bib.bib37"
+    },
+    {
+      "kind": "Reference",
+      "label": "Reference [38]",
+      "description": "",
+      "source_id": "bib.bib42",
+      "target": "references/paper-bibliography.md#bib.bib42"
+    },
+    {
+      "kind": "Reference",
+      "label": "Reference [39]",
+      "description": "",
+      "source_id": "bib.bib2",
+      "target": "references/paper-bibliography.md#bib.bib2"
+    },
+    {
+      "kind": "Reference",
+      "label": "Reference [40]",
+      "description": "",
+      "source_id": "bib.bib5",
+      "target": "references/paper-bibliography.md#bib.bib5"
+    },
+    {
+      "kind": "Reference",
+      "label": "Reference [41]",
+      "description": "",
+      "source_id": "bib.bib4",
+      "target": "references/paper-bibliography.md#bib.bib4"
+    },
+    {
+      "kind": "Reference",
+      "label": "Reference [42]",
+      "description": "",
+      "source_id": "bib.bib22",
+      "target": "references/paper-bibliography.md#bib.bib22"
+    },
+    {
+      "kind": "Reference",
+      "label": "Reference [43]",
+      "description": "",
+      "source_id": "bib.bib21",
+      "target": "references/paper-bibliography.md#bib.bib21"
+    },
+    {
+      "kind": "Reference",
+      "label": "Reference [44]",
+      "description": "",
+      "source_id": "bib.bib16",
+      "target": "references/paper-bibliography.md#bib.bib16"
+    },
+    {
+      "kind": "Reference",
+      "label": "Reference [45]",
+      "description": "",
+      "source_id": "bib.bib8",
+      "target": "references/paper-bibliography.md#bib.bib8"
+    },
+    {
+      "kind": "Reference",
+      "label": "Reference [46]",
+      "description": "",
+      "source_id": "bib.bib3",
+      "target": "references/paper-bibliography.md#bib.bib3"
+    },
+    {
+      "kind": "Reference",
+      "label": "Reference [47]",
+      "description": "",
+      "source_id": "bib.bib47",
+      "target": "references/paper-bibliography.md#bib.bib47"
+    },
+    {
+      "kind": "Reference",
+      "label": "Reference [48]",
+      "description": "",
+      "source_id": "bib.bib48",
+      "target": "references/paper-bibliography.md#bib.bib48"
+    },
+    {
+      "kind": "Reference",
+      "label": "Reference [49]",
+      "description": "",
+      "source_id": "bib.bib49",
+      "target": "references/paper-bibliography.md#bib.bib49"
+    }
+  ]
+}
