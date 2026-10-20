@@ -88,9 +88,7 @@ These supplementary implementation figures summarize finite-dimensional checks. 
 
 Cite the companion [Hopf-ansatz paper](https://arxiv.org/abs/2607.14231) when using its state-preparation or geometric constructions. Machine-readable citation metadata is available in [CITATION.cff](CITATION.cff).
 
-## Purpose and contact
-
-This repository serves as a record of the work and a guide for the author’s self-directed learning. For discussion or potential collaboration, please contact Ruge Lin at [gogoko699@gmail.com](mailto:gogoko699@gmail.com).
+For questions about the article, feel free to contact Ruge Lin at [gogoko699@gmail.com](mailto:gogoko699@gmail.com).
 
 ## License
 
