@@ -29,7 +29,7 @@ The coordinate blocks are
 ```
 
 ```math
-\begin{aligned}\phi_{\ell} & :=\theta_{16+\ell}, & 0 & \leq\ell<16.\end{aligned}
+\begin{aligned}\phi_{\ell} & :=\theta_{16+\ell}, & 0 & \leq\ell\lt 16.\end{aligned}
 ```
 
 <a id="A1.SS2"></a>
@@ -63,7 +63,7 @@ Its first column assigns phases $`\theta_{b}`$ and $`\theta_{c}`$ to two sibling
 
 ![Figure 2: Native four-qubit Hopf circuit with the complex variant acting in the final layer.](../figures/paper/ansatz_circuit.png)
 
-Figure 2: Native four-qubit Hopf ansatz circuit. For $`\mathrm{HopfReal}(\boldsymbol{\theta}_{\mathrm{mag}})`$, every box is $`R_{y}(\theta_{j})`$. For $`\mathrm{HopfComplex}(\boldsymbol{\theta})`$, each final-layer gate $`j=8+r`$, $`0\leq r<8`$, is promoted to $`R_{\mathbb{C}}(\theta_{8+r},\theta_{16+2r},\theta_{17+2r})`$. The blue boxes identify that promoted final layer.
+Figure 2: Native four-qubit Hopf ansatz circuit. For $`\mathrm{HopfReal}(\boldsymbol{\theta}_{\mathrm{mag}})`$, every box is $`R_{y}(\theta_{j})`$. For $`\mathrm{HopfComplex}(\boldsymbol{\theta})`$, each final-layer gate $`j=8+r`$, $`0\leq r\lt 8`$, is promoted to $`R_{\mathbb{C}}(\theta_{8+r},\theta_{16+2r},\theta_{17+2r})`$. The blue boxes identify that promoted final layer.
 
 The initialized native columns prepare $`\lvert \psi^{\mathbb{R}}\rangle`$ and $`\lvert \psi^{\mathbb{C}}\rangle`$; the complete state-column contracts are collected below with the depth and frame completions.
 

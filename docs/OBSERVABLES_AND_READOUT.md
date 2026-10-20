@@ -38,7 +38,7 @@ O_\alpha^\dagger=O_\alpha,
 \qquad
 O_\alpha^2=I,
 \qquad
-\Lambda=\sum_\alpha|a_\alpha|>0.
+\Lambda=\sum_\alpha|a_\alpha|\gt 0.
 ```
 
 Suppose every term has the calibrated controlled access above. Sample term

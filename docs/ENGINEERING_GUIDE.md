@@ -66,9 +66,9 @@ Internal nodes use breadth-first labels:
 ```math
 j = 2^d + r,
 \qquad
-0\le d<n,
+0\le d\lt n,
 \qquad
-0\le r<2^d.
+0\le r\lt 2^d.
 ```
 
 The computational-basis marker assigned to node `j` is implemented by

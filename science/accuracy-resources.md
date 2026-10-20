@@ -8,7 +8,7 @@
 
 ## VII A Reverse pullback and shared records
 
-The controlled reflection creates one objective response on state space. The inverse Hopf frame resolves that response along normalized magnitude directions, and the metric factors convert those frame components into coordinate derivatives. Writing $`W_{\mathbb{R}}:=W_{\mathbb{R}}`$ and using the complex frame $`W_{\mathbb{C}}`$ from Sec. [V](global-complex.md#S5), the component form of this pullback is, for $`\mathbb{K}\in\{\mathbb{R},\mathbb{C}\}`$ and $`1\leq j<N`$,
+The controlled reflection creates one objective response on state space. The inverse Hopf frame resolves that response along normalized magnitude directions, and the metric factors convert those frame components into coordinate derivatives. Writing $`W_{\mathbb{R}}:=W_{\mathbb{R}}`$ and using the complex frame $`W_{\mathbb{C}}`$ from Sec. [V](global-complex.md#S5), the component form of this pullback is, for $`\mathbb{K}\in\{\mathbb{R},\mathbb{C}\}`$ and $`1\leq j\lt N`$,
 
 <a id="S7.E47"></a>
 
@@ -31,7 +31,7 @@ The width of a tree depth does not set its statistical scale. Every global magni
 <a id="S7.E48"></a>
 
 ```math
-{\mathbb{P}\!\left[\|\widehat{\mu}-\mu\|_{\infty}>\frac{B\{1+\sqrt{2\log(1/\eta)}\}}{\sqrt{S}}\right]\leq\eta.}\tag{48}
+{\mathbb{P}\!\left[\|\widehat{\mu}-\mu\|_{\infty}\gt \frac{B\{1+\sqrt{2\log(1/\eta)}\}}{\sqrt{S}}\right]\leq\eta.}\tag{48}
 ```
 
 For the norm-two Hopf records, define the common sufficient count
@@ -163,7 +163,7 @@ For the designated schedules,
 <a id="S7.E55"></a>
 
 ```math
-{c_{\mathrm{fr}}^{\mathbb{K}}\leq 2c_{\mathrm{fwd}}^{\mathbb{K}},\qquad c_{d}^{\mathbb{K}}\leq c_{\mathrm{fwd}}^{\mathbb{K}}\quad(0\leq d<n).}\tag{55}
+{c_{\mathrm{fr}}^{\mathbb{K}}\leq 2c_{\mathrm{fwd}}^{\mathbb{K}},\qquad c_{d}^{\mathbb{K}}\leq c_{\mathrm{fwd}}^{\mathbb{K}}\quad(0\leq d\lt n).}\tag{55}
 ```
 
 The real frame bound follows because the final depth of $`U_{\mathrm{chk}}`$ already contains half as many gates with the same largest control count as $`W_{\mathbb{R}}`$. Every inverse suffix is a subset of the depth layers of $`U_{\mathrm{chk}}`$. Adding the same diagonal phase layer to the designated complex forward and reverse blocks preserves the factors in Eq. ([55](accuracy-resources.md#S7.E55)). The exact sums appear in Appendix [B 9](proofs-and-compilation.md#A2.SS9).
@@ -240,7 +240,7 @@ For the designated schedules, the matched-storage argument above gives $`\mathca
 \chi_{j}:=\frac{\partial_{\theta_{j}}E_{O}}{\sqrt{g^{\mathbb{R}}_{j,j}}},\qquad\nu_{j}:=\frac{\partial_{\theta_{j}}E_{O}}{g^{\mathbb{R}}_{j,j}}.
 ```
 
-At a parameter point with $`0<g^{\mathbb{R}}_{k,k}<(\varepsilon/2)^{2}`$, choose a Hermitian unitary that swaps $`\lvert \psi^{\mathbb{R}}\rangle`$ with $`\lvert e_{k}^{\mathbb{R}}\rangle`$ and hold it fixed during differentiation. Then $`\partial_{\theta_{k}}E_{O}=2\sqrt{g^{\mathbb{R}}_{k,k}}<\varepsilon`$ but $`\chi_{k}=2`$. Thus raw coordinate and normalized-frame accuracy are distinct near small metric weights; Appendix [B 8](proofs-and-compilation.md#A2.SS8) gives the witness and conditioning bounds.
+At a parameter point with $`0\lt g^{\mathbb{R}}_{k,k}\lt (\varepsilon/2)^{2}`$, choose a Hermitian unitary that swaps $`\lvert \psi^{\mathbb{R}}\rangle`$ with $`\lvert e_{k}^{\mathbb{R}}\rangle`$ and hold it fixed during differentiation. Then $`\partial_{\theta_{k}}E_{O}=2\sqrt{g^{\mathbb{R}}_{k,k}}\lt \varepsilon`$ but $`\chi_{k}=2`$. Thus raw coordinate and normalized-frame accuracy are distinct near small metric weights; Appendix [B 8](proofs-and-compilation.md#A2.SS8) gives the witness and conditioning bounds.
 
 The theorem uses the direct-angle ledger, in which each Hopf coordinate remains one directly programmed physical angle. Appendix [B 10](proofs-and-compilation.md#A2.SS10) separately gives an exact multiplexed realization that recombines those angles while preserving the estimator and $`\mathcal{O}(N)`$ matched forward/frame scaling. This alternative has its own compiler ledger; it does not replace the theorem’s accounting. Finite and proof details appear in Appendices [A 9](four-qubit-example.md#A1.SS9), [B 9](proofs-and-compilation.md#A2.SS9), and [B 11](proofs-and-compilation.md#A2.SS11).
 

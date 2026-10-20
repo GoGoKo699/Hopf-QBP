@@ -128,7 +128,7 @@ The complete Hopf chart has $`M`$ real-valued parameters and returns
 \nabla_{\boldsymbol{\theta}}E_{O}=\left(\partial_{\theta_{1}}E_{O},\ldots,\partial_{\theta_{M}}E_{O}\right)^{\mathsf{T}}\in\mathbb{R}^{M}.
 ```
 
-Throughout, $`0<\varepsilon,\delta<1`$.
+Throughout, $`0\lt \varepsilon,\delta\lt 1`$.
 
 <a id="Thmdefinition1"></a>
 
@@ -164,7 +164,7 @@ for a coordinate block $`\mathcal{I}`$. A complete protocol combines such shared
 
 Each execution starts from a fresh product input and ends with destructive product-basis measurement. State preparation, reverse blocks, controlled reflection, readout basis changes, and classical processing are exact. Only sampling fluctuations enter the accuracy bounds. The system and branch ancilla use $`n+1`$ qubits, besides compiler and controlled-reflection workspace. All displayed execution and Hopf-work bounds are per reflection.
 
-**Reflection-sum objectives.** Let $`H=\sum_{\alpha=1}^{L}a_{\alpha}O_{\alpha}`$ have fixed real coefficients $`a_{\alpha}`$ and parameter-independent terms satisfying $`O_{\alpha}^{\dagger}=O_{\alpha}`$ and $`O_{\alpha}^{2}=I`$. Set $`\Lambda:=\sum_{\alpha}\vert a_{\alpha}\vert >0`$ and assume calibrated controlled access to each term. Sample $`\alpha`$ with $`p_{\alpha}=\vert a_{\alpha}\vert /\Lambda`$ and return $`\widetilde{Z}_{\mathcal{I}}:=\Lambda\mathrm{sgn}(a_{\alpha})Z_{\mathcal{I}}^{(\alpha)}`$ for a record $`Z_{\mathcal{I}}^{(\alpha)}`$ on block $`\mathcal{I}`$. With $`E_{H}:=\langle \psi\rvert H\lvert \psi\rangle`$,
+**Reflection-sum objectives.** Let $`H=\sum_{\alpha=1}^{L}a_{\alpha}O_{\alpha}`$ have fixed real coefficients $`a_{\alpha}`$ and parameter-independent terms satisfying $`O_{\alpha}^{\dagger}=O_{\alpha}`$ and $`O_{\alpha}^{2}=I`$. Set $`\Lambda:=\sum_{\alpha}\vert a_{\alpha}\vert \gt 0`$ and assume calibrated controlled access to each term. Sample $`\alpha`$ with $`p_{\alpha}=\vert a_{\alpha}\vert /\Lambda`$ and return $`\widetilde{Z}_{\mathcal{I}}:=\Lambda\mathrm{sgn}(a_{\alpha})Z_{\mathcal{I}}^{(\alpha)}`$ for a record $`Z_{\mathcal{I}}^{(\alpha)}`$ on block $`\mathcal{I}`$. With $`E_{H}:=\langle \psi\rvert H\lvert \psi\rangle`$,
 
 <a id="S2.EGx5"></a>
 

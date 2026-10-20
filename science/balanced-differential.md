@@ -8,7 +8,7 @@
 
 ## III A Repeating the local split across the tree
 
-Applying the local split-and-complement rule at every internal node produces a full differential frame and one computational marker per node. Let $`n`$ be the number of qubits and $`N=2^{n}`$. For $`0\leq\ell<N`$, the basis labels are
+Applying the local split-and-complement rule at every internal node produces a full differential frame and one computational marker per node. Let $`n`$ be the number of qubits and $`N=2^{n}`$. For $`0\leq\ell\lt N`$, the basis labels are
 
 <a id="S3.Ex19"></a>
 
@@ -16,12 +16,12 @@ Applying the local split-and-complement rule at every internal node produces a f
 \ell=(q_{n}\cdots q_{1})_{2},\qquad\lvert b_{\ell}\rangle =\lvert q_{n}\cdots q_{1}\rangle .
 ```
 
-A complete rooted binary tree has root $`1`$, children $`2j`$ and $`2j+1`$, internal nodes $`1\leq j<N`$, and leaves $`N+\ell`$. Internal nodes are indexed breadth first. The internal nodes at depth $`d`$ form
+A complete rooted binary tree has root $`1`$, children $`2j`$ and $`2j+1`$, internal nodes $`1\leq j\lt N`$, and leaves $`N+\ell`$. Internal nodes are indexed breadth first. The internal nodes at depth $`d`$ form
 
 <a id="S3.Ex20"></a>
 
 ```math
-\mathcal{L}_{d}:=\{2^{d},\ldots,2^{d+1}-1\},\qquad 0\leq d<n.
+\mathcal{L}_{d}:=\{2^{d},\ldots,2^{d+1}-1\},\qquad 0\leq d\lt n.
 ```
 
 Writing $`j=2^{d}+r\in\mathcal{L}_{d}`$, attach to that node the computational marker
@@ -49,11 +49,11 @@ The real magnitude angles have ranges
 <a id="S3.EGx7"></a>
 
 ```math
-\begin{aligned}\theta_{j} & \in[0,\pi/2], & 1\leq j<N/2,\end{aligned}
+\begin{aligned}\theta_{j} & \in[0,\pi/2], & 1\leq j\lt N/2,\end{aligned}
 ```
 
 ```math
-\begin{aligned}\theta_{j} & \in[0,2\pi), & N/2\leq j<N.\end{aligned}
+\begin{aligned}\theta_{j} & \in[0,2\pi), & N/2\leq j\lt N.\end{aligned}
 ```
 
 The final layer carries arbitrary real signs. The inherited rotation convention is
@@ -71,7 +71,7 @@ The native real state-preparation circuit is denoted $`\mathrm{HopfReal}(\boldsy
 
 ## III B Subtree states, complements, and weights
 
-For $`0\leq\ell<N`$, set the leaf states to
+For $`0\leq\ell\lt N`$, set the leaf states to
 
 <a id="S3.Ex24"></a>
 
@@ -149,7 +149,7 @@ so the squared incoming amplitudes are precisely the diagonal metric coefficient
 
 <a id="S3.SS2.p6.1"></a>
 
-For $`g^{\mathbb{R}}_{j,j}>0`$, $`\lvert e_{j}^{\mathbb{R}}\rangle`$ is the normalized coordinate tangent of Ref. [[1](../references/paper-bibliography.md#bib.bib6)]. When $`g^{\mathbb{R}}_{j,j}=0`$, the coordinate derivative vanishes and Eq. ([9](balanced-differential.md#S3.E9)) supplies the normalized completion column. For the objective in Eq. ([1](reverse-task.md#S2.E1)),
+For $`g^{\mathbb{R}}_{j,j}\gt 0`$, $`\lvert e_{j}^{\mathbb{R}}\rangle`$ is the normalized coordinate tangent of Ref. [[1](../references/paper-bibliography.md#bib.bib6)]. When $`g^{\mathbb{R}}_{j,j}=0`$, the coordinate derivative vanishes and Eq. ([9](balanced-differential.md#S3.E9)) supplies the normalized completion column. For the objective in Eq. ([1](reverse-task.md#S2.E1)),
 
 <a id="S3.E13"></a>
 

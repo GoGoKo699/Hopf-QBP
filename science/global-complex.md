@@ -13,7 +13,7 @@ Using the coordinate blocks in Eq. ([6](balanced-differential.md#S3.E6)), write 
 <a id="S5.Ex44"></a>
 
 ```math
-\theta_{N+\ell}\in[0,2\pi),\qquad 0\leq\ell<N.
+\theta_{N+\ell}\in[0,2\pi),\qquad 0\leq\ell\lt N.
 ```
 
 Define the nonnegative magnitude state and diagonal phase unitary by
@@ -69,7 +69,7 @@ The complex magnitude metric equals the real tree metric,
 <a id="S5.E31"></a>
 
 ```math
-{g^{\mathbb{C}}_{j,j}(\boldsymbol{\theta})=g^{\mathbb{R}}_{j,j}(\boldsymbol{\theta}_{\mathrm{mag}}),\qquad 1\leq j<N.}\tag{31}
+{g^{\mathbb{C}}_{j,j}(\boldsymbol{\theta})=g^{\mathbb{R}}_{j,j}(\boldsymbol{\theta}_{\mathrm{mag}}),\qquad 1\leq j\lt N.}\tag{31}
 ```
 
 Therefore,
@@ -83,7 +83,7 @@ Therefore,
 <a id="S5.E32"></a>
 
 ```math
-{\begin{aligned}\partial_{\theta_{j}}E_{O} & =2\sqrt{g^{\mathbb{C}}_{j,j}(\boldsymbol{\theta})}\mathrm{Re}\langle e_{j}^{\mathbb{C}}\rvert O\lvert \psi^{\mathbb{C}}\rangle ,\qquad 1\leq j<N.\end{aligned}}\tag{32}
+{\begin{aligned}\partial_{\theta_{j}}E_{O} & =2\sqrt{g^{\mathbb{C}}_{j,j}(\boldsymbol{\theta})}\mathrm{Re}\langle e_{j}^{\mathbb{C}}\rvert O\lvert \psi^{\mathbb{C}}\rangle ,\qquad 1\leq j\lt N.\end{aligned}}\tag{32}
 ```
 
 The complete complex magnitude frame is
@@ -149,7 +149,7 @@ One execution returns the joint $`(n+1)`$-bit outcome $`(b_{m},\boldsymbol{y})`$
 <a id="S5.E33"></a>
 
 ```math
-{Z_{j}^{\mathbb{C},\mathrm{mag}}(b_{m},\boldsymbol{y}):=2\sqrt{g^{\mathbb{C}}_{j,j}}(-1)^{b_{m}+\lambda(j)\cdot\boldsymbol{y}},\qquad 1\leq j<N.}\tag{33}
+{Z_{j}^{\mathbb{C},\mathrm{mag}}(b_{m},\boldsymbol{y}):=2\sqrt{g^{\mathbb{C}}_{j,j}}(-1)^{b_{m}+\lambda(j)\cdot\boldsymbol{y}},\qquad 1\leq j\lt N.}\tag{33}
 ```
 
 Let $`S_{\mathrm{mag}}^{\mathbb{C}}`$ be the number of independent magnitude executions. Their empirical average is
@@ -171,7 +171,7 @@ Each phase derivative is already supported on one computational-basis leaf and n
 <a id="S5.E35"></a>
 
 ```math
-{\partial_{\theta_{N+\ell}}\lvert \psi^{\mathbb{C}}(\boldsymbol{\theta})\rangle =\mathrm{i}x_{\ell}(\boldsymbol{\theta})\lvert b_{\ell}\rangle ,\qquad 0\leq\ell<N.}\tag{35}
+{\partial_{\theta_{N+\ell}}\lvert \psi^{\mathbb{C}}(\boldsymbol{\theta})\rangle =\mathrm{i}x_{\ell}(\boldsymbol{\theta})\lvert b_{\ell}\rangle ,\qquad 0\leq\ell\lt N.}\tag{35}
 ```
 
 Computational-basis readout is therefore the identity differential resolution in Definition [2](reverse-task.md#Thmdefinition2). The corresponding objective derivative is

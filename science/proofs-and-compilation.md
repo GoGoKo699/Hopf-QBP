@@ -111,7 +111,7 @@ The forward and reverse circuits may therefore use different unitary completions
 
 ## B 4 Addressed real-frame columns
 
-Every nonzero integer $`k<N`$ has a unique factorization $`k=(2r+1)2^{t}`$ with $`t\geq 0`$. Setting $`d=n-t-1`$ gives $`0\leq r<2^{d}`$ and $`k=(2r+1)2^{n-d-1}=\lambda(2^{d}+r)`$, so the marker map is a bijection.
+Every nonzero integer $`k\lt N`$ has a unique factorization $`k=(2r+1)2^{t}`$ with $`t\geq 0`$. Setting $`d=n-t-1`$ gives $`0\leq r\lt 2^{d}`$ and $`k=(2r+1)2^{n-d-1}=\lambda(2^{d}+r)`$, so the marker map is a bijection.
 
 Let $`W_{j}`$ be the product of addressed rotations in the subtree rooted at $`j`$, with $`G_{j}`$ applied before its strict descendants. The child products act on orthogonal leaf spaces, and $`W_{j}=(W_{2j}\oplus W_{2j+1})G_{j}`$. At a leaf, the anchor column is already the leaf state. Assuming the child anchor columns map to the child subtree states, Eqs. ([16](global-real.md#S4.E16)) and ([17](global-real.md#S4.E17)) give
 
@@ -336,7 +336,7 @@ Replacing one sample changes $`\|\widehat{\mu}-\mu\|_{\infty}`$ by at most $`2B/
 <a id="A2.Ex145"></a>
 
 ```math
-\mathbb{P}\!\left[\|\widehat{\mu}-\mu\|_{\infty}-\mathbb{E}\|\widehat{\mu}-\mu\|_{\infty}>u\right]\leq\exp\!\left(-\frac{Su^{2}}{2B^{2}}\right).
+\mathbb{P}\!\left[\|\widehat{\mu}-\mu\|_{\infty}-\mathbb{E}\|\widehat{\mu}-\mu\|_{\infty}\gt u\right]\leq\exp\!\left(-\frac{Su^{2}}{2B^{2}}\right).
 ```
 
 Setting $`u=B\sqrt{2\log(1/\eta)/S}`$ proves Eq. ([48](accuracy-resources.md#S7.E48)).
@@ -370,7 +370,7 @@ with the $`\mathcal{O}(1)`$ phase term included only in the complex chart. The u
 <a id="A2.E71"></a>
 
 ```math
-{\mathbb{P}\!\left[\left\|\widehat{\mu}_{\mathrm{mag}}-\mu_{\mathrm{mag}}\right\|_{2}>\frac{2\sqrt{n}\{1+\sqrt{2\log(1/\delta)}\}}{\sqrt{S}}\right]\leq\delta.}\tag{B6}
+{\mathbb{P}\!\left[\left\|\widehat{\mu}_{\mathrm{mag}}-\mu_{\mathrm{mag}}\right\|_{2}\gt \frac{2\sqrt{n}\{1+\sqrt{2\log(1/\delta)}\}}{\sqrt{S}}\right]\leq\delta.}\tag{B6}
 ```
 
 A sufficient allocation for fixed complete-magnitude $`\ell_{2}`$ accuracy $`\varepsilon_{2}`$ is
@@ -383,15 +383,15 @@ S=\mathcal{O}\!\left(\frac{n\{1+\log(1/\delta)\}}{\varepsilon_{2}^{2}}\right)=\m
 
 For the complex chart, the separate norm-two phase stream adds only a constant-order term under any fixed split of Euclidean error and confidence.
 
-**Relative, directional, and metric-conditioned accuracy.** Let $`\widehat{\boldsymbol{v}}=\boldsymbol{v}+\boldsymbol{e}`$, where $`\boldsymbol{v}`$ is the complete real gradient or complex magnitude block, $`\mathcal{G}:=\|\boldsymbol{v}\|_{2}`$, and $`\|\boldsymbol{e}\|_{2}\leq\xi<\mathcal{G}`$. Then
+**Relative, directional, and metric-conditioned accuracy.** Let $`\widehat{\boldsymbol{v}}=\boldsymbol{v}+\boldsymbol{e}`$, where $`\boldsymbol{v}`$ is the complete real gradient or complex magnitude block, $`\mathcal{G}:=\|\boldsymbol{v}\|_{2}`$, and $`\|\boldsymbol{e}\|_{2}\leq\xi\lt \mathcal{G}`$. Then
 
 <a id="A2.Ex150"></a>
 
 ```math
-\boldsymbol{v}^{\mathsf{T}}\widehat{\boldsymbol{v}}\geq\mathcal{G}(\mathcal{G}-\xi)>0,\qquad\left\|\frac{\widehat{\boldsymbol{v}}}{\|\widehat{\boldsymbol{v}}\|_{2}}-\frac{\boldsymbol{v}}{\mathcal{G}}\right\|_{2}\leq\frac{2\xi}{\mathcal{G}}.
+\boldsymbol{v}^{\mathsf{T}}\widehat{\boldsymbol{v}}\geq\mathcal{G}(\mathcal{G}-\xi)\gt 0,\qquad\left\|\frac{\widehat{\boldsymbol{v}}}{\|\widehat{\boldsymbol{v}}\|_{2}}-\frac{\boldsymbol{v}}{\mathcal{G}}\right\|_{2}\leq\frac{2\xi}{\mathcal{G}}.
 ```
 
-Thus $`-\widehat{\boldsymbol{v}}`$ is a strict descent direction. Setting $`\xi=\rho\mathcal{G}`$, $`0<\rho<1`$, in Eq. ([B6](proofs-and-compilation.md#A2.E71)) gives, for either stated block,
+Thus $`-\widehat{\boldsymbol{v}}`$ is a strict descent direction. Setting $`\xi=\rho\mathcal{G}`$, $`0\lt \rho\lt 1`$, in Eq. ([B6](proofs-and-compilation.md#A2.E71)) gives, for either stated block,
 
 <a id="A2.Ex151"></a>
 
@@ -409,9 +409,9 @@ For the theorem-adjacent separation, fix a parameter point and an active real co
 O_{k}=I-(\lvert \psi^{\mathbb{R}}\rangle -\lvert e_{k}^{\mathbb{R}}\rangle )(\langle \psi^{\mathbb{R}}\rvert -\langle e_{k}^{\mathbb{R}}\rvert ).
 ```
 
-Orthonormality gives $`O_{k}^{\dagger}=O_{k}`$, $`O_{k}^{2}=I`$, and $`O_{k}\lvert \psi^{\mathbb{R}}\rangle =\lvert e_{k}^{\mathbb{R}}\rangle`$, so $`\partial_{\theta_{j}}E_{O_{k}}=2\sqrt{g^{\mathbb{R}}_{k,k}}\delta_{jk}`$ and $`\chi_{k}=2`$. If $`0<g^{\mathbb{R}}_{k,k}<(\varepsilon/2)^{2}`$, the zero vector has raw $`\ell_{\infty}`$ error below $`\varepsilon`$ but frame error two.
+Orthonormality gives $`O_{k}^{\dagger}=O_{k}`$, $`O_{k}^{2}=I`$, and $`O_{k}\lvert \psi^{\mathbb{R}}\rangle =\lvert e_{k}^{\mathbb{R}}\rangle`$, so $`\partial_{\theta_{j}}E_{O_{k}}=2\sqrt{g^{\mathbb{R}}_{k,k}}\delta_{jk}`$ and $`\chi_{k}=2`$. If $`0\lt g^{\mathbb{R}}_{k,k}\lt (\varepsilon/2)^{2}`$, the zero vector has raw $`\ell_{\infty}`$ error below $`\varepsilon`$ but frame error two.
 
-For a global magnitude record with $`g^{\mathbb{K}}_{j,j}>0`$, $`Z_{j}\in\{\pm 2\sqrt{g^{\mathbb{K}}_{j,j}}\}`$, $`\mathbb{E}Z_{j}=\partial_{\theta_{j}}E_{O}`$, and $`Z_{j}^{2}=4g^{\mathbb{K}}_{j,j}`$. Unitarity gives $`\vert \partial_{\theta_{j}}E_{O}\vert \leq 2\sqrt{g^{\mathbb{K}}_{j,j}}`$, while, for $`\tau>0`$,
+For a global magnitude record with $`g^{\mathbb{K}}_{j,j}\gt 0`$, $`Z_{j}\in\{\pm 2\sqrt{g^{\mathbb{K}}_{j,j}}\}`$, $`\mathbb{E}Z_{j}=\partial_{\theta_{j}}E_{O}`$, and $`Z_{j}^{2}=4g^{\mathbb{K}}_{j,j}`$. Unitarity gives $`\vert \partial_{\theta_{j}}E_{O}\vert \leq 2\sqrt{g^{\mathbb{K}}_{j,j}}`$, while, for $`\tau\gt 0`$,
 
 <a id="A2.Ex153"></a>
 
@@ -487,7 +487,7 @@ The direct-angle ledger keeps coordinates and physical controls in one geometry.
 C_{\mathrm{ucr}}(U_{\mathrm{chk}})=\sum_{d=1}^{n-1}2^{d}=N-2.
 ```
 
-For an addressed depth $`d<n-1`$, write a basis label as prefix $`r`$, target bit $`q`$, and lower suffix $`z`$. A reusable clean flag computes $`F_{d}\lvert r,q,z\rangle \lvert 0\rangle _{f}=\lvert r,q,z\rangle \lvert [z=0]\rangle _{f}`$. Let $`V_{d,f}`$ apply the prefix-selected $`R_{y}(\theta_{2^{d}+r})`$ to the target when the flag is one and act as the identity when it is zero. This leaves the suffix unchanged, so $`F_{d}^{\dagger}V_{d,f}F_{d}`$ implements the addressed layer $`V_{d}`$ on a clean flag and returns the flag to zero. The final depth needs no flag. Composing the layers gives the full-frame contract
+For an addressed depth $`d\lt n-1`$, write a basis label as prefix $`r`$, target bit $`q`$, and lower suffix $`z`$. A reusable clean flag computes $`F_{d}\lvert r,q,z\rangle \lvert 0\rangle _{f}=\lvert r,q,z\rangle \lvert [z=0]\rangle _{f}`$. Let $`V_{d,f}`$ apply the prefix-selected $`R_{y}(\theta_{2^{d}+r})`$ to the target when the flag is one and act as the identity when it is zero. This leaves the suffix unchanged, so $`F_{d}^{\dagger}V_{d,f}F_{d}`$ implements the addressed layer $`V_{d}`$ on a clean flag and returns the flag to zero. The final depth needs no flag. Composing the layers gives the full-frame contract
 
 <a id="A2.E73"></a>
 
